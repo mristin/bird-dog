@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CliffField" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/cliff_field.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "lastovo"
+name = "the cliffs of Lastovo"
+latitude = 42.74
+longitude = 16.84
+radius_km = 6.0

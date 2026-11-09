@@ -1,0 +1,97 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/maestral_jugo.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/katarina.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/hvar.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/split.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/zadar.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/sibenik.tres" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/grey_beard.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/carpenter_pencil.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/leather_apron.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/korcula.tres" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/people/master_ivan.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/people/joiner.tres" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/people/cooper.tres" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="20_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="22_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/pula.jpg" id="23_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="24_ext"]
+[ext_resource type="Resource" path="res://data/world/items/passenger_ivan.tres" id="ivan_item"]
+[ext_resource type="Resource" path="res://data/world/ports/pag.tres" id="pool_pag"]
+[ext_resource type="Resource" path="res://data/world/ports/ston.tres" id="pool_ston"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="pool_senj"]
+[ext_resource type="Resource" path="res://data/world/ports/rovinj.tres" id="pool_rovinj"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("5_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Captain, please help me! I am Katarina, the daughter of Master Ivan.", "The Aga's recruiter wants Father to build the Aga's tax boats, so Father hid.", "He left clues which only friends understand. Start where they dance the Moreška!"])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("16_ext")
+id = "trail"
+ports = Array[ExtResource("10_ext")]([ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("8_ext"), ExtResource("9_ext"), ExtResource("pool_pag"), ExtResource("pool_ston"), ExtResource("pool_senj"), ExtResource("pool_rovinj")])
+length = 3
+fixed_route = false
+max_route_km = 560.0
+max_difficulty = 2
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("14_ext")]([ExtResource("11_ext"), ExtResource("12_ext"), ExtResource("13_ext")])
+hallmark_template = "Master Ivan has {hallmark}."
+question = "Have you seen Master Ivan, the shipwright?"
+rival = true
+rival_line = "The Aga's recruiter reached {port} first! Master Ivan fled further."
+found_line = "He is here, hiding among the workers of the harbour! But which one is he?"
+starts_at = ExtResource("15_ext")
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("20_ext")
+id = "lineup"
+target = ExtResource("17_ext")
+decoys = Array[Resource]([ExtResource("18_ext"), ExtResource("19_ext")])
+question = "Which one is Master Ivan? Remember what his friends told you!"
+wrong_line = "No, that is not him! Think of everything his friends said."
+right_line = "\"You found me before the recruiter did! Take me home to my daughter.\""
+gives = ExtResource("ivan_item")
+
+[sub_resource type="Resource" id="return"]
+script = ExtResource("21_ext")
+id = "return"
+item = ExtResource("ivan_item")
+port = ExtResource("2_ext")
+recipient = ExtResource("4_ext")
+objective = "Bring Master Ivan safely to {port}."
+thanks = Array[String](["Father! You are safe!", "Thank you, captain. We will never forget it."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("22_ext")
+id = "celebration"
+speaker = ExtResource("17_ext")
+lines = Array[String](["Here in Pula, I will open my new shipyard.", "And your boats, captain, I will decorate for free, for ever!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "shipwright_of_korcula"
+number = 2
+title = "The Shipwright of Korčula"
+summary = "Master Ivan hides from the Aga's recruiter. Find him first and bring him safely to Pula."
+start_port = ExtResource("2_ext")
+clock_days = 21.0
+provisions_days = 10.8
+sea = ExtResource("3_ext")
+steps = Array[ExtResource("24_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("return"), SubResource("celebration")])
+fun_fact = "The shipwrights of Korčula were famous all over the Adriatic, and the stonemasons of the island built in Venice and in Dubrovnik."
+victory_title = "Master Ivan is safe!"
+victory_lines = Array[String](["The Aga's recruiter sails home with empty hands.", "Master Ivan and Katarina are together again in Pula."])
+reward = "Master Ivan opens his shipyard in Pula: from now on, he decorates your boats."
+victory_picture = ExtResource("23_ext")
+victory_person = ExtResource("17_ext")

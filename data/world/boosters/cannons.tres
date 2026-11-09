@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Booster" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/booster.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "cannons"
+name = "Lots of cannons"
+description = "A row of cannons on deck: the corsairs flee until the next port."
+price = 45
+effect = "cannons"
+lasts = "leg"
+

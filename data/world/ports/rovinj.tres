@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/venice.tres" id="2_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/rovinj.jpg" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/old_fisher.tres" id="local_old_fisher"]
+[ext_resource type="Resource" path="res://data/world/people/market_woman.tres" id="local_market_woman"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="5_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="6_ext"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("6_ext")
+kind = "nature"
+phrase = "the town on a small island off the coast of Istria"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("6_ext")
+kind = "saint"
+phrase = "the town where the stone coffin of St. Euphemia washed ashore"
+difficulty = 2
+
+[sub_resource type="Resource" id="fact_3"]
+script = ExtResource("6_ext")
+kind = "goods"
+phrase = "the town whose white stone builds the palaces of Venice"
+difficulty = 3
+
+[resource]
+script = ExtResource("1_ext")
+id = "rovinj"
+name = "Rovinj"
+latitude = 45.081
+longitude = 13.636
+power = ExtResource("2_ext")
+facts = Array[ExtResource("6_ext")]([SubResource("fact_1"), SubResource("fact_2"), SubResource("fact_3")])
+picture = ExtResource("3_ext")
+icon = "island_campanile"
+locals = Array[ExtResource("5_ext")]([ExtResource("local_old_fisher"), ExtResource("local_market_woman")])

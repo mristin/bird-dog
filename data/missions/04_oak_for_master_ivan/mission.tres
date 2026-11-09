@@ -1,0 +1,87 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/master_ivan.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/items/oak.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/leopold.tres" id="6_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/items/fir_mast.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/people/juraj.tres" id="10_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="12_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/bura_kvarner.tres" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="16_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/pula.jpg" id="17_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, the fishermen of Pula need new boats.", "But the Aga bought up all the oak, to build his tax boats.", "Fetch me oak from Leopold in Rijeka, and a fir mast from Juraj in Senj!"])
+
+[sub_resource type="Resource" id="collect_source_1"]
+script = ExtResource("7_ext")
+item = ExtResource("4_ext")
+port = ExtResource("5_ext")
+person = ExtResource("6_ext")
+lines = Array[String](["The Aga wanted all my oak, but I kept the best for honest shipwrights.", "Greet Master Ivan from me!"])
+
+[sub_resource type="Resource" id="collect_source_2"]
+script = ExtResource("7_ext")
+item = ExtResource("8_ext")
+port = ExtResource("9_ext")
+person = ExtResource("10_ext")
+lines = Array[String](["A mast from the firs of Velebit, straight as an arrow!", "The bura made them strong."])
+
+[sub_resource type="Resource" id="collect"]
+script = ExtResource("11_ext")
+id = "collect"
+sources = Array[ExtResource("7_ext")]([SubResource("collect_source_1"), SubResource("collect_source_2")])
+needed = 0
+objective = "Fetch {count} more {count|load|loads} of wood."
+
+[sub_resource type="Resource" id="oak"]
+script = ExtResource("13_ext")
+id = "oak"
+item = ExtResource("4_ext")
+port = ExtResource("12_ext")
+recipient = ExtResource("2_ext")
+objective = "Bring the oak to Master Ivan in {port}."
+thanks = Array[String](["Beautiful oak! It still smells of the forest."])
+
+[sub_resource type="Resource" id="mast"]
+script = ExtResource("13_ext")
+id = "mast"
+item = ExtResource("8_ext")
+port = ExtResource("12_ext")
+recipient = ExtResource("2_ext")
+objective = "Bring the mast to Master Ivan in {port}."
+thanks = Array[String](["And a mast from Velebit! Now I can build."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("14_ext")
+id = "celebration"
+speaker = ExtResource("2_ext")
+lines = Array[String](["The first new boat is in the water!", "And the Aga's tax boats? They are still waiting for their oak."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "oak_for_master_ivan"
+number = 4
+title = "Oak for Master Ivan"
+summary = "The Aga bought up the oak. Fetch oak and a mast for Master Ivan, so that he can build boats for the fishermen."
+start_port = ExtResource("12_ext")
+clock_days = 6.0
+provisions_days = 10.8
+sea = ExtResource("15_ext")
+steps = Array[ExtResource("16_ext")]([SubResource("briefing"), SubResource("collect"), SubResource("oak"), SubResource("mast"), SubResource("celebration")])
+fun_fact = "Venice stands on wooden piles of alder, a wood which does not rot in the water, and its houses rest on stone from Istria."
+victory_title = "The shipyard is busy again!"
+victory_lines = Array[String](["Oak from Rijeka and a mast from Senj reached Pula.", "The fishermen of Pula will sail in new boats."])
+victory_picture = ExtResource("17_ext")
+victory_person = ExtResource("2_ext")

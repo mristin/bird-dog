@@ -1,0 +1,72 @@
+[
+    {
+        "code": "en",
+        "name": "English",
+        "subtitle": "",
+        "prompt": "Choose your language",
+        "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    {
+        "code": "de",
+        "name": "Deutsch",
+        "subtitle": "",
+        "prompt": "Wähle deine Sprache",
+        "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜ"
+    },
+    {
+        "code": "es",
+        "name": "Español",
+        "subtitle": "",
+        "prompt": "Elige tu idioma",
+        "alphabet": "ABCDEFGHIJKLMNÑOPQRSTUVWXYZÁÉÍÓÚÜ"
+    },
+    {
+        "code": "fr",
+        "name": "Français",
+        "subtitle": "",
+        "prompt": "Choisis ta langue",
+        "alphabet": "ABCÇDEÉÈÊFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    {
+        "code": "hr",
+        "name": "Hrvatski",
+        "subtitle": "po dalmatinski",
+        "prompt": "Izaberi jezik",
+        "alphabet": "ABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ"
+    },
+    {
+        "code": "it",
+        "name": "Italiano",
+        "subtitle": "",
+        "prompt": "Scegli la tua lingua",
+        "alphabet": "ABCDEFGHIJKLMNOPQRSTUVWXYZÀÈÉÌÒÙ"
+    },
+    {
+        "code": "pt",
+        "name": "Português",
+        "subtitle": "",
+        "prompt": "Escolhe a tua língua",
+        "alphabet": "ABCÇDEFGHIJKLMNOPQRSTUVWXYZÁÂÃÉÊÍÓÔÕÚ"
+    },
+    {
+        "code": "ru",
+        "name": "Русский",
+        "subtitle": "",
+        "prompt": "Выбери язык",
+        "alphabet": "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+    },
+    {
+        "code": "sq",
+        "name": "Shqip",
+        "subtitle": "",
+        "prompt": "Zgjidh gjuhën",
+        "alphabet": "ABCÇDEËFGHIJKLMNOPQRSTUVXYZ"
+    },
+    {
+        "code": "tr",
+        "name": "Türkçe",
+        "subtitle": "",
+        "prompt": "Dilini seç",
+        "alphabet": "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ"
+    }
+]

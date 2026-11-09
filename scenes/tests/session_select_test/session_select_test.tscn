@@ -1,0 +1,7 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/session_select/session_select.tscn" id="1_scene"]
+
+[node name="SessionSelectTest" instance=ExtResource("1_scene")]
+next_scene = ""
+missions_scene = ""

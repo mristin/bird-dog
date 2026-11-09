@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Decoration" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/decoration.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "sail_sun"
+name = "A sail with a sun"
+slot = "sail"
+price = 60
+color = Color(0.98, 0.96, 0.88, 1)
+color_2 = Color(0.93, 0.68, 0.15, 1)
+pattern = "sun"

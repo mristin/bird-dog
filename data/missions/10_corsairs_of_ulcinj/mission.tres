@@ -1,0 +1,95 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/kotor.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/corsair_coast.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/olive_woman.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ulcinj.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/people/corsair.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/items/sail.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/items/oil.tres" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/trade_link.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/durres.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/people/sailmaker.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/items/honey.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/vlore.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/people/beekeeper.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/items/salt.tres" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trade_step.gd" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item.gd" id="20_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/ulcinj.jpg" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="22_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("5_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Captain! The corsairs of Ulcinj took all our olive oil.", "We traded it for the winter, and now we have nothing.", "Nobody fights them. Go and ask what they want for it!"])
+
+[sub_resource type="Resource" id="link_1"]
+script = ExtResource("10_ext")
+port = ExtResource("6_ext")
+person = ExtResource("7_ext")
+wants = ExtResource("8_ext")
+gives = ExtResource("9_ext")
+ask_lines = Array[String](["Oil for oil? No, no. My sail is torn to rags.", "Bring me a new sail, and you get your oil back.", "The sailmaker of Durrës makes the best sails."])
+thanks_lines = Array[String](["A new sail! Fine work. Here is your oil, captain.", "And tell the Aga that Crooked Mast is not his friend."])
+
+[sub_resource type="Resource" id="link_2"]
+script = ExtResource("10_ext")
+port = ExtResource("11_ext")
+person = ExtResource("12_ext")
+wants = ExtResource("13_ext")
+gives = ExtResource("8_ext")
+ask_lines = Array[String](["A sail? Gladly, but my cough is so bad, I can not work.", "Only the honey of Vlorë helps.", "Bring me a jar of honey!"])
+thanks_lines = Array[String](["Honey from Vlorë! My cough is gone already.", "Here is the sail. The finest in the Adriatic!"])
+
+[sub_resource type="Resource" id="link_3"]
+script = ExtResource("10_ext")
+port = ExtResource("14_ext")
+person = ExtResource("15_ext")
+wants = ExtResource("16_ext")
+gives = ExtResource("13_ext")
+ask_lines = Array[String](["Honey? My bees made plenty.", "But I need salt for my cheese. Do you have salt on board?"])
+thanks_lines = Array[String](["Salt! Just what I needed.", "Here is a jar of my best honey."])
+
+[sub_resource type="Resource" id="trade"]
+script = ExtResource("17_ext")
+id = "trade"
+links = Array[ExtResource("10_ext")]([SubResource("link_1"), SubResource("link_2"), SubResource("link_3")])
+
+[sub_resource type="Resource" id="return"]
+script = ExtResource("18_ext")
+id = "return"
+item = ExtResource("9_ext")
+port = ExtResource("2_ext")
+recipient = ExtResource("4_ext")
+objective = "Bring the olive oil home to {port}."
+thanks = Array[String](["Our oil! Now we have enough for the winter.", "Thank you, captain!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("19_ext")
+id = "celebration"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Crooked Mast sent a message, too:", "\"The Aga's scribe sails south with a heavy book. Watch out for him!\""])
+
+[resource]
+script = ExtResource("1_ext")
+id = "corsairs_of_ulcinj"
+number = 10
+title = "The Corsairs of Ulcinj"
+summary = "The corsairs took the villages' olive oil. Find out what they want, and trade it back."
+start_port = ExtResource("2_ext")
+clock_days = 12.0
+provisions_days = 10.8
+sea = ExtResource("3_ext")
+steps = Array[ExtResource("22_ext")]([SubResource("briefing"), SubResource("trade"), SubResource("return"), SubResource("celebration")])
+start_cargo = Array[ExtResource("20_ext")]([ExtResource("16_ext")])
+fun_fact = "The olive trees of the Adriatic grow very old: near Bar in Montenegro stands an olive tree which is said to be more than two thousand years old."
+victory_title = "The oil is home!"
+victory_lines = Array[String](["Not a single shot was fired: a sail, a jar of honey and a sack of salt did it.", "Even the corsair captain is your friend now."])
+victory_picture = ExtResource("21_ext")
+victory_person = ExtResource("7_ext")

@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/calm_maestral.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/baba_stana.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/zadar.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/sibenik.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/patched_red_sail.tres" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="10_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/aga_boat.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/red_trader.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/white_fisher.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/items/bell.tres" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/grebastica.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/people/anica.tres" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="20_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/grebastica.jpg" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="22_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pag.tres" id="pool_pag"]
+[ext_resource type="Resource" path="res://data/world/ports/split.tres" id="pool_split"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="pool_senj"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("5_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Ahoy, captain! I have bad news from Grebaštica.", "The Aga's men took the village bell as a \"tax\" and sailed off with it.", "A fisherman saw them leave. Follow them!"])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("11_ext")
+id = "trail"
+ports = Array[ExtResource("8_ext")]([ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("pool_pag"), ExtResource("pool_split"), ExtResource("pool_senj")])
+length = 2
+fixed_route = false
+max_route_km = 260.0
+max_difficulty = 1
+clue_templates = Array[String](["They asked the way to {fact}.", "They sailed on toward {fact}.", "I heard them talk about {fact}."])
+reveal = Array[ExtResource("10_ext")]([ExtResource("9_ext")])
+hallmark_template = "Their boat had {hallmark}."
+question = "Have you seen the Aga's men with the bell?"
+found_line = "They are here, in the harbour! But which boat is theirs?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("16_ext")
+id = "lineup"
+target = ExtResource("12_ext")
+decoys = Array[Resource]([ExtResource("13_ext"), ExtResource("14_ext")])
+question = "Which boat is the Aga's? Remember its sail!"
+wrong_line = "No, not this one! Look at the sails again."
+right_line = "That's the one! The Aga's men grumble and give the bell back: \"It was only borrowed!\""
+gives = ExtResource("15_ext")
+
+[sub_resource type="Resource" id="deliver"]
+script = ExtResource("19_ext")
+id = "deliver"
+item = ExtResource("15_ext")
+port = ExtResource("17_ext")
+recipient = ExtResource("18_ext")
+objective = "Bring the bell home to {port}."
+thanks = Array[String](["Our bell! Thank you, captain!", "Tonight it will ring over the whole bay."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("20_ext")
+id = "celebration"
+speaker = ExtResource("18_ext")
+lines = Array[String](["Ding, dong! The bell of Grebaštica rings again!", "The whole village thanks you, captain."])
+sound = "bell"
+
+[resource]
+script = ExtResource("1_ext")
+id = "bell_of_grebastica"
+number = 1
+title = "The Bell of Grebaštica"
+summary = "The Aga's men took the bell of Grebaštica as a \"tax\". Follow its trail along the coast and bring it home."
+start_port = ExtResource("2_ext")
+clock_days = 9.5
+provisions_days = 10.8
+sea = ExtResource("3_ext")
+steps = Array[ExtResource("22_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("deliver"), SubResource("celebration")])
+fun_fact = "The cathedral of St. James in Šibenik was built only of stone, without wood or bricks. Its outer wall carries 71 carved heads of the people of that time."
+victory_title = "The bell rings again!"
+victory_lines = Array[String](["The bell of Grebaštica is home, and it rings over the whole bay.", "The children wave from the stone walls."])
+victory_picture = ExtResource("21_ext")
+victory_person = ExtResource("18_ext")

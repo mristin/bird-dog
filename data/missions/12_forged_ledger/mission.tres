@@ -1,0 +1,84 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/corfu.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/changing.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/harbour_master.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/vlore.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/durres.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ulcinj.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/kotor.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/herceg_novi.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/dubrovnik.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bari.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/brindisi.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ink_fingers.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/green_hat.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/spectacles.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/goose_quill.tres" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="20_ext"]
+[ext_resource type="Resource" path="res://data/world/people/scribe.tres" id="21_ext"]
+[ext_resource type="Resource" path="res://data/world/people/clerk.tres" id="22_ext"]
+[ext_resource type="Resource" path="res://data/world/people/teacher.tres" id="23_ext"]
+[ext_resource type="Resource" path="res://data/world/people/poet.tres" id="24_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ledger.tres" id="25_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="26_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="27_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/venice.jpg" id="28_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="29_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("5_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Captain, the warning of Crooked Mast came true!", "The Aga's scribe was here with a heavy book: the ledger of the double taxes.", "With it, we can prove everything. But he fled in a hurry. Chase him!"])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("20_ext")
+id = "trail"
+ports = Array[ExtResource("14_ext")]([ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("8_ext"), ExtResource("9_ext"), ExtResource("10_ext"), ExtResource("11_ext"), ExtResource("12_ext"), ExtResource("13_ext")])
+length = 4
+fixed_route = false
+max_route_km = 640.0
+max_difficulty = 3
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("19_ext")]([ExtResource("15_ext"), ExtResource("16_ext"), ExtResource("17_ext"), ExtResource("18_ext")])
+hallmark_template = "The scribe had {hallmark}."
+question = "Have you seen the Aga's scribe with a heavy book?"
+found_line = "He is here, hiding among the people of the harbour! But which one is he?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("26_ext")
+id = "lineup"
+target = ExtResource("21_ext")
+decoys = Array[Resource]([ExtResource("22_ext"), ExtResource("23_ext"), ExtResource("24_ext")])
+question = "Which one is the Aga's scribe?"
+wrong_line = "No, that is not the scribe! Remember all four things you learned."
+right_line = "\"Alright, alright! Here is the ledger. I only wrote what the Aga told me!\""
+gives = ExtResource("25_ext")
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("27_ext")
+id = "celebration"
+speaker = ExtResource("21_ext")
+lines = Array[String](["\"I will tell the truth before the judge, I promise.\"", "The ledger proves it: the Aga took every tax twice!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "forged_ledger"
+number = 12
+title = "The Forged Ledger"
+summary = "The Aga's scribe flees with the ledger of the double taxes. Chase him along the coast!"
+start_port = ExtResource("2_ext")
+clock_days = 22.0
+provisions_days = 10.8
+sea = ExtResource("3_ext")
+steps = Array[ExtResource("29_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("celebration")])
+fun_fact = "Spectacles were made in Venice from about 1300 on; the glassmakers of Murano were so precious that they were not allowed to leave the republic."
+victory_title = "The ledger is yours!"
+victory_lines = Array[String](["You chased the scribe along the whole coast and found him.", "Now the crew holds the proof of the double taxes."])
+victory_picture = ExtResource("28_ext")
+victory_person = ExtResource("21_ext")

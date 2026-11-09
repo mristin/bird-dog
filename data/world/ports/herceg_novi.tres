@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/ottomans.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/people/porter.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="5_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/herceg_novi.jpg" id="pic_ext"]
+[ext_resource type="Resource" path="res://data/world/people/mustafa.tres" id="local_mustafa"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("5_ext")
+kind = "landmark"
+phrase = "the fortress at the gate of the Bay of Kotor"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("5_ext")
+kind = "nature"
+phrase = "the town of the mimosa"
+difficulty = 2
+
+[resource]
+script = ExtResource("1_ext")
+id = "herceg_novi"
+name = "Herceg Novi"
+latitude = 42.453
+icon = "mimosa_fort"
+longitude = 18.531
+power = ExtResource("2_ext")
+facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2")])
+locals = Array[ExtResource("4_ext")]([ExtResource("local_mustafa"), ExtResource("3_ext")])
+picture = ExtResource("pic_ext")

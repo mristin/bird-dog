@@ -1,0 +1,93 @@
+[
+    {
+        "id": "banchieri_sonata_1",
+        "file": "banchieri_sonata_1.ogg",
+        "midi": "midi/banchieri_sonata_1.mid",
+        "title": "Sonata prima (L'organo suonarino)",
+        "composer": "Adriano Banchieri (1568–1634)",
+        "year": 1605,
+        "edition": "L'organo suonarino, Ricciardo Amadino, Venezia, 1605",
+        "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=31",
+        "license": "Public Domain (Mutopia Project: no rights reserved)",
+        "midi_sha256": "4323ab0dcef62bc0bb721ba1ae15a4f824e4d56d31501114a22517bd37269888",
+        "rendered_with": "TiMidity++ and the FluidR3 GM sound font (MIT)"
+    },
+    {
+        "id": "banchieri_sonata_2",
+        "file": "banchieri_sonata_2.ogg",
+        "midi": "midi/banchieri_sonata_2.mid",
+        "title": "Sonata seconda (L'organo suonarino)",
+        "composer": "Adriano Banchieri (1568–1634)",
+        "year": 1605,
+        "edition": "L'organo suonarino, Ricciardo Amadino, Venezia, 1605",
+        "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=32",
+        "license": "Public Domain (Mutopia Project: no rights reserved)",
+        "midi_sha256": "8efd8ae28c12ff81d9ab639a13bd76d73e1fbef93313f0f419e69557ee334374",
+        "rendered_with": "TiMidity++ and the FluidR3 GM sound font (MIT)"
+    },
+    {
+        "id": "banchieri_sonata_3",
+        "file": "banchieri_sonata_3.ogg",
+        "midi": "midi/banchieri_sonata_3.mid",
+        "title": "Sonata terza (L'organo suonarino)",
+        "composer": "Adriano Banchieri (1568–1634)",
+        "year": 1605,
+        "edition": "L'organo suonarino, Ricciardo Amadino, Venezia, 1605",
+        "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=33",
+        "license": "Public Domain (Mutopia Project: no rights reserved)",
+        "midi_sha256": "3443038bb7c5eb050eb176385c8104ce446eb178a1f51e7903f3578bed782b51",
+        "rendered_with": "TiMidity++ and the FluidR3 GM sound font (MIT)"
+    },
+    {
+        "id": "banchieri_sonata_4",
+        "file": "banchieri_sonata_4.ogg",
+        "midi": "midi/banchieri_sonata_4.mid",
+        "title": "Sonata quarta (L'organo suonarino)",
+        "composer": "Adriano Banchieri (1568–1634)",
+        "year": 1605,
+        "edition": "L'organo suonarino, Ricciardo Amadino, Venezia, 1605",
+        "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=34",
+        "license": "Public Domain (Mutopia Project: no rights reserved)",
+        "midi_sha256": "f01ef81cbeb2fe66338e3de463455e4c36fecc04bddc9c2603b9f4c51728026d",
+        "rendered_with": "TiMidity++ and the FluidR3 GM sound font (MIT)"
+    },
+    {
+        "id": "banchieri_sonata_5",
+        "file": "banchieri_sonata_5.ogg",
+        "midi": "midi/banchieri_sonata_5.mid",
+        "title": "Sonata quinta (L'organo suonarino)",
+        "composer": "Adriano Banchieri (1568–1634)",
+        "year": 1605,
+        "edition": "L'organo suonarino, Ricciardo Amadino, Venezia, 1605",
+        "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=35",
+        "license": "Public Domain (Mutopia Project: no rights reserved)",
+        "midi_sha256": "2b2b93267ea9fbd114e21b2fbfc7441d26a832cb6371299446e5e3aa73c18ffe",
+        "rendered_with": "TiMidity++ and the FluidR3 GM sound font (MIT)"
+    },
+    {
+        "id": "banchieri_sonata_6",
+        "file": "banchieri_sonata_6.ogg",
+        "midi": "midi/banchieri_sonata_6.mid",
+        "title": "Sonata sesta (L'organo suonarino)",
+        "composer": "Adriano Banchieri (1568–1634)",
+        "year": 1605,
+        "edition": "L'organo suonarino, Ricciardo Amadino, Venezia, 1605",
+        "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=36",
+        "license": "Public Domain (Mutopia Project: no rights reserved)",
+        "midi_sha256": "d6c69f8ab0f0a4c98fc2ddde6ff493eab62557fa7b8700a6f6b3a0e173694610",
+        "rendered_with": "TiMidity++ and the FluidR3 GM sound font (MIT)"
+    },
+    {
+        "id": "galilei_saltarello",
+        "file": "galilei_saltarello.ogg",
+        "midi": "midi/galilei_saltarello.mid",
+        "title": "Saltarello",
+        "composer": "Vincenzo Galilei (c. 1520–1591)",
+        "year": 1584,
+        "edition": "Lute music of the late 16th century (source of the edition unknown)",
+        "source": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=110",
+        "license": "Public Domain (Mutopia Project: no rights reserved)",
+        "midi_sha256": "5d934a2d4e4fb86e7173997c063d447d36cb1d7ec461ed80a80a9764aacf410b",
+        "rendered_with": "TiMidity++ and the FluidR3 GM sound font (MIT)"
+    }
+]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Booster" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/booster.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/decorations/27_flag_moon.tres" id="2_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "deco_moon"
+name = "A crescent flag"
+description = "The moon and a star fly on your mast. Forever!"
+price = 50
+effect = "decoration"
+lasts = "now"
+decoration = ExtResource("2_ext")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Decoration" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/decoration.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "hull_red"
+name = "Red paint"
+slot = "hull"
+price = 40
+color = Color(0.6, 0.15, 0.12, 1)
+color_2 = Color(0.98, 0.96, 0.88, 1)
+pattern = "plain"

@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/split.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/jugo_south.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/baba_stana.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/korcula.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ston.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/dubrovnik.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/herceg_novi.tres" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/black_cap.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/bag_of_herbs.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/red_cloak.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="14_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/people/doctor_marin.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/people/spice_seller.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/people/notary.tres" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="19_ext"]
+[ext_resource type="Resource" path="res://data/world/items/medicine.tres" id="20_ext"]
+[ext_resource type="Resource" path="res://data/world/people/friar.tres" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="22_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="23_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/kotor.tres" id="24_ext"]
+[ext_resource type="Resource" path="res://data/world/people/mother_kotor.tres" id="25_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="26_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="27_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/kotor.jpg" id="28_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="29_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/hvar.tres" id="pool_hvar"]
+[ext_resource type="Resource" path="res://data/world/ports/ulcinj.tres" id="pool_ulcinj"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("5_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Captain, a fever spreads in the villages around the Bay of Kotor!", "Only Doctor Marin of Ragusa knows how to stop it.", "He goes from patient to patient along the coast. Find him!"])
+by_pigeon = true
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("15_ext")
+id = "trail"
+ports = Array[ExtResource("10_ext")]([ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("8_ext"), ExtResource("9_ext"), ExtResource("pool_hvar"), ExtResource("pool_ulcinj")])
+length = 3
+fixed_route = false
+max_route_km = 380.0
+max_difficulty = 2
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("14_ext")]([ExtResource("11_ext"), ExtResource("12_ext"), ExtResource("13_ext")])
+hallmark_template = "The doctor wore {hallmark}."
+question = "Have you seen Doctor Marin?"
+found_line = "He is here, visiting a patient! But which one is the doctor?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("19_ext")
+id = "lineup"
+target = ExtResource("16_ext")
+decoys = Array[Resource]([ExtResource("17_ext"), ExtResource("18_ext")])
+question = "Which one is Doctor Marin?"
+wrong_line = "No, that is not the doctor! Remember what the people told you."
+right_line = "\"Kotor needs me? Then hurry to the apothecary of the Franciscans in Dubrovnik for my medicine!\""
+
+[sub_resource type="Resource" id="medicine_source_1"]
+script = ExtResource("22_ext")
+item = ExtResource("20_ext")
+port = ExtResource("8_ext")
+person = ExtResource("21_ext")
+lines = Array[String](["Doctor Marin sent you? Here is the medicine, made by our brothers.", "Hurry to Kotor, and steer carefully through the narrow strait!"])
+
+[sub_resource type="Resource" id="medicine"]
+script = ExtResource("23_ext")
+id = "medicine"
+sources = Array[ExtResource("22_ext")]([SubResource("medicine_source_1")])
+needed = 0
+objective = "Fetch the medicine."
+
+[sub_resource type="Resource" id="deliver"]
+script = ExtResource("26_ext")
+id = "deliver"
+item = ExtResource("20_ext")
+port = ExtResource("24_ext")
+recipient = ExtResource("25_ext")
+objective = "Bring the medicine to {port}."
+thanks = Array[String](["The medicine! Thank you, captain!", "Now our children will get well again."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("27_ext")
+id = "celebration"
+speaker = ExtResource("25_ext")
+lines = Array[String](["The fever is gone from the Bay of Kotor!", "The bells of St. Tryphon ring for you, captain."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "doctor_of_ragusa"
+number = 6
+title = "The Doctor of Ragusa"
+summary = "A fever spreads around the Bay of Kotor. Find Doctor Marin and bring his medicine."
+start_port = ExtResource("2_ext")
+clock_days = 13.0
+provisions_days = 10.8
+sea = ExtResource("3_ext")
+steps = Array[ExtResource("29_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("medicine"), SubResource("deliver"), SubResource("celebration")])
+fun_fact = "In 1377, Ragusa was the first city to keep travellers apart for a while before they could enter: a quarantine, against the illnesses. The pharmacy of the Franciscans in Dubrovnik, from 1317, still sells medicine today."
+victory_title = "The fever is gone!"
+victory_lines = Array[String](["Doctor Marin's medicine reached Kotor just in time.", "The children of the bay are well again."])
+victory_picture = ExtResource("28_ext")
+victory_person = ExtResource("16_ext")

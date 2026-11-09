@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Booster" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/booster.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/decorations/25_flag_checks.tres" id="2_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "deco_checks"
+name = "A checkered flag"
+description = "Red and white checks on your mast. Forever!"
+price = 50
+effect = "decoration"
+lasts = "now"
+decoration = ExtResource("2_ext")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Decoration" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/decoration.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "friend_dog"
+name = "A dog"
+slot = "friend"
+price = 120
+color = Color(0.55, 0.38, 0.22, 1)
+color_2 = Color(0.95, 0.9, 0.8, 1)
+pattern = "dog"

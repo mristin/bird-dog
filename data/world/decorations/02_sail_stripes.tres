@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Decoration" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/decoration.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "sail_stripes"
+name = "A striped sail"
+slot = "sail"
+price = 40
+color = Color(0.98, 0.96, 0.88, 1)
+color_2 = Color(0.75, 0.16, 0.12, 1)
+pattern = "stripes"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Ship" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/ship.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "uskok_boat"
+name = "Uskok boat"
+description = "Light and fast, with oars against the wind."
+price = 700
+masts = 2
+length = 0.95
+oars = true
+speed = 1.12
+turn = 1.3
+rations = 2
+errands = 1

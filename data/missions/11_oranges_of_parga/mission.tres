@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/harbour_master.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/parga.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/people/eleni.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/items/baskets.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/items/oranges.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/trade_link.gd" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/vlore.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ilir.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/items/rope.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/corfu.tres" id="12_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trade_step.gd" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/people/market_woman.tres" id="14_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/jugo_south.tres" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="18_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/parga.jpg" id="19_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, the Aga wants the oranges of Parga as a tax!", "Eleni of Parga hid the harvest from his men.", "Help her get the oranges to the market of Corfu, so that the money stays with the people."])
+
+[sub_resource type="Resource" id="link_1"]
+script = ExtResource("8_ext")
+port = ExtResource("4_ext")
+person = ExtResource("5_ext")
+wants = ExtResource("6_ext")
+gives = ExtResource("7_ext")
+ask_lines = Array[String](["The oranges are ripe, but the Aga's men broke all my baskets.", "Bring me baskets! Ilir of Vlorë weaves the best ones."])
+thanks_lines = Array[String](["Fine baskets! Here are the oranges, captain.", "Smell them: the sun of Parga is inside."])
+
+[sub_resource type="Resource" id="link_2"]
+script = ExtResource("8_ext")
+port = ExtResource("9_ext")
+person = ExtResource("10_ext")
+wants = ExtResource("11_ext")
+gives = ExtResource("6_ext")
+ask_lines = Array[String](["I weave baskets from the reeds of the lagoon.", "But my boat lost its rope. Spiros in Corfu has ropes!"])
+thanks_lines = Array[String](["A good rope! Here are my baskets."])
+
+[sub_resource type="Resource" id="link_3"]
+script = ExtResource("8_ext")
+port = ExtResource("12_ext")
+person = ExtResource("2_ext")
+gives = ExtResource("11_ext")
+ask_lines = Array[String](["A rope for Ilir? The harbour of Corfu has ropes for everybody."])
+thanks_lines = Array[String](["Take this one, captain."])
+
+[sub_resource type="Resource" id="trade"]
+script = ExtResource("13_ext")
+id = "trade"
+links = Array[ExtResource("8_ext")]([SubResource("link_1"), SubResource("link_2"), SubResource("link_3")])
+
+[sub_resource type="Resource" id="market"]
+script = ExtResource("15_ext")
+id = "market"
+item = ExtResource("7_ext")
+port = ExtResource("12_ext")
+recipient = ExtResource("14_ext")
+objective = "Bring the oranges to the market of {port}."
+thanks = Array[String](["Oranges from Parga! The whole market smells of them.", "The money goes to the people of Parga, not to the Aga."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("16_ext")
+id = "celebration"
+speaker = ExtResource("5_ext")
+lines = Array[String](["Every orange was sold, and Parga keeps its money.", "The Aga gets only the peels!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "oranges_of_parga"
+number = 11
+title = "The Oranges of Parga"
+summary = "The Aga wants the oranges of Parga as a tax. Trade your way to baskets and bring the oranges to the market of Corfu."
+start_port = ExtResource("12_ext")
+clock_days = 15.0
+provisions_days = 10.8
+sea = ExtResource("17_ext")
+steps = Array[ExtResource("18_ext")]([SubResource("briefing"), SubResource("trade"), SubResource("market"), SubResource("celebration")])
+fun_fact = "Parga was a little Venetian town on the Greek coast for almost 400 years, with Ottoman lands all around it, and it was often raided by its neighbours."
+victory_title = "Sweet oranges for Corfu!"
+victory_lines = Array[String](["The oranges reached the market, and the money stayed in Parga.", "A rope, a basket and a lot of sailing did it."])
+victory_picture = ExtResource("19_ext")
+victory_person = ExtResource("5_ext")

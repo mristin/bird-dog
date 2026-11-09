@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b633wsnfeevia"]
+
+[ext_resource type="Script" uid="uid://bk3q8uab51opr" path="res://scenes/language_select/language_select.gd" id="1_script"]
+
+[node name="LanguageSelect" type="Control" unique_id=2055822495]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+next_scene = "res://scenes/session_select/session_select.tscn"

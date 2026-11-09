@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Booster" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/booster.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "rowers"
+name = "Strong rowers"
+description = "Into the wind, they row: no more crawling until the next port."
+price = 30
+effect = "oars"
+lasts = "leg"
+

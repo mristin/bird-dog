@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Hallmark" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "leather_apron"
+phrase = "a leather apron"
+kind = "clothes"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CliffField" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/cliff_field.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "cres"
+name = "the cliffs of Cres"
+latitude = 44.95
+longitude = 14.48
+radius_km = 6.0

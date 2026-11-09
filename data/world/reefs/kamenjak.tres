@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ReefField" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/reef_field.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "kamenjak"
+name = "the rocks of Cape Kamenjak"
+latitude = 44.745
+longitude = 13.92
+radius_km = 5.0
+rocks = 5

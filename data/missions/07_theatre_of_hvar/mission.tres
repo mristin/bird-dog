@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/lucija.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/items/actor_pero.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/zadar.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/pero.tres" id="6_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/items/actor_dora.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/sibenik.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/people/dora.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/items/actor_toma.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/korcula.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/toma.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/hvar.tres" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/split.tres" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/maestral_jugo.tres" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="20_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/hvar.jpg" id="21_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, Hvar opens a theatre for everybody, rich and poor!", "But the Aga's men scared my actors away, all along the coast.", "Find them and bring them to Hvar before the opening night!"])
+by_pigeon = true
+
+[sub_resource type="Resource" id="actors_source_1"]
+script = ExtResource("7_ext")
+item = ExtResource("4_ext")
+port = ExtResource("5_ext")
+person = ExtResource("6_ext")
+lines = Array[String](["The Aga's men said a jester is a useless man.", "Ha! I will make all of Hvar laugh."])
+
+[sub_resource type="Resource" id="actors_source_2"]
+script = ExtResource("7_ext")
+item = ExtResource("8_ext")
+port = ExtResource("9_ext")
+person = ExtResource("10_ext")
+lines = Array[String](["I hid in the cathedral and sang to the stone heads.", "Now I will sing for real people again!"])
+
+[sub_resource type="Resource" id="actors_source_3"]
+script = ExtResource("7_ext")
+item = ExtResource("11_ext")
+port = ExtResource("12_ext")
+person = ExtResource("13_ext")
+lines = Array[String](["Old Toma never misses an opening night.", "I have a new story about a clever captain..."])
+
+[sub_resource type="Resource" id="actors"]
+script = ExtResource("14_ext")
+id = "actors"
+sources = Array[ExtResource("7_ext")]([SubResource("actors_source_1"), SubResource("actors_source_2"), SubResource("actors_source_3")])
+needed = 0
+objective = "Find {count} more {count|actor|actors}."
+
+[sub_resource type="Resource" id="bring_pero"]
+script = ExtResource("16_ext")
+id = "bring_pero"
+item = ExtResource("4_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("2_ext")
+objective = "Bring the actors to {port}."
+thanks = Array[String](["Pero! Go and put on your bells."])
+
+[sub_resource type="Resource" id="bring_dora"]
+script = ExtResource("16_ext")
+id = "bring_dora"
+item = ExtResource("8_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("2_ext")
+objective = "Bring the actors to {port}."
+thanks = Array[String](["Dora! Your voice will fill the whole hall."])
+
+[sub_resource type="Resource" id="bring_toma"]
+script = ExtResource("16_ext")
+id = "bring_toma"
+item = ExtResource("11_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("2_ext")
+objective = "Bring the actors to {port}."
+thanks = Array[String](["Toma! Now we have all our actors."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("17_ext")
+id = "celebration"
+speaker = ExtResource("2_ext")
+lines = Array[String](["The curtain rises!", "Fishermen and nobles sit side by side, and everybody laughs."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "theatre_of_hvar"
+number = 7
+title = "The Theatre of Hvar"
+summary = "The Aga's men scared the actors away. Bring them to Hvar for the opening of the theatre."
+start_port = ExtResource("18_ext")
+clock_days = 10.0
+provisions_days = 10.8
+sea = ExtResource("19_ext")
+steps = Array[ExtResource("20_ext")]([SubResource("briefing"), SubResource("actors"), SubResource("bring_pero"), SubResource("bring_dora"), SubResource("bring_toma"), SubResource("celebration")])
+fun_fact = "Hvar's theatre opened in 1612 above the town's galley shed. It is one of the oldest public theatres in Europe, paid for by the town for all the people of Hvar."
+victory_title = "The theatre is full!"
+victory_lines = Array[String](["The jester, the singer and the storyteller made it to Hvar.", "The whole town laughs, sings and listens together."])
+victory_picture = ExtResource("21_ext")
+victory_person = ExtResource("2_ext")

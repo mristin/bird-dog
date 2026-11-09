@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/papal_states.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/old_fisher.tres" id="local_old_fisher"]
+[ext_resource type="Resource" path="res://data/world/people/porter.tres" id="local_porter"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("5_ext")
+kind = "landmark"
+phrase = "the town with the Roman bridge of five arches"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("5_ext")
+kind = "landmark"
+phrase = "the town of the arch of Augustus"
+difficulty = 2
+
+[resource]
+script = ExtResource("1_ext")
+id = "rimini"
+name = "Rimini"
+latitude = 44.072
+icon = "roman_bridge"
+longitude = 12.573
+power = ExtResource("2_ext")
+facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2")])
+locals = Array[ExtResource("4_ext")]([ExtResource("local_old_fisher"), ExtResource("local_porter")])

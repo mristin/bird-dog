@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/venice.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/people/market_woman.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="5_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/korcula.jpg" id="pic_ext"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("5_ext")
+kind = "landmark"
+phrase = "the island town where they dance the Moreška"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("5_ext")
+kind = "goods"
+phrase = "the town of the stonemasons and the shipwrights"
+difficulty = 2
+
+[sub_resource type="Resource" id="fact_3"]
+script = ExtResource("5_ext")
+kind = "person"
+phrase = "the town where Marco Polo was born, as they say"
+difficulty = 2
+
+[resource]
+script = ExtResource("1_ext")
+id = "korcula"
+name = "Korčula"
+latitude = 42.961
+icon = "walled_island"
+longitude = 17.136
+power = ExtResource("2_ext")
+facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2"), SubResource("fact_3")])
+locals = Array[ExtResource("4_ext")]([ExtResource("3_ext")])
+picture = ExtResource("pic_ext")

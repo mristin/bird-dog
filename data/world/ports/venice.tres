@@ -1,0 +1,45 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/venice.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/people/porter.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="5_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/venice.jpg" id="pic_ext"]
+[ext_resource type="Resource" path="res://data/world/people/zuane.tres" id="local_zuane"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("5_ext")
+kind = "power"
+phrase = "the city of the Doge"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("5_ext")
+kind = "nature"
+phrase = "the city whose streets are canals"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_3"]
+script = ExtResource("5_ext")
+kind = "goods"
+phrase = "the city of the great Arsenal, where they build a galley in a day"
+difficulty = 2
+
+[sub_resource type="Resource" id="fact_4"]
+script = ExtResource("5_ext")
+kind = "goods"
+phrase = "the city of the glassblowers of Murano"
+difficulty = 3
+
+[resource]
+script = ExtResource("1_ext")
+id = "venice"
+name = "Venice"
+latitude = 45.437
+icon = "campanile"
+longitude = 12.333
+power = ExtResource("2_ext")
+facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2"), SubResource("fact_3"), SubResource("fact_4")])
+locals = Array[ExtResource("4_ext")]([ExtResource("local_zuane"), ExtResource("3_ext")])
+picture = ExtResource("pic_ext")

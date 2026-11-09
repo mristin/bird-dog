@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Ship" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/ship.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "gajeta"
+name = "Gajeta"
+description = "Small and nimble: turns quickly, but stows only one ration."
+price = 0
+masts = 1
+length = 0.8
+oars = false
+speed = 1.05
+turn = 1.6
+rations = 1
+errands = 1

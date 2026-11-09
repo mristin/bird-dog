@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/rector.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/items/witness_leke.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ulcinj.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/corsair.tres" id="6_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/items/witness_mustafa.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/herceg_novi.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/people/mustafa.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/items/witness_jele.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/kotor.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/olive_woman.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/corfu.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/people/harbour_master.tres" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/dubrovnik.tres" id="19_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/corsair_coast.tres" id="20_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="21_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/dubrovnik.jpg" id="22_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, the judge wants to hear witnesses, not only the ledger.", "Crooked Mast in Ulcinj, Mustafa in Castelnuovo and Jele in Kotor saw what the Aga's men did.", "Bring all three to Corfu, where the voyage to the judge begins!"])
+
+[sub_resource type="Resource" id="witnesses_source_1"]
+script = ExtResource("7_ext")
+item = ExtResource("4_ext")
+port = ExtResource("5_ext")
+person = ExtResource("6_ext")
+lines = Array[String](["Me, a witness? Ha! Fine.", "I saw the Aga's men take a tax twice, right at sea."])
+
+[sub_resource type="Resource" id="witnesses_source_2"]
+script = ExtResource("7_ext")
+item = ExtResource("8_ext")
+port = ExtResource("9_ext")
+person = ExtResource("10_ext")
+lines = Array[String](["I keep the gate of Castelnuovo.", "Every cart of the Aga's men went through it, twice."])
+
+[sub_resource type="Resource" id="witnesses_source_3"]
+script = ExtResource("7_ext")
+item = ExtResource("11_ext")
+port = ExtResource("12_ext")
+person = ExtResource("13_ext")
+lines = Array[String](["They took my olives as a tax, and came back a week later for more.", "I will tell the judge everything."])
+
+[sub_resource type="Resource" id="witnesses"]
+script = ExtResource("14_ext")
+id = "witnesses"
+sources = Array[ExtResource("7_ext")]([SubResource("witnesses_source_1"), SubResource("witnesses_source_2"), SubResource("witnesses_source_3")])
+needed = 0
+objective = "Pick up {count} more {count|witness|witnesses}."
+
+[sub_resource type="Resource" id="bring_leke"]
+script = ExtResource("17_ext")
+id = "bring_leke"
+item = ExtResource("4_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring the witnesses to {port}."
+thanks = Array[String](["Crooked Mast? A corsair as a witness... the judge will be surprised!"])
+
+[sub_resource type="Resource" id="bring_mustafa"]
+script = ExtResource("17_ext")
+id = "bring_mustafa"
+item = ExtResource("8_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring the witnesses to {port}."
+thanks = Array[String](["Mustafa, the gatekeeper. Welcome to Corfu!"])
+
+[sub_resource type="Resource" id="bring_jele"]
+script = ExtResource("17_ext")
+id = "bring_jele"
+item = ExtResource("11_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring the witnesses to {port}."
+thanks = Array[String](["Jele of Kotor. Rest a little, the voyage is long."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("18_ext")
+id = "celebration"
+speaker = ExtResource("16_ext")
+lines = Array[String](["The witnesses are ready, and so is the ledger.", "Soon, the voyage to the judge begins!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "the_witnesses"
+number = 14
+title = "The Witnesses"
+summary = "The judge wants to hear witnesses. Bring them from Ulcinj, Castelnuovo and Kotor to Corfu."
+start_port = ExtResource("19_ext")
+clock_days = 10.0
+provisions_days = 10.8
+sea = ExtResource("20_ext")
+steps = Array[ExtResource("21_ext")]([SubResource("briefing"), SubResource("witnesses"), SubResource("bring_leke"), SubResource("bring_mustafa"), SubResource("bring_jele"), SubResource("celebration")])
+fun_fact = "The Republic of Ragusa banned the slave trade in 1416. It valued freedom very highly: the word Libertas stands on its flag."
+victory_title = "The witnesses are ready!"
+victory_lines = Array[String](["A corsair, a gatekeeper and an olive grower will speak before the judge.", "The Aga's days as a tax collector are numbered."])
+victory_picture = ExtResource("22_ext")
+victory_person = ExtResource("2_ext")

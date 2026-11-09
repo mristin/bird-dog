@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ReefField" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/reef_field.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "buna"
+name = "the shallows of the Buna"
+latitude = 41.84
+longitude = 19.33
+radius_km = 6.0
+rocks = 6

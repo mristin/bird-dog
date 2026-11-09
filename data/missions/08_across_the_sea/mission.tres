@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/dubrovnik.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/open_sea.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/rector.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ancona.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/people/envoy.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="8_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hearing_question.gd" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/hearing_step.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bari.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/people/viceroy_man.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/items/complaint.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/items/sealed_answer.tres" id="14_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item.gd" id="16_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/dubrovnik.jpg" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="18_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("5_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Welcome, captain. The villages have written down everything the Aga did.", "Bring their complaint to the envoy of the Pope in Ancona.", "Here is my letter of recommendation. Cross the sea, and may the wind be kind!"])
+
+[sub_resource type="Resource" id="ancona"]
+script = ExtResource("8_ext")
+id = "ancona"
+port = ExtResource("6_ext")
+recipient = ExtResource("7_ext")
+objective = "Bring the complaint across the sea to {port}."
+thanks = Array[String](["A complaint about an aga? Let me read it."])
+
+[sub_resource type="Resource" id="riddle_question_1"]
+script = ExtResource("9_ext")
+question = "Which emperor's arch stands at our harbour?"
+answers = Array[String](["The arch of Trajan", "The arch of Diocletian", "The arch of the Doge"])
+correct = 0
+
+[sub_resource type="Resource" id="riddle"]
+script = ExtResource("10_ext")
+id = "riddle"
+speaker = ExtResource("7_ext")
+intro = Array[String](["But first, tell me: are you really sailors who know our sea?"])
+questions = Array[ExtResource("9_ext")]([SubResource("riddle_question_1")])
+wrong_line = "Hmm, no. Look around the harbour, and think again!"
+right_lines = Array[String](["Right! You know our sea.", "But only the Viceroy's man in Bari can carry this to the court of the Sultan.", "Sail to the town where they keep the bones of St. Nicholas!"])
+
+[sub_resource type="Resource" id="bari"]
+script = ExtResource("8_ext")
+id = "bari"
+item = ExtResource("13_ext")
+port = ExtResource("11_ext")
+recipient = ExtResource("12_ext")
+objective = "Bring the complaint to the Viceroy's man in {port}."
+thanks = Array[String](["The envoy of the Pope sends you? Then it is serious.", "Take my sealed answer back to the Rector of Ragusa."])
+gives = ExtResource("14_ext")
+
+[sub_resource type="Resource" id="return"]
+script = ExtResource("8_ext")
+id = "return"
+item = ExtResource("14_ext")
+port = ExtResource("2_ext")
+recipient = ExtResource("4_ext")
+objective = "Bring the sealed answer back to {port}."
+thanks = Array[String](["The answer from Bari! Let me break the seal..."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("15_ext")
+id = "celebration"
+speaker = ExtResource("4_ext")
+lines = Array[String](["\"The Aga shall be heard before a judge.\"", "Captain, the villages will have their day in court!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "across_the_sea"
+number = 8
+title = "Across the Sea"
+summary = "Bring the villages' complaint across the sea to Ancona and Bari."
+start_port = ExtResource("2_ext")
+clock_days = 21.0
+provisions_days = 10.8
+sea = ExtResource("3_ext")
+steps = Array[ExtResource("18_ext")]([SubResource("briefing"), SubResource("ancona"), SubResource("riddle"), SubResource("bari"), SubResource("return"), SubResource("celebration")])
+start_cargo = Array[ExtResource("16_ext")]([ExtResource("13_ext")])
+fun_fact = "The bones of St. Nicholas, the saint of the sailors and of the children, were brought to Bari by its sailors in 1087."
+victory_title = "You crossed the sea!"
+victory_lines = Array[String](["The complaint reached the Pope's envoy and the Viceroy.", "The Aga will have to face a judge."])
+victory_picture = ExtResource("17_ext")
+victory_person = ExtResource("4_ext")

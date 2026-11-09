@@ -1,0 +1,157 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ika.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/items/letter_pag.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pag.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/salter_pag.tres" id="6_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/items/letter_rijeka.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/people/leopold.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/items/letter_trieste.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trieste.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/gertraud.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/venice.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/people/alvise.tres" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hearing_question.gd" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/hearing_step.gd" id="19_ext"]
+[ext_resource type="Resource" path="res://data/world/people/juraj.tres" id="20_ext"]
+[ext_resource type="Resource" path="res://data/world/items/passenger_juraj.tres" id="21_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="22_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="23_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/bura_kvarner.tres" id="24_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="25_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/venice.jpg" id="26_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, a Venetian patrol caught my brother Juraj!", "They took him to Venice, as a pirate.", "Collect letters from the people he helped, and speak for him before the Doge's council!"])
+
+[sub_resource type="Resource" id="letters_source_1"]
+script = ExtResource("7_ext")
+item = ExtResource("4_ext")
+port = ExtResource("5_ext")
+person = ExtResource("6_ext")
+lines = Array[String](["Juraj guarded the salt for the villages, not for himself.", "Here is my letter for the Doge."])
+
+[sub_resource type="Resource" id="letters_source_2"]
+script = ExtResource("7_ext")
+item = ExtResource("8_ext")
+port = ExtResource("9_ext")
+person = ExtResource("10_ext")
+lines = Array[String](["Juraj pulled my timber boat off the rocks in the bura.", "Take my letter to Venice."])
+
+[sub_resource type="Resource" id="letters_source_3"]
+script = ExtResource("7_ext")
+item = ExtResource("11_ext")
+port = ExtResource("12_ext")
+person = ExtResource("13_ext")
+lines = Array[String](["Juraj always paid for his soup, every time!", "Here, I wrote it down for the Doge."])
+
+[sub_resource type="Resource" id="letters"]
+script = ExtResource("14_ext")
+id = "letters"
+sources = Array[ExtResource("7_ext")]([SubResource("letters_source_1"), SubResource("letters_source_2"), SubResource("letters_source_3")])
+needed = 0
+objective = "Collect {count} more {count|letter|letters} for Juraj."
+
+[sub_resource type="Resource" id="deliver_pag"]
+script = ExtResource("17_ext")
+id = "deliver_pag"
+item = ExtResource("4_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring the letters to the Doge's council in {port}."
+thanks = Array[String](["A letter from Pag, about the salt."])
+
+[sub_resource type="Resource" id="deliver_rijeka"]
+script = ExtResource("17_ext")
+id = "deliver_rijeka"
+item = ExtResource("8_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring the letters to the Doge's council in {port}."
+thanks = Array[String](["A letter from Rijeka, about the rescue in the bura."])
+
+[sub_resource type="Resource" id="deliver_trieste"]
+script = ExtResource("17_ext")
+id = "deliver_trieste"
+item = ExtResource("11_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring the letters to the Doge's council in {port}."
+thanks = Array[String](["And a letter from Trieste... about soup?"])
+
+[sub_resource type="Resource" id="hearing_question_1"]
+script = ExtResource("18_ext")
+question = "What did Juraj guard for the villages?"
+answers = Array[String](["The salt", "The gold of the Aga", "The cannons of Venice"])
+correct = 0
+
+[sub_resource type="Resource" id="hearing_question_2"]
+script = ExtResource("18_ext")
+question = "Which wind blows hardest at Senj?"
+answers = Array[String](["The bura", "The jugo", "The maestral"])
+correct = 0
+
+[sub_resource type="Resource" id="hearing_question_3"]
+script = ExtResource("18_ext")
+question = "Who wrote that Juraj always paid for his soup?"
+answers = Array[String](["Gertraud of Trieste", "Leopold of Rijeka", "The Doge"])
+correct = 0
+
+[sub_resource type="Resource" id="hearing"]
+script = ExtResource("19_ext")
+id = "hearing"
+speaker = ExtResource("16_ext")
+intro = Array[String](["The council has read the letters. Now answer our questions, captain."])
+questions = Array[ExtResource("18_ext")]([SubResource("hearing_question_1"), SubResource("hearing_question_2"), SubResource("hearing_question_3")])
+wrong_line = "Hmm, no. Think of the letters, captain."
+right_lines = Array[String](["Juraj is no pirate: he helps the villages.", "The council sets him free!"])
+
+[sub_resource type="Resource" id="freed"]
+script = ExtResource("17_ext")
+id = "freed"
+port = ExtResource("15_ext")
+recipient = ExtResource("20_ext")
+objective = "Pick up Juraj in {port}."
+thanks = Array[String](["Free at last! Thank you, captain.", "Take me home to Senj, to my sister."])
+gives = ExtResource("21_ext")
+
+[sub_resource type="Resource" id="home"]
+script = ExtResource("17_ext")
+id = "home"
+item = ExtResource("21_ext")
+port = ExtResource("22_ext")
+recipient = ExtResource("2_ext")
+objective = "Bring Juraj home to {port}."
+thanks = Array[String](["Brother! You are home!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("23_ext")
+id = "celebration"
+speaker = ExtResource("20_ext")
+lines = Array[String](["Home in Senj, and free!", "My scouts and I owe you, captain."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "uskok_and_the_doge"
+number = 5
+title = "The Uskok and the Doge"
+summary = "A Venetian patrol caught Juraj. Collect the letters of his friends and speak for him in Venice."
+start_port = ExtResource("22_ext")
+clock_days = 18.0
+provisions_days = 10.8
+sea = ExtResource("24_ext")
+steps = Array[ExtResource("25_ext")]([SubResource("briefing"), SubResource("letters"), SubResource("deliver_pag"), SubResource("deliver_rijeka"), SubResource("deliver_trieste"), SubResource("hearing"), SubResource("freed"), SubResource("home"), SubResource("celebration")])
+fun_fact = "The Nehaj fortress in Senj was finished in 1558 on the ruins of churches, monasteries and houses outside the town walls, as a base for the uskoks."
+victory_title = "Juraj is free!"
+victory_lines = Array[String](["The letters of his friends spoke for him before the Doge's council.", "Juraj is home in Senj again."])
+victory_picture = ExtResource("26_ext")
+victory_person = ExtResource("20_ext")

@@ -1,0 +1,102 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/nicola.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/brindisi.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/otranto.tres" id="5_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/straw_hat.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/wooden_whistle.tres" id="8_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/luka.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ship_boy_tin.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ship_boy_vid.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/items/passenger_luka.tres" id="14_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/items/pilgrims.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/dubrovnik.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/people/pava.tres" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="20_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bari.tres" id="21_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/open_sea.tres" id="22_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="23_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item.gd" id="24_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/dubrovnik.jpg" id="25_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/vieste.tres" id="pool_vieste"]
+[ext_resource type="Resource" path="res://data/world/ports/durres.tres" id="pool_durres"]
+[ext_resource type="Resource" path="res://data/world/ports/vlore.tres" id="pool_vlore"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, pilgrims from Ragusa came to Bari to see St. Nicholas.", "But the Aga's men took the money for their passage home.", "Take them home across the sea! But first, find little Luka, who ran off along the coast."])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("10_ext")
+id = "trail"
+ports = Array[ExtResource("6_ext")]([ExtResource("4_ext"), ExtResource("5_ext"), ExtResource("pool_vieste"), ExtResource("pool_durres"), ExtResource("pool_vlore")])
+length = 2
+fixed_route = false
+max_route_km = 310.0
+max_difficulty = 2
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("9_ext")]([ExtResource("7_ext"), ExtResource("8_ext")])
+hallmark_template = "Luka has {hallmark}."
+question = "Have you seen Luka, a ship's boy from Ragusa?"
+found_line = "Luka is here, with the ship's boys of the harbour! But which one is he?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("15_ext")
+id = "lineup"
+target = ExtResource("11_ext")
+decoys = Array[Resource]([ExtResource("12_ext"), ExtResource("13_ext")])
+question = "Which one is Luka? Remember what the people told you!"
+wrong_line = "No, that is not Luka! Think of everything you heard."
+right_line = "\"I only wanted to see the sea of Italy! Take me home, please.\""
+gives = ExtResource("14_ext")
+
+[sub_resource type="Resource" id="pilgrims"]
+script = ExtResource("19_ext")
+id = "pilgrims"
+item = ExtResource("16_ext")
+port = ExtResource("17_ext")
+recipient = ExtResource("18_ext")
+objective = "Bring the pilgrims and Luka home to {port}."
+thanks = Array[String](["The pilgrims are home! Thank you, captain."])
+
+[sub_resource type="Resource" id="luka"]
+script = ExtResource("19_ext")
+id = "luka"
+item = ExtResource("14_ext")
+port = ExtResource("17_ext")
+recipient = ExtResource("18_ext")
+objective = "Bring Luka home to {port}."
+thanks = Array[String](["Luka! There you are!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("20_ext")
+id = "celebration"
+speaker = ExtResource("18_ext")
+lines = Array[String](["The pilgrims will tell everybody about the kind captain.", "And Luka? He wants to become a captain, too!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "pilgrims_of_st_nicholas"
+number = 9
+title = "The Pilgrims of St. Nicholas"
+summary = "The Aga's men took the pilgrims' money. Find little Luka and take them all home across the sea."
+start_port = ExtResource("21_ext")
+clock_days = 13.0
+provisions_days = 10.8
+sea = ExtResource("22_ext")
+steps = Array[ExtResource("23_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("pilgrims"), SubResource("luka"), SubResource("celebration")])
+start_cargo = Array[ExtResource("24_ext")]([ExtResource("16_ext")])
+fun_fact = "The whole floor of Otranto cathedral is one huge mosaic, made in the 1160s by artists led by a monk called Pantaleon, with a great Tree of Life running along it."
+victory_title = "The pilgrims are home!"
+victory_lines = Array[String](["You found Luka and took the pilgrims home across the sea.", "In Ragusa, the bells ring for them."])
+victory_picture = ExtResource("25_ext")
+victory_person = ExtResource("18_ext")

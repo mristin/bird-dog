@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/scribe.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/zadar.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pag.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/white_beard.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/brass_book.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/walking_stick.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="12_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/people/don_grgur.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/people/old_fisher.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/people/bookseller.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/people/old_nobleman.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/items/village_list.tres" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="19_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/split.tres" id="20_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="22_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/bura_kvarner.tres" id="23_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="24_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/zadar.jpg" id="25_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trieste.tres" id="pool_trieste"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="pool_pula"]
+[ext_resource type="Resource" path="res://data/world/ports/sibenik.tres" id="pool_sibenik"]
+[ext_resource type="Resource" path="res://data/world/ports/rovinj.tres" id="pool_rovinj"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, I must confess something.", "I wrote the list of the villages in the old Glagolitic letters, so that the Aga could not read it.", "Now I can not read it either! Find a priest who knows the old letters."])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("13_ext")
+id = "trail"
+ports = Array[ExtResource("8_ext")]([ExtResource("4_ext"), ExtResource("5_ext"), ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("pool_trieste"), ExtResource("pool_pula"), ExtResource("pool_sibenik"), ExtResource("pool_rovinj")])
+length = 3
+fixed_route = false
+max_route_km = 380.0
+max_difficulty = 2
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("12_ext")]([ExtResource("9_ext"), ExtResource("10_ext"), ExtResource("11_ext")])
+hallmark_template = "The priest has {hallmark}."
+question = "Have you seen a priest who knows the old letters?"
+found_line = "Don Grgur is here, at the market! But which one is he?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("19_ext")
+id = "lineup"
+target = ExtResource("14_ext")
+decoys = Array[Resource]([ExtResource("15_ext"), ExtResource("16_ext"), ExtResource("17_ext")])
+question = "Which one is Don Grgur? Remember what the people told you!"
+wrong_line = "No, that is not him! Think of all three things you learned."
+right_line = "\"Yes, I read the old letters. Let me see... every village, and every ducat!\""
+gives = ExtResource("18_ext")
+
+[sub_resource type="Resource" id="deliver"]
+script = ExtResource("21_ext")
+id = "deliver"
+item = ExtResource("18_ext")
+port = ExtResource("20_ext")
+recipient = ExtResource("2_ext")
+objective = "Bring the list back to the scribe in {port}."
+thanks = Array[String](["Every village and every ducat, written clearly at last!", "Now the judge can give back every coin."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("22_ext")
+id = "celebration"
+speaker = ExtResource("2_ext")
+lines = Array[String](["The list is ready for the judge.", "I will never write in a secret script again!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "secret_script"
+number = 13
+title = "The Secret Script"
+summary = "The list of the villages is written in old Glagolitic letters. Find a priest who can read it."
+start_port = ExtResource("20_ext")
+clock_days = 17.0
+provisions_days = 10.8
+sea = ExtResource("23_ext")
+steps = Array[ExtResource("24_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("deliver"), SubResource("celebration")])
+fun_fact = "Glagolitic is the oldest known Slavic alphabet. On the islands of Kvarner, like Krk, and on the islands near Zadar, Croatian priests and scribes kept writing in it for centuries."
+victory_title = "The list is read!"
+victory_lines = Array[String](["Don Grgur read the old letters for you.", "Now the judge will know every village and every ducat."])
+victory_picture = ExtResource("25_ext")
+victory_person = ExtResource("14_ext")

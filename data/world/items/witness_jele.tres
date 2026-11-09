@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/item.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/olive_woman.tres" id="2_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "witness_jele"
+name = "Jele, the witness"
+person = ExtResource("2_ext")

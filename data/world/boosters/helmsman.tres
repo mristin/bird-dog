@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Booster" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/booster.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "helmsman"
+name = "A skilled helmsman"
+description = "Your boat turns much quicker until the next port."
+price = 25
+effect = "nimble"
+lasts = "leg"
+

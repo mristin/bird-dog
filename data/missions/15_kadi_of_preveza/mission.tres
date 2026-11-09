@@ -1,0 +1,123 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/corfu.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/fair_home.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/baba_stana.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/items/witness_marin.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/people/doctor_marin.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/items/witness_ivan.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/parga.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/master_ivan.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/preveza.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/people/kadi.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ledger.tres" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hearing_question.gd" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/hearing_step.gd" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="20_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item.gd" id="21_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/pula.jpg" id="22_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="23_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("5_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Captain, the day has come!", "Bring the ledger and the witnesses to the kadı of Preveza: he judges by the law.", "Master Ivan waits in Parga, and Doctor Marin is here in Corfu."])
+by_pigeon = true
+
+[sub_resource type="Resource" id="witnesses_source_1"]
+script = ExtResource("8_ext")
+item = ExtResource("6_ext")
+port = ExtResource("2_ext")
+person = ExtResource("7_ext")
+lines = Array[String](["I am ready, captain. I will tell the judge about the fever."])
+
+[sub_resource type="Resource" id="witnesses_source_2"]
+script = ExtResource("8_ext")
+item = ExtResource("9_ext")
+port = ExtResource("10_ext")
+person = ExtResource("11_ext")
+lines = Array[String](["Captain! I came all the way from Pula.", "I will tell the judge about the Aga's recruiter."])
+
+[sub_resource type="Resource" id="witnesses"]
+script = ExtResource("12_ext")
+id = "witnesses"
+sources = Array[ExtResource("8_ext")]([SubResource("witnesses_source_1"), SubResource("witnesses_source_2")])
+needed = 0
+objective = "Pick up {count} more {count|witness|witnesses}."
+
+[sub_resource type="Resource" id="preveza"]
+script = ExtResource("16_ext")
+id = "preveza"
+item = ExtResource("15_ext")
+port = ExtResource("13_ext")
+recipient = ExtResource("14_ext")
+objective = "Bring the ledger and the witnesses to {port}."
+thanks = Array[String](["Peace be with you. Show me the ledger, and let the witnesses speak."])
+
+[sub_resource type="Resource" id="hearing_question_1"]
+script = ExtResource("17_ext")
+question = "Which village lost its bell?"
+answers = Array[String](["Grebaštica", "Senj", "Ston"])
+correct = 0
+
+[sub_resource type="Resource" id="hearing_question_2"]
+script = ExtResource("17_ext")
+question = "Who hoarded the salt before the winter?"
+answers = Array[String](["The uskoks", "The Aga", "The Pope"])
+correct = 1
+
+[sub_resource type="Resource" id="hearing_question_3"]
+script = ExtResource("17_ext")
+question = "Who stopped the fever around the Bay of Kotor?"
+answers = Array[String](["Master Ivan", "Crooked Mast", "Doctor Marin"])
+correct = 2
+
+[sub_resource type="Resource" id="hearing"]
+script = ExtResource("18_ext")
+id = "hearing"
+speaker = ExtResource("14_ext")
+intro = Array[String](["I have read the ledger. Now, answer my questions."])
+questions = Array[ExtResource("17_ext")]([SubResource("hearing_question_1"), SubResource("hearing_question_2"), SubResource("hearing_question_3")])
+wrong_line = "Hmm, no. Think about your voyage, captain."
+right_lines = Array[String](["The law is clear. The Aga must give back every double tax, and he loses his post.", "He may go home and look after his goats."])
+
+[sub_resource type="Resource" id="home"]
+script = ExtResource("16_ext")
+id = "home"
+port = ExtResource("19_ext")
+recipient = ExtResource("4_ext")
+objective = "Sail home to {port}!"
+thanks = Array[String](["You are home, captain! The whole Adriatic heard the news."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("20_ext")
+id = "celebration"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Everybody came to the Arena: the children of Grebaštica, Master Ivan and Katarina,", "Juraj, Doctor Marin, and even Crooked Mast!", "Captain, for your courage you get the medal of the Bird Dog!"])
+sound = "bell"
+
+[resource]
+script = ExtResource("1_ext")
+id = "kadi_of_preveza"
+number = 15
+title = "The Kadı of Preveza"
+summary = "Bring the ledger and the witnesses to the judge in Preveza, then sail home to Pula."
+start_port = ExtResource("2_ext")
+clock_days = 21.0
+provisions_days = 10.8
+sea = ExtResource("3_ext")
+steps = Array[ExtResource("23_ext")]([SubResource("briefing"), SubResource("witnesses"), SubResource("preveza"), SubResource("hearing"), SubResource("home"), SubResource("celebration")])
+start_cargo = Array[ExtResource("21_ext")]([ExtResource("15_ext")])
+fun_fact = "In the Ottoman Empire, a kadı judged by the law, and the people could bring a complaint even against a powerful aga."
+victory_title = "The voyage is complete!"
+victory_lines = Array[String](["The Aga gave back the double taxes, and the villages are free.", "The bell of Grebaštica rings, and the whole Arena of Pula cheers!"])
+victory_picture = ExtResource("22_ext")
+victory_person = ExtResource("4_ext")
+finale = true

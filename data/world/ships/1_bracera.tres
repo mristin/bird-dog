@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Ship" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/ship.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "bracera"
+name = "Bracera"
+description = "Two sails and three rations: the trusty boat of the haiduks."
+price = 300
+masts = 2
+length = 1.0
+oars = false
+speed = 1.0
+turn = 1.0
+rations = 3
+errands = 2

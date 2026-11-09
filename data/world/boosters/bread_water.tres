@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Booster" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/booster.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "bread_water"
+name = "Fresh bread and water"
+description = "Half a day back on the mission clock."
+price = 15
+effect = "time"
+lasts = "now"

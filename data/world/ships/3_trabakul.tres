@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Ship" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/ship.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "trabakul"
+name = "Trabakul"
+description = "Three sails: the fastest ship on the Adriatic."
+price = 800
+masts = 3
+length = 1.12
+oars = false
+speed = 1.25
+turn = 0.95
+rations = 3
+errands = 2
