@@ -108,6 +108,8 @@ var _tows: Array = []
 ## Per player: whether the crew was told that the food runs low on this leg.
 var _warned_low: Array[bool] = []
 
+var _entry_headings := {}  # By player: the heading of the boat into its last port.
+
 ## Whether everything stops for a screen of both players (the briefing, the
 ## meeting at sea, the end).
 var _all_paused := true
@@ -156,6 +158,7 @@ func _ready() -> void:
     _run.bring(_session.ducats)  # All on board; a mission in progress restores its own.
     _wind = SeaWind.new(_mission.sea, seed_value + 1)
     _run.finished.connect(_on_finished)
+    _run.rewarded.connect(_on_rewarded)
 
     for i in range(players):
         _in_port.append(_mission.start_port)
@@ -313,21 +316,11 @@ func _launch(port: Port, player: int) -> void:
     for helm in _helms:
         if player >= 0 and helm.player != player:
             continue
-        helm.km = _sea_near(near, center)
-        helm.heading = (helm.km - center).angle() + PI / 2
+        var departure := _chart.departure(near, center, _entry_headings.get(helm.player))
+        helm.km = departure["km"]
+        helm.heading = departure["heading"]
         helm.speed = 0.0
         near = helm.km
-
-
-## A point in the sea near the given point, but not closer to the port than
-## 3 km.
-func _sea_near(near: Vector2, port_km: Vector2) -> Vector2:
-    for distance in [3.0, 4.0, 6.0, 8.0, 11.0, 15.0]:
-        for step in range(24):
-            var candidate: Vector2 = near + Vector2.RIGHT.rotated(step * TAU / 24) * distance
-            if not _chart.is_land(candidate) and candidate.distance_to(port_km) >= 3.0:
-                return candidate
-    return near
 
 
 # endregion
@@ -411,21 +404,8 @@ func _show_start(player: int) -> void:
     var said: Array = [
         MissionRun.line("Fair winds, captain! Do you need anything before you set sail?")
     ]
-    # NOTE (mristin):
-    # The yataks send their ducats at the start of the mission, once (see
-    # Session.yatak_gift); the first crew hears it.
-    var gift: int = _session.yatak_gift(_mission.id) if record_result and player == 0 else 0
-    if gift > 0:
-        _run.bring(gift)
-        _sfx.play("coins")
-        said.append(
-            MissionRun.line(
-                "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}.",
-                {"gift": gift}
-            )
-        )
     var scene := MissionStep.talk(local, said, MissionRun.line("Set sail!"))
-    _add_port_buttons(scene)
+    _add_port_buttons(scene, port)
     _port_scenes[player] = scene
     _show(player, scene, port)
 
@@ -567,6 +547,11 @@ func _on_errand(action: String, player: int) -> bool:
         _update_targets()
         _show(player, _port_scenes[player], port)
         return true
+    if action == "bay":
+        var bay := World.port(port.bay_port_id)
+        _helms[player].heading = (World.port_km(bay) - World.port_km(port)).angle() + PI / 2
+        _arrive(player, bay)
+        return true
     return false
 
 
@@ -583,6 +568,7 @@ func _shop_scene(player: int, said: Dictionary) -> Dictionary:
 ## The boat of the player enters the port; [param first] are the lines to say
 ## before the scene of the port (e.g., that the boat was towed there).
 func _arrive(player: int, port: Port, first: Array = []) -> void:
+    _entry_headings[player] = _helms[player].heading
     _run.active = player
     _in_port[player] = port
     _left[player] = port
@@ -636,7 +622,7 @@ func _arrive(player: int, port: Port, first: Array = []) -> void:
             lines.append(MissionRun.line("Every port has a merchant and work for the crew."))
         scene["lines"] = lines
 
-        _add_port_buttons(scene)
+        _add_port_buttons(scene, port)
         _port_scenes[player] = scene
     else:
         # NOTE (mristin):
@@ -652,10 +638,14 @@ func _arrive(player: int, port: Port, first: Array = []) -> void:
 
 ## Every port has a merchant (see DESIGN.md, section 10) and work for the
 ## crew (see Errands).
-func _add_port_buttons(scene: Dictionary) -> void:
+func _add_port_buttons(scene: Dictionary, port: Port) -> void:
     scene["buttons"].append({"label": MissionRun.line("What do you sell?"), "action": "shop"})
     if Errands.can_take(_run):
         scene["buttons"].append({"label": MissionRun.line("Any work for us?"), "action": "errand"})
+    if port.bay_port_id != "":
+        var bay := World.port(port.bay_port_id)
+        var label := MissionRun.line("Sail on to {port}!", {"port": bay.name})
+        scene["buttons"].append({"label": label, "action": "bay"})
 
 
 ## Out of food and water, or with a broken hull: a fishing boat comes and
@@ -664,13 +654,12 @@ func _add_port_buttons(scene: Dictionary) -> void:
 ## [param started] is told at once, [param reason] in the port.
 func _tow(player: int, started: Dictionary, reason: Dictionary) -> void:
     var helm := _helms[player]
-    var nearest := Tow.nearest_port(helm.km)
+    var found := Tow.nearest_by_sea(helm.km, ENTER_KM - 0.5, Tow.avoid(_chart, _hazards))
+    var nearest: Port = found["port"]
+    var path: PackedVector2Array = found["path"]
     reason["args"] = {"port": nearest.name}
     started["args"] = {"port": nearest.name}
     _run.pass_days(TOW_DAYS)
-    var path := SeaRoute.find(
-        helm.km, World.port_km(nearest), ENTER_KM - 0.5, Tow.avoid(_chart, _hazards)
-    )
     if path.size() < 2:
         # NOTE (mristin):
         # No way at sea (it should not happen): the boat is in the port at once.
@@ -699,8 +688,17 @@ func _tow_step(helm: Helm, delta: float) -> float:
     return moved
 
 
+func _on_rewarded(ducats: int) -> void:
+    _sfx.play("coins")
+    var text := tr("+{ducats} {ducats|ducat|ducats} for the task done!")
+    _say(Grammar.format(text, {"ducats": ducats}), _run.active)
+
+
 func _on_finished(stars: int) -> void:
     _stars = stars
+    # The yataks give what they collected, once (see Session.yatak_gift).
+    var gift: int = _session.yatak_gift(_mission.id) if record_result else 0
+    _run.holds[0].ducats += gift
     _all_paused = true
     for i in range(players):
         _cards[i].visible = false
@@ -709,7 +707,8 @@ func _on_finished(stars: int) -> void:
     complete.mission = _mission
     complete.run = _run
     complete.stars = stars
-    complete.ducats = _run.ducats_total() - _run.brought
+    complete.ducats = _run.ducats_total() - _run.brought - gift
+    complete.gift = gift
     complete.finished.connect(_leave)
     _overlay.add_child(complete)
     _overlay.move_child(_shared_cursor, -1)

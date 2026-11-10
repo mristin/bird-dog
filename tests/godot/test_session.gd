@@ -67,9 +67,9 @@ func _run() -> void:
     session.complete(missions[0].id, 1)
     _check(session.stars(missions[0].id) == 2, "the best stars are kept")
     _check(session.ducats == 70, "the stars pay nothing")
-    _check(session.yatak_gift(missions[1].id) == 10, "the yataks send 10 ducats at the start")
+    _check(session.yatak_gift(missions[1].id) == 20, "the yataks collect 20 ducats in a mission")
     _check(session.yatak_gift(missions[1].id) == 0, "but only once per mission")
-    _check(session.ducats == 80, "the yataks' ducats count for the voyage at once")
+    _check(session.ducats == 90, "the yataks' ducats count for the voyage at once")
     _check(session.list()[0]["stars"] == 2, "the list counts the stars")
 
     # NOTE (mristin):
@@ -105,12 +105,12 @@ func _run() -> void:
     _check(reloaded.voyage_name == "Test voyage", "with its name")
     _check(crew.players == 2 and crew.captains[0]["name"] == "Ana", "with its crew")
     _check(reloaded.is_unlocked(missions[1]), "with its missions")
-    _check(reloaded.ducats == 80, "with its ducats")
+    _check(reloaded.ducats == 90, "with its ducats")
     _check(not reloaded.has_shipyard(), "the shipyard opens only after mission 2")
     var sail: Decoration = World.decoration("sail_blue")
     _check(sail != null and sail.slot == "sail", "the shipyard has sails")
     _check(reloaded.buy_decoration(sail), "the crew buys a blue sail")
-    _check(reloaded.ducats == 80 - sail.price, "the sail costs ducats of the crew")
+    _check(reloaded.ducats == 90 - sail.price, "the sail costs ducats of the crew")
     _check(not reloaded.buy_decoration(sail), "what is bought stays bought, and is not sold twice")
     crew.captains[0]["boat"] = {"sail": sail.id}
     reloaded.save()

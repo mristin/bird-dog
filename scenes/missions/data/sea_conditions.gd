@@ -16,9 +16,10 @@ extends Resource
 @export var corsairs := true
 @export var patrols := true
 
-## How many corsairs and patrols are out at once, at most.
-@export var corsair_count := 3
-@export var patrol_count := 2
+## How many corsairs and patrols are out at once, at most (the play-tests
+## found 3 and 2 far too many).
+@export var corsair_count := 1
+@export var patrol_count := 1
 
 ## How many barrels with ducats float in the sea.
 @export var barrels := 6

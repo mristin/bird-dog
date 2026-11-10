@@ -550,8 +550,8 @@ msgstr "Uma nuvem de tempestade! Lá dentro, o barco anda devagar. Saiam dela."
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
-msgstr "A bandeira negra dos corsários! Levam 50 ducados. Fujam, ou naveguem até uma patrulha!"
+msgid "The black flag of the corsairs! They take 20 ducats. Flee, or sail to a patrol!"
+msgstr "A bandeira negra dos corsários! Levam 20 ducados. Fujam, ou naveguem até uma patrulha!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -654,11 +654,6 @@ msgid "Fair winds, captain! Do you need anything before you set sail?"
 msgstr ""
 "Bons ventos, {crew|capitão|capitã|capitães|capitãs}! Precisam de alguma coisa antes de zarpar?"
 
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
-msgstr "Os iataques, amigos dos haiduques, enviam-vos {gift} {gift|ducado|ducados}."
-
 #. the label of a button
 #: scenes/mission/mission.gd scenes/missions/steps/briefing_step.gd
 #, fuzzy
@@ -714,6 +709,16 @@ msgstr "O que vende?"
 #, fuzzy
 msgid "Any work for us?"
 msgstr "Há trabalho para nós?"
+
+#: scenes/mission/mission.gd
+#, fuzzy
+msgid "Sail on to {port}!"
+msgstr "Sigam {port@to}!"
+
+#: scenes/mission/mission.gd
+#, fuzzy
+msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
+msgstr "+{ducats} {ducats|ducado|ducados} pela tarefa cumprida!"
 
 #: scenes/mission/mission.gd
 #, fuzzy
@@ -794,6 +799,11 @@ msgstr "+{ducats} {ducats|ducado ganho|ducados ganhos} nesta missão"
 #, fuzzy
 msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
 msgstr "Gastaram {ducats} {ducats|ducado|ducados} nesta missão"
+
+#: scenes/mission/mission_complete.gd
+#, fuzzy
+msgid "The yataks, the haiduks' friends, collected {gift} {gift|ducat|ducats} for you."
+msgstr "Os iataques, amigos dos haiduques, juntaram {gift} {gift|ducado|ducados} para vós."
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -5592,12 +5602,6 @@ msgid "the reefs of the Kornati"
 msgstr "os recifes das Kornati"
 
 #. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/reefs/neretva.tres
-#, fuzzy
-msgid "the shallows of the Neretva"
-msgstr "os baixios do Neretva"
-
-#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/reefs/ostro.tres
 #, fuzzy
 msgid "the rocks of Cape Oštro"
@@ -8063,6 +8067,14 @@ msgstr "o galeão"
 msgctxt "acc"
 msgid "Galley"
 msgstr "a galé"
+
+#, fuzzy
+#~ msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
+#~ msgstr "Os iataques, amigos dos haiduques, enviam-vos {gift} {gift|ducado|ducados}."
+
+#, fuzzy
+#~ msgid "the shallows of the Neretva"
+#~ msgstr "os baixios do Neretva"
 
 #, fuzzy
 #~ msgid "Food and water run out with the days. Every port refills them free!"

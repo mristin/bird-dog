@@ -31,11 +31,10 @@ const MAX_NAME_LENGTH := 24
 ## A new voyage starts with this many ducats on board.
 const STARTING_DUCATS := 40
 
-## The yataks (the haiduks' secret friends, in Croatian "jataci") send this many
-## ducats at the start of every mission, once per mission (see DESIGN.md,
-## section 10). The tasks of a mission pay nothing: the ducats come from the
-## yataks, the barrels at sea and the errands.
-const YATAK_DUCATS := 10
+## The yataks (the haiduks' secret friends, in Croatian "jataci") collect this
+## many ducats for the crew in every mission, given at its end, once per
+## mission (see DESIGN.md, section 10).
+const YATAK_DUCATS := 20
 
 var saves_dir := "user://saves"
 var settings_path := "user://settings.cfg"
@@ -384,10 +383,10 @@ func has_shipyard() -> bool:
     return false
 
 
-## The gift of the yataks at the start of a mission, only the first time the
-## mission starts in the voyage (so that starting over is no farm of ducats);
-## return how many ducats they sent. They count for the voyage at once, and the
-## mission puts them on board (see MissionRun.bring).
+## The gift of the yataks at the end of a mission, only the first time the
+## mission is finished in the voyage (so that playing it again is no farm of
+## ducats); return how many ducats they collected. They count for the voyage
+## at once, and the mission puts them on board.
 func yatak_gift(mission_id: String) -> int:
     var state: Dictionary = missions.get(mission_id, {})
     if state.get("gifted", false):

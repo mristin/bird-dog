@@ -26,6 +26,10 @@ const STORM_COST := 30.0
 const CLOUD_COST := 12.0
 const LOOKOUT_SECONDS := 2.0
 
+## The fishermen consider this many ports, the closest as the crow flies, to
+## find the one closest by sea.
+const CANDIDATES := 5
+
 ## The way, in kilometres.
 var path := PackedVector2Array()
 
@@ -59,6 +63,35 @@ static func avoid(chart: ChartView, hazards: SeaHazards) -> Array[Dictionary]:
         var cost := STORM_COST if cloud["storm"] else CLOUD_COST
         result.append({"km": cloud["km"], "radius": cloud["radius"] + CLOUD_KM, "cost": cost})
     return result
+
+
+## The port closest to the point by sea, around the islands and the capes,
+## with the way there (see SeaRoute.find): {"port": Port, "path":
+## PackedVector2Array}; the path is empty if no port can be reached by sea
+## (then the port is the closest as the crow flies).
+static func nearest_by_sea(at: Vector2, near_km: float, avoiding: Array[Dictionary]) -> Dictionary:
+    var ports := World.ports().duplicate()
+    ports.sort_custom(
+        func(a: Port, b: Port) -> bool:
+            return World.port_km(a).distance_to(at) < World.port_km(b).distance_to(at)
+    )
+    var best := {"port": ports[0], "path": PackedVector2Array()}
+    var best_length := INF
+    for port in ports.slice(0, CANDIDATES):
+        # NOTE (mristin):
+        # No way by sea is shorter than the straight line.
+        if World.port_km(port).distance_to(at) >= best_length:
+            break
+        var path := SeaRoute.find(at, World.port_km(port), near_km, avoiding)
+        if path.size() < 2:
+            continue
+        var length := 0.0
+        for i in range(path.size() - 1):
+            length += path[i].distance_to(path[i + 1])
+        if length < best_length:
+            best_length = length
+            best = {"port": port, "path": path}
+    return best
 
 
 ## The port closest to the point (as the crow flies).

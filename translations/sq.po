@@ -549,8 +549,8 @@ msgstr "Re stuhie! Brenda saj barka lundron ngadalë. Dilni prej saj."
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
-msgstr "Flamuri i zi i korsarëve! Marrin 50 dukatë. Ikni, ose lundroni drejt një patrulle!"
+msgid "The black flag of the corsairs! They take 20 ducats. Flee, or sail to a patrol!"
+msgstr "Flamuri i zi i korsarëve! Marrin 20 dukatë. Ikni, ose lundroni drejt një patrulle!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -652,11 +652,6 @@ msgstr "Keni {ducats} {ducats|dukat|dukatë}."
 msgid "Fair winds, captain! Do you need anything before you set sail?"
 msgstr "Erë të mbarë, {crew|kapiten|kapitene|kapitenë|kapitene}! Ju duhet diçka para se të niseni?"
 
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
-msgstr "Jatakët, miqtë e hajdukëve, ju dërgojnë {gift} {gift|dukat|dukatë}."
-
 #. the label of a button
 #: scenes/mission/mission.gd scenes/missions/steps/briefing_step.gd
 #, fuzzy
@@ -712,6 +707,16 @@ msgstr "Çfarë shisni?"
 #, fuzzy
 msgid "Any work for us?"
 msgstr "Ka punë për ne?"
+
+#: scenes/mission/mission.gd
+#, fuzzy
+msgid "Sail on to {port}!"
+msgstr "Vazhdoni për {port@to}!"
+
+#: scenes/mission/mission.gd
+#, fuzzy
+msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
+msgstr "+{ducats} {ducats|dukat|dukatë} për detyrën e kryer!"
 
 #: scenes/mission/mission.gd
 #, fuzzy
@@ -792,6 +797,11 @@ msgstr "+{ducats} {ducats|dukat i fituar|dukatë të fituar} në këtë mision"
 #, fuzzy
 msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
 msgstr "{ducats} {ducats|dukat i shpenzuar|dukatë të shpenzuar} në këtë mision"
+
+#: scenes/mission/mission_complete.gd
+#, fuzzy
+msgid "The yataks, the haiduks' friends, collected {gift} {gift|ducat|ducats} for you."
+msgstr "Jatakët, miqtë e hajdukëve, mblodhën {gift} {gift|dukat|dukatë} për ju."
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -5585,12 +5595,6 @@ msgid "the reefs of the Kornati"
 msgstr "shkëmbinjtë nënujorë të Kornateve"
 
 #. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/reefs/neretva.tres
-#, fuzzy
-msgid "the shallows of the Neretva"
-msgstr "cekëtinat e Neretvës"
-
-#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/reefs/ostro.tres
 #, fuzzy
 msgid "the rocks of Cape Oštro"
@@ -8056,6 +8060,14 @@ msgstr "galeonin"
 msgctxt "acc"
 msgid "Galley"
 msgstr "galerën"
+
+#, fuzzy
+#~ msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
+#~ msgstr "Jatakët, miqtë e hajdukëve, ju dërgojnë {gift} {gift|dukat|dukatë}."
+
+#, fuzzy
+#~ msgid "the shallows of the Neretva"
+#~ msgstr "cekëtinat e Neretvës"
 
 #, fuzzy
 #~ msgid "Food and water run out with the days. Every port refills them free!"

@@ -551,9 +551,9 @@ msgstr "Olujni oblak! Unutra brodica jidri polako. {crew|Izađi|Izađi|Izađite}
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
+msgid "The black flag of the corsairs! They take 20 ducats. Flee, or sail to a patrol!"
 msgstr ""
-"Crna bandira gusara! Uzmu 50 dukata. {crew|Biži|Biži|Bižite} ili {crew|jidri|jidri|jidrite} do "
+"Crna bandira gusara! Uzmu 20 dukata. {crew|Biži|Biži|Bižite} ili {crew|jidri|jidri|jidrite} do "
 "straže!"
 
 #: scenes/mission/hud/hint_panel.gd
@@ -659,11 +659,6 @@ msgstr ""
 "Dobar vitar, {crew|kapetane|kapetanice|kapetani|kapetanice}! {crew|Triba li ti ča prin nego "
 "odjidriš|Triba li ti ča prin nego odjidriš|Triba li van ča prin nego odjidrite}?"
 
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
-msgstr "Jataci, prijatelji hajduka, šalju {crew|ti|ti|van} {gift} {gift|dukat|dukata|dukata}."
-
 #. the label of a button
 #: scenes/mission/mission.gd scenes/missions/steps/briefing_step.gd
 #, fuzzy
@@ -724,6 +719,16 @@ msgstr "Ča prodajete?"
 #, fuzzy
 msgid "Any work for us?"
 msgstr "Ima li posla za nas?"
+
+#: scenes/mission/mission.gd
+#, fuzzy
+msgid "Sail on to {port}!"
+msgstr "{crew|Jidri|Jidri|Jidrite} dalje {port@to}!"
+
+#: scenes/mission/mission.gd
+#, fuzzy
+msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
+msgstr "+{ducats} {ducats|dukat|dukata|dukata} za obavljeni posal!"
 
 #: scenes/mission/mission.gd
 #, fuzzy
@@ -806,6 +811,11 @@ msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
 msgstr ""
 "{crew|Potrošija si|Potrošila si|Potrošili ste|Potrošile ste} {ducats} {ducats|dukat|dukata|dukata}"
 " u ovoj misiji"
+
+#: scenes/mission/mission_complete.gd
+#, fuzzy
+msgid "The yataks, the haiduks' friends, collected {gift} {gift|ducat|ducats} for you."
+msgstr "Jataci, prijatelji hajduka, skupili su {crew|ti|ti|van} {gift} {gift|dukat|dukata|dukata}."
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -1471,8 +1481,8 @@ msgid ""
 "The shipwrights of Korčula were famous all over the Adriatic, and the stonemasons of the island "
 "built in Venice and in Dubrovnik."
 msgstr ""
-"Kalafati s Korčule bili su glasoviti po cilon Jadranu, a kamenari s otoka gradili su u Mlecima i u"
-" Dubrovniku."
+"Kalafati s Korčule bili su glasoviti po cilon Jadranu, a kamenari s otoka gradili su u Veneciji i "
+"u Dubrovniku."
 
 #. the headline of the screen at the end of a mission, a few words
 #: data/missions/02_shipwright_of_korcula/mission.tres
@@ -1516,7 +1526,7 @@ msgstr "Bez soli sela ne moru sačuvat ni ribu ni meso."
 #, fuzzy
 msgid "Fetch two loads of salt: Ragusa sells it in Ston, Venice in Pag, the Habsburgs in Trieste."
 msgstr ""
-"{crew|Nabavi|Nabavi|Nabavite} dva tovara soli: Dubrovnik je prodaje u Stonu, Mleci na Pagu, a "
+"{crew|Nabavi|Nabavi|Nabavite} dva tovara soli: Dubrovnik je prodaje u Stonu, Venecija na Pagu, a "
 "Habsburgovci u Trstu."
 
 #. a line which a person says, at most two short sentences
@@ -1687,7 +1697,7 @@ msgstr "Ali Aga je pokupova svu hrastovinu, da gradi svoje barke za porez."
 #, fuzzy
 msgid "Fetch me oak from Leopold in Rijeka, and a fir mast from Juraj in Senj!"
 msgstr ""
-"{crew|Donesi|Donesi|Donesite} mi hrastovinu od Leopolda iz Rike i jarbol od jele od Juraja iz "
+"{crew|Donesi|Donesi|Donesite} mi hrastovinu od Leopolda iz Rijeke i jarbol od jele od Juraja iz "
 "Senja!"
 
 #. a line which a person says, at most two short sentences
@@ -1779,8 +1789,8 @@ msgid ""
 "Venice stands on wooden piles of alder, a wood which does not rot in the water, and its houses "
 "rest on stone from Istria."
 msgstr ""
-"Mleci stoje na drvenin kolcima od johe, drva koje ne gnjije u vodi, a kuće počivaju na kamenu iz "
-"Istre."
+"Venecija stoji na drvenin kolcima od johe, drva koje ne gnjije u vodi, a kuće počivaju na kamenu "
+"iz Istre."
 
 #. the headline of the screen at the end of a mission, a few words
 #: data/missions/04_oak_for_master_ivan/mission.tres
@@ -1792,7 +1802,7 @@ msgstr "Škver opet radi!"
 #: data/missions/04_oak_for_master_ivan/mission.tres
 #, fuzzy
 msgid "Oak from Rijeka and a mast from Senj reached Pula."
-msgstr "Hrastovina iz Rike i jarbol iz Senja stigli su u Pulu."
+msgstr "Hrastovina iz Rijeke i jarbol iz Senja stigli su u Pulu."
 
 #. what the crew achieved, on the screen at the end of a mission, one sentence
 #: data/missions/04_oak_for_master_ivan/mission.tres
@@ -1811,7 +1821,7 @@ msgstr ""
 #: data/missions/05_uskok_and_the_doge/mission.tres
 #, fuzzy
 msgid "They took him to Venice, as a pirate."
-msgstr "Odveli su ga u Mletke ka gusara."
+msgstr "Odveli su ga u Veneciju ka gusara."
 
 #. a line which a person says, at most two short sentences
 #: data/missions/05_uskok_and_the_doge/mission.tres
@@ -1843,7 +1853,7 @@ msgstr "Juraj je skinija moju barku s drvon sa stina po buri."
 #: data/missions/05_uskok_and_the_doge/mission.tres
 #, fuzzy
 msgid "Take my letter to Venice."
-msgstr "{crew|Odnesi|Odnesi|Odnesite} moje pismo u Mletke."
+msgstr "{crew|Odnesi|Odnesi|Odnesite} moje pismo u Veneciju."
 
 #. a line which a person says, at most two short sentences
 #: data/missions/05_uskok_and_the_doge/mission.tres
@@ -1879,7 +1889,7 @@ msgstr "Pismo s Paga, o soli."
 #: data/missions/05_uskok_and_the_doge/mission.tres
 #, fuzzy
 msgid "A letter from Rijeka, about the rescue in the bura."
-msgstr "Pismo iz Rike, o spašavanju po buri."
+msgstr "Pismo iz Rijeke, o spašavanju po buri."
 
 #. a line of thanks, at most two short sentences
 #: data/missions/05_uskok_and_the_doge/mission.tres
@@ -1951,7 +1961,7 @@ msgstr "Gertraud iz Trsta"
 #: data/missions/05_uskok_and_the_doge/mission.tres
 #, fuzzy
 msgid "Leopold of Rijeka"
-msgstr "Leopold iz Rike"
+msgstr "Leopold iz Rijeke"
 
 #. an answer on a button, a few words
 #: data/missions/05_uskok_and_the_doge/mission.tres
@@ -2042,7 +2052,7 @@ msgid ""
 "A Venetian patrol caught Juraj. Collect the letters of his friends and speak for him in Venice."
 msgstr ""
 "Mletačka straža je uvatila Juraja. {crew|Skupi|Skupi|Skupite} pisma njegovih prijatelja i "
-"{crew|zauzmi|zauzmi|zauzmite} se za njega u Mlecima."
+"{crew|zauzmi|zauzmi|zauzmite} se za njega u Veneciji."
 
 #. a fun fact at the end of a mission, at most three sentences
 #: data/missions/05_uskok_and_the_doge/mission.tres
@@ -3087,7 +3097,7 @@ msgid ""
 "Spectacles were made in Venice from about 1300 on; the glassmakers of Murano were so precious that"
 " they were not allowed to leave the republic."
 msgstr ""
-"Očali su se u Mlecima pravili otprilike od 1300. godine. Staklari s Murana bili su toliko vridni "
+"Očali su se u Veneciji pravili otprilike od 1300. godine. Staklari s Murana bili su toliko vridni "
 "da nisu smili otić iz republike."
 
 #. the headline of the screen at the end of a mission, a few words
@@ -4107,7 +4117,7 @@ msgstr "crveno idro"
 #: data/world/hallmarks/spectacles.tres
 #, fuzzy
 msgid "spectacles from Venice"
-msgstr "očali iz Mletaka"
+msgstr "očali iz Venecije"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/hallmarks/straw_hat.tres
@@ -4227,7 +4237,7 @@ msgstr "pismo s Paga"
 #: data/world/items/letter_rijeka.tres
 #, fuzzy
 msgid "the letter from Rijeka"
-msgstr "pismo iz Rike"
+msgstr "pismo iz Rijeke"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/items/letter_trieste.tres
@@ -4635,7 +4645,7 @@ msgstr "Leopold"
 #: data/world/people/leopold.tres
 #, fuzzy
 msgid "a timber merchant of Rijeka"
-msgstr "trgovac drvon iz Rike"
+msgstr "trgovac drvon iz Rijeke"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/lucija.tres
@@ -5008,7 +5018,7 @@ msgstr "Zuane"
 #: data/world/people/zuane.tres
 #, fuzzy
 msgid "a gondolier of Venice"
-msgstr "gondolijer iz Mletaka"
+msgstr "gondolijer iz Venecije"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/ancona.tres
@@ -5356,7 +5366,7 @@ msgstr "grad di se trguje papiron i drvon"
 #: data/world/ports/rijeka.tres
 #, fuzzy
 msgid "Rijeka"
-msgstr "Rika"
+msgstr "Rijeka"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/rimini.tres
@@ -5536,7 +5546,7 @@ msgstr "grad staklara s Murana"
 #: data/world/ports/venice.tres data/world/powers/venice.tres
 #, fuzzy
 msgid "Venice"
-msgstr "Mleci"
+msgstr "Venecija"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/vieste.tres
@@ -5651,12 +5661,6 @@ msgstr "hridi Karaburuna"
 #, fuzzy
 msgid "the reefs of the Kornati"
 msgstr "hridi Kornata"
-
-#. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/reefs/neretva.tres
-#, fuzzy
-msgid "the shallows of the Neretva"
-msgstr "plićine Neretve"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/reefs/ostro.tres
@@ -6091,7 +6095,7 @@ msgstr "u Puli"
 #, fuzzy
 msgctxt "to"
 msgid "Rijeka"
-msgstr "u Riku"
+msgstr "u Rijeku"
 
 #. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
 #. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
@@ -6099,7 +6103,7 @@ msgstr "u Riku"
 #, fuzzy
 msgctxt "in"
 msgid "Rijeka"
-msgstr "u Riki"
+msgstr "u Rijeci"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -6235,7 +6239,7 @@ msgstr "u Ulcinju"
 #, fuzzy
 msgctxt "to"
 msgid "Venice"
-msgstr "u Mletke"
+msgstr "u Veneciju"
 
 #. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
 #. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
@@ -6243,7 +6247,7 @@ msgstr "u Mletke"
 #, fuzzy
 msgctxt "in"
 msgid "Venice"
-msgstr "u Mlecima"
+msgstr "u Veneciji"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -7555,7 +7559,7 @@ msgstr "pismo s Paga"
 #, fuzzy
 msgctxt "acc"
 msgid "the letter from Rijeka"
-msgstr "pismo iz Rike"
+msgstr "pismo iz Rijeke"
 
 #. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
 #. 'bačvu vina'; empty keeps the plain item
@@ -7819,7 +7823,7 @@ msgstr "crveno idro"
 #, fuzzy
 msgctxt "acc"
 msgid "spectacles from Venice"
-msgstr "očale iz Mletaka"
+msgstr "očale iz Venecije"
 
 #. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
 #. вина', 'bačvu vina'; empty keeps the plain hallmark
@@ -8124,6 +8128,14 @@ msgstr "galeon"
 msgctxt "acc"
 msgid "Galley"
 msgstr "galiju"
+
+#, fuzzy
+#~ msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
+#~ msgstr "Jataci, prijatelji hajduka, šalju {crew|ti|ti|van} {gift} {gift|dukat|dukata|dukata}."
+
+#, fuzzy
+#~ msgid "the shallows of the Neretva"
+#~ msgstr "plićine Neretve"
 
 #, fuzzy
 #~ msgid "Food and water run out with the days. Every port refills them free!"

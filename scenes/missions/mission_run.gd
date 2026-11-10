@@ -15,11 +15,18 @@ signal step_started(step: MissionStep)
 signal clue_changed
 signal finished(stars: int)
 
+## The active boat got ducats for a task of the mission done.
+signal rewarded(ducats: int)
+
 ## Arriving in a port takes this long, in days.
 const PORT_DAYS := 0.2
 
 ## With a barrel of salted fish (see Booster), the crews eat this much slower.
 const SALTED_FISH := 0.6
+
+## Every task of a mission done (every step but the briefing and the
+## celebration) pays this many ducats to the boat which did it.
+const TASK_DUCATS := 10
 
 var mission: Mission
 var step_index := 0
@@ -94,6 +101,16 @@ func is_done() -> bool:
 ## Go on to the next step if the current one is done; finish after the last.
 func advance() -> void:
     while step() != null and step().is_done(self):
+        # NOTE (mristin):
+        # A task pays once, even if the crew has to do it again (a wrong
+        # pick in a line-up sends it back onto the trail); the plan, which is
+        # saved, remembers the paid ones.
+        var paid: Array = plan.get("paid_tasks", [])
+        if not (step() is BriefingStep or step() is CelebrationStep) and not paid.has(step().id):
+            paid.append(step().id)
+            plan["paid_tasks"] = paid
+            earn(TASK_DUCATS)
+            rewarded.emit(TASK_DUCATS)
         step_index += 1
         if step() == null:
             _done = true

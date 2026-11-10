@@ -26,3 +26,8 @@ extends Resource
 
 ## The locals who greet the crew, in turn.
 @export var locals: Array[Person] = []
+
+## The id of a port in the same bay, which the crew reaches from this one with
+## a button of the port, since the way between them is too narrow to sail
+## (Herceg Novi and Kotor); "" for none.
+@export var bay_port_id := ""

@@ -4,12 +4,14 @@ extends Node2D
 ## What happens at sea besides the wind (see DESIGN.md, section 9): the storm
 ## clouds, the corsairs, the Venetian patrols, and the floating barrels and
 ## chests with ducats. The mission's SeaConditions decide which of them come
-## and how many. None of them hurts anyone: the corsairs take 50 ducats (or
-## what there is on board; a day, if there is nothing), the Venetian patrols 30
+## and how many. None of them hurts anyone: the corsairs take 20 ducats (or
+## what there is on board; a day, if there is nothing), the Venetian patrols 10
 ## as a bribe, since they are no friends of the haiduks (half a day, if there
-## is nothing), and the clouds only slow the boats down. The corsairs fear the
-## patrols and flee from them. The corsairs fly a black flag with a skull, the
-## patrols a sheriff's star (see SeaBoat.emblem).
+## is nothing), and the clouds only slow the boats down. No ship chases a boat
+## for long: after 10 to 15 seconds, or once it took its toll, it roams away.
+## The patrols hunt the corsairs for a while, and the corsairs flee from them.
+## The corsairs fly a black flag with a skull, the patrols a sheriff's star
+## (see SeaBoat.emblem).
 ##
 ## The mission screen calls [method update] every frame while sailing, asks
 ## [method speed_factor] and [method gust] for every boat, and shows the
@@ -28,13 +30,21 @@ signal sounded(sound: String)
 const PATROL_WATERS_KM := 120.0
 
 ## The corsairs take this many ducats (or all on board, if fewer).
-const CORSAIR_LOOT := 50
+const CORSAIR_LOOT := 20
 
 ## The patrols take this many ducats as a bribe (or all on board, if fewer).
-const BRIBE := 30
+const BRIBE := 10
 
 ## The corsairs flee from a patrol closer than this, in kilometres.
 const PATROL_REPEL_KM := 35.0
+
+## A patrol hunts a corsair closer than this, in kilometres.
+const PATROL_HUNT_KM := 30.0
+
+## A ship chases a boat of the players for a while (from, to; in seconds),
+## then gives up and roams away; a patrol hunts a corsair a bit longer.
+const CHASE_SECONDS := Vector2(10.0, 15.0)
+const HUNT_SECONDS := Vector2(15.0, 25.0)
 
 ## How fast the corsairs and the patrols sail, as a share of the best speed of
 ## a boat (before the wind).
@@ -83,8 +93,8 @@ var _loot: Array[FloatingLoot] = []
 
 var _cloud_count := 0
 var _cloud_timer := 5.0
-var _corsair_timer := 20.0
-var _patrol_timer := 30.0
+var _corsair_timer := 60.0
+var _patrol_timer := 90.0
 var _loot_timer := 3.0
 var _center := Vector2.ZERO
 
@@ -253,22 +263,22 @@ func _spawn_ship(kind: String, center: Vector2) -> void:
         boat.color = Paper.GOLD
         boat.emblem = "patrol"
     add_child(boat)
-    _ships.append(
-        {"kind": kind, "km": point, "heading": _rng.randf() * TAU, "boat": boat, "leaving": 0.0}
-    )
+    var ship := {"kind": kind, "km": point, "heading": _rng.randf() * TAU, "boat": boat}
+    _roam_away(ship, Vector2.ZERO, 0.0)
+    _ships.append(ship)
 
 
 func _update_ships(delta: float, helms: Array[Helm], center: Vector2, together: bool) -> void:
     if _sea.corsairs:
         _corsair_timer -= delta
         if _corsair_timer <= 0.0:
-            _corsair_timer = _rng.randf_range(12.0, 24.0)
+            _corsair_timer = _rng.randf_range(36.0, 72.0)
             if _count("corsair") < _sea.corsair_count:
                 _spawn_ship("corsair", center)
     if _sea.patrols:
         _patrol_timer -= delta
         if _patrol_timer <= 0.0:
-            _patrol_timer = _rng.randf_range(16.0, 30.0)
+            _patrol_timer = _rng.randf_range(48.0, 90.0)
             if _count("patrol") < _sea.patrol_count:
                 _spawn_ship("patrol", center)
 
@@ -293,41 +303,52 @@ func _steer_ship(ship: Dictionary, delta: float, helms: Array[Helm], together: b
             nearest = helm
     var to_boat: Vector2 = nearest.km - ship["km"]
     ship["leaving"] = maxf(0.0, ship["leaving"] - delta)
+    var corsair: bool = ship["kind"] == "corsair"
 
     # NOTE (mristin):
-    # The corsairs don't dare to come close to two boats sailing together;
-    # a ship which took its toll sails away for a while.
-    var chasing: bool = ship["leaving"] <= 0.0 and to_boat.length() < CHASE_KM
-    if ship["kind"] == "corsair" and together:
-        chasing = false
-    if (
-        ship["kind"] == "corsair"
-        and _run.bag.has_effect("cannons")
-        and to_boat.length() < CANNON_KM
-        and ship["leaving"] <= 0.0
-    ):
-        # NOTE (mristin):
-        # Boom! The cannons scare the corsairs away for a good while.
-        ship["leaving"] = 30.0
-        chasing = false
-        sounded.emit("cannon")
-        said.emit(tr("Boom! Your cannons scare the corsairs away!"), nearest.player)
-    # NOTE (mristin):
-    # The corsairs fear the patrols: near one, they give up any chase and
-    # flee from it, whatever else they wanted.
-    var patrol: Variant = _nearest_patrol(ship) if ship["kind"] == "corsair" else null
+    # What a ship does, the first which applies: a corsair flees from a patrol
+    # near it; a patrol hunts a corsair near it, for a while; a ship which
+    # took its toll, gave up a chase or a hunt roams away for a while; else it
+    # chases the boat of a player near it, for a while. The corsairs don't
+    # dare to come close to two boats sailing together.
+    var patrol: Variant = _nearest_of(ship, "patrol", PATROL_REPEL_KM) if corsair else null
+    var prey: Variant = null
+    if not corsair and ship["leaving"] <= 0.0:
+        prey = _nearest_of(ship, "corsair", PATROL_HUNT_KM)
     var wanted: float = ship["heading"]
+    var turning := 1.5
+    var chasing := false
     if patrol != null:
-        chasing = false
         wanted = (ship["km"] - patrol).angle() + PI / 2
-    elif chasing:
-        wanted = to_boat.angle() + PI / 2
-    elif ship["leaving"] > 0.0 or (ship["kind"] == "corsair" and together):
+        turning = 3.0
+    elif prey != null:
+        wanted = (prey - ship["km"]).angle() + PI / 2
+        ship["hunt"] += delta
+        if ship["hunt"] > ship["hunt_limit"]:
+            _roam_away(ship, ship["km"] - prey, _rng.randf_range(20.0, 30.0))
+    elif ship["leaving"] > 0.0:
+        wanted = ship["roam"]
+    elif corsair and together:
         wanted = (-to_boat).angle() + PI / 2
-    var turning := 3.0 if patrol != null else 1.5
+    elif to_boat.length() < CHASE_KM:
+        chasing = true
+        wanted = to_boat.angle() + PI / 2
+        ship["chase"] += delta
+        if corsair and _run.bag.has_effect("cannons") and to_boat.length() < CANNON_KM:
+            # NOTE (mristin):
+            # Boom! The cannons scare the corsairs away for a good while.
+            chasing = false
+            _roam_away(ship, -to_boat, 30.0)
+            sounded.emit("cannon")
+            said.emit(tr("Boom! Your cannons scare the corsairs away!"), nearest.player)
+        elif ship["chase"] > ship["chase_limit"]:
+            chasing = false
+            _roam_away(ship, -to_boat, _rng.randf_range(20.0, 30.0))
+    else:
+        ship["chase"] = 0.0
     ship["heading"] = lerp_angle(ship["heading"], wanted, 1.0 - exp(-delta * turning))
 
-    var share := CORSAIR_SPEED_SHARE if ship["kind"] == "corsair" else PATROL_SPEED_SHARE
+    var share := CORSAIR_SPEED_SHARE if corsair else PATROL_SPEED_SHARE
     var speed := (
         Helm.BASE_KM_PER_SECOND * _sea.speed_scale * _wind.speed_factor(ship["heading"]) * share
     )
@@ -336,6 +357,7 @@ func _steer_ship(ship: Dictionary, delta: float, helms: Array[Helm], together: b
         ship["km"] = next
     else:
         ship["heading"] += PI * 0.5
+        ship["roam"] = ship["heading"]
     var boat: SeaBoat = ship["boat"]
     boat.position = ship["km"] * ChartView.PX_PER_KM
     boat.heading = ship["heading"]
@@ -346,17 +368,32 @@ func _steer_ship(ship: Dictionary, delta: float, helms: Array[Helm], together: b
     boat.wind_to = wind_to
 
     if chasing and to_boat.length() < CATCH_KM:
-        ship["leaving"] = 25.0
+        # NOTE (mristin):
+        # Having taken their toll, they sail off somewhere, anywhere.
+        _roam_away(ship, Vector2.RIGHT.rotated(_rng.randf() * TAU), 25.0)
         _caught(ship["kind"], nearest)
 
 
-## The position of the nearest patrol closer than [constant PATROL_REPEL_KM]
-## to the ship, in kilometres, or null.
-func _nearest_patrol(ship: Dictionary) -> Variant:
+## The ship gives up what it does and roams away from [param away] (a
+## direction) for [param seconds], in a heading a bit to one side, so that the
+## ships don't all leave the same way; then it may chase again, for a new
+## while.
+func _roam_away(ship: Dictionary, away: Vector2, seconds: float) -> void:
+    ship["leaving"] = seconds
+    ship["roam"] = away.angle() + PI / 2 + _rng.randf_range(-0.6, 0.6)
+    ship["chase"] = 0.0
+    ship["chase_limit"] = _rng.randf_range(CHASE_SECONDS.x, CHASE_SECONDS.y)
+    ship["hunt"] = 0.0
+    ship["hunt_limit"] = _rng.randf_range(HUNT_SECONDS.x, HUNT_SECONDS.y)
+
+
+## The position of the nearest other ship of the kind closer than
+## [param within_km] to the ship, in kilometres, or null.
+func _nearest_of(ship: Dictionary, kind: String, within_km: float) -> Variant:
     var nearest: Variant = null
-    var best := PATROL_REPEL_KM
+    var best := within_km
     for other in _ships:
-        if other["kind"] != "patrol":
+        if is_same(other, ship) or other["kind"] != kind:
             continue
         var distance: float = other["km"].distance_to(ship["km"])
         if distance < best:

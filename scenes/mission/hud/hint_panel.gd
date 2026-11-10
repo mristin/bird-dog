@@ -23,7 +23,7 @@ func texts() -> Dictionary:
         "damage": tr("The hull is damaged. Every port repairs it."),
         "cloud": tr("A storm cloud! Inside, the boat sails slowly. Steer out of it."),
         "corsair":
-        tr("The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"),
+        tr("The black flag of the corsairs! They take 20 ducats. Flee, or sail to a patrol!"),
         "patrol": tr("The star of a Venetian patrol! They want a bribe. The right flag helps."),
         "loot": tr("A floating barrel! Sail over it to pick up the ducats."),
         "into_wind": tr("No boat sails into the wind! Zigzag across it: left, then right."),

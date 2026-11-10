@@ -437,7 +437,7 @@ msgid "A storm cloud! Inside, the boat sails slowly. Steer out of it."
 msgstr ""
 
 #: scenes/mission/hud/hint_panel.gd
-msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
+msgid "The black flag of the corsairs! They take 20 ducats. Flee, or sail to a patrol!"
 msgstr ""
 
 #: scenes/mission/hud/hint_panel.gd
@@ -520,10 +520,6 @@ msgstr ""
 msgid "Fair winds, captain! Do you need anything before you set sail?"
 msgstr ""
 
-#: scenes/mission/mission.gd
-msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
-msgstr ""
-
 #. the label of a button
 #: scenes/mission/mission.gd scenes/missions/steps/briefing_step.gd
 msgid "Set sail!"
@@ -567,6 +563,14 @@ msgstr ""
 
 #: scenes/mission/mission.gd
 msgid "Any work for us?"
+msgstr ""
+
+#: scenes/mission/mission.gd
+msgid "Sail on to {port}!"
+msgstr ""
+
+#: scenes/mission/mission.gd
+msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
 msgstr ""
 
 #: scenes/mission/mission.gd
@@ -631,6 +635,10 @@ msgstr ""
 
 #: scenes/mission/mission_complete.gd
 msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
+msgstr ""
+
+#: scenes/mission/mission_complete.gd
+msgid "The yataks, the haiduks' friends, collected {gift} {gift|ducat|ducats} for you."
 msgstr ""
 
 #: scenes/mission/mission_complete.gd
@@ -4564,11 +4572,6 @@ msgstr ""
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/reefs/kornati.tres
 msgid "the reefs of the Kornati"
-msgstr ""
-
-#. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/reefs/neretva.tres
-msgid "the shallows of the Neretva"
 msgstr ""
 
 #. a name (of a port, a person, a power, a boat or a thing)

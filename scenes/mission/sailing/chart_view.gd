@@ -71,6 +71,9 @@ var _boxes: Array[Rect2] = []
 var _ports: Array[Port] = []
 var _reef_names: Array = []
 
+## The bounds of the chart, in kilometres (see World.bounds_km).
+var _bounds_km := Rect2(-1e9, -1e9, 2e9, 2e9)
+
 ## The edges of the coast with cliffs: [a, b, inward] in kilometres, the
 ## inward pointing into the land.
 var _cliff_edges: Array = []
@@ -85,16 +88,19 @@ var _surf: Node2D
 
 func _ready() -> void:
     var bounds := World.bounds_km()
+    _bounds_km = bounds
+    # NOTE (mristin):
+    # The chart ends at its bounds (the land beyond is not on it): there the
+    # world is black, rather than an open sea without the coasts, and a boat
+    # stops at the edge as at a coast (see [method is_land]).
+    var rect := Rect2(bounds.position * PX_PER_KM, bounds.size * PX_PER_KM)
+    var beyond := Polygon2D.new()
+    beyond.polygon = _corners(rect.grow(8000))
+    beyond.color = Color.BLACK
+    beyond.z_index = -3
+    add_child(beyond)
     var sea := Polygon2D.new()
-    var rect := Rect2(bounds.position * PX_PER_KM, bounds.size * PX_PER_KM).grow(4000)
-    sea.polygon = PackedVector2Array(
-        [
-            rect.position,
-            Vector2(rect.end.x, rect.position.y),
-            rect.end,
-            Vector2(rect.position.x, rect.end.y)
-        ]
-    )
+    sea.polygon = _corners(rect)
     sea.color = SEA
     sea.z_index = -2
     var sea_material := ShaderMaterial.new()
@@ -164,12 +170,58 @@ func _ready() -> void:
     add_child(_target_layer)
 
 
-## Whether a point (in kilometres) lies on the land.
+static func _corners(rect: Rect2) -> PackedVector2Array:
+    return PackedVector2Array(
+        [
+            rect.position,
+            Vector2(rect.end.x, rect.position.y),
+            rect.end,
+            Vector2(rect.position.x, rect.end.y)
+        ]
+    )
+
+
+## Whether a point (in kilometres) lies on the land, or beyond the edge of the
+## chart.
 func is_land(km: Vector2) -> bool:
+    if not _bounds_km.has_point(km):
+        return true
     for i in range(_land.size()):
         if _boxes[i].has_point(km) and Geometry2D.is_point_in_polygon(km, _land[i]):
             return true
     return false
+
+
+## Where a boat leaving the port at [param port_km] starts, and its heading:
+## {"km": Vector2, "heading": float}. It keeps [param kept], the heading it
+## came in with (null for none), on the far side of the port, unless the land
+## or a reef is right ahead there; else it starts at sea near [param near]
+## (another boat, or the port), at least 3 km from the port, heading away.
+func departure(near: Vector2, port_km: Vector2, kept: Variant) -> Dictionary:
+    for distance in [3.0, 4.0, 6.0] if kept != null else []:
+        var at: Vector2 = port_km + Vector2.UP.rotated(kept) * distance
+        if not is_land(at) and is_clear_ahead(at, kept, 4.0):
+            return {"km": at, "heading": kept}
+    var start := near
+    for distance in [3.0, 4.0, 6.0, 8.0, 11.0, 15.0]:
+        for step in range(24):
+            var candidate: Vector2 = near + Vector2.RIGHT.rotated(step * TAU / 24) * distance
+            if not is_land(candidate) and candidate.distance_to(port_km) >= 3.0:
+                start = candidate
+                break
+        if start != near:
+            break
+    return {"km": start, "heading": (start - port_km).angle() + PI / 2}
+
+
+## Whether a boat sailing from [param from] in [param heading] keeps clear of
+## the land and the reefs for [param km] kilometres.
+func is_clear_ahead(from: Vector2, heading: float, km: float) -> bool:
+    var step := Vector2.UP.rotated(heading) * 0.25
+    for i in range(1, int(km / 0.25) + 1):
+        if is_land(from + step * i) or is_reef(from + step * i):
+            return false
+    return true
 
 
 ## Whether a boat at the point (in kilometres) hits a reef.

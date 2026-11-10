@@ -43,7 +43,8 @@ func _run() -> void:
         scene._busy[0] and scene._busy[1], "after the briefing, both crews are in the start port"
     )
     var start: Array = scene._port_scenes[0]["buttons"]
-    _check(start.size() == 3 and start[1]["action"] == "shop", "the start port has a merchant")
+    _check(start.size() == 4 and start[1]["action"] == "shop", "the start port has a merchant")
+    _check(start[3]["action"] == "bay", "from Kotor, the crew can sail on to Herceg Novi")
     scene._on_action("leave", 0)
     scene._on_action("leave", 1)
     await _frames(2)
@@ -115,6 +116,7 @@ func _run() -> void:
 
     run.hold(0).cargo.append("sail")
     run.hold(0).ducats = 40
+    run.hold(0).spent = 0
     run.hold(1).ducats = 0
     run.hold(1).spent = 0
     scene._met = false

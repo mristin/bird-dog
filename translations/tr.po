@@ -552,8 +552,8 @@ msgstr "Bir fırtına bulutu! İçinde tekne yavaş gider. Dışarı çıkın."
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
-msgstr "Korsanların kara bayrağı! 50 duka alırlar. Kaçın ya da bir devriyeye gidin!"
+msgid "The black flag of the corsairs! They take 20 ducats. Flee, or sail to a patrol!"
+msgstr "Korsanların kara bayrağı! 20 duka alırlar. Kaçın ya da bir devriyeye gidin!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -655,11 +655,6 @@ msgstr "{ducats} dukanız var."
 msgid "Fair winds, captain! Do you need anything before you set sail?"
 msgstr "Rüzgarınız bol olsun, {crew|kaptan|kaptan|kaptanlar}! Yola çıkmadan önce bir şey lazım mı?"
 
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
-msgstr "Haydukların dostları yataklar size {gift} duka gönderiyor."
-
 #. the label of a button
 #: scenes/mission/mission.gd scenes/missions/steps/briefing_step.gd
 #, fuzzy
@@ -715,6 +710,16 @@ msgstr "Ne satıyorsunuz?"
 #, fuzzy
 msgid "Any work for us?"
 msgstr "Bize iş var mı?"
+
+#: scenes/mission/mission.gd
+#, fuzzy
+msgid "Sail on to {port}!"
+msgstr "{port@to} devam edin!"
+
+#: scenes/mission/mission.gd
+#, fuzzy
+msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
+msgstr "Tamamlanan iş için +{ducats} duka!"
 
 #: scenes/mission/mission.gd
 #, fuzzy
@@ -795,6 +800,11 @@ msgstr "Bu görevde +{ducats} duka kazanıldı"
 #, fuzzy
 msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
 msgstr "Bu görevde {ducats} duka harcandı"
+
+#: scenes/mission/mission_complete.gd
+#, fuzzy
+msgid "The yataks, the haiduks' friends, collected {gift} {gift|ducat|ducats} for you."
+msgstr "Haydukların dostları yataklar sizin için {gift} duka topladı."
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -5561,12 +5571,6 @@ msgid "the reefs of the Kornati"
 msgstr "Kornati resifleri"
 
 #. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/reefs/neretva.tres
-#, fuzzy
-msgid "the shallows of the Neretva"
-msgstr "Neretva sığlıkları"
-
-#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/reefs/ostro.tres
 #, fuzzy
 msgid "the rocks of Cape Oštro"
@@ -8032,6 +8036,14 @@ msgstr "kalyonu"
 msgctxt "acc"
 msgid "Galley"
 msgstr "kadırgayı"
+
+#, fuzzy
+#~ msgid "The yataks, the haiduks' friends, send you {gift} {gift|ducat|ducats}."
+#~ msgstr "Haydukların dostları yataklar size {gift} duka gönderiyor."
+
+#, fuzzy
+#~ msgid "the shallows of the Neretva"
+#~ msgstr "Neretva sığlıkları"
 
 #, fuzzy
 #~ msgid "Food and water run out with the days. Every port refills them free!"

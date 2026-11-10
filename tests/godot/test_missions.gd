@@ -185,6 +185,13 @@ func _play(mission: Mission, seed_value: int) -> float:
 
     _check(run.is_done(), "%s: the mission ends" % label)
     _check(stars[0] >= 1, "%s: the mission gives stars" % label)
+    var tasks := 0
+    for step in run.mission.steps:
+        tasks += 0 if step is BriefingStep or step is CelebrationStep else 1
+    _check(
+        run.ducats_total() >= tasks * MissionRun.TASK_DUCATS,
+        "%s: every task pays %d ducats" % [label, MissionRun.TASK_DUCATS]
+    )
     return run.days
 
 
@@ -293,12 +300,13 @@ func _check_merchant() -> void:
     run.pass_days(1.0)
     run.hold().ducats = run.hold().spent + 100
     var bribe := run.hold().steal(SeaHazards.BRIBE)
-    _check(bribe == 30, "a Venetian patrol takes 30 ducats as a bribe")
-    _check(run.hold().on_board() == 70, "the bribe is gone")
+    _check(bribe == 10, "a Venetian patrol takes 10 ducats as a bribe")
+    _check(run.hold().on_board() == 90, "the bribe is gone")
     var stolen := run.hold().steal(SeaHazards.CORSAIR_LOOT)
-    _check(stolen == 50 and run.hold().on_board() == 20, "the corsairs take 50 ducats")
+    _check(stolen == 20 and run.hold().on_board() == 70, "the corsairs take 20 ducats")
+    run.hold().ducats = run.hold().spent + 15
     stolen = run.hold().steal(SeaHazards.CORSAIR_LOOT)
-    _check(stolen == 20 and run.hold().on_board() == 0, "or all the ducats on board, if fewer")
+    _check(stolen == 15 and run.hold().on_board() == 0, "or all the ducats on board, if fewer")
 
     run.hold().ducats = run.hold().spent + 100
     _check(not run.hold().has_room_for(run.ration_days()), "the barrels of a new boat are full")

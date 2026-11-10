@@ -32,6 +32,10 @@ var stars := 0
 ## negative if it cost more than it earned.
 var ducats := 0
 
+## The ducats which the yataks collected for the crew (see
+## Session.yatak_gift); 0 for none.
+var gift := 0
+
 ## Where the text on the sheet ends (drawn), so that the tests can check it
 ## stays above the button.
 var content_bottom := 0.0
@@ -126,6 +130,12 @@ func _draw() -> void:
         font, Vector2(left + 40, y + 30), earned, HORIZONTAL_ALIGNMENT_LEFT, -1, 30, Paper.INK
     )
     y += 42
+    if gift > 0:
+        var yataks := Grammar.format(
+            tr("The yataks, the haiduks' friends, collected {gift} {gift|ducat|ducats} for you."),
+            {"gift": gift}
+        )
+        y = _draw_lines(font, yataks, Vector2(x, y + 4), width, 28, Paper.INK) + 6
 
     if mission.reward != "":
         var reward := tr(mission.reward)
