@@ -29,30 +29,35 @@ static func draw_stall(port: Port, owned: Array, rng: RandomNumberGenerator) -> 
     return stall
 
 
+## Whether the merchant offers the booster to the crew in the port at all:
+## not a ration of food which does not fit into the barrels.
+static func offers(booster: Booster, run: MissionRun) -> bool:
+    return booster.effect != "ration" or run.hold().has_room_for(run.ration_days())
+
+
 ## Why the crew can't buy the booster now, as BoosterBag.why_not; a decoration
 ## only needs the ducats (it is the captain's for good).
 static func why_not(booster: Booster, run: MissionRun, session: Node) -> String:
     if booster.decoration == null:
-        return run.bag.why_not(booster, session.ducats)
+        return run.bag.why_not(booster)
     if session.owned.has(booster.decoration.id):
         return "held"
-    if run.bag.purse(session.ducats) < booster.price:
+    if run.bag.purse() < booster.price:
         return "ducats"
     return ""
 
 
 ## Buy a decoration for the captain of the active boat: it is paid from the
-## ducats on board first and then from the chest of the crew, at once, since it
-## stays the captain's for good (as in the shipyard); return whether it worked.
+## ducats on board, and it stays the captain's for good (as in the shipyard),
+## so the voyage pays for it at once, even if the mission is not finished;
+## return whether it worked.
 static func buy_decoration(
     booster: Booster, run: MissionRun, session: Node, captain: Dictionary
 ) -> bool:
     if why_not(booster, run, session) != "":
         return false
-    var hold := run.hold()
-    var from_hold := mini(booster.price, hold.on_board())
-    hold.spent += from_hold
-    session.ducats -= booster.price - from_hold
+    run.hold().spent += booster.price
+    session.ducats = maxi(0, session.ducats - booster.price)
     var decoration := booster.decoration
     session.owned.append(decoration.id)
     var boat: Dictionary = captain.get("boat", {})
@@ -70,7 +75,7 @@ static func scene(
     for booster in stall:
         reasons.append(why_not(booster, run, session))
     var purse := MissionRun.line(
-        "You have {ducats} {ducats|ducat|ducats}.", {"ducats": run.bag.purse(session.ducats)}
+        "You have {ducats} {ducats|ducat|ducats}.", {"ducats": run.bag.purse()}
     )
     var result := MissionStep.talk(person, [said, purse], MissionRun.line("Goodbye!"), "close_shop")
     result["kind"] = "shop"

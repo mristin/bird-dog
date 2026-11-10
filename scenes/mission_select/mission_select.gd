@@ -73,7 +73,7 @@ func _build() -> void:
 
 
 ## The crew's boats, wearing their decorations from Master Ivan's shipyard,
-## sail next to the chest (see DESIGN.md, section 10).
+## sail next to the purse of the crew (see DESIGN.md, section 10).
 func _add_boats() -> void:
     var colors: Array[Color] = [Color(0.7, 0.12, 0.1), Color(0.12, 0.32, 0.65)]
     for i in range(_crew.players):
@@ -138,4 +138,4 @@ func _draw_screen() -> void:
         names.append(captain["name"])
     var crew_text := "%s  ·  %s" % [_session.voyage_name, " & ".join(PackedStringArray(names))]
     draw_string(font, Vector2(70, 80), crew_text, HORIZONTAL_ALIGNMENT_LEFT, 900, 28, Paper.INK)
-    Chest.draw(self, Vector2(1640, 150), int(_session.ducats))
+    Purse.draw(self, Vector2(1640, 150), int(_session.ducats))

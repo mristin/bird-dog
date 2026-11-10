@@ -48,7 +48,7 @@ func _draw() -> void:
             tip - side * 30 - direction * 10,
         ]
     )
-    draw_colored_polygon(arrow, Paper.GOLD)
+    draw_colored_polygon(arrow, ChartView.TARGET_COLOR)
     var outline := arrow.duplicate()
     outline.append(arrow[0])
     draw_polyline(outline, Paper.INK, 3.0, true)
@@ -57,5 +57,5 @@ func _draw() -> void:
     var label := tr(target.name)
     var at_label := tip - direction * 90 + Vector2(-150, 12)
     draw_string_outline(font, at_label, label, HORIZONTAL_ALIGNMENT_CENTER, 300, 34, 8, Paper.PAPER)
-    draw_string(font, at_label, label, HORIZONTAL_ALIGNMENT_CENTER, 300, 34, Paper.RED)
+    draw_string(font, at_label, label, HORIZONTAL_ALIGNMENT_CENTER, 300, 34, ChartView.TARGET_COLOR)
     PortIcons.draw(self, target.icon, tip - direction * 90 + Vector2(0, -36), 0.5)

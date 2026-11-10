@@ -160,6 +160,11 @@ msgstr "A caso"
 
 #: scenes/captain_creator/captain_panel.gd
 #, fuzzy
+msgid "Ready!"
+msgstr "{crew|Pronto|Pronta}!"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
 msgid "Name"
 msgstr "Nome"
 
@@ -177,6 +182,11 @@ msgstr "Aiduco"
 #, fuzzy
 msgid "Haidukess"
 msgstr "Aiduca"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
+msgid "Change"
+msgstr "Cambia"
 
 #: scenes/captain_creator/name_keyboard.gd scenes/session_select/session_select.gd
 #, fuzzy
@@ -367,11 +377,6 @@ msgstr "Spazio: {crew|salta|salta|saltate}   Esc: {crew|esci|esci|uscite}"
 msgid "Wind"
 msgstr "Vento"
 
-#: scenes/menu/chest.gd scenes/mission/exchange_card.gd
-#, fuzzy
-msgid "{ducats} {ducats|ducat|ducats}"
-msgstr "{ducats} {ducats|ducato|ducati}"
-
 #: scenes/menu/confirm_dialog.gd
 #, fuzzy
 msgid "Do you really want to quit the game?"
@@ -386,6 +391,11 @@ msgstr "Sì, esci"
 #, fuzzy
 msgid "No, stay"
 msgstr "No, resto"
+
+#: scenes/menu/purse.gd scenes/mission/exchange_card.gd
+#, fuzzy
+msgid "{ducats} {ducats|ducat|ducats}"
+msgstr "{ducats} {ducats|ducato|ducati}"
 
 #: scenes/mission/booster_card.gd
 #, fuzzy
@@ -515,8 +525,8 @@ msgstr "C chiude la carta"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "Food and water run out with the days. Every port refills them free!"
-msgstr "Cibo e acqua finiscono con i giorni. In ogni porto fate il pieno gratis!"
+msgid "Food and water run out with the days. Every port gives one ration free; buy more!"
+msgstr "Cibo e acqua finiscono con i giorni. Ogni porto dà una razione gratis; compratene altre!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -541,8 +551,8 @@ msgstr "Una nuvola di tempesta! Dentro, la barca va piano. Uscitene!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
-msgstr "La bandiera nera dei corsari! Prendono tutti i ducati a bordo. Scappate!"
+msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
+msgstr "La bandiera nera dei corsari! Prendono 50 ducati. Scappate, o andate verso una pattuglia!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -780,13 +790,13 @@ msgstr "Giorni in mare: {used} su {clock}"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
-msgstr "+{ducats} {ducats|ducato|ducati} per la cassa dell'equipaggio"
+msgid "+{ducats} {ducats|ducat|ducats} earned in this mission"
+msgstr "+{ducats} {ducats|ducato guadagnato|ducati guadagnati} in questa missione"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
-msgstr "{ducats} {ducats|ducato speso|ducati spesi} dalla cassa dell'equipaggio"
+msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
+msgstr "{ducats} {ducats|ducato speso|ducati spesi} in questa missione"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -820,8 +830,8 @@ msgstr "I corsari prendono i vostri fichi e se ne vanno tutti contenti."
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
-msgid "The corsairs took all your ducats: {ducats}!"
-msgstr "I corsari hanno preso tutti i vostri ducati: {ducats}!"
+msgid "The corsairs took {ducats} {ducats|ducat|ducats}!"
+msgstr "I corsari hanno preso {ducats} {ducats|ducato|ducati}!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
@@ -1132,10 +1142,10 @@ msgstr "Amico"
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
-msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+msgid "{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."
 msgstr ""
-"Per {name@acc} ci {price|vuole|vogliono} {price} {price|ducato|ducati}, ma la cassa ha solo "
-"{ducats} {ducats|ducato|ducati}."
+"Per {name@acc} ci {price|vuole|vogliono} {price} {price|ducato|ducati}, ma avete solo {ducats} "
+"{ducats|ducato|ducati}."
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
@@ -3591,8 +3601,8 @@ msgstr "Pane fresco e acqua"
 #. what a booster or a ship does, on its card, one short sentence
 #: data/world/boosters/bread_water.tres
 #, fuzzy
-msgid "Half a day back on the mission clock."
-msgstr "Mezza giornata in più sull'orologio della missione."
+msgid "One more ration of food and water."
+msgstr "Una razione in più di cibo e acqua."
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/boosters/cannons.tres
@@ -4329,8 +4339,8 @@ msgstr "Anica"
 #. what a person does, under their name
 #: data/world/people/anica.tres
 #, fuzzy
-msgid "a girl of Grebaštica"
-msgstr "una bambina di Grebaštica"
+msgid "a young lady of Grebaštica"
+msgstr "una giovane di Grebaštica"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/baba_stana.tres
@@ -8085,9 +8095,31 @@ msgid "Galley"
 msgstr "la galea"
 
 #, fuzzy
-#~ msgid "Ready!"
-#~ msgstr "{crew|Pronto|Pronta}!"
+#~ msgid "Food and water run out with the days. Every port refills them free!"
+#~ msgstr "Cibo e acqua finiscono con i giorni. In ogni porto fate il pieno gratis!"
 
 #, fuzzy
-#~ msgid "Change"
-#~ msgstr "Cambia"
+#~ msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
+#~ msgstr "La bandiera nera dei corsari! Prendono tutti i ducati a bordo. Scappate!"
+
+#, fuzzy
+#~ msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
+#~ msgstr "+{ducats} {ducats|ducato|ducati} per la cassa dell'equipaggio"
+
+#, fuzzy
+#~ msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
+#~ msgstr "{ducats} {ducats|ducato speso|ducati spesi} dalla cassa dell'equipaggio"
+
+#, fuzzy
+#~ msgid "The corsairs took all your ducats: {ducats}!"
+#~ msgstr "I corsari hanno preso tutti i vostri ducati: {ducats}!"
+
+#, fuzzy
+#~ msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+#~ msgstr ""
+#~ "Per {name@acc} ci {price|vuole|vogliono} {price} {price|ducato|ducati}, ma la cassa ha solo "
+#~ "{ducats} {ducats|ducato|ducati}."
+
+#, fuzzy
+#~ msgid "Half a day back on the mission clock."
+#~ msgstr "Mezza giornata in più sull'orologio della missione."

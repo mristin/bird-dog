@@ -160,6 +160,11 @@ msgstr "Rastësisht"
 
 #: scenes/captain_creator/captain_panel.gd
 #, fuzzy
+msgid "Ready!"
+msgstr "Gati!"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
 msgid "Name"
 msgstr "Emri"
 
@@ -177,6 +182,11 @@ msgstr "Hajduk"
 #, fuzzy
 msgid "Haidukess"
 msgstr "Hajduke"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
+msgid "Change"
+msgstr "Ndrysho"
 
 #: scenes/captain_creator/name_keyboard.gd scenes/session_select/session_select.gd
 #, fuzzy
@@ -366,11 +376,6 @@ msgstr "Hapësira: {crew|kalo|kalo|kaloni}   Esc: {crew|dil|dil|dilni}"
 msgid "Wind"
 msgstr "Era"
 
-#: scenes/menu/chest.gd scenes/mission/exchange_card.gd
-#, fuzzy
-msgid "{ducats} {ducats|ducat|ducats}"
-msgstr "{ducats} {ducats|dukat|dukatë}"
-
 #: scenes/menu/confirm_dialog.gd
 #, fuzzy
 msgid "Do you really want to quit the game?"
@@ -385,6 +390,11 @@ msgstr "Po, dil"
 #, fuzzy
 msgid "No, stay"
 msgstr "Jo, rri"
+
+#: scenes/menu/purse.gd scenes/mission/exchange_card.gd
+#, fuzzy
+msgid "{ducats} {ducats|ducat|ducats}"
+msgstr "{ducats} {ducats|dukat|dukatë}"
 
 #: scenes/mission/booster_card.gd
 #, fuzzy
@@ -514,8 +524,8 @@ msgstr "C mbyll hartën"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "Food and water run out with the days. Every port refills them free!"
-msgstr "Ushqimi dhe uji mbarojnë me ditët. Çdo port i mbush falas!"
+msgid "Food and water run out with the days. Every port gives one ration free; buy more!"
+msgstr "Ushqimi dhe uji mbarojnë me ditët. Çdo port jep një racion falas; blini më shumë!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -539,8 +549,8 @@ msgstr "Re stuhie! Brenda saj barka lundron ngadalë. Dilni prej saj."
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
-msgstr "Flamuri i zi i korsarëve! Ata marrin të gjithë dukatët në bord. Ikni!"
+msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
+msgstr "Flamuri i zi i korsarëve! Marrin 50 dukatë. Ikni, ose lundroni drejt një patrulle!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -775,13 +785,13 @@ msgstr "Ditë në det: {used} nga {clock}"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
-msgstr "+{ducats} {ducats|dukat|dukatë} për arkën e ekuipazhit"
+msgid "+{ducats} {ducats|ducat|ducats} earned in this mission"
+msgstr "+{ducats} {ducats|dukat i fituar|dukatë të fituar} në këtë mision"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
-msgstr "{ducats} {ducats|dukat i shpenzuar|dukatë të shpenzuar} nga arka e ekuipazhit"
+msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
+msgstr "{ducats} {ducats|dukat i shpenzuar|dukatë të shpenzuar} në këtë mision"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -815,8 +825,8 @@ msgstr "Korsarët marrin fiqtë tuaj dhe ikin të gëzuar."
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
-msgid "The corsairs took all your ducats: {ducats}!"
-msgstr "Korsarët ju morën të gjithë dukatët: {ducats}!"
+msgid "The corsairs took {ducats} {ducats|ducat|ducats}!"
+msgstr "Korsarët ju morën {ducats} {ducats|dukat|dukatë}!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
@@ -1127,9 +1137,8 @@ msgstr "Miku"
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
-msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
-msgstr ""
-"Për {name@acc} {price|duhet|duhen} {price} {price|dukat|dukatë}, por në arkë ka vetëm {ducats}."
+msgid "{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."
+msgstr "Për {name@acc} {price|duhet|duhen} {price} {price|dukat|dukatë}, por keni vetëm {ducats}."
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
@@ -3555,8 +3564,8 @@ msgstr "Bukë e ujë të freskët"
 #. what a booster or a ship does, on its card, one short sentence
 #: data/world/boosters/bread_water.tres
 #, fuzzy
-msgid "Half a day back on the mission clock."
-msgstr "Fitoni gjysmë dite në orën e misionit."
+msgid "One more ration of food and water."
+msgstr "Edhe një racion ushqim dhe ujë."
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/boosters/cannons.tres
@@ -4293,8 +4302,8 @@ msgstr "Anica"
 #. what a person does, under their name
 #: data/world/people/anica.tres
 #, fuzzy
-msgid "a girl of Grebaštica"
-msgstr "vajzë nga Grebaštica"
+msgid "a young lady of Grebaštica"
+msgstr "vajzë e re nga Grebaštica"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/baba_stana.tres
@@ -8049,9 +8058,30 @@ msgid "Galley"
 msgstr "galerën"
 
 #, fuzzy
-#~ msgid "Ready!"
-#~ msgstr "Gati!"
+#~ msgid "Food and water run out with the days. Every port refills them free!"
+#~ msgstr "Ushqimi dhe uji mbarojnë me ditët. Çdo port i mbush falas!"
 
 #, fuzzy
-#~ msgid "Change"
-#~ msgstr "Ndrysho"
+#~ msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
+#~ msgstr "Flamuri i zi i korsarëve! Ata marrin të gjithë dukatët në bord. Ikni!"
+
+#, fuzzy
+#~ msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
+#~ msgstr "+{ducats} {ducats|dukat|dukatë} për arkën e ekuipazhit"
+
+#, fuzzy
+#~ msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
+#~ msgstr "{ducats} {ducats|dukat i shpenzuar|dukatë të shpenzuar} nga arka e ekuipazhit"
+
+#, fuzzy
+#~ msgid "The corsairs took all your ducats: {ducats}!"
+#~ msgstr "Korsarët ju morën të gjithë dukatët: {ducats}!"
+
+#, fuzzy
+#~ msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+#~ msgstr ""
+#~ "Për {name@acc} {price|duhet|duhen} {price} {price|dukat|dukatë}, por në arkë ka vetëm {ducats}."
+
+#, fuzzy
+#~ msgid "Half a day back on the mission clock."
+#~ msgstr "Fitoni gjysmë dite në orën e misionit."

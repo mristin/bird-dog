@@ -16,8 +16,9 @@ extends Node
 signal loaded
 
 ## The format of the save files; bump it and convert the old files on load when
-## the format changes.
-const FORMAT := 1
+## the format changes (see [method upgrade]). Format 2 has no chest of the crew
+## any more: the ducats of a mission in progress are all on board.
+const FORMAT := 2
 
 ## The scene which F6 returns to after loading.
 const MISSION_SELECT := "res://scenes/mission_select/mission_select.tscn"
@@ -27,7 +28,7 @@ const MAX_NAME_LENGTH := 24
 
 ## The directory of the save files, and the settings which remember the last
 ## voyage (the tests use others).
-## A new voyage starts with this many ducats in the chest.
+## A new voyage starts with this many ducats on board.
 const STARTING_DUCATS := 40
 
 ## The yataks (the haiduks' secret friends, in Croatian "jataci") send this many
@@ -53,7 +54,10 @@ var missions := {}
 ## The mission which the crew chose last, for the mission screens.
 var current_mission := ""
 
-## The crew's chest: the ducats, carried over from mission to mission.
+## The crew's ducats between the missions, carried over from mission to
+## mission. There is no chest at home: a mission takes them all on board (see
+## MissionRun.bring), where the corsairs and the patrols can take them, and
+## brings back what is left when it is finished.
 var ducats := 0
 
 ## The ids of the decorations which the crew bought in Master Ivan's
@@ -208,6 +212,32 @@ func read(voyage_id: String) -> Variant:
     var data: Variant = JSON.parse_string(FileAccess.get_file_as_string(path))
     if not data is Dictionary or int(data.get("format", 0)) > FORMAT:
         return null
+    return upgrade(data)
+
+
+## Convert the save of an older format to the current one.
+static func upgrade(data: Dictionary) -> Dictionary:
+    if int(data.get("format", 1)) < 2:
+        # NOTE (mristin):
+        # Format 1 kept the ducats in a chest of the crew at home and only
+        # what a mission earned on board (a boat could even spend more than it
+        # carried, from the chest). Now all the ducats are on board: the chest
+        # goes into the boats of the mission in progress, split as at the start
+        # of a mission, and stays the ducats of the voyage between missions.
+        var chest := int(data.get("ducats", 0))
+        var run: Dictionary = data.get("mission_in_progress", {}).get("run", {})
+        var holds: Array = run.get("holds", [])
+        if not holds.is_empty():
+            var total := chest
+            for hold in holds:
+                total += int(hold.get("ducats", 0)) - int(hold.get("spent", 0))
+            total = maxi(0, total)
+            var each := total / holds.size()
+            for i in range(holds.size()):
+                holds[i]["ducats"] = each + (total - each * holds.size() if i == 0 else 0)
+                holds[i]["spent"] = 0
+            run["brought"] = chest
+        data["format"] = 2
     return data
 
 
@@ -315,7 +345,7 @@ func is_unlocked(mission: Mission) -> bool:
     return false
 
 
-## Buy a decoration with the ducats of the chest; return whether it worked.
+## Buy a decoration with the ducats of the crew; return whether it worked.
 func buy_decoration(decoration: Decoration) -> bool:
     if owned.has(decoration.id) or ducats < decoration.price:
         return false
@@ -336,7 +366,7 @@ func progress_fits(players: int) -> bool:
     return mission_in_progress.get("boats", []).size() == players
 
 
-## Buy a ship with the ducats of the chest; return whether it worked.
+## Buy a ship with the ducats of the crew; return whether it worked.
 func buy_ship(ship: Ship) -> bool:
     if owned.has(ship.id) or ducats < ship.price:
         return false
@@ -354,9 +384,10 @@ func has_shipyard() -> bool:
     return false
 
 
-## The gift of the yataks at the start of a mission: into the chest, only the
-## first time the mission starts in the voyage (so that starting over is no
-## farm of ducats); return how many ducats they sent.
+## The gift of the yataks at the start of a mission, only the first time the
+## mission starts in the voyage (so that starting over is no farm of ducats);
+## return how many ducats they sent. They count for the voyage at once, and the
+## mission puts them on board (see MissionRun.bring).
 func yatak_gift(mission_id: String) -> int:
     var state: Dictionary = missions.get(mission_id, {})
     if state.get("gifted", false):
@@ -369,9 +400,11 @@ func yatak_gift(mission_id: String) -> int:
 
 
 ## Record a finished mission with its stars (keeping the best stars) and the
-## ducats it earned (less what it spent) into the chest, and save.
-func complete(mission_id: String, earned_stars: int, earned_ducats := 0) -> void:
-    ducats = maxi(0, ducats + earned_ducats)
+## ducats left on board of its boats (-1 keeps the ducats as they are), and
+## save.
+func complete(mission_id: String, earned_stars: int, on_board := -1) -> void:
+    if on_board >= 0:
+        ducats = on_board
     if progress_of() == mission_id:
         mission_in_progress = {}
     var state: Dictionary = missions.get(mission_id, {})

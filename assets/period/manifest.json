@@ -88,6 +88,17 @@
         "altered": "cropped, tinted to ink on paper, shrunk"
     },
     {
+        "file": "people/young_lady.jpg",
+        "shows": "Anica: a young lady of the village of Grebaštica.",
+        "work": "Cesare Vecellio, Habiti antichi et moderni (1590), edition of 1860",
+        "year": 1590,
+        "source": "https://commons.wikimedia.org/wiki/File:Delle_donzelle_contadine_et_artigiane_di_Parma_-_Vecellio_Cesare_-_1860.jpg",
+        "original": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Delle_donzelle_contadine_et_artigiane_di_Parma_-_Vecellio_Cesare_-_1860.jpg",
+        "original_sha256": "7b5a37982d29aaf328c3f2b12dc18029e11e3d53a2966f4d530659f3131f8e04",
+        "license": "Public domain (Wikimedia Commons)",
+        "altered": "cropped, tinted to ink on paper, shrunk"
+    },
+    {
         "file": "people/farmer.jpg",
         "shows": "A man with a straw hat on his way to the market, a local in the ports.",
         "work": "Cesare Vecellio, Habiti antichi et moderni (1590), edition of 1860",

@@ -20,7 +20,7 @@ extends Resource
 ## The price in ducats.
 @export var price := 20
 
-## "speed", "weather", "pilot", "flag", "figs", "time", "cannons", "nimble"
+## "speed", "weather", "pilot", "flag", "figs", "ration", "cannons", "nimble"
 ## (turn quicker), "food" (eat slower), "oars" (row into the wind) or
 ## "decoration".
 @export var effect := ""

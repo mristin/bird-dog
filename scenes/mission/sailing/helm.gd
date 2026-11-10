@@ -10,7 +10,7 @@ extends RefCounted
 const BASE_KM_PER_SECOND := 6.75
 
 ## How fast a boat turns at full steering, in degrees per second.
-const TURN_DEGREES := 67.5
+const TURN_DEGREES := 50.625
 
 ## With oars, a boat sails into the wind at least this share of its best speed.
 const OARS_SHARE := 0.6

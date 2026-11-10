@@ -27,8 +27,9 @@ var mission: Mission
 var run: MissionRun
 var stars := 0
 
-## The ducats which the mission brings into the chest (what the boats found
-## and earned with errands, less what they spent).
+## The ducats which the mission earned (what the boats found and earned with
+## errands, less what they spent and what the corsairs and the patrols took);
+## negative if it cost more than it earned.
 var ducats := 0
 
 ## Where the text on the sheet ends (drawn), so that the tests can check it
@@ -109,12 +110,11 @@ func _draw() -> void:
     draw_string(font, Vector2(x, y), days, HORIZONTAL_ALIGNMENT_CENTER, width, 30, Paper.INK)
     y += 30
     var earned := Grammar.format(
-        tr("+{ducats} {ducats|ducat|ducats} for the chest of the crew"), {"ducats": ducats}
+        tr("+{ducats} {ducats|ducat|ducats} earned in this mission"), {"ducats": ducats}
     )
     if ducats < 0:
         earned = Grammar.format(
-            tr("{ducats} {ducats|ducat|ducats} spent from the chest of the crew"),
-            {"ducats": -ducats}
+            tr("{ducats} {ducats|ducat|ducats} spent in this mission"), {"ducats": -ducats}
         )
     # NOTE (mristin):
     # The coin and the line stand centred together, the coin before the line.

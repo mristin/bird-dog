@@ -25,6 +25,10 @@ var fast_speed := 1800.0
 ## A point farther than this from all the previous points (in pixels) is new.
 var match_distance := 250.0
 
+## Within this distance of the smoothed point (in pixels), a target barely
+## moves it: the jitter of a hand which holds still stays out (0 for none).
+var dead_zone := 0.0
+
 var _points: Array[Vector2] = []
 var _keyed := {}
 
@@ -65,6 +69,13 @@ func update_keyed(targets: Dictionary, delta: float) -> Dictionary:
 
 
 func _step(previous: Vector2, target: Vector2, delta: float) -> Vector2:
+    if dead_zone > 0.0:
+        # NOTE (mristin):
+        # Only the part of the move beyond the dead zone counts, so the point
+        # stands still against the jitter, yet follows a real move smoothly.
+        var offset := target - previous
+        var beyond := maxf(0.0, offset.length() - dead_zone)
+        target = previous + offset.limit_length(beyond)
     var speed := previous.distance_to(target) / maxf(delta, 1e-3)
     var fast := clampf(speed / fast_speed, 0.0, 1.0)
     var seconds := lerpf(calm_seconds, fast_seconds, fast)

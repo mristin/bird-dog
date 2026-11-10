@@ -160,6 +160,11 @@ msgstr "Наугад"
 
 #: scenes/captain_creator/captain_panel.gd
 #, fuzzy
+msgid "Ready!"
+msgstr "{crew|Готов|Готова|Готовы}!"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
 msgid "Name"
 msgstr "Имя"
 
@@ -177,6 +182,11 @@ msgstr "Гайдук"
 #, fuzzy
 msgid "Haidukess"
 msgstr "Гайдучка"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
+msgid "Change"
+msgstr "Изменить"
 
 #: scenes/captain_creator/name_keyboard.gd scenes/session_select/session_select.gd
 #, fuzzy
@@ -368,11 +378,6 @@ msgstr "Пробел: пропустить   Esc: выход"
 msgid "Wind"
 msgstr "Ветер"
 
-#: scenes/menu/chest.gd scenes/mission/exchange_card.gd
-#, fuzzy
-msgid "{ducats} {ducats|ducat|ducats}"
-msgstr "{ducats} {ducats|дукат|дуката|дукатов}"
-
 #: scenes/menu/confirm_dialog.gd
 #, fuzzy
 msgid "Do you really want to quit the game?"
@@ -387,6 +392,11 @@ msgstr "Да, выйти"
 #, fuzzy
 msgid "No, stay"
 msgstr "Нет, остаться"
+
+#: scenes/menu/purse.gd scenes/mission/exchange_card.gd
+#, fuzzy
+msgid "{ducats} {ducats|ducat|ducats}"
+msgstr "{ducats} {ducats|дукат|дуката|дукатов}"
 
 #: scenes/mission/booster_card.gd
 #, fuzzy
@@ -518,8 +528,10 @@ msgstr "C закрывает карту"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "Food and water run out with the days. Every port refills them free!"
-msgstr "Еда и вода убывают с каждым днём. В любом порту их пополнят бесплатно!"
+msgid "Food and water run out with the days. Every port gives one ration free; buy more!"
+msgstr ""
+"Еда и вода убывают с каждым днём. Каждый порт даёт один ящик бесплатно; остальное "
+"{crew|купи|купи|купите}!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -543,8 +555,10 @@ msgstr "Грозовая туча! В ней лодка плывёт медле�
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
-msgstr "Чёрный флаг корсаров! Они забирают все дукаты на борту. {crew|Удирай|Удирай|Удирайте}!"
+msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
+msgstr ""
+"Чёрный флаг корсаров! Они забирают 50 дукатов. {crew|Удирай|Удирай|Удирайте} или "
+"{crew|плыви|плыви|плывите} к патрулю!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -783,13 +797,13 @@ msgstr "Дней в море: {used} из {clock}"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
-msgstr "+{ducats} {ducats|дукат|дуката|дукатов} в сундук команды"
+msgid "+{ducats} {ducats|ducat|ducats} earned in this mission"
+msgstr "+{ducats} {ducats|дукат|дуката|дукатов} заработано в этом задании"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
-msgstr "Из сундука команды потрачено: {ducats} {ducats|дукат|дуката|дукатов}"
+msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
+msgstr "Потрачено в этом задании: {ducats} {ducats|дукат|дуката|дукатов}"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -823,8 +837,8 @@ msgstr "Корсары забирают инжир и довольные упл�
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
-msgid "The corsairs took all your ducats: {ducats}!"
-msgstr "Корсары забрали все {crew|твои|твои|ваши} дукаты: {ducats}!"
+msgid "The corsairs took {ducats} {ducats|ducat|ducats}!"
+msgstr "Корсары забрали {ducats} {ducats|дукат|дуката|дукатов}!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
@@ -1136,10 +1150,10 @@ msgstr "Друг"
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
-msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+msgid "{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."
 msgstr ""
-"За {name@acc} надо заплатить {price} {price|дукат|дуката|дукатов}, а в сундуке только {ducats} "
-"{ducats|дукат|дуката|дукатов}."
+"За {name@acc} надо заплатить {price} {price|дукат|дуката|дукатов}, а у {crew|тебя|тебя|вас} только"
+" {ducats} {ducats|дукат|дуката|дукатов}."
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
@@ -3598,8 +3612,8 @@ msgstr "Свежий хлеб и вода"
 #. what a booster or a ship does, on its card, one short sentence
 #: data/world/boosters/bread_water.tres
 #, fuzzy
-msgid "Half a day back on the mission clock."
-msgstr "Плюс полдня к сроку задания."
+msgid "One more ration of food and water."
+msgstr "Ещё один ящик провизии и воды."
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/boosters/cannons.tres
@@ -4336,8 +4350,8 @@ msgstr "Аница"
 #. what a person does, under their name
 #: data/world/people/anica.tres
 #, fuzzy
-msgid "a girl of Grebaštica"
-msgstr "девочка из Гребаштицы"
+msgid "a young lady of Grebaštica"
+msgstr "девушка из Гребаштицы"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/baba_stana.tres
@@ -8092,12 +8106,34 @@ msgid "Galley"
 msgstr "галеру"
 
 #, fuzzy
-#~ msgid "Ready!"
-#~ msgstr "{crew|Готов|Готова|Готовы}!"
+#~ msgid "Food and water run out with the days. Every port refills them free!"
+#~ msgstr "Еда и вода убывают с каждым днём. В любом порту их пополнят бесплатно!"
 
 #, fuzzy
-#~ msgid "Change"
-#~ msgstr "Изменить"
+#~ msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
+#~ msgstr "Чёрный флаг корсаров! Они забирают все дукаты на борту. {crew|Удирай|Удирай|Удирайте}!"
+
+#, fuzzy
+#~ msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
+#~ msgstr "+{ducats} {ducats|дукат|дуката|дукатов} в сундук команды"
+
+#, fuzzy
+#~ msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
+#~ msgstr "Из сундука команды потрачено: {ducats} {ducats|дукат|дуката|дукатов}"
+
+#, fuzzy
+#~ msgid "The corsairs took all your ducats: {ducats}!"
+#~ msgstr "Корсары забрали все {crew|твои|твои|ваши} дукаты: {ducats}!"
+
+#, fuzzy
+#~ msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+#~ msgstr ""
+#~ "За {name@acc} надо заплатить {price} {price|дукат|дуката|дукатов}, а в сундуке только {ducats} "
+#~ "{ducats|дукат|дуката|дукатов}."
+
+#, fuzzy
+#~ msgid "Half a day back on the mission clock."
+#~ msgstr "Плюс полдня к сроку задания."
 
 #, fuzzy
 #~ msgid "Visited"

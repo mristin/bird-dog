@@ -160,6 +160,11 @@ msgstr "Zufall"
 
 #: scenes/captain_creator/captain_panel.gd
 #, fuzzy
+msgid "Ready!"
+msgstr "Fertig!"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
 msgid "Name"
 msgstr "Name"
 
@@ -177,6 +182,11 @@ msgstr "Haiduk"
 #, fuzzy
 msgid "Haidukess"
 msgstr "Haidukin"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
+msgid "Change"
+msgstr "Ändern"
 
 #: scenes/captain_creator/name_keyboard.gd scenes/session_select/session_select.gd
 #, fuzzy
@@ -370,11 +380,6 @@ msgstr "Leertaste: überspringen   Esc: beenden"
 msgid "Wind"
 msgstr "Wind"
 
-#: scenes/menu/chest.gd scenes/mission/exchange_card.gd
-#, fuzzy
-msgid "{ducats} {ducats|ducat|ducats}"
-msgstr "{ducats} {ducats|Dukat|Dukaten}"
-
 #: scenes/menu/confirm_dialog.gd
 #, fuzzy
 msgid "Do you really want to quit the game?"
@@ -389,6 +394,11 @@ msgstr "Ja, beenden"
 #, fuzzy
 msgid "No, stay"
 msgstr "Nein, bleiben"
+
+#: scenes/menu/purse.gd scenes/mission/exchange_card.gd
+#, fuzzy
+msgid "{ducats} {ducats|ducat|ducats}"
+msgstr "{ducats} {ducats|Dukat|Dukaten}"
 
 #: scenes/mission/booster_card.gd
 #, fuzzy
@@ -519,8 +529,10 @@ msgstr "C schließt die Karte"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "Food and water run out with the days. Every port refills them free!"
-msgstr "Essen und Wasser werden jeden Tag weniger. Jeder Hafen füllt sie gratis auf!"
+msgid "Food and water run out with the days. Every port gives one ration free; buy more!"
+msgstr ""
+"Essen und Wasser werden jeden Tag weniger. Jeder Hafen gibt eine Ration gratis; mehr könnt ihr "
+"kaufen!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -544,8 +556,9 @@ msgstr "Eine Sturmwolke! Darin segelt das Boot langsam. Steuert hinaus!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
-msgstr "Die schwarze Flagge der Korsaren! Sie nehmen alle Dukaten, die ihr an Bord habt. Flieht!"
+msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
+msgstr ""
+"Die schwarze Flagge der Korsaren! Sie nehmen 50 Dukaten. Flieht oder segelt zu einer Patrouille!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -783,13 +796,13 @@ msgstr "Tage auf See: {used} von {clock}"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
-msgstr "+{ducats} {ducats|Dukat|Dukaten} für die Truhe der Mannschaft"
+msgid "+{ducats} {ducats|ducat|ducats} earned in this mission"
+msgstr "+{ducats} {ducats|Dukat|Dukaten} in dieser Mission verdient"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
-msgstr "{ducats} {ducats|Dukat|Dukaten} aus der Truhe der Mannschaft ausgegeben"
+msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
+msgstr "{ducats} {ducats|Dukat|Dukaten} in dieser Mission ausgegeben"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -823,8 +836,8 @@ msgstr "Die Korsaren nehmen eure Feigen und segeln fröhlich davon."
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
-msgid "The corsairs took all your ducats: {ducats}!"
-msgstr "Die Korsaren haben alle eure Dukaten genommen: {ducats}!"
+msgid "The corsairs took {ducats} {ducats|ducat|ducats}!"
+msgstr "Die Korsaren haben {ducats} {ducats|Dukat|Dukaten} genommen!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
@@ -1135,8 +1148,8 @@ msgstr "Freund"
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
-msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
-msgstr "Für {name@acc} braucht ihr {price} {price|Dukat|Dukaten}, aber die Truhe hat nur {ducats}."
+msgid "{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."
+msgstr "Für {name@acc} braucht ihr {price} {price|Dukat|Dukaten}, aber ihr habt nur {ducats}."
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
@@ -3601,8 +3614,8 @@ msgstr "Frisches Brot und Wasser"
 #. what a booster or a ship does, on its card, one short sentence
 #: data/world/boosters/bread_water.tres
 #, fuzzy
-msgid "Half a day back on the mission clock."
-msgstr "Ein halber Tag mehr auf der Missionsuhr."
+msgid "One more ration of food and water."
+msgstr "Eine Ration Essen und Wasser mehr an Bord."
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/boosters/cannons.tres
@@ -4339,8 +4352,8 @@ msgstr "Anica"
 #. what a person does, under their name
 #: data/world/people/anica.tres
 #, fuzzy
-msgid "a girl of Grebaštica"
-msgstr "Mädchen aus Grebaštica"
+msgid "a young lady of Grebaštica"
+msgstr "junge Frau aus Grebaštica"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/baba_stana.tres
@@ -8095,9 +8108,29 @@ msgid "Galley"
 msgstr "eine Galeere"
 
 #, fuzzy
-#~ msgid "Ready!"
-#~ msgstr "Fertig!"
+#~ msgid "Food and water run out with the days. Every port refills them free!"
+#~ msgstr "Essen und Wasser werden jeden Tag weniger. Jeder Hafen füllt sie gratis auf!"
 
 #, fuzzy
-#~ msgid "Change"
-#~ msgstr "Ändern"
+#~ msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
+#~ msgstr "Die schwarze Flagge der Korsaren! Sie nehmen alle Dukaten, die ihr an Bord habt. Flieht!"
+
+#, fuzzy
+#~ msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
+#~ msgstr "+{ducats} {ducats|Dukat|Dukaten} für die Truhe der Mannschaft"
+
+#, fuzzy
+#~ msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
+#~ msgstr "{ducats} {ducats|Dukat|Dukaten} aus der Truhe der Mannschaft ausgegeben"
+
+#, fuzzy
+#~ msgid "The corsairs took all your ducats: {ducats}!"
+#~ msgstr "Die Korsaren haben alle eure Dukaten genommen: {ducats}!"
+
+#, fuzzy
+#~ msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+#~ msgstr "Für {name@acc} braucht ihr {price} {price|Dukat|Dukaten}, aber die Truhe hat nur {ducats}."
+
+#, fuzzy
+#~ msgid "Half a day back on the mission clock."
+#~ msgstr "Ein halber Tag mehr auf der Missionsuhr."

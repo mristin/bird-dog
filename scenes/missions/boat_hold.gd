@@ -18,8 +18,10 @@ var max_provisions := 0.0
 ## the boat has to be towed to a port.
 var damage := 0.0
 
-## The ducats this boat earned in the mission, and what it spent of them at
-## the merchants (the chest of the crew stays at home).
+## The ducats this boat carries (what the crew brought along into the
+## mission and what it earned in it), and what it spent of them at the
+## merchants. There is no chest at home: all the ducats are on board, and the
+## corsairs and the patrols can take them.
 var ducats := 0
 var spent := 0
 
@@ -40,12 +42,25 @@ func on_board() -> int:
     return maxi(0, ducats - spent)
 
 
-## The corsairs take all the ducats on board, the Venetian patrols half of
-## them as a bribe (see SeaHazards); return how many.
-func steal(share := 1.0) -> int:
-    var stolen := int(on_board() * share)
+## The corsairs or the Venetian patrols take [param amount] ducats, or all
+## on board if there are fewer (see SeaHazards); return how many.
+func steal(amount: int) -> int:
+    var stolen := mini(amount, on_board())
     ducats -= stolen
     return stolen
+
+
+## Put one more ration of food and water ([param ration_days] long) into the
+## barrels, as much as fits. A port gives one for free; the other rations of a
+## bigger ship have to be bought (see BoosterBag.buy).
+func add_ration(ration_days: float) -> void:
+    provisions = minf(max_provisions, provisions + ration_days)
+
+
+## Whether a whole ration of food and water still fits into the barrels
+## (otherwise, the merchants don't offer one).
+func has_room_for(ration_days: float) -> bool:
+    return provisions + ration_days <= max_provisions + 0.001
 
 
 func add_damage(amount: float) -> void:

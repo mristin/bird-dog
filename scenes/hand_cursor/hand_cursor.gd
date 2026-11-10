@@ -16,6 +16,13 @@ extends Control
 ##   [constant FIST_PROBABILITY]) for the whole hold; otherwise the ring empties,
 ## * and a fist clicks only once; the hand has to open and close again.
 ##
+## The cursor of a hand is calm and sticky, since the hands of children are
+## hard to hold still and the detections jitter: it smooths strongly and
+## ignores small shakes (see PointSmoother.dead_zone), a cursor on a button
+## sticks to it (it is drawn towards the middle and leaves only when the hand
+## moves clearly beyond the edge), and it stands still while the fist is held,
+## so that closing the hand does not move it off the button.
+##
 ## The mouse clicks at once, for testing; it shows as a seagull, too, instead
 ## of the pointer of the system.
 ##
@@ -47,6 +54,21 @@ const _FIST_GRACE_SECONDS := 0.25
 ## The mouse counts as a pointer this long after it moved, in seconds.
 const _MOUSE_SECONDS := 3.0
 
+## A cursor on a button leaves it only when the hand is this far beyond its
+## edge, in pixels, but at most [constant STICKY_MARGIN_SHARE] of the smaller
+## side of the button (so that the neighbouring keys of the name keyboard
+## stay easy to reach).
+const STICKY_MARGIN := 70.0
+const STICKY_MARGIN_SHARE := 0.35
+
+## On a button, the cursor moves only this share of the way of the hand from
+## the middle of the button, so that it stays well inside.
+const STICKY_SHARE := 0.35
+
+## The time constant of the cursor moving onto, along and off a button, in
+## seconds, so that it glides instead of jumping.
+const _GLIDE_SECONDS := 0.08
+
 const _RING := Color(1, 1, 1, 0.9)
 const _BACKING := Color(0.1, 0.12, 0.2, 0.7)
 const _FIST := Color(1.0, 0.85, 0.3)
@@ -69,10 +91,17 @@ var _flashes: Array = []
 var _holds := {}
 
 ## Smooth the cursors, so that they stand calm while the hand holds still.
-var _smoother := PointSmoother.new()
+var _smoother := _make_smoother()
 
 ## The smoothed position of every hand on the screen, by the id of the hand.
+var _smoothed := {}
+
+## Where the cursor of every hand is shown (on a button, drawn to it), by the
+## id of the hand.
 var _positions := {}
+
+## The button which the cursor of a hand sticks to, by the id of the hand.
+var _stuck := {}
 
 # NOTE (mristin):
 # We reach the autoloads by their paths, so that the scripts also type-check on
@@ -116,11 +145,21 @@ func _input(event: InputEvent) -> void:
         _click(event.position)
 
 
+static func _make_smoother() -> PointSmoother:
+    var smoother := PointSmoother.new()
+    smoother.calm_seconds = 0.35
+    smoother.fast_seconds = 0.06
+    smoother.fast_speed = 1500.0
+    smoother.dead_zone = 10.0
+    return smoother
+
+
 func _process(delta: float) -> void:
     var targets := {}
     for aim in _aims():
         targets[aim["hand_id"]] = _to_screen(aim["position"])
-    _positions = _smoother.update_keyed(targets, delta)
+    _smoothed = _smoother.update_keyed(targets, delta)
+    _place_cursors(delta)
 
     _update_holds(delta)
     for flash in _flashes:
@@ -199,6 +238,64 @@ func _update_holds(delta: float) -> void:
     for hand_id in _holds.keys():
         if not seen.has(hand_id):
             _holds.erase(hand_id)
+
+
+## Place the cursor of every hand: where the hand points, but stuck to the
+## button it is on, and still while its fist is held.
+func _place_cursors(delta: float) -> void:
+    var buttons: Array = []
+    for button in get_tree().get_nodes_in_group(HandButton.GROUP):
+        if button.is_active_for(self):
+            buttons.append(button)
+    var glide := 1.0 - exp(-delta / _GLIDE_SECONDS)
+    var placed := {}
+    for hand_id in _smoothed:
+        var at: Vector2 = _smoothed[hand_id]
+        var previous: Vector2 = _positions.get(hand_id, at)
+        if _holds.has(hand_id):
+            placed[hand_id] = previous
+            continue
+        # NOTE (mristin):
+        # A button may be gone (a new screen); check it before typing it.
+        var stuck: Variant = _stuck.get(hand_id)
+        var button: HandButton = null
+        if (
+            is_instance_valid(stuck)
+            and buttons.has(stuck)
+            and stuck.get_global_rect().grow(_margin_of(stuck)).has_point(at)
+        ):
+            button = stuck
+        if button == null:
+            button = _button_at(buttons, at)
+        if button == null:
+            _stuck.erase(hand_id)
+            placed[hand_id] = previous.lerp(at, glide)
+            continue
+        _stuck[hand_id] = button
+        var middle := button.get_global_rect().get_center()
+        var wanted := middle + (at - middle) * STICKY_SHARE
+        if not button.contains(wanted):
+            wanted = middle
+        placed[hand_id] = previous.lerp(wanted, glide)
+    for hand_id in _stuck.keys():
+        if not placed.has(hand_id):
+            _stuck.erase(hand_id)
+    _positions = placed
+
+
+func _margin_of(button: HandButton) -> float:
+    return minf(STICKY_MARGIN, minf(button.size.x, button.size.y) * STICKY_MARGIN_SHARE)
+
+
+## The smallest button under the point, or null.
+func _button_at(buttons: Array, at: Vector2) -> HandButton:
+    var best: HandButton = null
+    for button in buttons:
+        if button.contains(at):
+            var area: float = button.size.x * button.size.y
+            if best == null or area < best.size.x * best.size.y:
+                best = button
+    return best
 
 
 ## How far the fist of the hand is toward a click, in [0, 1].

@@ -44,7 +44,12 @@ def _read_languages() -> List[str]:
 LANGUAGES = _read_languages()
 
 _STRING = r'"((?:[^"\\]|\\.)*)"'
-TR_RE = re.compile(r"\btr\(\s*" + _STRING + r"(?:\s*,\s*" + _STRING + r")?\s*\)", re.DOTALL)
+#: A call of ``tr`` or of a wrapper which passes its literal on to ``tr``,
+#: e.g., ``_said("Ready!")`` in the captain creator (which picks the gender of
+#: that one captain).
+TR_RE = re.compile(
+    r"\b(?:tr|_said)\(\s*" + _STRING + r"(?:\s*,\s*" + _STRING + r")?\s*\)", re.DOTALL
+)
 
 #: A line of a mission with a literal text, e.g., MissionRun.line("Thank you!"),
 #: which is translated when it is shown.

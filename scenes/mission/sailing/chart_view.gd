@@ -23,7 +23,13 @@ const REEF_KM := 2.5
 ## The reefs are the same in every mission.
 const REEF_SEED := 1600
 
-## The ports where the crew can go now: they get a big golden ring and a flag.
+## The colours of the rings, the same on the sea, on the minimap, on the large
+## chart (C) and on the arrow: red where the mission leads, blue where the
+## deliveries of the errands go.
+const TARGET_COLOR := Color(0.82, 0.13, 0.11)
+const ERRAND_COLOR := Color(0.2, 0.45, 0.88)
+
+## The ports where the crew can go now: they get a big red ring and a flag.
 var targets: Array[Port] = []:
     set(value):
         targets = value
@@ -339,7 +345,7 @@ func _draw_targets(canvas: Node2D) -> void:
         canvas.draw_set_transform(World.port_km(port) * PX_PER_KM, 0.0, Vector2.ONE * marker_scale)
         var pulse := 1.0 + 0.08 * sin(Time.get_ticks_msec() / 300.0)
         canvas.draw_arc(
-            Vector2.ZERO, 80.0 * pulse, 0, TAU, 48, Color(0.3, 0.55, 0.9, 0.85), 5.0, true
+            Vector2.ZERO, 80.0 * pulse, 0, TAU, 48, Color(ERRAND_COLOR, 0.85), 5.0, true
         )
     canvas.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
@@ -360,19 +366,19 @@ func _draw_ports(canvas: Node2D) -> void:
     canvas.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
-## The target: a pulsing golden ring around the port and a big pennant. The
+## The target: a pulsing red ring around the port and a big pennant. The
 ## ring stays outside the blue ring of an errand to the same port, so that a
 ## port can be both.
 func _draw_target(canvas: Node2D, at: Vector2) -> void:
     var t := Time.get_ticks_msec() / 1000.0
     var pulse := 1.0 + 0.12 * sin(t * 4.0)
-    canvas.draw_arc(at, 130.0 * pulse, 0, TAU, 64, Color(Paper.GOLD, 0.35), 26.0, true)
-    canvas.draw_arc(at, 130.0 * pulse, 0, TAU, 64, Paper.GOLD, 6.0, true)
+    canvas.draw_arc(at, 130.0 * pulse, 0, TAU, 64, Color(TARGET_COLOR, 0.35), 26.0, true)
+    canvas.draw_arc(at, 130.0 * pulse, 0, TAU, 64, TARGET_COLOR, 6.0, true)
     var top := at + Vector2(40, -120)
     canvas.draw_line(top + Vector2(0, 70), top, COAST, 5.0, true)
     var wave := sin(t * 6.0) * 6.0
     canvas.draw_colored_polygon(
-        PackedVector2Array([top, top + Vector2(56, 12 + wave), top + Vector2(0, 30)]), Paper.GOLD
+        PackedVector2Array([top, top + Vector2(56, 12 + wave), top + Vector2(0, 30)]), TARGET_COLOR
     )
     canvas.draw_polyline(
         PackedVector2Array([top, top + Vector2(56, 12 + wave), top + Vector2(0, 30)]),

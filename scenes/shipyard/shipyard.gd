@@ -1,7 +1,7 @@
 extends MenuScreen
 
 ## Master Ivan's shipyard in Pula (see DESIGN.md, section 10): every captain
-## decorates their own boat, paid from the chest of the crew, or even buys a
+## decorates their own boat, paid from the ducats of the crew, or even buys a
 ## new ship (see Ship): a nimble gajeta, a fast trabakul, a big galleon, ...
 ## for very many ducats. What is bought stays bought, and switching between
 ## the bought ships and decorations is free.
@@ -20,8 +20,8 @@ const TABS: Array[String] = [
     "ship", "sail", "hull", "flag", "figurehead", "streamers", "lanterns", "friend"
 ]
 
-## Ducats to put into the chest at the start (for the test screens), or -1.
-@export var chest := -1
+## The ducats of the crew at the start (for the test screens), or -1.
+@export var start_ducats := -1
 
 ## The mission select, to go back.
 @export_file("*.tscn") var missions_scene := "res://scenes/mission_select/mission_select.tscn"
@@ -38,8 +38,8 @@ var _captain_buttons: Array[HandButton] = []
 
 
 func _build() -> void:
-    if chest >= 0:
-        _session.ducats = chest
+    if start_ducats >= 0:
+        _session.ducats = start_ducats
     _preview = SeaBoat.new()
     _preview.position = Vector2(400, 560)
     _preview.scale = Vector2.ONE * 2.6
@@ -179,7 +179,7 @@ func _choose_ship(ship: Ship) -> void:
         ConfirmDialog.ask(
             self,
             Grammar.format(
-                tr("{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."),
+                tr("{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."),
                 {"name": ship.name, "price": ship.price, "ducats": _session.ducats}
             ),
             tr("Alright"),
@@ -222,7 +222,7 @@ func _choose_decoration(decoration: Decoration) -> void:
         ConfirmDialog.ask(
             self,
             Grammar.format(
-                tr("{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."),
+                tr("{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."),
                 {"name": decoration.name, "price": decoration.price, "ducats": _session.ducats}
             ),
             tr("Alright"),
@@ -289,4 +289,4 @@ func _draw_screen() -> void:
     draw_rect(water, Paper.INK, false, 4.0)
     var name_text := str(_captain_data().get("name", ""))
     draw_string(font, Vector2(60, 280), name_text, HORIZONTAL_ALIGNMENT_CENTER, 680, 36, Paper.INK)
-    Chest.draw(self, Vector2(1640, 140), int(_session.ducats))
+    Purse.draw(self, Vector2(1640, 140), int(_session.ducats))

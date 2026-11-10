@@ -143,6 +143,16 @@ PICTURES: List[
         "A young girl of Ragusa, for the children of Grebaštica.",
     ),
     (
+        "people/young_lady.jpg",
+        "Delle donzelle contadine et artigiane di Parma - Vecellio Cesare - 1860.jpg",
+        "9/9f/Delle_donzelle_contadine_et_artigiane_di_Parma_-_Vecellio_Cesare_-_1860.jpg",
+        "7b5a37982d29aaf328c3f2b12dc18029e11e3d53a2966f4d530659f3131f8e04",
+        (0.09, 0.16, 0.415, 0.85),
+        VECELLIO,
+        1590,
+        "Anica: a young lady of the village of Grebaštica.",
+    ),
+    (
         "people/farmer.jpg",
         "Contadino al mercato di Venetia - Vecellio Cesare - 1860.jpg",
         "4/43/Contadino_al_mercato_di_Venetia_-_Vecellio_Cesare_-_1860.jpg",

@@ -160,6 +160,11 @@ msgstr "Nasumce"
 
 #: scenes/captain_creator/captain_panel.gd
 #, fuzzy
+msgid "Ready!"
+msgstr "{crew|Spreman|Spremna|Spremni|Spremne}!"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
 msgid "Name"
 msgstr "Ime"
 
@@ -177,6 +182,11 @@ msgstr "Hajduk"
 #, fuzzy
 msgid "Haidukess"
 msgstr "Hajdučica"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
+msgid "Change"
+msgstr "Promini"
 
 #: scenes/captain_creator/name_keyboard.gd scenes/session_select/session_select.gd
 #, fuzzy
@@ -365,11 +375,6 @@ msgstr "Razmaknica: {crew|priskoči|priskoči|priskočite}   Esc: van"
 msgid "Wind"
 msgstr "Vitar"
 
-#: scenes/menu/chest.gd scenes/mission/exchange_card.gd
-#, fuzzy
-msgid "{ducats} {ducats|ducat|ducats}"
-msgstr "{ducats} {ducats|dukat|dukata|dukata}"
-
 #: scenes/menu/confirm_dialog.gd
 #, fuzzy
 msgid "Do you really want to quit the game?"
@@ -384,6 +389,11 @@ msgstr "Da, izađi"
 #, fuzzy
 msgid "No, stay"
 msgstr "Ne, ostajen"
+
+#: scenes/menu/purse.gd scenes/mission/exchange_card.gd
+#, fuzzy
+msgid "{ducats} {ducats|ducat|ducats}"
+msgstr "{ducats} {ducats|dukat|dukata|dukata}"
 
 #: scenes/mission/booster_card.gd
 #, fuzzy
@@ -515,8 +525,9 @@ msgstr "C zatvara kartu"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "Food and water run out with the days. Every port refills them free!"
-msgstr "Spiza i voda se troše s danima. Svaki port ih napuni zabadava!"
+msgid "Food and water run out with the days. Every port gives one ration free; buy more!"
+msgstr ""
+"Spiza i voda se troše s danima. Svaki port da jednu kašetu zabadava; više {crew|kupi|kupi|kupite}!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -540,8 +551,10 @@ msgstr "Olujni oblak! Unutra brodica jidri polako. {crew|Izađi|Izađi|Izađite}
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
-msgstr "Crna bandira gusara! Uzmu sve dukate s broda. {crew|Biži|Biži|Bižite}!"
+msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
+msgstr ""
+"Crna bandira gusara! Uzmu 50 dukata. {crew|Biži|Biži|Bižite} ili {crew|jidri|jidri|jidrite} do "
+"straže!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -784,15 +797,15 @@ msgstr "Dani na moru: {used} od {clock}"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
-msgstr "+{ducats} {ducats|dukat|dukata|dukata} u škrinju posade"
+msgid "+{ducats} {ducats|ducat|ducats} earned in this mission"
+msgstr "+{ducats} {ducats|dukat|dukata|dukata} zarađeno u ovoj misiji"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
+msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
 msgstr ""
 "{crew|Potrošija si|Potrošila si|Potrošili ste|Potrošile ste} {ducats} {ducats|dukat|dukata|dukata}"
-" iz škrinje posade"
+" u ovoj misiji"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -826,8 +839,8 @@ msgstr "Gusari uzmu {crew|tvoje|tvoje|vaše} smokve i veselo odjidre."
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
-msgid "The corsairs took all your ducats: {ducats}!"
-msgstr "Gusari su {crew|ti|ti|van} uzeli sve dukate: {ducats}!"
+msgid "The corsairs took {ducats} {ducats|ducat|ducats}!"
+msgstr "Gusari su {crew|ti|ti|van} uzeli {ducats} {ducats|dukat|dukata|dukata}!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
@@ -1141,10 +1154,10 @@ msgstr "Prijatelj"
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
-msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+msgid "{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."
 msgstr ""
-"Za {name@acc} triba platit {price} {price|dukat|dukata|dukata}, a u škrinji ima samo {ducats} "
-"{ducats|dukat|dukata|dukata}."
+"Za {name@acc} triba platit {price} {price|dukat|dukata|dukata}, a {crew|imaš|imaš|imate|imate} "
+"samo {ducats} {ducats|dukat|dukata|dukata}."
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
@@ -3619,8 +3632,8 @@ msgstr "Frišak kruh i voda"
 #. what a booster or a ship does, on its card, one short sentence
 #: data/world/boosters/bread_water.tres
 #, fuzzy
-msgid "Half a day back on the mission clock."
-msgstr "Po dana nazad na uri misije."
+msgid "One more ration of food and water."
+msgstr "Još jedna kašeta spize i vode."
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/boosters/cannons.tres
@@ -4357,8 +4370,8 @@ msgstr "Anica"
 #. what a person does, under their name
 #: data/world/people/anica.tres
 #, fuzzy
-msgid "a girl of Grebaštica"
-msgstr "divojčica iz Grebaštice"
+msgid "a young lady of Grebaštica"
+msgstr "divojka iz Grebaštice"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/baba_stana.tres
@@ -8113,12 +8126,36 @@ msgid "Galley"
 msgstr "galiju"
 
 #, fuzzy
-#~ msgid "Ready!"
-#~ msgstr "{crew|Spreman|Spremna|Spremni|Spremne}!"
+#~ msgid "Food and water run out with the days. Every port refills them free!"
+#~ msgstr "Spiza i voda se troše s danima. Svaki port ih napuni zabadava!"
 
 #, fuzzy
-#~ msgid "Change"
-#~ msgstr "Promini"
+#~ msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
+#~ msgstr "Crna bandira gusara! Uzmu sve dukate s broda. {crew|Biži|Biži|Bižite}!"
+
+#, fuzzy
+#~ msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
+#~ msgstr "+{ducats} {ducats|dukat|dukata|dukata} u škrinju posade"
+
+#, fuzzy
+#~ msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
+#~ msgstr ""
+#~ "{crew|Potrošija si|Potrošila si|Potrošili ste|Potrošile ste} {ducats} {ducats|dukat|dukata|dukata}"
+#~ " iz škrinje posade"
+
+#, fuzzy
+#~ msgid "The corsairs took all your ducats: {ducats}!"
+#~ msgstr "Gusari su {crew|ti|ti|van} uzeli sve dukate: {ducats}!"
+
+#, fuzzy
+#~ msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+#~ msgstr ""
+#~ "Za {name@acc} triba platit {price} {price|dukat|dukata|dukata}, a u škrinji ima samo {ducats} "
+#~ "{ducats|dukat|dukata|dukata}."
+
+#, fuzzy
+#~ msgid "Half a day back on the mission clock."
+#~ msgstr "Po dana nazad na uri misije."
 
 #, fuzzy
 #~ msgid "Visited"

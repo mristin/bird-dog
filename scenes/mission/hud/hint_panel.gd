@@ -16,12 +16,14 @@ var _age := SECONDS
 ## The tips, by their id (see Tips.check).
 func texts() -> Dictionary:
     return {
-        "provisions": tr("Food and water run out with the days. Every port refills them free!"),
+        "provisions":
+        tr("Food and water run out with the days. Every port gives one ration free; buy more!"),
         "reefs": tr("Reefs ahead! Keep away from the rocks in the white surf."),
         "cliffs": tr("Steep cliffs! Running ashore here damages the hull."),
         "damage": tr("The hull is damaged. Every port repairs it."),
         "cloud": tr("A storm cloud! Inside, the boat sails slowly. Steer out of it."),
-        "corsair": tr("The black flag of the corsairs! They take all the ducats on board. Flee!"),
+        "corsair":
+        tr("The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"),
         "patrol": tr("The star of a Venetian patrol! They want a bribe. The right flag helps."),
         "loot": tr("A floating barrel! Sail over it to pick up the ducats."),
         "into_wind": tr("No boat sails into the wind! Zigzag across it: left, then right."),

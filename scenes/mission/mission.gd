@@ -153,6 +153,7 @@ func _ready() -> void:
     for i in range(players):
         ships.append(World.captain_ship(_crew.captains[i]) if i < _crew.captains.size() else null)
     _run = MissionRun.new(_mission, seed_value, players, ships)
+    _run.bring(_session.ducats)  # All on board; a mission in progress restores its own.
     _wind = SeaWind.new(_mission.sea, seed_value + 1)
     _run.finished.connect(_on_finished)
 
@@ -415,6 +416,7 @@ func _show_start(player: int) -> void:
     # Session.yatak_gift); the first crew hears it.
     var gift: int = _session.yatak_gift(_mission.id) if record_result and player == 0 else 0
     if gift > 0:
+        _run.bring(gift)
         _sfx.play("coins")
         said.append(
             MissionRun.line(
@@ -530,7 +532,7 @@ func _on_shop(action: String, player: int) -> bool:
             bought = Merchant.buy_decoration(booster, _run, _session, captain)
             _helms[player].boat.decorations = World.boat_decorations(captain)
         elif booster.decoration == null:
-            bought = _run.bag.buy(booster, _session.ducats)
+            bought = _run.bag.buy(booster)
         if bought:
             _sfx.play("coins")
         var thanks := MissionRun.line(
@@ -571,6 +573,10 @@ func _on_errand(action: String, player: int) -> bool:
 ## The merchant's stall in the port of the player (see Merchant).
 func _shop_scene(player: int, said: Dictionary) -> Dictionary:
     var person: Person = _port_scenes[player].get("person")
+    _run.active = player
+    _stalls[player] = _stalls[player].filter(
+        func(booster: Booster) -> bool: return Merchant.offers(booster, _run)
+    )
     return Merchant.scene(person, said, _stalls[player], _run, _session)
 
 
@@ -585,7 +591,7 @@ func _arrive(player: int, port: Port, first: Array = []) -> void:
     _run.pass_days(MissionRun.PORT_DAYS)
     var hold := _run.hold(player)
     var hungry := _run.provisions_share(player) < ProvisionsPanel.LOW
-    _run.restock()
+    hold.add_ration(_run.ration_days())
     _run.bag.end_leg()
     var damaged := hold.damage > 0.0
     _run.pass_days(hold.repair())
@@ -703,7 +709,7 @@ func _on_finished(stars: int) -> void:
     complete.mission = _mission
     complete.run = _run
     complete.stars = stars
-    complete.ducats = _run.ducats_total()
+    complete.ducats = _run.ducats_total() - _run.brought
     complete.finished.connect(_leave)
     _overlay.add_child(complete)
     _overlay.move_child(_shared_cursor, -1)

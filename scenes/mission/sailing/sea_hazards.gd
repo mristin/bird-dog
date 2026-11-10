@@ -4,11 +4,12 @@ extends Node2D
 ## What happens at sea besides the wind (see DESIGN.md, section 9): the storm
 ## clouds, the corsairs, the Venetian patrols, and the floating barrels and
 ## chests with ducats. The mission's SeaConditions decide which of them come
-## and how many. None of them hurts anyone: the corsairs take all the ducats on
-## board (a day, if there are none), the Venetian patrols take half of them as
-## a bribe, since they are no friends of the haiduks (half a day, if there are
-## none), and the clouds only slow the boats down. The corsairs fly a black
-## flag with a skull, the patrols a sheriff's star (see SeaBoat.emblem).
+## and how many. None of them hurts anyone: the corsairs take 50 ducats (or
+## what there is on board; a day, if there is nothing), the Venetian patrols 30
+## as a bribe, since they are no friends of the haiduks (half a day, if there
+## is nothing), and the clouds only slow the boats down. The corsairs fear the
+## patrols and flee from them. The corsairs fly a black flag with a skull, the
+## patrols a sheriff's star (see SeaBoat.emblem).
 ##
 ## The mission screen calls [method update] every frame while sailing, asks
 ## [method speed_factor] and [method gust] for every boat, and shows the
@@ -26,8 +27,19 @@ signal sounded(sound: String)
 ## corsairs sail everywhere.
 const PATROL_WATERS_KM := 120.0
 
-## The patrols take this share of the ducats on board as a bribe.
-const BRIBE_SHARE := 0.5
+## The corsairs take this many ducats (or all on board, if fewer).
+const CORSAIR_LOOT := 50
+
+## The patrols take this many ducats as a bribe (or all on board, if fewer).
+const BRIBE := 30
+
+## The corsairs flee from a patrol closer than this, in kilometres.
+const PATROL_REPEL_KM := 35.0
+
+## How fast the corsairs and the patrols sail, as a share of the best speed of
+## a boat (before the wind).
+const CORSAIR_SPEED_SHARE := 0.6375
+const PATROL_SPEED_SHARE := 0.5625
 
 ## With cannons on board, the corsairs turn and flee closer than this, in
 ## kilometres.
@@ -41,7 +53,7 @@ const CATCH_KM := 2.5
 
 ## With fewer ducats on board than this, the corsairs and the patrols take
 ## time instead.
-const MIN_LOOT := 2
+const MIN_LOOT := 1
 
 ## A boat closer than this to a barrel picks it up, in kilometres.
 const PICK_KM := 3.0
@@ -300,14 +312,22 @@ func _steer_ship(ship: Dictionary, delta: float, helms: Array[Helm], together: b
         chasing = false
         sounded.emit("cannon")
         said.emit(tr("Boom! Your cannons scare the corsairs away!"), nearest.player)
+    # NOTE (mristin):
+    # The corsairs fear the patrols: near one, they give up any chase and
+    # flee from it, whatever else they wanted.
+    var patrol: Variant = _nearest_patrol(ship) if ship["kind"] == "corsair" else null
     var wanted: float = ship["heading"]
-    if chasing:
+    if patrol != null:
+        chasing = false
+        wanted = (ship["km"] - patrol).angle() + PI / 2
+    elif chasing:
         wanted = to_boat.angle() + PI / 2
     elif ship["leaving"] > 0.0 or (ship["kind"] == "corsair" and together):
         wanted = (-to_boat).angle() + PI / 2
-    ship["heading"] = lerp_angle(ship["heading"], wanted, 1.0 - exp(-delta * 1.5))
+    var turning := 3.0 if patrol != null else 1.5
+    ship["heading"] = lerp_angle(ship["heading"], wanted, 1.0 - exp(-delta * turning))
 
-    var share := 0.85 if ship["kind"] == "corsair" else 0.75
+    var share := CORSAIR_SPEED_SHARE if ship["kind"] == "corsair" else PATROL_SPEED_SHARE
     var speed := (
         Helm.BASE_KM_PER_SECOND * _sea.speed_scale * _wind.speed_factor(ship["heading"]) * share
     )
@@ -330,18 +350,34 @@ func _steer_ship(ship: Dictionary, delta: float, helms: Array[Helm], together: b
         _caught(ship["kind"], nearest)
 
 
-## A ship of the kind caught the boat of the helm: the corsairs take all the
-## ducats on board, the patrol half of them as a bribe.
+## The position of the nearest patrol closer than [constant PATROL_REPEL_KM]
+## to the ship, in kilometres, or null.
+func _nearest_patrol(ship: Dictionary) -> Variant:
+    var nearest: Variant = null
+    var best := PATROL_REPEL_KM
+    for other in _ships:
+        if other["kind"] != "patrol":
+            continue
+        var distance: float = other["km"].distance_to(ship["km"])
+        if distance < best:
+            best = distance
+            nearest = other["km"]
+    return nearest
+
+
+## A ship of the kind caught the boat of the helm: the corsairs take
+## [constant CORSAIR_LOOT] ducats, the patrol [constant BRIBE] as a bribe (or
+## what there is on board).
 func _caught(kind: String, helm: Helm) -> void:
     var hold := _run.hold(helm.player)
     if kind == "corsair":
         if _run.bag.use_effect("figs"):
             said.emit(tr("The corsairs take your figs and sail away happily."), helm.player)
         elif hold.on_board() >= MIN_LOOT:
-            var stolen := hold.steal()
+            var stolen := hold.steal(CORSAIR_LOOT)
             said.emit(
                 Grammar.format(
-                    tr("The corsairs took all your ducats: {ducats}!"), {"ducats": stolen}
+                    tr("The corsairs took {ducats} {ducats|ducat|ducats}!"), {"ducats": stolen}
                 ),
                 helm.player
             )
@@ -351,7 +387,7 @@ func _caught(kind: String, helm: Helm) -> void:
     elif _run.bag.has_effect("flag"):
         said.emit(tr("The Venetian patrol salutes your flag and lets you pass."), helm.player)
     elif hold.on_board() >= MIN_LOOT:
-        var bribe := hold.steal(BRIBE_SHARE)
+        var bribe := hold.steal(BRIBE)
         # NOTE (mristin):
         # The patrols are no friends of the haiduks: they want a bribe.
         var text := tr("A Venetian patrol! They take a bribe of {ducats} {ducats|ducat|ducats}.")
@@ -368,6 +404,10 @@ func _caught(kind: String, helm: Helm) -> void:
 
 func _update_loot(delta: float, helms: Array[Helm], center: Vector2, targets: Array[Port]) -> void:
     for loot in _loot.duplicate():
+        # NOTE (mristin):
+        # Like the boats, the barrels keep their size on the screen while the
+        # cameras zoom in.
+        loot.scale = Vector2.ONE * _chart.marker_scale
         for helm in helms:
             if helm.km.distance_to(loot.km) < PICK_KM:
                 _run.hold(helm.player).ducats += loot.ducats
@@ -407,6 +447,7 @@ func _update_loot(delta: float, helms: Array[Helm], center: Vector2, targets: Ar
     loot.chest = _rng.randf() < 0.25
     loot.ducats = _rng.randi_range(12, 15) if loot.chest else _rng.randi_range(5, 10)
     loot.z_index = 3
+    loot.scale = Vector2.ONE * _chart.marker_scale
     add_child(loot)
     _loot.append(loot)
 

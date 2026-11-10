@@ -6,7 +6,7 @@
 script = ExtResource("1_ext")
 id = "bread_water"
 name = "Fresh bread and water"
-description = "Half a day back on the mission clock."
+description = "One more ration of food and water."
 price = 15
-effect = "time"
+effect = "ration"
 lasts = "now"

@@ -18,7 +18,7 @@ One or two players play **together**, side by side on a split screen, as one cre
 3. **Real geography, real history, gently told.** The coastlines, ports, landmarks, goods, winds and powers are those of around 1600. They are simplified for ten-year-olds, but not made up.
 4. **No violence and no humiliation.** Corsairs chase you, but a catch only costs time. The Aga is beaten by evidence, a judge and the people, never by a sword.
 5. **Stars are what matters.** After a mission, we show only the stars, never exercise statistics.
-6. **Together, not against each other.** With two players, both work on the same mission, share the clues, the clock, the stars and the chest, and get a bonus for sailing side by side.
+6. **Together, not against each other.** With two players, both work on the same mission, share the clues, the clock, the stars and the ducats, and get a bonus for sailing side by side.
 7. **Offline and private**, like `head-invaders`, `splash-n-splat` and `ergo-chaos`. The webcam images stay in memory and never leave the computer.
 
 ## 2. Setting: the Adriatic around 1600
@@ -40,8 +40,8 @@ Many powers share one small sea, which gives the clues their variety: every powe
 * Agas on the frontier were often local people, so a Slavic nickname ("Grdan", roughly "the ugly-hearted") fits historically and avoids pointing at any ethnic or religious group.
 * The final resolution goes through the Ottoman legal system: a *kadı* (judge) in Preveza rules against the Aga once the crew brings the evidence. The empire's own law corrects him.
 * Uskoks are the crew's friends and helpers. We don't show their raiding, but the Venetian patrols suspect every small fast boat of being an uskok one.
-* Gusari (corsairs) are the "danger" at sea, everywhere on it. They fly a black flag with a skull (and a badge with the skull floats over them), chase you, and if they catch you, they take all the ducats on board (a day, if there are none) and let you go.
-* The Venetian patrols wear a sheriff's star (on the sail, the flag and a floating badge). They are no friends of the haiduks: if they catch you, they take half of the ducats on board as a bribe (half a day, if there are none).
+* Gusari (corsairs) are the "danger" at sea, everywhere on it. They fly a black flag with a skull (and a badge with the skull floats over them), chase you, and if they catch you, they take 50 ducats (or all on board, if fewer; a day, if there are none) and let you go. They fear the Venetian patrols and flee from them.
+* The Venetian patrols wear a sheriff's star (on the sail, the flag and a floating badge). They are no friends of the haiduks: if they catch you, they take 30 ducats as a bribe (or all on board, if fewer; half a day, if there are none).
 
 ### Ports
 
@@ -420,7 +420,7 @@ Each captain's boat is a small, fast uskok-style boat with a sail. There is no r
 
 * **Steering:**
   * **The hands push the wheel.** The wheel is pinned to your head, and your stretched arm lifts its side of the rim. While you hold LEFT (the hand on the left of the mirrored picture), it lifts the left side of the wheel, which turns clockwise, and the boat turns to starboard (right). While you hold RIGHT, the wheel turns counter-clockwise, and the boat turns to port (left). This is how a real ship's wheel works, and the wheel never turns against the hand that pushes it.
-  * **The higher the raised hand, the harder the turn.** The rate of turning goes from almost nothing (hand just above the nose) to the full rate of about 67° per second (hand high above the head), and the wheel turns just as far.
+  * **The higher the raised hand, the harder the turn.** The rate of turning goes from almost nothing (hand just above the nose) to the full rate of about 51° per second (67° felt too twitchy) (hand high above the head), and the wheel turns just as far.
   * The boat turns only while the arm is up. A turn of 90° at the full rate takes about 1.3 s; the play-tests showed that slower turns were frustrating.
   * At REST (hands down), the wheel rolls back to the middle and the boat keeps its course.
 * **Sailing, as in *Pirates!*:** the boat always sails, and its speed depends on the angle between its course and the wind:
@@ -444,7 +444,7 @@ Each captain's boat is a small, fast uskok-style boat with a sail. There is no r
 
 In the port, the player kneels up or sits on their heels.
 
-* **Cursor:** the first open hand that shows up in the player's half of the camera controls a cursor (a seagull). The aim mapping and the smoothing come from `splash-n-splat`'s `HandVisionService`.
+* **Cursor:** the first open hand that shows up in the player's half of the camera controls a cursor (a seagull). The aim mapping comes from `splash-n-splat`'s `HandVisionService`. The cursor is calm and sticky (the play-tests found it jittery and frustrating): it is smoothed strongly and ignores shakes of up to 10 px (`PointSmoother.dead_zone`); on a button, it is drawn towards the middle (it moves only 35% of the hand's way) and leaves only when the hand is clearly beyond the edge (70 px, less for small keys); and it stands still while the fist is held, so that closing the hand never moves it off the button.
 * **Click:** close an open hand into a fist and hold it for **1.5 s**. A golden ring fills around the cursor while the fist is held, sparks stream into it, and the card or button under it fills with gold. The rules are strict, so that a calm hand never clicks by itself:
   * a hold starts only when the vision sees an open hand close into a fist (the open-to-fist transition of `GestureStateMachine`); a hand which merely looks like a fist for a while never starts one,
   * the fist must stay clear (a smoothed fist probability of at least 0.75) during the whole hold; brief doubts of up to 0.25 s are forgiven, longer ones empty the ring,
@@ -546,7 +546,7 @@ Every player creates their captain on their own half of the screen. A preview of
 * The missions are described in `data/missions/<nn>_<id>/mission.tres` (`Mission`, see section 15); the translator tools collect all their texts.
 * Any finished mission can be replayed.
 * Finishing mission *n* unlocks *n*+1.
-* The crew's chest of ducats and the shipyard in Pula (from mission 2 on) are reachable from here.
+* The crew's ducats and the shipyard in Pula (from mission 2 on) are reachable from here.
 
 ### Rendering fast
 
@@ -585,14 +585,14 @@ The locals and the characters carry the names of their regions: Albanians in the
 It is the year 1600, but the players are ten: they need not remember the clues. The clue still tells the story ("They asked the way to the town with the round church of St. Donatus"), but the step also names its **target port** (`MissionStep.target_port`), and the game points to it:
 
 * the clue banner says it big and red: "Sail to Zadar!", and the people in the ports say it after the clue, too (`MissionRun.line_then`),
-* the key **C** shows the chart of the whole Adriatic (`FullChart`), with the names of all the ports, the target ports in gold rings and the ports of the errands in blue rings; the game waits until C (or Esc) closes it,
-* the port on the chart gets a pulsing golden ring and a golden pennant,
+* the key **C** shows the chart of the whole Adriatic (`FullChart`), with the names of all the ports, the target ports in red rings and the ports of the errands in blue rings (the same colours everywhere: on the sea, the minimap, the chart and the arrow; `ChartView.TARGET_COLOR`, `ChartView.ERRAND_COLOR`); the game waits until C (or Esc) closes it,
+* the port on the chart gets a pulsing red ring and a red pennant,
 * the minimap rings it,
 * and when it is off the screen, a golden arrow on a ring around the middle of the screen points to it, with its name.
 
 ### Provisions
 
-The food and the water on board run out with the days. The HUD shows them as a column of round tokens, like the cargo, one per **ration** which the ship stows (the gajeta every captain starts with one, a bracera three, a galleon five; see section 10): a barrel of water, a loaf of bread, a wheel of cheese, a salted fish, figs. The crew eats them from the top down; the token in use empties like a clock, and an eaten one stays as a dashed ring. Every port fills them again (and the local says "Your crew takes on bread and fresh water." when they were low).
+The food and the water on board run out with the days. The HUD shows them as a column of round tokens, like the cargo, one per **ration** which the ship stows (the gajeta every captain starts with one, a bracera three, a galleon five; see section 10): a barrel of water, a loaf of bread, a wheel of cheese, a salted fish, figs. The crew eats them from the top down; the token in use empties like a clock, and an eaten one stays as a dashed ring. Every port gives **one ration** for free (and the local says "Your crew takes on bread and fresh water." when they were low); a ship with more rations has to buy the others ("Fresh bread and water", section 10).
 
 * **Three rations (a bracera) last `Mission.provisions_days`**, 10.8 days (1080 km, at 100 km a day) by default (the play-tests showed that 2.4 and then 3.6 days ran out too fast): at least 1.2 times the widest crossing of the Adriatic (Bari to Dubrovnik, about 200 km), so that the crew can always cross the sea. `tests/godot/test_missions.gd` checks it for every mission.
 * **Running low** (below 30%), the panel blinks, and the crew hears once per leg: "Running low! Stop in a port!" (The gajeta which every captain starts with has a single ration, 3.6 days or 360 km: enough to cross the open sea once, but a long voyage needs a stop in every port on the way, which is one more reason to save for a bigger ship.)
@@ -642,7 +642,7 @@ The food and the water on board run out with the days. The HUD shows them as a c
   * Every 40 to 90 s, the direction changes and the intensity rises or falls by one level.
   * 5 s before a change, the arrow starts to wobble, and the captain calls out, for example "The bura is coming!" or "Jugo is coming!".
   * The wind is the same for both players, and each mission sets its typical winds (the bura around Senj, the jugo in the south, the maestral in summer).
-* **The mission clock (top):** the days used and the days left, the ducats in the chest, and the icons of the active boosters.
+* **The mission clock (top):** the days used and the days left, the ducats on board, and the icons of the active boosters.
 * **The minichart (lower right):** the boat, the other player's boat, the known ports, and the corsairs when they are near.
 
 ### The port
@@ -656,7 +656,7 @@ The food and the water on board run out with the days. The HUD shows them as a c
 * **The file** of a voyage is JSON in `user://saves/<id>.json`, with a format version (so that later versions of the game can convert old saves), the name, the times it was created and updated, the crew, and per mission the best stars and whether it was completed. The id is the date and the time of its creation. A save is written to a temporary file first and then renamed, so that a crash during saving never destroys the last good save. `user://settings.cfg` remembers the last voyage.
 * **Which missions are unlocked** is not stored but derived: the first mission is always open, and every completed mission opens the next one. So a save can never disagree with itself.
 * **Saving:** when a voyage starts, when the captains are ready, after every mission, and whenever a player presses **F5** ("Saved" shows for two seconds). **F6** loads the last save of the voyage again and goes to the mission select.
-* **Later:** the chest of ducats, the decorations and the mission in progress (the plan's seed, the step, the clock, the logbook, the boats) join the file, and an old voyage can be deleted after a confirmation.
+* **Later:** the ducats, the decorations and the mission in progress (the plan's seed, the step, the clock, the logbook, the boats) join the file, and an old voyage can be deleted after a confirmation.
 * `tests/godot/test_session.gd` checks the saving, the listing, the unlocking and the loading, in a directory of its own.
 
 ## 8. The pose test (the first thing we build)
@@ -697,7 +697,7 @@ Inspired by the sailing in *Pirates!* and *Pirates! Gold*:
 * **Hazards** (none of them hurt anyone):
   * **The coasts never hurt:** a boat which runs onto the coast slides along it, keeping the speed which goes along the coast, and its bow turns gently with the coast (`Helm._slide`); only running nearly head-on stops it. Stopping at every touch was too frustrating for novice sailors. The only exceptions are **the cliffs** at eight special, named places (`data/world/cliffs/*.tres`, `CliffField`): Telašćica, Cres, Vis, Lastovo, Mljet, Monte Conero, the Gargano and the white cliffs of Lefkada. They are drawn as a grey rocky rim with the engraved hatching of a steep face and surf at its foot; running ashore there at speed damages the hull (25%).
   * **Reefs** (*hridi*) lie only at a dozen special, named places (`data/world/reefs/*.tres`, `ReefField`): the rocks of Cape Kamenjak, the shallows of the Po, the reefs of the Kornati, the Pakleni islands, Palagruža, the Tremiti, the shallows of the Neretva, Cape Oštro, the shallows of the Buna, Karaburun and Sivota. They are drawn by a shader (`reef.gdshader`), in the manner of the reefs of *Pirates! Gold*: a lagoon of turquoise shallow water over pale sand, with a darker drop-off into the deep sea, the sunlight rippling on the bottom, dark broken rocks lit from the top left, and white foam which keeps breaking around them. The rocks of the shader are exactly the rocks which the boats hit. The name of the field stands under it; none lies within 10 km of a port. Running onto a rock damages the hull (35% at full speed), shown by the **hull panel** under the provisions (a little ship which gets cracks and patches, and a bar which starts full and empties with the damage); at 100%, a fishing boat tows the crew to the nearest port. Every port repairs the hull (up to half a day for a hull which was nearly broken).
-  * **Gusari** ships chase you within a radius. If they catch you, they steal half of the ducats on board (the chest of the crew stays safe at home), or, with next to nothing to steal, take a toll of one day. They are as slow against the wind as you, so the right course (and a good look at the wind rose) lets you outrun them.
+  * **Gusari** ships chase you within a radius. If they catch you, they steal 50 ducats (or all on board, if fewer; all the ducats of the crew are on board), or, with nothing to steal, take a toll of one day. They flee from the Venetian patrols. They sail at 64% of the best speed of a boat, the patrols at 56%. They are as slow against the wind as you, so the right course (and a good look at the wind rose) lets you outrun them.
   * **Venetian patrols** stop "suspected uskoks" for an inspection, which costs half a day.
   * **Storm clouds**, as in *Pirates!*:
     * **How they look:** big storm clouds seen from above, drawn by a shader (`storm_cloud.gdshader`): billowing fractal noise which churns slowly, a dark core with edges lit from the top left, the shadow of the cloud on the sea with the rain falling in it, and a soft flash of lightning inside now and then (never frightening). They are also marked on the minichart.
@@ -724,7 +724,7 @@ Along the way, you collect **ducats** (*dukati*), the gold coin everybody on the
 
 * "What do you sell?" is one of the answers in the port conversation. It opens a small **merchant's stall** with 4 of the 20 boosters, drawn anew at every visit, so we still need no places.
 * One of the four is a speciality of the power of the port: Venice sells flags, the Ottoman ports figs for the corsairs, and so on.
-* Ten of the twenty are practical (the table below), ten are **decorations** which stay on the boat for good and show at sea: a mermaid, a lion or a dolphin figurehead, a checkered flag, a flag with a golden sun, a crescent flag, a striped flag, lanterns, streamers, a parrot. A decoration is paid from the ducats on board and then from the chest, at once.
+* Ten of the twenty are practical (the table below), ten are **decorations** which stay on the boat for good and show at sea: a mermaid, a lion or a dolphin figurehead, a checkered flag, a flag with a golden sun, a crescent flag, a striped flag, lanterns, streamers, a parrot. A decoration is paid from the ducats on board, at once.
 
 | Booster | Price | Effect | Lasts |
 |---|---|---|---|
@@ -733,24 +733,25 @@ Along the way, you collect **ducats** (*dukati*), the gold coin everybody on the
 | Local pilot | 25 | Shoals and rocks are marked and don't stop the boat | the next leg |
 | The right flag | 20 | The Venetian patrols let you pass without an inspection | the next leg |
 | Figs for the corsairs | 25 | The next time corsairs catch you, they take the figs instead of a day | until used |
-| Fresh bread and water | 15 | Half a day back on the mission clock | at once |
+| Fresh bread and water | 15 | One more ration of food and water; offered only when a whole ration fits into the barrels | at once |
 | Lots of cannons | 45 | The corsairs turn and flee (boom!) | the next leg |
 | A skilled helmsman | 25 | The boat turns 60% quicker | the next leg |
 | A barrel of salted fish | 20 | The food lasts longer (eaten at 60%) | the next leg |
 | Strong rowers | 30 | Into the wind, the boat sails at least at 60% | the next leg |
 
-* You can hold at most two boosters for the next leg, and they show as icons next to the mission clock. This cap keeps a big chest from making a mission trivial.
+* You can hold at most two boosters for the next leg, and they show as icons next to the mission clock. This cap keeps a big purse from making a mission trivial.
 * With two players, a booster bought in a port works for both boats.
 * A mission yields only a few dozen ducats, so a crew has to choose between boosters now and decorations or a new ship later.
 
-### The chest of the crew
+### The ducats of the crew
 
-* **The food and the water are free:** every port fills the barrels, and a towing costs only time; the ducats buy only the boosters and the decorations, so a crew without ducats is never stuck.
-* **A new voyage starts with 40 ducats** in the chest, so that the first merchant is already worth a visit.
+* **There is no chest at home:** the crew carries all its ducats on board, so the corsairs and the patrols can take them. At the start of a mission, the ducats go on board (with two players, split between the boats); at its end, what is left on board is the crew's (`Session.ducats`, `MissionRun.bring`). A mission which is not finished changes nothing, except for the decorations, which are paid at once.
+* **One ration of food and water is free:** every port gives one, and a towing costs only time; a crew without ducats is never stuck, but a big ship needs ducats to fill all its barrels.
+* **A new voyage starts with 40 ducats**, so that the first merchant is already worth a visit.
 * **The yataks** (in Croatian "jataci"; from the Turkish "yatak", a shelter: the haiduks' secret friends, who hid and fed them over the winter) send 10 ducats at the start of every mission, once per mission; the local of the start port says so.
 
-* The ducats **carry over between missions** in the crew's chest. It is saved with the crew and shared by both players.
-* The chest is shown on the mission select, with its coins piling up visibly.
+* The ducats **carry over between missions**. They are saved with the crew and shared by both players.
+* They are shown on the mission select and in the shipyard as a leather purse, with its coins piling up visibly beside it (`Purse`).
 
 ### Ships from Master Ivan's shipyard
 
@@ -769,7 +770,7 @@ With oars, a ship sails into the wind at least at 60% of its speed.
 
 ### Decorating the boats in Master Ivan's shipyard
 
-After mission 2, Master Ivan opens his shipyard in Pula. It is reachable from the mission select. Each player decorates their own boat, paid from the shared chest, and the preview shows the boat at once.
+After mission 2, Master Ivan opens his shipyard in Pula. It is reachable from the mission select. Each player decorates their own boat, paid from the shared ducats, and the preview shows the boat at once.
 
 | Kind | Examples | Price |
 |---|---|---|
@@ -847,7 +848,7 @@ The project follows `splash-n-splat`, and the split screen follows `ergo-chaos`:
   * `HandVisionService.GetPose(player)` and `GetCursor(player)` give the game the pose and the cursor per player.
 * **The scenes** (in GDScript):
   * `game`: the flow, the language and the number of players,
-  * `crew`: the captains, the chest, the decorations and the save slots, with F5 and F6,
+  * `crew`: the captains, the ducats, the decorations and the save slots, with F5 and F6,
   * `captain_creator`: the name (with the on-screen keyboard), the gender and the appearance,
   * `shipyard`: Master Ivan's decorations,
   * `pose_test`,
@@ -1121,11 +1122,11 @@ All fifteen missions play end to end, as data in `data/missions/<nn>_<id>/missio
 * **The mission clock** counts 100 km a day and 0.2 days per port. `tests/godot/test_missions.gd` plays every mission with 40 seeds as a good crew would (straight to the nearest target, 30% longer than the straight line, every answer right) and checks that such a crew can earn three stars; it also checks that the line-ups single out exactly one candidate, that every fact is unique, and that the wrong answers only cost time.
 * **The screen at the end** (`MissionComplete`) is different for every mission: the view of a port of the story behind it, the happy person of the story in a golden frame (the medal of the Bird Dog in the finale), the mission's own headline and lines (`victory_title`, `victory_lines`), what the crew gets from now on (`reward`), the stars popping in one after the other, the days at sea, and "Did you know?" with the fun fact. `scenes/tests/mission_complete_test/` shows all eight (the arrow keys flip through them and change the stars).
 
-**At sea** (`SeaHazards`, configured by the `SeaConditions` of every region): the storm clouds, the corsairs (they steal half of the ducats on board, or take a toll of a day when there is next to nothing to steal; the chest of the crew stays safe at home; they don't dare to come close to two boats sailing together, and the figs buy them off), the Venetian patrols (an inspection of half a day), the reefs, and the floating barrels and chests with ducats, a little off the way to the target. The ducats of a mission (barrels, 10 for the news in the right port, 20 for a delivery, and 20 for every new star) go into **the crew's chest**, which is saved with the voyage. Toasts in the middle of the screen tell what happened.
+**At sea** (`SeaHazards`, configured by the `SeaConditions` of every region): the storm clouds, the corsairs (they steal 50 ducats, or all on board if fewer, or take a toll of a day when there is nothing to steal; they flee from the patrols, don't dare to come close to two boats sailing together, and the figs buy them off), the Venetian patrols (a bribe of 30 ducats, or an inspection of half a day), the reefs, and the floating barrels and chests with ducats, a little off the way to the target. The ducats of a mission (barrels, 10 for the news in the right port, 20 for a delivery, and 20 for every new star) stay on board, and what is left at the end is saved with the voyage. Toasts in the middle of the screen tell what happened.
 
-**The merchant** (built): every port scene has a second answer, "What do you sell?", which opens the merchant's stall: a card for every booster the power of the port sells (`Power.offers`, the boosters in `data/world/boosters/*.tres`), with its picture, what it does and its price; a booster the crew can't buy is greyed with the reason. The crew pays from the chest and the ducats of the mission; at the end, the chest gets what the mission earned less what it spent. The boosters work as in the table above (new sails +20% until the next port, the fisherman announces the wind 20 s ahead, the pilot keeps the reefs and the cliffs from hurting, the flag lets the patrols pass, the figs pay the next corsairs, bread and water give half a day back), at most two for a leg, shown as badges under the hull panel. The pigeon is not sold yet (there is no hint to give). **The chest** stands on the mission select, its coins piling up with the ducats.
+**The merchant** (built): every port scene has a second answer, "What do you sell?", which opens the merchant's stall: a card for every booster the power of the port sells (`Power.offers`, the boosters in `data/world/boosters/*.tres`), with its picture, what it does and its price; a booster the crew can't buy is greyed with the reason. The crew pays from the ducats on board of its boat; at the end, what is left on board is the crew's. The boosters work as in the table above (new sails +20% until the next port, the fisherman announces the wind 20 s ahead, the pilot keeps the reefs and the cliffs from hurting, the flag lets the patrols pass, the figs pay the next corsairs, bread and water give half a day back), at most two for a leg, shown as badges under the hull panel. The pigeon is not sold yet (there is no hint to give). **The purse** of the crew lies on the mission select, its coins piling up with the ducats.
 
-**Master Ivan's shipyard** (built, `scenes/shipyard/`): after mission 2, the mission select has a button for it. Each captain decorates their own boat from the chest of the crew (25 decorations in `data/world/decorations/`: sails with colours, stripes, a sun, a star, a seagull or the captain's initial; hull paints and a golden band; pennants; a dolphin, a lion, a seagull, a mermaid or a goat as a figurehead; streamers; lanterns; and a cat, a parrot, a dog or a goat on the deck, who leans into the turns). Every card shows a little boat wearing its decoration; buying asks first; what is bought stays bought (`Session.owned`), and every captain's choice is saved with the captain. The boats wear their decorations at sea and on the mission select, next to the chest.
+**Master Ivan's shipyard** (built, `scenes/shipyard/`): after mission 2, the mission select has a button for it. Each captain decorates their own boat from the ducats of the crew (25 decorations in `data/world/decorations/`: sails with colours, stripes, a sun, a star, a seagull or the captain's initial; hull paints and a golden band; pennants; a dolphin, a lion, a seagull, a mermaid or a goat as a figurehead; streamers; lanterns; and a cat, a parrot, a dog or a goat on the deck, who leans into the turns). Every card shows a little boat wearing its decoration; buying asks first; what is bought stays bought (`Session.owned`), and every captain's choice is saved with the captain. The boats wear their decorations at sea and on the mission select, next to the purse.
 
 **Saving a mission in progress** (built): every port and leaving the mission save its state into the voyage (`MissionRun.to_data`: the plan, the step, the clock, the hallmarks, the boosters, the errands and every boat's hold; and the boats' positions and the visited ports). Choosing the mission again asks "Continue the mission where you left off?"; finishing it clears the save.
 

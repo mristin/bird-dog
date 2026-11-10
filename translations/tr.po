@@ -160,6 +160,11 @@ msgstr "Rastgele"
 
 #: scenes/captain_creator/captain_panel.gd
 #, fuzzy
+msgid "Ready!"
+msgstr "Hazır!"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
 msgid "Name"
 msgstr "Ad"
 
@@ -177,6 +182,11 @@ msgstr "Hayduk"
 #, fuzzy
 msgid "Haidukess"
 msgstr "Hayduk kız"
+
+#: scenes/captain_creator/captain_panel.gd
+#, fuzzy
+msgid "Change"
+msgstr "Değiştir"
 
 #: scenes/captain_creator/name_keyboard.gd scenes/session_select/session_select.gd
 #, fuzzy
@@ -368,11 +378,6 @@ msgstr "Boşluk: geç   Esc: çık"
 msgid "Wind"
 msgstr "Rüzgar"
 
-#: scenes/menu/chest.gd scenes/mission/exchange_card.gd
-#, fuzzy
-msgid "{ducats} {ducats|ducat|ducats}"
-msgstr "{ducats} duka"
-
 #: scenes/menu/confirm_dialog.gd
 #, fuzzy
 msgid "Do you really want to quit the game?"
@@ -387,6 +392,11 @@ msgstr "Evet, çık"
 #, fuzzy
 msgid "No, stay"
 msgstr "Hayır, kal"
+
+#: scenes/menu/purse.gd scenes/mission/exchange_card.gd
+#, fuzzy
+msgid "{ducats} {ducats|ducat|ducats}"
+msgstr "{ducats} duka"
 
 #: scenes/mission/booster_card.gd
 #, fuzzy
@@ -516,8 +526,9 @@ msgstr "C haritayı kapatır"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "Food and water run out with the days. Every port refills them free!"
-msgstr "Yiyecek ve su günler geçtikçe azalır. Her liman bedavaya doldurur!"
+msgid "Food and water run out with the days. Every port gives one ration free; buy more!"
+msgstr ""
+"Yiyecek ve su günler geçtikçe azalır. Her liman bir erzak bedava verir; fazlasını satın alın!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -541,8 +552,8 @@ msgstr "Bir fırtına bulutu! İçinde tekne yavaş gider. Dışarı çıkın."
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
-msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
-msgstr "Korsanların kara bayrağı! Gemideki bütün dukaları alırlar. Kaçın!"
+msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
+msgstr "Korsanların kara bayrağı! 50 duka alırlar. Kaçın ya da bir devriyeye gidin!"
 
 #: scenes/mission/hud/hint_panel.gd
 #, fuzzy
@@ -777,13 +788,13 @@ msgstr "Denizde geçen gün: {used} / {clock}"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
-msgstr "Tayfanın sandığına +{ducats} duka"
+msgid "+{ducats} {ducats|ducat|ducats} earned in this mission"
+msgstr "Bu görevde +{ducats} duka kazanıldı"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
-msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
-msgstr "Tayfanın sandığından {ducats} duka harcandı"
+msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
+msgstr "Bu görevde {ducats} duka harcandı"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -817,8 +828,8 @@ msgstr "Korsanlar incirlerinizi alıp keyifle uzaklaşıyor."
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
-msgid "The corsairs took all your ducats: {ducats}!"
-msgstr "Korsanlar bütün dukalarınızı aldı: {ducats}!"
+msgid "The corsairs took {ducats} {ducats|ducat|ducats}!"
+msgstr "Korsanlar {ducats} dukanızı aldı!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
@@ -1129,8 +1140,8 @@ msgstr "Dost"
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
-msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
-msgstr "{name} {price} duka tutuyor, ama sandıkta yalnızca {ducats} duka var."
+msgid "{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."
+msgstr "{name} {price} duka tutuyor, ama yalnızca {ducats} dukanız var."
 
 #: scenes/shipyard/shipyard.gd
 #, fuzzy
@@ -3529,8 +3540,8 @@ msgstr "Taze ekmek ve su"
 #. what a booster or a ship does, on its card, one short sentence
 #: data/world/boosters/bread_water.tres
 #, fuzzy
-msgid "Half a day back on the mission clock."
-msgstr "Görev süresine yarım gün eklenir."
+msgid "One more ration of food and water."
+msgstr "Bir erzak daha: yiyecek ve su."
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/boosters/cannons.tres
@@ -4267,8 +4278,8 @@ msgstr "Anica"
 #. what a person does, under their name
 #: data/world/people/anica.tres
 #, fuzzy
-msgid "a girl of Grebaštica"
-msgstr "Grebaşticalı bir kız"
+msgid "a young lady of Grebaštica"
+msgstr "Grebaşticalı genç bir kız"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/baba_stana.tres
@@ -8023,9 +8034,29 @@ msgid "Galley"
 msgstr "kadırgayı"
 
 #, fuzzy
-#~ msgid "Ready!"
-#~ msgstr "Hazır!"
+#~ msgid "Food and water run out with the days. Every port refills them free!"
+#~ msgstr "Yiyecek ve su günler geçtikçe azalır. Her liman bedavaya doldurur!"
 
 #, fuzzy
-#~ msgid "Change"
-#~ msgstr "Değiştir"
+#~ msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
+#~ msgstr "Korsanların kara bayrağı! Gemideki bütün dukaları alırlar. Kaçın!"
+
+#, fuzzy
+#~ msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
+#~ msgstr "Tayfanın sandığına +{ducats} duka"
+
+#, fuzzy
+#~ msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
+#~ msgstr "Tayfanın sandığından {ducats} duka harcandı"
+
+#, fuzzy
+#~ msgid "The corsairs took all your ducats: {ducats}!"
+#~ msgstr "Korsanlar bütün dukalarınızı aldı: {ducats}!"
+
+#, fuzzy
+#~ msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+#~ msgstr "{name} {price} duka tutuyor, ama sandıkta yalnızca {ducats} duka var."
+
+#, fuzzy
+#~ msgid "Half a day back on the mission clock."
+#~ msgstr "Görev süresine yarım gün eklenir."

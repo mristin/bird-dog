@@ -127,6 +127,10 @@ msgid "Random"
 msgstr ""
 
 #: scenes/captain_creator/captain_panel.gd
+msgid "Ready!"
+msgstr ""
+
+#: scenes/captain_creator/captain_panel.gd
 msgid "Name"
 msgstr ""
 
@@ -140,6 +144,10 @@ msgstr ""
 
 #: scenes/captain_creator/captain_panel.gd
 msgid "Haidukess"
+msgstr ""
+
+#: scenes/captain_creator/captain_panel.gd
+msgid "Change"
 msgstr ""
 
 #: scenes/captain_creator/name_keyboard.gd scenes/session_select/session_select.gd
@@ -291,10 +299,6 @@ msgstr ""
 msgid "Wind"
 msgstr ""
 
-#: scenes/menu/chest.gd scenes/mission/exchange_card.gd
-msgid "{ducats} {ducats|ducat|ducats}"
-msgstr ""
-
 #: scenes/menu/confirm_dialog.gd
 msgid "Do you really want to quit the game?"
 msgstr ""
@@ -305,6 +309,10 @@ msgstr ""
 
 #: scenes/menu/confirm_dialog.gd
 msgid "No, stay"
+msgstr ""
+
+#: scenes/menu/purse.gd scenes/mission/exchange_card.gd
+msgid "{ducats} {ducats|ducat|ducats}"
 msgstr ""
 
 #: scenes/mission/booster_card.gd
@@ -409,7 +417,7 @@ msgid "C closes the chart"
 msgstr ""
 
 #: scenes/mission/hud/hint_panel.gd
-msgid "Food and water run out with the days. Every port refills them free!"
+msgid "Food and water run out with the days. Every port gives one ration free; buy more!"
 msgstr ""
 
 #: scenes/mission/hud/hint_panel.gd
@@ -429,7 +437,7 @@ msgid "A storm cloud! Inside, the boat sails slowly. Steer out of it."
 msgstr ""
 
 #: scenes/mission/hud/hint_panel.gd
-msgid "The black flag of the corsairs! They take all the ducats on board. Flee!"
+msgid "The black flag of the corsairs! They take 50 ducats. Flee, or sail to a patrol!"
 msgstr ""
 
 #: scenes/mission/hud/hint_panel.gd
@@ -618,11 +626,11 @@ msgid "Days at sea: {used} of {clock}"
 msgstr ""
 
 #: scenes/mission/mission_complete.gd
-msgid "+{ducats} {ducats|ducat|ducats} for the chest of the crew"
+msgid "+{ducats} {ducats|ducat|ducats} earned in this mission"
 msgstr ""
 
 #: scenes/mission/mission_complete.gd
-msgid "{ducats} {ducats|ducat|ducats} spent from the chest of the crew"
+msgid "{ducats} {ducats|ducat|ducats} spent in this mission"
 msgstr ""
 
 #: scenes/mission/mission_complete.gd
@@ -650,7 +658,7 @@ msgid "The corsairs take your figs and sail away happily."
 msgstr ""
 
 #: scenes/mission/sailing/sea_hazards.gd
-msgid "The corsairs took all your ducats: {ducats}!"
+msgid "The corsairs took {ducats} {ducats|ducat|ducats}!"
 msgstr ""
 
 #: scenes/mission/sailing/sea_hazards.gd
@@ -904,7 +912,7 @@ msgid "Friend"
 msgstr ""
 
 #: scenes/shipyard/shipyard.gd
-msgid "{name} costs {price} {price|ducat|ducats}, but the chest has only {ducats}."
+msgid "{name} costs {price} {price|ducat|ducats}, but you have only {ducats}."
 msgstr ""
 
 #: scenes/shipyard/shipyard.gd
@@ -2874,7 +2882,7 @@ msgstr ""
 
 #. what a booster or a ship does, on its card, one short sentence
 #: data/world/boosters/bread_water.tres
-msgid "Half a day back on the mission clock."
+msgid "One more ration of food and water."
 msgstr ""
 
 #. a name (of a port, a person, a power, a boat or a thing)
@@ -3489,7 +3497,7 @@ msgstr ""
 
 #. what a person does, under their name
 #: data/world/people/anica.tres
-msgid "a girl of Grebaštica"
+msgid "a young lady of Grebaštica"
 msgstr ""
 
 #. a name (of a port, a person, a power, a boat or a thing)

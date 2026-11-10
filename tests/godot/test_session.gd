@@ -59,9 +59,9 @@ func _run() -> void:
     _check(session.is_unlocked(missions[0]), "the first mission is unlocked")
     _check(not session.is_unlocked(missions[1]), "the second mission is locked")
 
-    _check(session.ducats == 40, "a new voyage starts with 40 ducats in the chest")
-    session.complete(missions[0].id, 2, 30)
-    _check(session.ducats == 70, "the chest gets the ducats the mission earned, no more")
+    _check(session.ducats == 40, "a new voyage starts with 40 ducats")
+    session.complete(missions[0].id, 2, 70)
+    _check(session.ducats == 70, "the crew keeps the ducats left on board after the mission")
     _check(session.is_unlocked(missions[1]), "finishing a mission unlocks the next one")
     _check(not session.is_unlocked(missions[2]), "but not the one after it")
     session.complete(missions[0].id, 1)
@@ -69,8 +69,32 @@ func _run() -> void:
     _check(session.ducats == 70, "the stars pay nothing")
     _check(session.yatak_gift(missions[1].id) == 10, "the yataks send 10 ducats at the start")
     _check(session.yatak_gift(missions[1].id) == 0, "but only once per mission")
-    _check(session.ducats == 80, "the yataks' ducats go into the chest")
+    _check(session.ducats == 80, "the yataks' ducats count for the voyage at once")
     _check(session.list()[0]["stars"] == 2, "the list counts the stars")
+
+    # NOTE (mristin):
+    # A save of format 1 kept a chest at home; its ducats go on board of the
+    # boats of the mission in progress (a boat could overspend from the chest).
+    var old := {
+        "format": 1,
+        "ducats": 249,
+        "mission_in_progress":
+        {"run": {"holds": [{"ducats": 10, "spent": 90}, {"ducats": 21, "spent": 0}]}},
+    }
+    var upgraded: Dictionary = session.get_script().upgrade(old)
+    var holds: Array = upgraded["mission_in_progress"]["run"]["holds"]
+    _check(upgraded["format"] == 2, "an old save is upgraded")
+    _check(
+        holds[0]["ducats"] == 95 and holds[1]["ducats"] == 95 and holds[0]["spent"] == 0,
+        "the chest of an old save goes on board of the boats"
+    )
+    _check(upgraded["ducats"] == 249, "and stays the ducats of the voyage between missions")
+    var two := MissionRun.new(missions[0], 1, 2)
+    two.bring(41)
+    _check(
+        two.hold(0).on_board() == 21 and two.hold(1).on_board() == 20 and two.brought == 41,
+        "a mission takes all the ducats on board, split between the boats"
+    )
 
     var saved_id: String = session.id
     session.free()
@@ -81,12 +105,12 @@ func _run() -> void:
     _check(reloaded.voyage_name == "Test voyage", "with its name")
     _check(crew.players == 2 and crew.captains[0]["name"] == "Ana", "with its crew")
     _check(reloaded.is_unlocked(missions[1]), "with its missions")
-    _check(reloaded.ducats == 80, "with its chest")
+    _check(reloaded.ducats == 80, "with its ducats")
     _check(not reloaded.has_shipyard(), "the shipyard opens only after mission 2")
     var sail: Decoration = World.decoration("sail_blue")
     _check(sail != null and sail.slot == "sail", "the shipyard has sails")
     _check(reloaded.buy_decoration(sail), "the crew buys a blue sail")
-    _check(reloaded.ducats == 80 - sail.price, "the sail costs ducats of the chest")
+    _check(reloaded.ducats == 80 - sail.price, "the sail costs ducats of the crew")
     _check(not reloaded.buy_decoration(sail), "what is bought stays bought, and is not sold twice")
     crew.captains[0]["boat"] = {"sail": sail.id}
     reloaded.save()

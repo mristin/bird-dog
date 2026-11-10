@@ -3,8 +3,9 @@ extends Control
 
 ## Show the whole Adriatic small in a corner, with the boats, so that the
 ## players always know where they are; the port where the crew has to go
-## blinks, and the ports of the errands have blue rings. The large chart (see FullChart) shows
-## the names of the ports, too.
+## has a blinking red ring, and the ports of the errands have blue rings
+## (the same colours as on the sea, see ChartView.TARGET_COLOR). The large
+## chart (see FullChart) shows the names of the ports, too.
 
 ## The boats: [{"km": Vector2, "heading": float, "color": Color}, ...].
 var boats: Array[Dictionary] = []
@@ -113,16 +114,16 @@ func _draw_overlay() -> void:
             0,
             TAU,
             20,
-            Color(0.3, 0.55, 0.9),
+            ChartView.ERRAND_COLOR,
             3.0,
             true
         )
     # NOTE (mristin):
-    # The golden ring of a target stays outside the blue ring of an errand,
+    # The red ring of a target stays outside the blue ring of an errand,
     # so that both show when they go to the same port.
     for target in targets:
         var at := _origin + World.port_km(target) * _scale
-        canvas.draw_arc(at, 16.0 * pulse, 0, TAU, 24, Paper.GOLD, 4.0, true)
+        canvas.draw_arc(at, 16.0 * pulse, 0, TAU, 24, ChartView.TARGET_COLOR, 4.0, true)
         canvas.draw_arc(at, 16.0 * pulse, 0, TAU, 24, Paper.INK, 1.5, true)
     if labels:
         _draw_labels(canvas)
@@ -147,17 +148,17 @@ func _draw_labels(canvas: Control) -> void:
         var color := ChartView.COAST
         var font_size := 20
         if targets.has(port):
-            color = Paper.RED
+            color = ChartView.TARGET_COLOR
             font_size = 30
         elif errand_ports.has(port):
-            color = Color(0.15, 0.35, 0.7)
+            color = ChartView.ERRAND_COLOR
             font_size = 26
         # NOTE (mristin):
         # The names of the ports on the eastern coast stand to the right, on
         # the land; those on the western coast to the left.
         var width := font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
         var east := port.longitude > 15.5 - (port.latitude - 41.0) * 0.9
-        # The names of the targets stand clear of their golden rings.
+        # The names of the targets stand clear of their red rings.
         var gap := 24.0 if targets.has(port) else 16.0
         var left := at.x + gap if east else at.x - gap - width
         var baseline := at.y + font_size * 0.35

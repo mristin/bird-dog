@@ -273,19 +273,17 @@ func _check_merchant() -> void:
     for id in ["new_sails", "fisherman", "pilot", "right_flag", "figs", "bread_water"]:
         boosters[id] = load("res://data/world/boosters/%s.tres" % id)
     var run := MissionRun.new(MissionCatalog.all()[0], 1)
-    _check(run.bag.why_not(boosters["new_sails"], 0) == "ducats", "no ducats, no sails")
+    _check(run.bag.why_not(boosters["new_sails"]) == "ducats", "no ducats, no sails")
+    run.bring(40)
     run.earn(60)
+    _check(run.bag.buy(boosters["new_sails"]), "the crew buys new sails with the ducats on board")
     _check(
-        run.bag.buy(boosters["new_sails"], 40),
-        "the crew buys new sails with the chest and the barrels"
+        run.bag.purse() == 70 and run.bag.has_effect("speed"), "the sails cost 30 ducats and work"
     )
-    _check(
-        run.bag.purse(40) == 70 and run.bag.has_effect("speed"), "the sails cost 30 ducats and work"
-    )
-    _check(run.bag.why_not(boosters["new_sails"], 40) == "held", "the crew has the sails already")
-    _check(run.bag.buy(boosters["pilot"], 40), "the crew buys a pilot, too")
-    _check(run.bag.why_not(boosters["right_flag"], 40) == "full", "at most two boosters for a leg")
-    _check(run.bag.buy(boosters["figs"], 40), "the figs last until they are used, so they fit")
+    _check(run.bag.why_not(boosters["new_sails"]) == "held", "the crew has the sails already")
+    _check(run.bag.buy(boosters["pilot"]), "the crew buys a pilot, too")
+    _check(run.bag.why_not(boosters["right_flag"]) == "full", "at most two boosters for a leg")
+    _check(run.bag.buy(boosters["figs"]), "the figs last until they are used, so they fit")
     _check(
         run.bag.use_effect("figs") and not run.bag.has_effect("figs"),
         "the corsairs take the figs once"
@@ -293,14 +291,29 @@ func _check_merchant() -> void:
     run.bag.end_leg()
     _check(run.bag.boosters.is_empty(), "the boosters for a leg end in the next port")
     run.pass_days(1.0)
-    run.hold().ducats = run.hold().spent + 30
-    var bribe := run.hold().steal(SeaHazards.BRIBE_SHARE)
-    _check(bribe == 15, "a Venetian patrol takes half of the ducats on board as a bribe")
-    _check(run.hold().on_board() == 15, "the bribe is gone")
-    var stolen := run.hold().steal()
-    _check(stolen == 15 and run.hold().on_board() == 0, "the corsairs take all the ducats on board")
-    _check(run.bag.buy(boosters["bread_water"], 40), "the crew buys bread and water")
-    _check(absf(run.days - 0.5) < 0.001, "bread and water give half a day back")
+    run.hold().ducats = run.hold().spent + 100
+    var bribe := run.hold().steal(SeaHazards.BRIBE)
+    _check(bribe == 30, "a Venetian patrol takes 30 ducats as a bribe")
+    _check(run.hold().on_board() == 70, "the bribe is gone")
+    var stolen := run.hold().steal(SeaHazards.CORSAIR_LOOT)
+    _check(stolen == 50 and run.hold().on_board() == 20, "the corsairs take 50 ducats")
+    stolen = run.hold().steal(SeaHazards.CORSAIR_LOOT)
+    _check(stolen == 20 and run.hold().on_board() == 0, "or all the ducats on board, if fewer")
+
+    run.hold().ducats = run.hold().spent + 100
+    _check(not run.hold().has_room_for(run.ration_days()), "the barrels of a new boat are full")
+    _check(
+        not Merchant.offers(boosters["bread_water"], run),
+        "the merchant offers no food which does not fit"
+    )
+    _check(run.bag.why_not(boosters["bread_water"]) == "full", "nor sells it")
+    var galleon := MissionRun.new(MissionCatalog.all()[0], 1, 1, [World.ship("galleon")])
+    galleon.bring(100)
+    galleon.pass_days(galleon.ration_days() * 3.0)
+    _check(Merchant.offers(boosters["bread_water"], galleon), "with room, the merchant has food")
+    _check(galleon.bag.buy(boosters["bread_water"]), "the crew buys bread and water")
+    _check(is_equal_approx(galleon.rations_left(), 3.0), "bread and water are one more ration")
+    _check(is_equal_approx(galleon.days, galleon.ration_days() * 3.0), "and give no time back")
 
 
 ## The recruiter of mission 2 follows the trail; if the crew dawdles, he gets
@@ -353,6 +366,10 @@ func _check_ships() -> void:
     _check(is_equal_approx(run.rations_left(1), 5.0), "a galleon stows five rations")
     run.pass_days(run.ration_days() * 0.5)
     _check(is_equal_approx(run.rations_left(0), 0.5), "the crew eats the rations day by day")
-    run.active = 0
-    run.restock()
-    _check(is_equal_approx(run.rations_left(0), 1.0), "a port fills the rations again")
+    run.hold(0).add_ration(run.ration_days())
+    _check(is_equal_approx(run.rations_left(0), 1.0), "a port fills the ration again")
+    run.pass_days(run.ration_days() * 3.0)
+    run.hold(1).add_ration(run.ration_days())
+    _check(is_equal_approx(run.rations_left(1), 2.5), "a port gives only one ration for free")
+    run.hold(1).add_ration(run.ration_days())
+    _check(is_equal_approx(run.rations_left(1), 3.5), "every visit one more")

@@ -50,6 +50,9 @@ var errands: Array[Dictionary] = []
 ## The current clue or objective, as a line.
 var clue := {}
 
+## The ducats the crew brought along into the mission (see [method bring]).
+var brought := 0
+
 ## What the steps drew at the start, by the id of the step.
 var plan := {}
 
@@ -132,11 +135,6 @@ func hold(index := -1) -> BoatHold:
     return holds[active if index < 0 else index]
 
 
-## Fill the barrels of the active boat with food and water again (in a port).
-func restock() -> void:
-    hold().provisions = hold().max_provisions
-
-
 ## The share of the provisions left in a boat, from 0 to 1.
 func provisions_share(index := -1) -> float:
     return hold(index).provisions / maxf(0.01, hold(index).max_provisions)
@@ -166,12 +164,22 @@ func earn(amount: int) -> void:
     hold().ducats += amount
 
 
-## What the mission brings into the chest of the crew: what all the boats
-## earned, less what they spent.
+## The crew brings its ducats along into the mission (see Session.ducats):
+## they are on board, split between the boats (the first boat gets the odd
+## ducat).
+func bring(amount: int) -> void:
+    amount = maxi(0, amount)
+    brought += amount
+    var each := amount / holds.size()
+    for i in range(holds.size()):
+        holds[i].ducats += each + (amount - each * holds.size() if i == 0 else 0)
+
+
+## All the ducats on board of the boats of the crew.
 func ducats_total() -> int:
     var total := 0
     for each in holds:
-        total += each.ducats - each.spent
+        total += each.on_board()
     return total
 
 
@@ -252,6 +260,7 @@ func to_data() -> Dictionary:
         "boosters": booster_ids,
         "errands": errands.duplicate(true),
         "holds": holds_data,
+        "brought": brought,
     }
 
 
@@ -279,6 +288,7 @@ func restore(data: Dictionary) -> bool:
     errands.clear()
     for errand in data.get("errands", []):
         errands.append(_whole(errand))
+    brought = int(data.get("brought", 0))
     var saved_holds: Array = data.get("holds", [])
     for i in range(mini(saved_holds.size(), holds.size())):
         var saved: Dictionary = saved_holds[i]

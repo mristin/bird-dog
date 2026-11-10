@@ -14,6 +14,10 @@ extends Control
 
 signal pressed
 
+## The group of the buttons, so that the hand cursor finds them (it sticks to
+## them, see HandCursor).
+const GROUP := "hand_buttons"
+
 ## The big line, e.g., "1".
 var title := ""
 
@@ -50,6 +54,7 @@ var _cursor: HandCursor = null
 
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_IGNORE
+    add_to_group(GROUP)
     # NOTE (mristin):
     # With two players, every half of the screen has its own cursor, in its
     # own viewport.
@@ -64,6 +69,11 @@ func _ready() -> void:
 func _exit_tree() -> void:
     if _cursor != null and _cursor.clicked.is_connected(_on_clicked):
         _cursor.clicked.disconnect(_on_clicked)
+
+
+## Whether the hand cursor of the button may stick to it and press it now.
+func is_active_for(cursor: HandCursor) -> bool:
+    return _cursor == cursor and is_visible_in_tree() and not is_blocked()
 
 
 ## Whether a hand (or the mouse) points at the button.

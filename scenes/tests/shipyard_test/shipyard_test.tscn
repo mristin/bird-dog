@@ -4,4 +4,4 @@
 
 [node name="ShipyardTest" instance=ExtResource("1_scene")]
 missions_scene = ""
-chest = 400
+start_ducats = 400

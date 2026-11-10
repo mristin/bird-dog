@@ -3,7 +3,7 @@ extends Control
 
 ## The chart of the whole Adriatic over the whole screen, shown with the C key
 ## (see DESIGN.md, "The chart"): every port with its name, the ports where the
-## mission leads (gold rings) and where the errands go (blue rings), and the
+## mission leads (red rings) and where the errands go (blue rings), and the
 ## boats, so that the crew gets its bearings. The game
 ## waits meanwhile.
 
@@ -87,8 +87,8 @@ func _draw() -> void:
     var x := size.x - SIDE - 10
     var y := 160.0
     var entries := [
-        ["ring", Paper.GOLD, tr("Where the mission leads")],
-        ["ring", Color(0.3, 0.55, 0.9), tr("Where the deliveries go")],
+        ["ring", ChartView.TARGET_COLOR, tr("Where the mission leads")],
+        ["ring", ChartView.ERRAND_COLOR, tr("Where the deliveries go")],
     ]
     for entry in entries:
         var at := Vector2(x + 16, y - 12)
