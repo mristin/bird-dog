@@ -406,7 +406,7 @@ func _show_start(player: int) -> void:
         MissionRun.line("Fair winds, captain! Do you need anything before you set sail?")
     ]
     var scene := MissionStep.talk(local, said, MissionRun.line("Set sail!"))
-    _add_port_buttons(scene, port)
+    PortScene.add_buttons(scene, port, _run)
     _port_scenes[player] = scene
     _show(player, scene, port)
 
@@ -588,42 +588,15 @@ func _arrive(player: int, port: Port, first: Array = []) -> void:
         view.minimap.visited[port.id] = true
     _launch(port, player)
 
-    var step := _run.step()
-    var scene: Variant = step.arrive(_run, port)
-    if scene == null:
-        var local: Person = port.locals[0] if not port.locals.is_empty() else null
-        var said: Array = [MissionRun.line("This is the wrong port, captain!"), _run.clue]
-        var wanted := step.wanted_item(_run, port)
-        if wanted != null and players > 1:
-            said = [
-                MissionRun.line(
-                    "Your other boat carries {item}. Meet at sea and hand it over!",
-                    {"item": wanted.name}
-                )
-            ]
-        scene = MissionStep.talk(local, said, MissionRun.line("Goodbye!"))
+    var scene := PortScene.of(_run, port, players)
     if scene["kind"] == "talk":
-        var lines: Array = first.duplicate()
-        lines.append_array(paid)
-        lines.append_array(scene["lines"])
-        if hold.ducats > ducats_before or not paid.is_empty():
+        var gained := hold.ducats - ducats_before
+        if gained > 0 or not paid.is_empty():
             _sfx.play("coins")
-        if hold.ducats > ducats_before:
-            lines.append(
-                MissionRun.line(
-                    "You got {ducats} {ducats|ducat|ducats}!",
-                    {"ducats": hold.ducats - ducats_before}
-                )
-            )
-        if hungry:
-            lines.append(MissionRun.line("Your crew takes on bread and fresh water."))
-        if damaged:
-            lines.append(MissionRun.line("The shipwrights repair your hull."))
-        if _tips.wants("port"):
-            lines.append(MissionRun.line("Every port has a merchant and work for the crew."))
-        scene["lines"] = lines
-
-        _add_port_buttons(scene, port)
+        scene["lines"] = PortScene.lines(
+            scene, first, paid, gained, hungry, damaged, _tips.wants("port")
+        )
+        PortScene.add_buttons(scene, port, _run)
         _port_scenes[player] = scene
     else:
         # NOTE (mristin):
@@ -635,18 +608,6 @@ func _arrive(player: int, port: Port, first: Array = []) -> void:
     _update_targets()
     _show(player, scene, port)
     _save_progress()
-
-
-## Every port has a merchant (see DESIGN.md, section 10) and work for the
-## crew (see Errands).
-func _add_port_buttons(scene: Dictionary, port: Port) -> void:
-    scene["buttons"].append({"label": MissionRun.line("What do you sell?"), "action": "shop"})
-    if Errands.can_take(_run):
-        scene["buttons"].append({"label": MissionRun.line("Any work for us?"), "action": "errand"})
-    if port.bay_port_id != "":
-        var bay := World.port(port.bay_port_id)
-        var label := MissionRun.line("Sail on to {port}!", {"port": bay.name})
-        scene["buttons"].append({"label": label, "action": "bay"})
 
 
 ## Out of food and water, or with a broken hull: a fishing boat comes and

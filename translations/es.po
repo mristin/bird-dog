@@ -416,7 +416,7 @@ msgstr "Ya lo tenéis"
 msgid "No work today, captain."
 msgstr "Hoy no hay trabajo, {crew|capitán|capitana|capitanes|capitanas}."
 
-#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/mission.gd
+#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/port_scene.gd
 #, fuzzy
 msgid "Goodbye!"
 msgstr "¡Adiós!"
@@ -672,51 +672,6 @@ msgstr "¡Buena elección, {crew|capitán|capitana|capitanes|capitanas}! Os llev
 
 #: scenes/mission/mission.gd
 #, fuzzy
-msgid "This is the wrong port, captain!"
-msgstr "¡Este no es el puerto, {crew|capitán|capitana|capitanes|capitanas}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Your other boat carries {item}. Meet at sea and hand it over!"
-msgstr "Vuestro otro barco lleva {item@acc}. ¡Reuníos en el mar y pasadlo!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "You got {ducats} {ducats|ducat|ducats}!"
-msgstr "¡Habéis ganado {ducats} {ducats|ducado|ducados}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Your crew takes on bread and fresh water."
-msgstr "Vuestra tripulación carga pan y agua fresca."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "The shipwrights repair your hull."
-msgstr "Los carpinteros de ribera reparan el casco."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Every port has a merchant and work for the crew."
-msgstr "Cada puerto tiene un mercader y trabajo para la tripulación."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "What do you sell?"
-msgstr "¿Qué vendes?"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Any work for us?"
-msgstr "¿Hay trabajo?"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Sail on to {port}!"
-msgstr "¡Seguid {port@to}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
 msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
 msgstr "¡+{ducats} {ducats|ducado|ducados} por la tarea cumplida!"
 
@@ -824,6 +779,51 @@ msgstr "Terminar la misión (prueba)"
 #, fuzzy
 msgid "This mission is still being built."
 msgstr "Esta misión todavía se está construyendo."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "This is the wrong port, captain!"
+msgstr "¡Este no es el puerto, {crew|capitán|capitana|capitanes|capitanas}!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Your other boat carries {item}. Meet at sea and hand it over!"
+msgstr "Vuestro otro barco lleva {item@acc}. ¡Reuníos en el mar y pasadlo!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "You got {ducats} {ducats|ducat|ducats}!"
+msgstr "¡Habéis ganado {ducats} {ducats|ducado|ducados}!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Your crew takes on bread and fresh water."
+msgstr "Vuestra tripulación carga pan y agua fresca."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "The shipwrights repair your hull."
+msgstr "Los carpinteros de ribera reparan el casco."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Every port has a merchant and work for the crew."
+msgstr "Cada puerto tiene un mercader y trabajo para la tripulación."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "What do you sell?"
+msgstr "¿Qué vendes?"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Any work for us?"
+msgstr "¿Hay trabajo?"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Sail on to {port}!"
+msgstr "¡Seguid {port@to}!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy

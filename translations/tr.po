@@ -418,7 +418,7 @@ msgstr "Bu zaten sizde var"
 msgid "No work today, captain."
 msgstr "Bugün iş yok, {crew|kaptan|kaptan|kaptanlar}."
 
-#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/mission.gd
+#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/port_scene.gd
 #, fuzzy
 msgid "Goodbye!"
 msgstr "Hoşça kalın!"
@@ -673,51 +673,6 @@ msgstr "İyi seçim, {crew|kaptan|kaptan|kaptanlar}! {booster} artık sizin."
 
 #: scenes/mission/mission.gd
 #, fuzzy
-msgid "This is the wrong port, captain!"
-msgstr "Burası yanlış liman, {crew|kaptan|kaptan|kaptanlar}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Your other boat carries {item}. Meet at sea and hand it over!"
-msgstr "Öbür teknenizde {item} var. Denizde buluşup teslim edin!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "You got {ducats} {ducats|ducat|ducats}!"
-msgstr "{ducats} duka kazandınız!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Your crew takes on bread and fresh water."
-msgstr "Tayfanız ekmek ve temiz su alıyor."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "The shipwrights repair your hull."
-msgstr "Gemi ustaları gövdenizi onarıyor."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Every port has a merchant and work for the crew."
-msgstr "Her limanda bir tüccar ve tayfaya iş var."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "What do you sell?"
-msgstr "Ne satıyorsunuz?"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Any work for us?"
-msgstr "Bize iş var mı?"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Sail on to {port}!"
-msgstr "{port@to} devam edin!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
 msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
 msgstr "Tamamlanan iş için +{ducats} duka!"
 
@@ -825,6 +780,51 @@ msgstr "Görevi bitir (deneme)"
 #, fuzzy
 msgid "This mission is still being built."
 msgstr "Bu görev daha yapım aşamasında."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "This is the wrong port, captain!"
+msgstr "Burası yanlış liman, {crew|kaptan|kaptan|kaptanlar}!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Your other boat carries {item}. Meet at sea and hand it over!"
+msgstr "Öbür teknenizde {item} var. Denizde buluşup teslim edin!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "You got {ducats} {ducats|ducat|ducats}!"
+msgstr "{ducats} duka kazandınız!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Your crew takes on bread and fresh water."
+msgstr "Tayfanız ekmek ve temiz su alıyor."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "The shipwrights repair your hull."
+msgstr "Gemi ustaları gövdenizi onarıyor."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Every port has a merchant and work for the crew."
+msgstr "Her limanda bir tüccar ve tayfaya iş var."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "What do you sell?"
+msgstr "Ne satıyorsunuz?"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Any work for us?"
+msgstr "Bize iş var mı?"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Sail on to {port}!"
+msgstr "{port@to} devam edin!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy

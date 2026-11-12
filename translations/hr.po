@@ -415,7 +415,7 @@ msgstr "To već {crew|imaš|imaš|imate}"
 msgid "No work today, captain."
 msgstr "Danas nima posla, {crew|kapetane|kapetanice|kapetani|kapetanice}."
 
-#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/mission.gd
+#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/port_scene.gd
 #, fuzzy
 msgid "Goodbye!"
 msgstr "Zbogon!"
@@ -680,53 +680,6 @@ msgstr ""
 
 #: scenes/mission/mission.gd
 #, fuzzy
-msgid "This is the wrong port, captain!"
-msgstr "Ovo je krivi port, {crew|kapetane|kapetanice|kapetani|kapetanice}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Your other boat carries {item}. Meet at sea and hand it over!"
-msgstr ""
-"{crew|Tvoja|Tvoja|Vaša} druga brodica vozi {item@acc}. Srite se na moru i predajte ga s broda na "
-"brod!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "You got {ducats} {ducats|ducat|ducats}!"
-msgstr "{crew|Dobija si|Dobila si|Dobili ste|Dobile ste} {ducats} {ducats|dukat|dukata|dukata}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Your crew takes on bread and fresh water."
-msgstr "{crew|Tvoja|Tvoja|Vaša} posada ukrcava kruh i frišku vodu."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "The shipwrights repair your hull."
-msgstr "Kalafati popravljaju {crew|tvoj|tvoj|vaš} trup."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Every port has a merchant and work for the crew."
-msgstr "U svakon portu je trgovac, a ima i posla za posadu."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "What do you sell?"
-msgstr "Ča prodajete?"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Any work for us?"
-msgstr "Ima li posla za nas?"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Sail on to {port}!"
-msgstr "{crew|Jidri|Jidri|Jidrite} dalje {port@to}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
 msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
 msgstr "+{ducats} {ducats|dukat|dukata|dukata} za obavljeni posal!"
 
@@ -836,6 +789,53 @@ msgstr "Završi misiju (test)"
 #, fuzzy
 msgid "This mission is still being built."
 msgstr "Ova misija se još gradi."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "This is the wrong port, captain!"
+msgstr "Ovo je krivi port, {crew|kapetane|kapetanice|kapetani|kapetanice}!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Your other boat carries {item}. Meet at sea and hand it over!"
+msgstr ""
+"{crew|Tvoja|Tvoja|Vaša} druga brodica vozi {item@acc}. Srite se na moru i predajte ga s broda na "
+"brod!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "You got {ducats} {ducats|ducat|ducats}!"
+msgstr "{crew|Dobija si|Dobila si|Dobili ste|Dobile ste} {ducats} {ducats|dukat|dukata|dukata}!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Your crew takes on bread and fresh water."
+msgstr "{crew|Tvoja|Tvoja|Vaša} posada ukrcava kruh i frišku vodu."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "The shipwrights repair your hull."
+msgstr "Kalafati popravljaju {crew|tvoj|tvoj|vaš} trup."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Every port has a merchant and work for the crew."
+msgstr "U svakon portu je trgovac, a ima i posla za posadu."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "What do you sell?"
+msgstr "Ča prodajete?"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Any work for us?"
+msgstr "Ima li posla za nas?"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Sail on to {port}!"
+msgstr "{crew|Jidri|Jidri|Jidrite} dalje {port@to}!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy

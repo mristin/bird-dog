@@ -331,7 +331,7 @@ msgstr ""
 msgid "No work today, captain."
 msgstr ""
 
-#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/mission.gd
+#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/port_scene.gd
 msgid "Goodbye!"
 msgstr ""
 
@@ -534,42 +534,6 @@ msgid "A fine choice, captain! {booster} is yours."
 msgstr ""
 
 #: scenes/mission/mission.gd
-msgid "This is the wrong port, captain!"
-msgstr ""
-
-#: scenes/mission/mission.gd
-msgid "Your other boat carries {item}. Meet at sea and hand it over!"
-msgstr ""
-
-#: scenes/mission/mission.gd
-msgid "You got {ducats} {ducats|ducat|ducats}!"
-msgstr ""
-
-#: scenes/mission/mission.gd
-msgid "Your crew takes on bread and fresh water."
-msgstr ""
-
-#: scenes/mission/mission.gd
-msgid "The shipwrights repair your hull."
-msgstr ""
-
-#: scenes/mission/mission.gd
-msgid "Every port has a merchant and work for the crew."
-msgstr ""
-
-#: scenes/mission/mission.gd
-msgid "What do you sell?"
-msgstr ""
-
-#: scenes/mission/mission.gd
-msgid "Any work for us?"
-msgstr ""
-
-#: scenes/mission/mission.gd
-msgid "Sail on to {port}!"
-msgstr ""
-
-#: scenes/mission/mission.gd
 msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
 msgstr ""
 
@@ -655,6 +619,42 @@ msgstr ""
 
 #: scenes/mission/mission_placeholder.gd
 msgid "This mission is still being built."
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "This is the wrong port, captain!"
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "Your other boat carries {item}. Meet at sea and hand it over!"
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "You got {ducats} {ducats|ducat|ducats}!"
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "Your crew takes on bread and fresh water."
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "The shipwrights repair your hull."
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "Every port has a merchant and work for the crew."
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "What do you sell?"
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "Any work for us?"
+msgstr ""
+
+#: scenes/mission/port_scene.gd
+msgid "Sail on to {port}!"
 msgstr ""
 
 #: scenes/mission/sailing/sea_hazards.gd

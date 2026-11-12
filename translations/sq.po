@@ -416,7 +416,7 @@ msgstr "E keni tashmë"
 msgid "No work today, captain."
 msgstr "Sot s'ka punë, {crew|kapiten|kapitene|kapitenë|kapitene}."
 
-#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/mission.gd
+#: scenes/mission/errands.gd scenes/mission/merchant.gd scenes/mission/port_scene.gd
 #, fuzzy
 msgid "Goodbye!"
 msgstr "Mirupafshim!"
@@ -670,51 +670,6 @@ msgstr "Zgjedhje e mirë, {crew|kapiten|kapitene|kapitenë|kapitene}! Tani keni:
 
 #: scenes/mission/mission.gd
 #, fuzzy
-msgid "This is the wrong port, captain!"
-msgstr "Ky është porti i gabuar, {crew|kapiten|kapitene|kapitenë|kapitene}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Your other boat carries {item}. Meet at sea and hand it over!"
-msgstr "Barka juaj tjetër mbart {item@acc}. Takohuni në det dhe kalojeni nga barka në barkë!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "You got {ducats} {ducats|ducat|ducats}!"
-msgstr "Morët {ducats} {ducats|dukat|dukatë}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Your crew takes on bread and fresh water."
-msgstr "Ekuipazhi juaj merr në bord bukë dhe ujë të freskët."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "The shipwrights repair your hull."
-msgstr "Ndërtuesit e anijeve ju rregullojnë barkën."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Every port has a merchant and work for the crew."
-msgstr "Çdo port ka një tregtar dhe punë për ekuipazhin."
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "What do you sell?"
-msgstr "Çfarë shisni?"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Any work for us?"
-msgstr "Ka punë për ne?"
-
-#: scenes/mission/mission.gd
-#, fuzzy
-msgid "Sail on to {port}!"
-msgstr "Vazhdoni për {port@to}!"
-
-#: scenes/mission/mission.gd
-#, fuzzy
 msgid "+{ducats} {ducats|ducat|ducats} for the task done!"
 msgstr "+{ducats} {ducats|dukat|dukatë} për detyrën e kryer!"
 
@@ -822,6 +777,51 @@ msgstr "Përfundo misionin (test)"
 #, fuzzy
 msgid "This mission is still being built."
 msgstr "Ky mision është ende në ndërtim."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "This is the wrong port, captain!"
+msgstr "Ky është porti i gabuar, {crew|kapiten|kapitene|kapitenë|kapitene}!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Your other boat carries {item}. Meet at sea and hand it over!"
+msgstr "Barka juaj tjetër mbart {item@acc}. Takohuni në det dhe kalojeni nga barka në barkë!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "You got {ducats} {ducats|ducat|ducats}!"
+msgstr "Morët {ducats} {ducats|dukat|dukatë}!"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Your crew takes on bread and fresh water."
+msgstr "Ekuipazhi juaj merr në bord bukë dhe ujë të freskët."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "The shipwrights repair your hull."
+msgstr "Ndërtuesit e anijeve ju rregullojnë barkën."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Every port has a merchant and work for the crew."
+msgstr "Çdo port ka një tregtar dhe punë për ekuipazhin."
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "What do you sell?"
+msgstr "Çfarë shisni?"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Any work for us?"
+msgstr "Ka punë për ne?"
+
+#: scenes/mission/port_scene.gd
+#, fuzzy
+msgid "Sail on to {port}!"
+msgstr "Vazhdoni për {port@to}!"
 
 #: scenes/mission/sailing/sea_hazards.gd
 #, fuzzy
