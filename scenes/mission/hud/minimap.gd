@@ -7,6 +7,12 @@ extends Control
 ## (the same colours as on the sea, see ChartView.TARGET_COLOR). The large
 ## chart (see FullChart) shows the names of the ports, too.
 
+## How far a name moves down (or up) from its dot, in its font size, where the
+## names crowd; the first free place wins.
+const LABEL_SHIFTS: Array[float] = [
+    0.0, 0.6, -0.6, 1.2, -1.2, 1.8, -1.8, 2.4, -2.4, 3.0, -3.0, 3.6, -3.6
+]
+
 ## The boats: [{"km": Vector2, "heading": float, "color": Color}, ...].
 var boats: Array[Dictionary] = []
 
@@ -141,6 +147,42 @@ func _draw_overlay() -> void:
 ## bold colours, so that the crew finds them at once.
 func _draw_labels(canvas: Control) -> void:
     var font := ThemeDB.fallback_font
+    for label in label_boxes():
+        var box: Rect2 = label["box"]
+        var font_size: int = label["size"]
+        var color: Color = label["color"]
+        var baseline := box.position.y + font_size * 0.8
+        if label["moved"]:
+            var end := Vector2(box.position.x if label["east"] else box.end.x, box.get_center().y)
+            canvas.draw_line(label["at"], end, Color(color, 0.7), 1.5, true)
+        canvas.draw_string_outline(
+            font,
+            Vector2(box.position.x, baseline),
+            label["text"],
+            HORIZONTAL_ALIGNMENT_LEFT,
+            -1,
+            font_size,
+            6,
+            Color(Paper.PAPER, 0.9)
+        )
+        canvas.draw_string(
+            font,
+            Vector2(box.position.x, baseline),
+            label["text"],
+            HORIZONTAL_ALIGNMENT_LEFT,
+            -1,
+            font_size,
+            color
+        )
+
+
+## Where the names of the ports stand: {"port", "text", "size", "color",
+## "at" (the dot of the port), "box" (the name), "east" (the name stands right
+## of its dot), "moved" (the name moved away from its dot, with a line to it)},
+## in the order of their importance (see tests/godot/test_chart_labels.gd).
+func label_boxes() -> Array[Dictionary]:
+    var font := ThemeDB.fallback_font
+    var result: Array[Dictionary] = []
     var placed: Array[Rect2] = []
     for port in _ports_by_importance():
         var at := _origin + World.port_km(port) * _scale
@@ -160,39 +202,62 @@ func _draw_labels(canvas: Control) -> void:
         var east := port.longitude > 15.5 - (port.latitude - 41.0) * 0.9
         # The names of the targets stand clear of their red rings.
         var gap := 24.0 if targets.has(port) else 16.0
-        var left := at.x + gap if east else at.x - gap - width
         var baseline := at.y + font_size * 0.35
         # NOTE (mristin):
         # Where the ports crowd (e.g., Šibenik and Grebaštica), a name moves
-        # down or up until it is free; a short line leads to its port.
-        var box := Rect2(left, baseline - font_size * 0.8, width, font_size)
-        for shift in [0.0, 0.6, -0.6, 1.2, -1.2, 1.8, -1.8, 2.4]:
-            var moved := box
-            moved.position.y += shift * font_size
-            var free := true
-            for other in placed:
-                free = free and not other.intersects(moved)
-            if free:
-                box = moved
-                break
+        # down or up until it is free, and as the last resort to the other
+        # side of its dot; a short line leads to its port.
+        var box := Rect2()
+        var found := false
+        var natural := east
+        for side: bool in [east, not east]:
+            var left := at.x + gap if side else at.x - gap - width
+            for shift in LABEL_SHIFTS:
+                var moved := Rect2(
+                    left, baseline - font_size * 0.8 + shift * font_size, width, font_size
+                )
+                if not found and _is_free(moved, placed):
+                    box = moved
+                    found = true
+                    east = side
+        if not found:
+            var left := at.x + gap if east else at.x - gap - width
+            box = Rect2(left, baseline - font_size * 0.8, width, font_size)
         placed.append(box)
-        if absf(box.position.y + font_size * 0.8 - baseline) > 1.0:
-            baseline = box.position.y + font_size * 0.8
-            var end := Vector2(box.position.x if east else box.end.x, box.get_center().y)
-            canvas.draw_line(at, end, Color(color, 0.7), 1.5, true)
-        canvas.draw_string_outline(
-            font,
-            Vector2(left, baseline),
-            text,
-            HORIZONTAL_ALIGNMENT_LEFT,
-            -1,
-            font_size,
-            6,
-            Color(Paper.PAPER, 0.9)
+        (
+            result
+            . append(
+                {
+                    "port": port,
+                    "text": text,
+                    "size": font_size,
+                    "color": color,
+                    "at": at,
+                    "box": box,
+                    "east": east,
+                    "moved":
+                    east != natural or absf(box.position.y + font_size * 0.8 - baseline) > 1.0,
+                }
+            )
         )
-        canvas.draw_string(
-            font, Vector2(left, baseline), text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, color
-        )
+    return result
+
+
+## Whether a name may stand in the box: inside the frame of the chart, and
+## clear of the names placed before.
+func _is_free(box: Rect2, placed: Array[Rect2]) -> bool:
+    if not _frame.encloses(box):
+        return false
+    for other in placed:
+        if other.intersects(box):
+            return false
+    return true
+
+
+## The frame of the chart, in the coordinates of the control: the sea and, for
+## the large chart, the margin of paper on its sides, where the names fit.
+func frame() -> Rect2:
+    return _frame
 
 
 ## The ports, the targets first, then the errands, then the rest, so that the

@@ -89,12 +89,12 @@ We distribute the model unmodified.
 * License: public domain (the works and the scans, as marked on Wikimedia Commons).
 * **Altered:** cropped, tinted to ink on paper and shrunk.
 
-### The friends on the deck
+### The friends on the deck and the figureheads
 
-* Files: `assets/images/friends/*.png` (the cat, the parrot, the dog and the goat, seen from above).
+* Files: `assets/images/friends/*.png` (the cat, the parrot, the dog and the goat, seen from above) and `assets/images/figureheads/*.png` (the dolphin, the lion, the seagull, the mermaid and the goat, seen from above).
 * Made for Bird Dog with an image generator (ChatGPT), from our prompts.
 * License: part of the game, under its MIT license.
-* **Altered:** trimmed and shrunk to 256 × 256 pixels.
+* **Altered:** trimmed and shrunk (the friends to 256 × 256 pixels, the figureheads to 256 pixels high).
 
 ### Natural Earth (the chart)
 

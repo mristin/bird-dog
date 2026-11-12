@@ -1,10 +1,10 @@
 extends SceneTree
 ## Check that the texts fit their places, in English and in the drafts of every
-## translation: the lines and the buttons of every scene of every mission (on
-## the whole screen and in a half of it), the clue banner, the names of the
-## ports on their plates, the merchant's cards, the decorations, the titles of
-## the missions, the labels of the HUD, and the screen at the end of every
-## mission, whose text must stay above its button. A text which only fits when it
+## translation: the clue banner, the names of the ports on their plates, the
+## merchant's cards, the decorations, the titles of the missions, the labels
+## of the HUD, and the screen at the end of every mission, whose text must
+## stay above its button. The scenes of the missions are checked in
+## test_dialogue_layout.gd. A text which only fits when it
 ## shrinks below a readable size, or which needs more lines than its box has,
 ## fails.
 ##
@@ -13,6 +13,8 @@ extends SceneTree
 
 ## The smallest readable font size of a shrunk text (HandButton.fit_size).
 const READABLE := 20
+
+const Samples := preload("res://tests/godot/samples.gd")
 
 var _failures: Array[String] = []
 var _font: Font
@@ -33,9 +35,9 @@ func _run() -> void:
     # NOTE (mristin):
     # Every form for the addressed captains must fit, so we measure the longest.
     Grammar.longest_crew_forms = true
-    for code in _codes():
+    for code in Samples.codes():
         _language = code
-        var translation := _load_drafts(code)
+        var translation := Samples.load_drafts(code, "text_fit")
         TranslationServer.set_locale(code)
         _check_missions()
         _check_world()
@@ -52,40 +54,6 @@ func _run() -> void:
     else:
         print("RESULT: FAILED (%d)" % _failures.size())
         quit(1)
-
-
-## Every language of the game (translations/languages.json), or only those given
-## with --only=<code>[,<code>...].
-func _codes() -> Array[String]:
-    var codes: Array[String] = []
-    var listing: Array = JSON.parse_string(
-        FileAccess.get_file_as_string("res://translations/languages.json")
-    )
-    for language in listing:
-        codes.append(str(language["code"]))
-    for arg in OS.get_cmdline_user_args():
-        if arg.begins_with("--only="):
-            var only := arg.trim_prefix("--only=").split(",")
-            codes.assign(codes.filter(func(code: String) -> bool: return code in only))
-    return codes
-
-
-## Load the translation with its drafts (the fuzzy marks removed), as the game
-## does with --drafts.
-func _load_drafts(code: String) -> Translation:
-    if code == "en":
-        return null
-    var lines := PackedStringArray()
-    for line in FileAccess.get_file_as_string("res://translations/%s.po" % code).split("\n"):
-        if not (line.begins_with("#,") and "fuzzy" in line):
-            lines.append(line)
-    var path := "user://text_fit_%s.po" % code
-    var file := FileAccess.open(path, FileAccess.WRITE)
-    file.store_string("\n".join(lines))
-    file.close()
-    var translation := AddressedTranslation.new(load(path))
-    TranslationServer.add_translation(translation)
-    return translation
 
 
 func _width(text: String, size: int) -> float:
@@ -126,8 +94,6 @@ func _check_missions() -> void:
             "the title of %s on its card (size %d)" % [mission.id, layout["size"]]
         )
         _shrinks(tr(mission.victory_title), 72, 1160, "the end of %s" % mission.id)
-        for scene in _scenes(mission):
-            _check_scene(scene, mission.id)
 
 
 ## The screen at the end of every mission, with the most text it can have (the
@@ -151,78 +117,6 @@ func _check_ends() -> void:
             )
         )
         complete.free()
-
-
-func _scenes(mission: Mission) -> Array[Dictionary]:
-    var result: Array[Dictionary] = []
-    var run := MissionRun.new(mission, 5)
-    run.begin()
-    var port := mission.start_port
-    for turn in range(100):
-        if run.is_done():
-            break
-        var step := run.step()
-        var scene: Variant = step.opening(run)
-        if scene == null:
-            scene = step.arrive(run, port)
-        if scene == null:
-            var targets := step.target_ports(run)
-            if targets.is_empty():
-                break
-            port = targets[0]
-            result.append(
-                MissionStep.talk(
-                    null,
-                    [MissionRun.line("This is the wrong port, captain!"), run.clue],
-                    MissionRun.line("Goodbye!")
-                )
-            )
-            scene = step.arrive(run, port)
-        for count in range(20):
-            if scene == null:
-                break
-            result.append(scene)
-            var action: String
-            if scene["kind"] == "lineup" or scene["buttons"].size() > 1:
-                action = step.solution(run)
-            else:
-                action = scene["buttons"][0]["action"]
-            if action == "leave":
-                break
-            scene = run.step().act(run, action)
-        run.advance()
-    return result
-
-
-func _check_scene(scene: Dictionary, where: String) -> void:
-    var run := MissionRun.new(MissionCatalog.all()[0], 1)
-    if scene["kind"] == "lineup":
-        _shrinks(run.say(scene["question"]), 42, 880, "%s: the question" % where)
-        return
-
-    # NOTE (mristin):
-    # The speech in the whole screen and in a half (with the portrait).
-    var card := StoryCard.new()
-    card._run = run
-    for layout in [[1180.0, 40, 590.0], [552.0, 30, 620.0]]:
-        var size := card.speech_size(scene["lines"], layout[1], layout[0], layout[2])
-        var height := size * 1.7
-        for a_line in scene["lines"]:
-            var text := run.say(a_line)
-            height += size * 1.4 * maxi(1, _lines(text, size, layout[0])) + size * 0.6
-        _check(
-            height <= layout[2] + size,
-            "%s: the speech does not fit at %d pixels (%d of %d)" % [where, size, height, layout[2]]
-        )
-    card.free()
-
-    var buttons: Array = scene["buttons"].duplicate()
-    buttons.append({"label": MissionRun.line("What do you sell?")})
-    buttons.append({"label": MissionRun.line("Any work for us?")})
-    for entry in buttons:
-        var label := run.say(entry["label"])
-        _shrinks(label, 44, 404, "%s: a button" % where)
-        _shrinks(label, 30, 220, "%s: a button in a half" % where)
 
 
 # endregion

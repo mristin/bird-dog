@@ -3686,7 +3686,7 @@ msgstr "Ein goldener Löwe am Bug eures Boots. Für immer!"
 #: data/world/boosters/deco_mermaid.tres
 #, fuzzy
 msgid "A mermaid figurehead"
-msgstr "Eine Meerjungfrau-Galionsfigur"
+msgstr "Meerjungfrau am Bug"
 
 #. what a booster or a ship does, on its card, one short sentence
 #: data/world/boosters/deco_mermaid.tres
@@ -4046,7 +4046,7 @@ msgstr "ein Buch mit Messingschließe"
 #: data/world/hallmarks/carpenter_pencil.tres
 #, fuzzy
 msgid "a carpenter's pencil behind the ear"
-msgstr "ein Zimmermannsbleistift hinter dem Ohr"
+msgstr "ein Bleistift des Zimmermanns hinter dem Ohr"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/hallmarks/goose_quill.tres
@@ -8670,7 +8670,7 @@ msgstr "ein Buch mit Messingschließe"
 #, fuzzy
 msgctxt "acc"
 msgid "a carpenter's pencil behind the ear"
-msgstr "einen Zimmermannsbleistift hinter dem Ohr"
+msgstr "einen Bleistift des Zimmermanns hinter dem Ohr"
 
 #. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
 #. вина', 'bačvu vina'; empty keeps the plain hallmark

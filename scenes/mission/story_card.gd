@@ -26,31 +26,33 @@ const FULL := {
     "buttons_shop": Rect2(560, 790, 1240, 140),
     "button": Vector2(420, 130),
     "button_text": 44,
-    "row": Rect2(0, 290, 1920, 520),
-    "card": Vector2(500, 520),
+    "row": Rect2(0, 290, 1920, 600),
+    "card": Vector2(500, 600),
     "question": Rect2(260, 170, 1400, 100),
     "shop": Rect2(600, 336, 1200, 430),
     "offer": Vector2(300, 430),
 }
 ## The half keeps clear of its inner bottom corner, where the webcam stands
-## between the two halves (see the mission screen); the right half mirrors it.
+## between the two halves (see the mission screen): the answers stand in a row
+## above it, the merchant's farewell beside it. The right half mirrors it (see
+## tests/godot/test_dialogue_layout.gd).
 const HALF := {
     "title": Rect2(20, 16, 560, 90),
     "title_size": 44,
     "frame": Rect2(20, 120, 300, 420),
     "speech": Rect2(340, 110, 560, 540),
     "speech_alone": Rect2(60, 110, 840, 540),
-    "speech_shop": Rect2(20, 120, 920, 190),
+    "speech_shop": Rect2(20, 120, 920, 130),
     "text_size": 26,
-    "buttons": Rect2(60, 680, 660, 140),
+    "buttons": Rect2(20, 676, 920, 100),
     "buttons_shop": Rect2(60, 784, 660, 140),
-    "button": Vector2(236, 130),
+    "button": Vector2(236, 96),
     "button_text": 30,
     "row": Rect2(0, 230, 960, 520),
-    "card": Vector2(220, 480),
+    "card": Vector2(220, 520),
     "question": Rect2(20, 120, 920, 90),
-    "shop": Rect2(20, 334, 920, 430),
-    "offer": Vector2(220, 430),
+    "shop": Rect2(20, 266, 920, 500),
+    "offer": Vector2(220, 500),
 }
 
 ## Speech shrinks to fit its box, but not below this size.
@@ -140,10 +142,11 @@ func _build_talk() -> void:
     # NOTE (mristin):
     # The merchant's answers stand under the stall, not over its cards.
     var area: Rect2 = _layout["buttons_shop" if _scene["kind"] == "shop" else "buttons"]
-    var row := _row(area, 20 if compact else 40)
+    var separation := 20 if compact else 40
+    var row := _row(area, separation)
     var count: int = _scene["buttons"].size()
     var wanted: Vector2 = _layout["button"]
-    var width := minf(wanted.x, (area.size.x - 20.0 * (count - 1)) / count)
+    var width := minf(wanted.x, (area.size.x - separation * (count - 1)) / count)
     for entry in _scene["buttons"]:
         var button := HandButton.new()
         button.custom_minimum_size = Vector2(width, wanted.y)
@@ -165,6 +168,7 @@ func _build_shop() -> void:
         var card := BoosterCard.new()
         card.booster = offers[i]
         card.reason = _scene["reasons"][i]
+        card.compact = compact
         card.custom_minimum_size = Vector2(width, wanted.y)
         if card.reason == "":
             card.pressed.connect(_choose.bind("buy:%d" % i))
@@ -173,17 +177,24 @@ func _build_shop() -> void:
 
 func _build_lineup() -> void:
     var area: Rect2 = _layout["row"]
-    var row := _row(area, 20 if compact else 50)
+    var separation := 20 if compact else 40
+    var row := _row(area, separation)
     var candidates: Array = _scene["candidates"]
     var wanted: Vector2 = _layout["card"]
+    # NOTE (mristin):
+    # The cards keep a margin to the edges of the card (the screen or a half
+    # of it), however many candidates there are.
+    var margin := 20.0 if compact else 60.0
     var width := minf(
-        wanted.x, (area.size.x - 40.0 - 20.0 * (candidates.size() - 1)) / candidates.size()
+        wanted.x,
+        (area.size.x - margin * 2.0 - separation * (candidates.size() - 1)) / candidates.size()
     )
     for i in range(candidates.size()):
         var card: HandButton
         if candidates[i] is Person:
             var person_card := PersonCard.new()
             person_card.person = candidates[i]
+            person_card.text_size = PersonCard.HALF_TEXT_SIZE if compact else PersonCard.TEXT_SIZE
             card = person_card
         else:
             var boat_card := BoatCard.new()
@@ -284,23 +295,15 @@ func _draw_person(font: Font, person: Person) -> void:
 
 
 func _draw_talk(font: Font) -> void:
-    var person: Person = _scene.get("person")
-    var speech: Rect2 = _layout["speech"]
-    if _scene["kind"] == "shop":
-        speech = _layout["speech_shop"]
-
-    # NOTE (mristin):
-    # In a half of the screen, the merchant's stall needs the whole width.
-    var shop_in_half: bool = compact and _scene["kind"] == "shop"
-    if person != null and not shop_in_half:
-        _draw_person(font, person)
-    elif not shop_in_half:
-        speech = _layout["speech_alone"]
+    var placed := panels()
+    var speech: Rect2 = placed["speech"]
+    if placed.has("frame"):
+        _draw_person(font, _scene["person"])
 
     draw_rect(Rect2(speech.position + Vector2(8, 10), speech.size), Color(0, 0, 0, 0.3))
     draw_rect(speech, Color(Paper.PAPER, 0.97))
     draw_rect(speech, Paper.INK, false, 4.0)
-    var margin := 24.0 if compact else 40.0
+    var margin := speech_margin()
     var width := speech.size.x - margin * 2.0
     var text_size := speech_size(_scene["lines"], _layout["text_size"], width, speech.size.y)
     var y := speech.position.y + text_size * 1.7
@@ -333,6 +336,44 @@ func _draw_talk(font: Font) -> void:
             )
         )
         y += text_size * 1.4 * maxi(1, lines_used) + text_size * 0.6
+
+
+## The panels which the card draws, by name, in the coordinates of the card:
+## the plate with the name of the port ("title"), the frame of the person who
+## talks ("frame"), and what is said ("speech") or asked ("question"). The
+## buttons and the cards are the children of the rows (see controls()).
+func panels() -> Dictionary:
+    var result := {}
+    if _title != "":
+        result["title"] = _layout["title"]
+    if _scene["kind"] == "lineup":
+        result["question"] = _layout["question"]
+        return result
+    var speech: Rect2 = _layout["speech_shop"] if _scene["kind"] == "shop" else _layout["speech"]
+    # NOTE (mristin):
+    # In a half of the screen, the merchant's stall needs the whole width.
+    var shop_in_half: bool = compact and _scene["kind"] == "shop"
+    if _scene.get("person") != null and not shop_in_half:
+        result["frame"] = _layout["frame"]
+    elif not shop_in_half:
+        speech = _layout["speech_alone"]
+    result["speech"] = speech
+    return result
+
+
+## The buttons and the cards of the card (the answers, the merchant's stall,
+## the candidates of a line-up), in the order they were built.
+func controls() -> Array[Control]:
+    var result: Array[Control] = []
+    for row in _controls:
+        for child in row.get_children():
+            result.append(child)
+    return result
+
+
+## How far the speech stands in from the edges of its panel.
+func speech_margin() -> float:
+    return 24.0 if compact else 40.0
 
 
 ## How far the text of a line stands in, to make room for its icon (if any).

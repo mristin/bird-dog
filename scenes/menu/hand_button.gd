@@ -16,6 +16,10 @@ signal pressed
 
 ## The group of the buttons, so that the hand cursor finds them (it sticks to
 ## them, see HandCursor).
+## A label which would shrink below this share of its size on one line wraps
+## onto two (see label_lines).
+const WRAP_SHARE := 0.8
+
 const GROUP := "hand_buttons"
 
 ## The big line, e.g., "1".
@@ -162,6 +166,31 @@ func _draw_octagon(fill: Color, border: Color, border_width: float) -> void:
 
 
 ## The largest font size up to [param wanted] at which the text fits the width.
+## The lines of a label, each [text, font size], in a button [param width]
+## wide with [param height] pixels of room: one line, shrunk to fit, or two
+## lines split between the words, when one line would shrink below
+## WRAP_SHARE of [param wanted] and two lines can be larger.
+static func label_lines(
+    font: Font, text: String, wanted: int, width: float, height: float
+) -> Array:
+    var single := fit_size(font, text, wanted, width)
+    var best := [[text, single]]
+    if single >= wanted * WRAP_SHARE:
+        return best
+    var words := text.split(" ")
+    var best_size := single
+    for i in range(1, words.size()):
+        var first := " ".join(words.slice(0, i))
+        var second := " ".join(words.slice(i))
+        var both := mini(
+            fit_size(font, first, wanted, width), fit_size(font, second, wanted, width)
+        )
+        if both > best_size and both * 2.3 <= height:
+            best_size = both
+            best = [[first, both], [second, both]]
+    return best
+
+
 static func fit_size(font: Font, line: String, wanted: int, width: float) -> int:
     var font_size := wanted
     while (
@@ -228,7 +257,8 @@ func _draw() -> void:
     if title != "":
         lines.append([title, fit_size(font, title, title_size, size.x - 16.0)])
     if text != "":
-        lines.append([text, fit_size(font, text, text_size, size.x - 16.0)])
+        var room := size.y - top - 12.0 - (title_size * 1.15 if title != "" else 0.0)
+        lines.append_array(label_lines(font, text, text_size, size.x - 16.0, room))
     var total := 0.0
     for line in lines:
         total += line[1] * 1.15

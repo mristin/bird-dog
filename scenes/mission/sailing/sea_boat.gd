@@ -27,6 +27,22 @@ const FOAM := Color(1, 1, 1)
 const FRIEND_AT_Y := 33.0
 const FRIEND_SIZE := 30.0
 
+## The figurehead stands this long at the bow, larger than life, so that it
+## shows at sea; its base sits this far forward, on the stem.
+const FIGUREHEAD_LENGTH := 58.0
+const FIGUREHEAD_BASE_Y := -52.0
+
+## The figureheads, seen from above, by their pattern (see Decoration), their
+## heads to the front; drawn so that they look right whichever way the boat
+## turns.
+const FIGUREHEAD_PICTURES := {
+    "dolphin": preload("res://assets/images/figureheads/dolphin.png"),
+    "lion": preload("res://assets/images/figureheads/lion.png"),
+    "gull": preload("res://assets/images/figureheads/gull.png"),
+    "mermaid": preload("res://assets/images/figureheads/mermaid.png"),
+    "goat": preload("res://assets/images/figureheads/goat.png"),
+}
+
 ## The friends on the deck, seen from above, by their pattern (see Decoration);
 ## drawn so that they look right whichever way the boat turns.
 const FRIEND_PICTURES := {
@@ -547,84 +563,19 @@ func _draw_sail_pattern(
     draw_set_transform(Vector2.ZERO, heading, Vector2.ONE * _length())
 
 
-## The figurehead at the bow, under the bowsprit.
+## The figurehead at the bow (a dolphin, a lion, a seagull, a mermaid or a
+## goat), seen from above (see FIGUREHEAD_PICTURES): its carved base sits on
+## the stem, and the figure reaches forward along the bowsprit.
 func _draw_figurehead(figure: Decoration) -> void:
-    # NOTE (mristin):
-    # The figurehead is drawn larger than life, so that it shows at sea.
-    draw_set_transform(
-        Vector2(0, -64).rotated(heading) * _length(), heading, Vector2.ONE * _length() * 1.9
+    var picture: Texture2D = FIGUREHEAD_PICTURES.get(figure.pattern)
+    if picture == null:
+        return
+    var drawn := Vector2(
+        FIGUREHEAD_LENGTH * picture.get_width() / picture.get_height(), FIGUREHEAD_LENGTH
     )
-    var at := Vector2(0, -4)
-    var fill := figure.color
-    match figure.pattern:
-        "dolphin":
-            draw_colored_polygon(
-                PackedVector2Array(
-                    [
-                        at + Vector2(0, -12),
-                        at + Vector2(6, -2),
-                        at + Vector2(4, 8),
-                        at + Vector2(-4, 8),
-                        at + Vector2(-6, -2)
-                    ]
-                ),
-                fill
-            )
-            draw_colored_polygon(
-                PackedVector2Array([at + Vector2(-8, 8), at + Vector2(8, 8), at + Vector2(0, 4)]),
-                fill.darkened(0.2)
-            )
-        "lion":
-            draw_circle(at, 9, fill.darkened(0.15))
-            draw_circle(at, 6, fill)
-        "gull":
-            draw_polyline(
-                PackedVector2Array(
-                    [
-                        at + Vector2(-12, 2),
-                        at + Vector2(-4, -4),
-                        at + Vector2(0, 0),
-                        at + Vector2(4, -4),
-                        at + Vector2(12, 2)
-                    ]
-                ),
-                fill,
-                4.0,
-                true
-            )
-            draw_circle(at, 3, figure.color_2)
-        "mermaid":
-            # NOTE (mristin):
-            # Her tail curls back to the bow, her arms reach forward, and her
-            # golden hair streams over her shoulders.
-            draw_colored_polygon(
-                PackedVector2Array(
-                    [
-                        at + Vector2(-4, -2),
-                        at + Vector2(4, -2),
-                        at + Vector2(3, 6),
-                        at + Vector2(0, 11),
-                        at + Vector2(-3, 6)
-                    ]
-                ),
-                fill
-            )
-            draw_colored_polygon(
-                PackedVector2Array(
-                    [at + Vector2(0, 10), at + Vector2(-6, 15), at + Vector2(6, 15)]
-                ),
-                fill.darkened(0.2)
-            )
-            draw_line(at + Vector2(-3, -3), at + Vector2(-5, -10), figure.color_2, 1.6, true)
-            draw_line(at + Vector2(3, -3), at + Vector2(5, -10), figure.color_2, 1.6, true)
-            draw_circle(at + Vector2(0, -6), 3.6, Color(0.9, 0.7, 0.25))
-            draw_circle(at + Vector2(0, -7), 2.6, figure.color_2)
-        "goat":
-            draw_circle(at, 6, fill)
-            draw_arc(at + Vector2(-5, -4), 5, PI, PI * 1.8, 6, figure.color_2, 2.5)
-            draw_arc(at + Vector2(5, -4), 5, PI * 1.2, TAU, 6, figure.color_2, 2.5)
-    draw_circle(at, 1.5, INK)
-    draw_set_transform(Vector2.ZERO, heading, Vector2.ONE * _length())
+    draw_texture_rect(
+        picture, Rect2(Vector2(-drawn.x * 0.5, FIGUREHEAD_BASE_Y - drawn.y), drawn), false
+    )
 
 
 ## Colourful ribbons hanging from the yard, waving in the wind.

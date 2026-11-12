@@ -2,7 +2,8 @@ class_name BoosterCard
 extends HandButton
 
 ## A booster on the merchant's stall, as a button: its picture (a decoration
-## shows on a little boat, a friend for the deck as itself), its name, what it
+## shows on a little boat, a friend for the deck and a figurehead as
+## themselves), its name, what it
 ## does, and its price. A booster the crew can't buy now is greyed, with the
 ## reason: too few ducats, two boosters for the leg already, or the crew has
 ## one already.
@@ -11,10 +12,11 @@ extends HandButton
 const NAME_SIZE := 25
 const DESCRIPTION_SIZE := 22
 
-## A friend for the deck is this large on the card, in pixels.
-const FRIEND_SIZE := 130.0
-
 var booster: Booster
+
+## Whether the card is in a half of the screen: its picture and its texts move
+## up, so that a long description fits.
+var compact := false
 
 ## Why the crew can't buy it ("" if it can; see MissionRun.why_not).
 var reason := ""
@@ -22,19 +24,35 @@ var reason := ""
 var _boat: SeaBoat
 
 
-## A friend for the deck shows itself, seen from above as on the boat (see
-## SeaBoat.FRIEND_PICTURES), instead of a little boat; null for any other
-## booster.
-func _friend_picture() -> Texture2D:
+## A friend for the deck and a figurehead show themselves, seen from above as
+## on the boat (see SeaBoat.FRIEND_PICTURES and SeaBoat.FIGUREHEAD_PICTURES),
+## instead of a little boat; null for any other booster.
+func picture() -> Texture2D:
     var decoration := booster.decoration if booster != null else null
-    if decoration == null or decoration.slot != "friend":
+    if decoration == null:
         return null
-    return SeaBoat.FRIEND_PICTURES.get(decoration.pattern)
+    if decoration.slot == "friend":
+        return SeaBoat.FRIEND_PICTURES.get(decoration.pattern)
+    if decoration.slot == "figurehead":
+        return SeaBoat.FIGUREHEAD_PICTURES.get(decoration.pattern)
+    return null
+
+
+## Where the picture stands: as large as it fits between the top of the card
+## and the name, keeping its shape, centred.
+func picture_rect() -> Rect2:
+    var texture := picture()
+    var top := 10.0
+    var bottom := 172.0 - _lift() - NAME_SIZE - 6.0
+    var height := bottom - top
+    var width := minf(size.x - 20.0, height * texture.get_width() / texture.get_height())
+    height = width * texture.get_height() / texture.get_width()
+    return Rect2(Vector2((size.x - width) * 0.5, bottom - height), Vector2(width, height))
 
 
 func _ready() -> void:
     super()
-    if booster == null or booster.decoration == null or _friend_picture() != null:
+    if booster == null or booster.decoration == null or picture() != null:
         return
     # NOTE (mristin):
     # A decoration shows on a little boat, sailing to the right.
@@ -45,14 +63,14 @@ func _ready() -> void:
     _boat.wind_to = PI * 1.3
     _boat.scale = Vector2.ONE * 0.9
     _boat.decorations = {booster.decoration.slot: booster.decoration}
-    _boat.position = Vector2(size.x * 0.5, 82)
+    _boat.position = Vector2(size.x * 0.5, 82 - _lift())
     add_child(_boat)
 
 
 func _process(delta: float) -> void:
     super(delta)
     if _boat != null:
-        _boat.position = Vector2(size.x * 0.5, 82)
+        _boat.position = Vector2(size.x * 0.5, 82 - _lift())
 
 
 func _draw() -> void:
@@ -62,13 +80,9 @@ func _draw() -> void:
     var font := ThemeDB.fallback_font
     var faded := reason != ""
     if booster.decoration == null:
-        BoosterIcons.draw(self, booster.effect, Vector2(size.x * 0.5, 80), 52)
-    var friend := _friend_picture()
-    if friend != null:
-        var half := FRIEND_SIZE * 0.5
-        draw_texture_rect(
-            friend, Rect2(Vector2(size.x * 0.5 - half, 82 - half), Vector2(half, half) * 2.0), false
-        )
+        BoosterIcons.draw(self, booster.effect, Vector2(size.x * 0.5, 80 - _lift()), 52)
+    if picture() != null:
+        draw_texture_rect(picture(), picture_rect(), false)
     # NOTE (mristin):
     # The name may take two lines, so that a long name (in any language)
     # stays readable; the description follows below it.
@@ -76,7 +90,7 @@ func _draw() -> void:
     var name_lines := mini(2, _lines(font, name_text, NAME_SIZE, size.x - 20))
     draw_multiline_string(
         font,
-        Vector2(10, 172),
+        Vector2(10, 172 - _lift()),
         name_text,
         HORIZONTAL_ALIGNMENT_CENTER,
         size.x - 20,
@@ -86,7 +100,7 @@ func _draw() -> void:
     )
     draw_multiline_string(
         font,
-        Vector2(20, 180 + name_lines * NAME_SIZE * 1.2),
+        Vector2(20, description_top(name_lines)),
         tr(booster.description),
         HORIZONTAL_ALIGNMENT_CENTER,
         size.x - 40,
@@ -128,6 +142,16 @@ func _draw() -> void:
             HandButton.fit_size(font, why, 28, size.x - 16),
             Paper.RED
         )
+
+
+## Where the first line of the description stands (its baseline), under a
+## name of [param name_lines] lines.
+func description_top(name_lines: int) -> float:
+    return 180 - _lift() + name_lines * NAME_SIZE * 1.2
+
+
+func _lift() -> float:
+    return 30.0 if compact else 0.0
 
 
 static func _lines(font: Font, text: String, size: int, width: float) -> int:
