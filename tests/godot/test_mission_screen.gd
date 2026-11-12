@@ -141,20 +141,24 @@ func _run() -> void:
     _check(not scene._all_paused, "after the meeting, the boats sail on")
 
     # NOTE (mristin):
-    # The play-tests found boats which sailed from Kotor to Herceg Novi (the bay
-    # button) and left Herceg Novi back into the bay, to Kotor.
-    var herceg_novi := World.port("herceg_novi")
-    var kotor_km := World.port_km(World.port("kotor"))
-    var herceg_novi_km := World.port_km(herceg_novi)
-    scene._entry_headings[0] = (herceg_novi_km - kotor_km).angle() + PI / 2
-    scene._launch(herceg_novi, 0)
-    var leaving: Vector2 = scene._helms[0].km
-    var ahead: Vector2 = leaving + Vector2.UP.rotated(scene._helms[0].heading) * 10.0
-    var away := ahead.distance_to(kotor_km) > leaving.distance_to(kotor_km)
-    _check(
-        leaving.y > herceg_novi_km.y and away,
-        "a boat leaves Herceg Novi to the open sea, not back to Kotor"
-    )
+    # The play-tests found boats which left Herceg Novi back into the bay, to
+    # Kotor (after the bay button), and boats which left Corfu and Ulcinj onto
+    # the reefs or the land. Such ports send every boat one way, whichever way
+    # it came in, clear of the land and the reefs.
+    var one_way := World.ports().filter(func(port: Port) -> bool: return port.leave_heading >= 0.0)
+    _check(one_way.size() >= 3, "Herceg Novi, Corfu and Ulcinj send the boats one way")
+    for port: Port in one_way:
+        var wanted := deg_to_rad(port.leave_heading)
+        scene._entry_headings[0] = wanted + PI
+        scene._launch(port, 0)
+        var helm: Helm = scene._helms[0]
+        _check(
+            (
+                is_equal_approx(helm.heading, wanted)
+                and scene._chart.is_clear_ahead(helm.km, wanted, 12.0)
+            ),
+            "a boat leaves %s the way the port sends it, clear of the land and the reefs" % port.id
+        )
 
     scene._ask_to_leave()
     await _frames(1)

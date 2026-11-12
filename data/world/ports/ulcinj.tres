@@ -26,6 +26,7 @@ id = "ulcinj"
 name = "Ulcinj"
 latitude = 41.929
 icon = "corsairs"
+leave_heading = 270.0
 longitude = 19.205
 power = ExtResource("2_ext")
 facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2")])

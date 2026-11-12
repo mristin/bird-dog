@@ -31,3 +31,10 @@ extends Resource
 ## a button of the port, since the way between them is too narrow to sail
 ## (Herceg Novi and Kotor); "" for none.
 @export var bay_port_id := ""
+
+## The compass heading in which a boat always leaves the port, in degrees (0 is
+## north, 90 east, 180 south, 270 west), where the way it came in would lead
+## it onto the land or the reefs: south out of the Bay of Kotor from Herceg
+## Novi, north up the channel from Corfu, west from Ulcinj. -1 for none: the
+## boat leaves the way it came in (see ChartView.departure).
+@export_range(-1, 359) var leave_heading := -1.0

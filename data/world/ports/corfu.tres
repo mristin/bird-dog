@@ -32,6 +32,7 @@ id = "corfu"
 name = "Corfu"
 latitude = 39.624
 icon = "two_peaks"
+leave_heading = 10.0
 longitude = 19.921
 power = ExtResource("2_ext")
 facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2"), SubResource("fact_3")])

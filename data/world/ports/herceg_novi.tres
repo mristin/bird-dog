@@ -26,6 +26,7 @@ id = "herceg_novi"
 name = "Herceg Novi"
 latitude = 42.453
 icon = "mimosa_fort"
+leave_heading = 180.0
 longitude = 18.531
 power = ExtResource("2_ext")
 facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2")])
