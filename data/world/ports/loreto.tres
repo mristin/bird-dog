@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/papal_states.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/biagio.tres" id="local_biagio"]
+[ext_resource type="Resource" path="res://data/world/people/market_woman.tres" id="local_market_woman"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("5_ext")
+kind = "saint"
+phrase = "the town of the Holy House, where the pilgrims go"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("5_ext")
+kind = "nature"
+phrase = "the town of the great dome on the hill by the sea"
+difficulty = 2
+
+[resource]
+script = ExtResource("1_ext")
+id = "loreto"
+name = "Loreto"
+latitude = 43.432
+icon = "holy_house"
+longitude = 13.665
+power = ExtResource("2_ext")
+facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2")])
+locals = Array[ExtResource("4_ext")]([ExtResource("local_biagio"), ExtResource("local_market_woman")])

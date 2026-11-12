@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/papal_states.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/tonin.tres" id="local_tonin"]
+[ext_resource type="Resource" path="res://data/world/people/old_fisher.tres" id="local_old_fisher"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("5_ext")
+kind = "goods"
+phrase = "the town of the eels in the lagoon"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("5_ext")
+kind = "power"
+phrase = "the town which the Pope took from the Dukes of Ferrara"
+difficulty = 3
+
+[resource]
+script = ExtResource("1_ext")
+id = "comacchio"
+name = "Comacchio"
+latitude = 44.69
+icon = "eel_lagoon"
+longitude = 12.24
+power = ExtResource("2_ext")
+facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2")])
+locals = Array[ExtResource("4_ext")]([ExtResource("local_tonin"), ExtResource("local_old_fisher")])

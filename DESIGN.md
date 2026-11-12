@@ -52,6 +52,8 @@ The chart covers the Adriatic and the north of the Ionian Sea, down to Preveza.
 | **Pula** | Croatia | Venice | **The captains' home port** (nobody knows where Liso is from, but Liso lives here for now). The Roman Arena, the Arch of the Sergii, Istrian stone |
 | Rovinj | Croatia | Venice | The old town on its island (joined to the land only in 1763), the coffin of St. Euphemia washed ashore, Istrian stone for Venice |
 | Venice | Italy | Venice | The Doge, the Arsenal, gondolas, glass from Murano |
+| Caorle | Italy | Venice | A fishing town with a round bell tower, the church of the Madonna on the sea wall |
+| Chioggia | Italy | Venice | The fishermen's "little Venice" at the south end of the lagoon, the War of Chioggia (Venice beat Genoa there, 1380) |
 | Trieste | Italy | Habsburg | Salt, the Habsburg eagle |
 | Rijeka | Croatia | Habsburg | The city clock tower, paper and timber trade |
 | Senj | Croatia | Habsburg | The Nehaj fortress, the uskoks, the bura wind |
@@ -72,11 +74,21 @@ The chart covers the Adriatic and the north of the Ionian Sea, down to Preveza.
 | **Corfu** | Greece | Venice | The old fortress, St. Spyridon, olives |
 | Parga | Greece | Venice | A tiny Venetian town under the castle, oranges and lemons |
 | **Preveza** | Greece | Ottoman | The fortress at the narrow strait, the seat of the kadı in our story. **The finale** |
+| Comacchio | Italy | Papal States | The eels of the lagoon; the Pope took it from the Dukes of Ferrara in 1598. On the chart at the edge of its lagoon |
+| Ravenna | Italy | Papal States | The golden mosaics of San Vitale, the tomb of Dante. The town lies a few kilometres inland; on the chart at its shore |
 | Rimini | Italy | Papal States | The Roman bridge of Tiberius, the Arch of Augustus |
+| Fano | Italy | Papal States | Named after Fortuna (Fanum Fortunae); the fountain of Fortuna with her sail (1593) |
 | Ancona | Italy | Papal States | The Arch of Trajan, the papal keys |
+| Loreto | Italy | Papal States | The Holy House of Mary, the goal of the pilgrims, under its great dome (1500). The town lies on a hill a few kilometres inland; on the chart at its shore (Porto Recanati) |
+| Pescara | Italy | Naples (Spain) | The Spanish fortress at the mouth of the river, the Roman Aternum |
 | Ortona | Italy | Naples (Spain) | The bones of St. Thomas the Apostle (brought from Chios in 1258), the Aragonese castle on the cliff |
+| Termoli | Italy | Naples (Spain) | The old town on a rock in the sea, the castle of Emperor Frederick II |
 | Vieste | Italy | Naples (Spain) | The white rock of Pizzomunno, the tip of the Gargano |
+| Manfredonia | Italy | Naples (Spain) | Founded by King Manfred (1256), the harbour of the pilgrims to the cave of St. Michael on Monte Sant'Angelo |
+| Barletta | Italy | Naples (Spain) | The bronze giant (the Colossus), the challenge of the thirteen knights (1503) |
+| Trani | Italy | Naples (Spain) | The white cathedral by the sea, the old laws of the sea (*Ordinamenta maris*) |
 | Bari | Italy | Naples (Spain) | The bones of St. Nicholas, the Swabian castle |
+| Monopoli | Italy | Naples (Spain) | The olive oil, the name ("the only town" in Greek), the castle of Charles V |
 | Brindisi | Italy | Naples (Spain) | The Roman column at the end of the Via Appia |
 | Otranto | Italy | Naples (Spain) | The cathedral mosaic, the easternmost point of Italy |
 
@@ -174,6 +186,8 @@ The destination clues are assembled from a clue template ("He asked the way to {
 |---|---|
 | Pula | the town with the great Roman arena; the town with the arch of the Sergii; the harbour at the very tip of Istria |
 | Venice | the city of the Doge; the city whose streets are canals; the city of the great Arsenal, where they build a galley in a day; the city of the glassblowers of Murano |
+| Caorle | the fishing town with the round bell tower; the town of the little church of the Madonna on the sea wall |
+| Chioggia | the little Venice of the fishermen at the end of the lagoon; the town where Venice beat the Genoese in the great war |
 | Trieste | the town of the Habsburg salt pans; the harbour of the double-headed eagle at the top of the sea |
 | Rijeka | the town with the clock tower of the Habsburgs; the town where the paper and the timber are traded |
 | Senj | the town under the Nehaj fortress; the home of the uskoks; the town where the bura blows hardest |
@@ -194,11 +208,21 @@ The destination clues are assembled from a clue template ("He asked the way to {
 | Corfu | the island of St. Spyridon; the island of the old fortress on two peaks; the island of the olives of Venice |
 | Parga | the little Venetian town under the castle; the town of the oranges and the lemons |
 | Preveza | the fortress at the narrow strait; the town where the kadı holds court |
+| Comacchio | the town of the eels in the lagoon; the town which the Pope took from the Dukes of Ferrara |
+| Ravenna | the town of the golden mosaics; the town where the poet Dante is buried |
 | Rimini | the town with the Roman bridge of five arches; the town of the arch of Augustus |
+| Fano | the town named after Fortuna, the goddess of luck; the town of the fountain where Fortuna holds a sail |
 | Ancona | the town with the arch of Trajan; the harbour of the Pope |
+| Loreto | the town of the Holy House, where the pilgrims go; the town of the great dome on the hill by the sea |
+| Pescara | the fortress at the mouth of the river Pescara; the town which the Romans called Aternum |
 | Ortona | the town where they keep the bones of St. Thomas the Apostle; the town of the castle on the cliff |
+| Termoli | the old town on a rock which juts into the sea; the town of the castle of Emperor Frederick |
 | Vieste | the town of the tall white rock in the sea; the town at the tip of the Gargano |
+| Manfredonia | the harbour of the pilgrims to the cave of St. Michael; the town which King Manfred founded |
+| Barletta | the town of the bronze giant; the town where thirteen Italian knights beat thirteen French knights |
+| Trani | the town of the white cathedral right by the sea; the town of the old laws of the sea |
 | Bari | the town where they keep the bones of St. Nicholas; the town of the Swabian castle |
+| Monopoli | the harbour full of barrels of olive oil; the town whose name means 'the only town' |
 | Brindisi | the town at the end of the Via Appia; the town of the Roman column |
 | Otranto | the easternmost town of Italy; the town of the great mosaic of the tree of life |
 

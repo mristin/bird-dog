@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/naples.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/vito.tres" id="local_vito"]
+[ext_resource type="Resource" path="res://data/world/people/market_woman.tres" id="local_market_woman"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("5_ext")
+kind = "goods"
+phrase = "the harbour full of barrels of olive oil"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("5_ext")
+kind = "nature"
+phrase = "the town whose name means 'the only town'"
+difficulty = 2
+
+[resource]
+script = ExtResource("1_ext")
+id = "monopoli"
+name = "Monopoli"
+latitude = 40.951
+icon = "harbour_castle"
+longitude = 17.303
+power = ExtResource("2_ext")
+facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2")])
+locals = Array[ExtResource("4_ext")]([ExtResource("local_vito"), ExtResource("local_market_woman")])

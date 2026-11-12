@@ -58,6 +58,18 @@ const NAMES: Array[String] = [
     "cliff_castle",
     "white_rock",
     "island_campanile",
+    "round_campanile",
+    "lagoon_canal",
+    "eel_lagoon",
+    "mosaic_church",
+    "fortuna",
+    "holy_house",
+    "river_fortress",
+    "rock_town",
+    "angel_castle",
+    "bronze_giant",
+    "sea_cathedral",
+    "harbour_castle",
     "town",
 ]
 
@@ -66,69 +78,11 @@ const NAMES: Array[String] = [
 static func draw(c: CanvasItem, icon: String, at: Vector2, scale := 1.0) -> void:
     c.draw_set_transform(at, 0.0, Vector2.ONE * scale)
     _shape(c, _ellipse(Vector2(0, 2), Vector2(58, 11)), GROUND, 1.5)
-    match icon:
-        "arena":
-            _arena(c)
-        "campanile":
-            _campanile(c)
-        "salt_eagle":
-            _salt_eagle(c)
-        "clock_tower":
-            _clock_tower(c)
-        "nehaj":
-            _nehaj(c)
-        "salt_pans":
-            _salt_pans(c)
-        "rotunda":
-            _rotunda(c)
-        "bell_figs":
-            _bell_figs(c)
-        "cathedral":
-            _cathedral(c)
-        "palace":
-            _palace(c)
-        "lavender":
-            _lavender(c)
-        "walled_island":
-            _walled_island(c)
-        "long_walls":
-            _long_walls(c)
-        "ragusa":
-            _ragusa(c)
-        "mimosa_fort":
-            _mimosa_fort(c)
-        "mountain_walls":
-            _mountain_walls(c)
-        "corsairs":
-            _corsairs(c)
-        "amphitheatre":
-            _amphitheatre(c)
-        "bay_castle":
-            _bay_castle(c)
-        "two_peaks":
-            _two_peaks(c)
-        "oranges":
-            _oranges(c)
-        "strait_fort":
-            _strait_fort(c)
-        "trajan_arch":
-            _trajan_arch(c)
-        "basilica":
-            _basilica(c)
-        "column":
-            _column(c)
-        "rose_window":
-            _rose_window(c)
-        "roman_bridge":
-            _roman_bridge(c)
-        "cliff_castle":
-            _cliff_castle(c)
-        "white_rock":
-            _white_rock(c)
-        "island_campanile":
-            _island_campanile(c)
-        _:
-            _town(c)
+    # NOTE (mristin):
+    # Every icon in NAMES is drawn by the function of its name, e.g., "arena"
+    # by _arena; any other icon is a town.
+    var known := icon if NAMES.has(icon) else "town"
+    Callable(PortIcons, "_" + known).call(c)
     c.draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
@@ -790,5 +744,211 @@ static func _white_rock(c: CanvasItem) -> void:
     )
     for y in [-60.0, -40.0, -20.0]:
         c.draw_line(Vector2(28, y), Vector2(42, y + 4), Color(INK, 0.35), 1.5)
+
+
+## Caorle: the fishing town with the round bell tower of its cathedral, and
+## the little church of the Madonna on the sea wall.
+static func _round_campanile(c: CanvasItem) -> void:
+    _house(c, -50, 18, 20)
+    _box(c, -30, -36, 34, 36, STONE)
+    _roof(c, -30, -36, 34, 14)
+    _box(c, 10, -84, 16, 84, STONE)
+    for y in [-70.0, -50.0, -30.0]:
+        c.draw_line(Vector2(10, y), Vector2(26, y), STONE_DARK, 1.5)
+    _windows(c, 10, -78, 16, 1, 8)
+    _shape(c, PackedVector2Array([Vector2(8, -84), Vector2(28, -84), Vector2(18, -104)]), ROOF)
+    _box(c, 34, -22, 20, 22, WHITE)
+    _roof(c, 34, -22, 20, 10)
+
+
+## Chioggia: the little Venice of the fishermen, the houses along its canal and
+## a fishing boat with a coloured sail.
+static func _lagoon_canal(c: CanvasItem) -> void:
+    _shape(c, _quad(-56, -4, 112, 8), Color(WATER, 0.9), 1.2)
+    _house(c, -52, 18, 34)
+    _house(c, -32, 16, 26)
+    _tower(c, -14, 12, 60)
+    _house(c, 2, 16, 30)
+    _house(c, 20, 18, 22)
+    _boat(c, Vector2(38, -4), ORANGE)
+
+
+## Comacchio: the lagoon of the eels, with a fisherman's reed hut on the water
+## and an eel.
+static func _eel_lagoon(c: CanvasItem) -> void:
+    _shape(c, _ellipse(Vector2(0, -6), Vector2(56, 14)), Color(WATER, 0.9), 1.5)
+    _box(c, -44, -34, 30, 22, GROUND)
+    _shape(c, PackedVector2Array([Vector2(-48, -34), Vector2(-10, -34), Vector2(-29, -58)]), YELLOW)
+    c.draw_rect(Rect2(-33, -26, 8, 14), DARK)
+    var eel := PackedVector2Array()
+    for i in range(14):
+        eel.append(Vector2(2 + i * 4, -8 + sin(i * 0.9) * 6))
+    c.draw_polyline(eel, INK, 6.0, true)
+    c.draw_polyline(eel, COPPER, 3.5, true)
+    for x in [-56.0, 50.0]:
+        c.draw_line(Vector2(x, 0), Vector2(x - 4, -26), GREEN_DARK, 2.0)
+        c.draw_line(Vector2(x + 4, 0), Vector2(x + 6, -22), GREEN_DARK, 2.0)
+
+
+## Ravenna: the round church of San Vitale with its golden mosaics, and the
+## little tomb of Dante.
+static func _mosaic_church(c: CanvasItem) -> void:
+    _box(c, -42, -40, 64, 40, STONE)
+    _box(c, -30, -62, 40, 22, STONE)
+    _shape(c, PackedVector2Array([Vector2(-34, -62), Vector2(14, -62), Vector2(-10, -78)]), ROOF)
+    for i in range(4):
+        c.draw_rect(Rect2(-36 + i * 15, -30, 8, 18), GOLD)
+        c.draw_rect(Rect2(-36 + i * 15, -30, 8, 18), INK, false, 1.2)
+    _box(c, 30, -24, 22, 24, WHITE)
+    _dome(c, Vector2(41, -24), 9, STONE_DARK)
+
+
+## Fano: the town of Fortuna, the goddess of luck, who stands on a ball on
+## her fountain and holds a sail in the wind.
+static func _fortuna(c: CanvasItem) -> void:
+    _house(c, -52, 18, 26)
+    _tower(c, -32, 12, 56)
+    _house(c, 32, 20, 24)
+    _shape(c, _ellipse(Vector2(4, -6), Vector2(24, 7), 18), WATER, 1.5)
+    _box(c, -2, -26, 12, 18, STONE)
+    c.draw_circle(Vector2(4, -32), 6, GOLD)
+    c.draw_arc(Vector2(4, -32), 6, 0, TAU, 14, INK, 1.5, true)
+    c.draw_line(Vector2(4, -38), Vector2(4, -62), GOLD, 4.0, true)
+    c.draw_circle(Vector2(4, -66), 4, GOLD)
+    c.draw_line(Vector2(-8, -74), Vector2(16, -54), INK, 1.5)
+    _shape(
+        c,
+        PackedVector2Array(
+            [Vector2(-8, -74), Vector2(-24, -66), Vector2(-20, -54), Vector2(16, -54)]
+        ),
+        WHITE,
+        1.5
+    )
+
+
+## Loreto: the great dome of the Holy House on its hill, and the pilgrims
+## coming up from the sea.
+static func _holy_house(c: CanvasItem) -> void:
+    _hill(c, -58, 40, Vector2(-8, -40))
+    _box(c, -30, -64, 44, 24, STONE)
+    _dome(c, Vector2(-8, -64), 15, COPPER)
+    _tower(c, 18, 10, 72, ROOF, -6)
+    for x in [24.0, 36.0, 48.0]:
+        c.draw_circle(Vector2(x, -14), 3.5, PURPLE)
+        c.draw_line(Vector2(x, -10), Vector2(x, 0), PURPLE, 4.0)
+        c.draw_line(Vector2(x + 4, -16), Vector2(x + 4, 0), DARK, 1.5)
+
+
+## Pescara: the fortress of the Spaniards at the mouth of the river.
+static func _river_fortress(c: CanvasItem) -> void:
+    _shape(
+        c,
+        PackedVector2Array([Vector2(-6, 0), Vector2(6, 0), Vector2(14, -40), Vector2(8, -40)]),
+        WATER,
+        1.2
+    )
+    _shape(
+        c,
+        PackedVector2Array(
+            [
+                Vector2(-56, 0),
+                Vector2(-52, -30),
+                Vector2(-40, -38),
+                Vector2(-14, -38),
+                Vector2(-10, 0)
+            ]
+        ),
+        STONE
+    )
+    _merlons(c, -40, 26, -38, STONE)
+    _tower(c, -36, 14, 58, Color(0, 0, 0, 0))
+    _box(c, 20, -30, 36, 30, STONE)
+    _merlons(c, 20, 36, -30, STONE)
+    _flag(c, Vector2(38, -30), YELLOW)
+
+
+## Termoli: the old town on its rock out in the sea, with the castle of Emperor
+## Frederick.
+static func _rock_town(c: CanvasItem) -> void:
+    _shape(
+        c,
+        PackedVector2Array([Vector2(-56, 0), Vector2(-50, -24), Vector2(46, -26), Vector2(56, 0)]),
+        Color(0.7, 0.66, 0.56)
+    )
+    _house(
+        c,
+        -46,
+        16,
+        22,
+    )
+    _house(c, -28, 16, 18)
+    _box(c, 4, -66, 34, 40, STONE)
+    _merlons(c, 4, 34, -66, STONE)
+    _tower(c, 30, 12, 50, Color(0, 0, 0, 0), -26)
+    _tower(c, -10, 10, 58, ROOF, -24)
+
+
+## Manfredonia: the castle of King Manfred by the sea, and St. Michael with his
+## sword above the cave on Mount Gargano.
+static func _angel_castle(c: CanvasItem) -> void:
+    _hill(c, -2, 58, Vector2(30, -50), GREEN)
+    c.draw_circle(Vector2(30, -30), 6, DARK)
+    c.draw_line(Vector2(30, -54), Vector2(30, -70), WHITE, 6.0, true)
+    c.draw_circle(Vector2(30, -74), 4, WHITE)
+    c.draw_line(Vector2(36, -62), Vector2(44, -84), GOLD, 2.5, true)
+    _shape(
+        c, PackedVector2Array([Vector2(26, -66), Vector2(14, -60), Vector2(26, -58)]), WHITE, 1.2
+    )
+    _box(c, -50, -36, 40, 36, STONE)
+    _merlons(c, -50, 40, -36, STONE)
+    _tower(c, -58, 14, 50, Color(0, 0, 0, 0))
+    _tower(c, -16, 14, 50, Color(0, 0, 0, 0))
+
+
+## Barletta: the bronze giant, an old emperor with a cross, beside the church.
+static func _bronze_giant(c: CanvasItem) -> void:
+    _box(c, -52, -40, 36, 40, STONE)
+    _roof(c, -52, -40, 36, 14)
+    _house(c, 32, 20, 24)
+    var bronze := Color(0.55, 0.42, 0.24)
+    _box(c, -6, -10, 24, 10, STONE_DARK)
+    _shape(
+        c,
+        PackedVector2Array([Vector2(-2, -10), Vector2(14, -10), Vector2(12, -62), Vector2(0, -62)]),
+        bronze
+    )
+    c.draw_circle(Vector2(6, -70), 7, bronze)
+    c.draw_arc(Vector2(6, -70), 7, 0, TAU, 14, INK, 1.5, true)
+    c.draw_line(Vector2(12, -52), Vector2(24, -78), bronze, 4.0, true)
+    c.draw_line(Vector2(19, -76), Vector2(29, -72), INK, 2.0)
+    c.draw_line(Vector2(24, -86), Vector2(24, -70), INK, 2.0)
+
+
+## Trani: the white cathedral right by the sea, with its tall bell tower
+## standing on an arch.
+static func _sea_cathedral(c: CanvasItem) -> void:
+    _shape(c, _quad(-58, -6, 116, 6), Color(WATER, 0.9), 1.2)
+    _box(c, -46, -44, 52, 38, WHITE)
+    _roof(c, -46, -44, 52, 16, STONE_DARK)
+    c.draw_circle(Vector2(-20, -30), 6, DARK)
+    _box(c, 14, -96, 18, 90, WHITE)
+    c.draw_rect(Rect2(17, -26, 12, 20), WATER)
+    c.draw_circle(Vector2(23, -26), 6, WATER)
+    _windows(c, 14, -80, 18, 1, 8)
+    _windows(c, 14, -58, 18, 2, 8)
+    _shape(
+        c, PackedVector2Array([Vector2(12, -96), Vector2(34, -96), Vector2(23, -108)]), STONE_DARK
+    )
+
+
+## Monopoli: the castle of Emperor Charles V by the harbour, and an olive tree.
+static func _harbour_castle(c: CanvasItem) -> void:
+    _shape(c, _quad(-58, -6, 60, 6), Color(WATER, 0.9), 1.2)
+    _box(c, -52, -40, 50, 34, STONE)
+    _merlons(c, -52, 50, -40, STONE)
+    _shape(c, _ellipse(Vector2(-6, -26), Vector2(12, 20), 16), STONE)
+    _merlons(c, -16, 20, -46, STONE)
+    _house(c, 10, 18, 26)
+    _tree(c, Vector2(42, 0), 12, Color(0.55, 0.6, 0.4))
 
 # endregion

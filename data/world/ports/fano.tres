@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/papal_states.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/fortunata.tres" id="local_fortunata"]
+[ext_resource type="Resource" path="res://data/world/people/old_fisher.tres" id="local_old_fisher"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("5_ext")
+kind = "landmark"
+phrase = "the town of the fountain where Fortuna holds a sail"
+difficulty = 2
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("5_ext")
+kind = "saint"
+phrase = "the town named after Fortuna, the goddess of luck"
+difficulty = 1
+
+[resource]
+script = ExtResource("1_ext")
+id = "fano"
+name = "Fano"
+latitude = 43.843
+icon = "fortuna"
+longitude = 13.019
+power = ExtResource("2_ext")
+facts = Array[ExtResource("5_ext")]([SubResource("fact_1"), SubResource("fact_2")])
+locals = Array[ExtResource("4_ext")]([ExtResource("local_fortunata"), ExtResource("local_old_fisher")])
