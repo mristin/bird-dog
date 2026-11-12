@@ -22,6 +22,20 @@ const SAIL_SHADE := Color(0.83, 0.77, 0.64)
 const INK := Color(0.18, 0.1, 0.05)
 const FOAM := Color(1, 1, 1)
 
+## The friend on the deck lies on the quarterdeck, this far aft, and this
+## large, so that the crew sees it even on the small boats of the chart.
+const FRIEND_AT_Y := 33.0
+const FRIEND_SIZE := 30.0
+
+## The friends on the deck, seen from above, by their pattern (see Decoration);
+## drawn so that they look right whichever way the boat turns.
+const FRIEND_PICTURES := {
+    "cat": preload("res://assets/images/friends/cat.png"),
+    "parrot": preload("res://assets/images/friends/parrot.png"),
+    "dog": preload("res://assets/images/friends/dog.png"),
+    "goat": preload("res://assets/images/friends/goat.png"),
+}
+
 ## How long the wake is, in samples (one every WAKE_SECONDS).
 const WAKE_SAMPLES := 24
 const WAKE_SECONDS := 0.12
@@ -142,9 +156,8 @@ func _draw() -> void:
         _draw_sail(mast["at"], mast["half"], sail_angle + swing, fill, mast["main"])
         if mast["main"]:
             main_at = mast["at"]
-        if i == 0:
-            _draw_friend(t)
     _draw_pennant(main_at, t)
+    _draw_friend(t, length)
     draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
     if emblem != "":
         _draw_badge(t)
@@ -626,57 +639,24 @@ func _draw_streamers(streamers: Decoration, mast: Vector2, across: Vector2, half
         draw_line(start, start + back * 12.0 + wave, ribbon, 3.0, true)
 
 
-## The friend on the deck (a cat, a parrot, a dog or a goat), leaning into the
-## turns, seen from above.
-func _draw_friend(t: float) -> void:
+## The friend on the deck (a cat, a parrot, a dog or a goat), seen from above
+## (see FRIEND_PICTURES), on the quarterdeck, leaning into the turns and
+## breathing. It is drawn over the sails and the pennant, so that the crew
+## always sees it; [param length] is the scale of the ship.
+func _draw_friend(t: float, length: float) -> void:
     var friend: Decoration = decorations.get("friend")
-    if friend == null:
+    if friend == null or not FRIEND_PICTURES.has(friend.pattern):
         return
-    var at := Vector2(lean * 6.0, 16 + sin(t * 3.0) * 1.0)
-    var fill := friend.color
-    match friend.pattern:
-        "cat":
-            draw_circle(at, 6, fill)
-            draw_circle(at + Vector2(0, -7), 4, fill)
-            draw_colored_polygon(
-                PackedVector2Array(
-                    [at + Vector2(-4, -9), at + Vector2(-2, -13), at + Vector2(-1, -9)]
-                ),
-                fill
-            )
-            draw_colored_polygon(
-                PackedVector2Array(
-                    [at + Vector2(4, -9), at + Vector2(2, -13), at + Vector2(1, -9)]
-                ),
-                fill
-            )
-            draw_line(at + Vector2(0, 5), at + Vector2(-lean * 6.0 + 5, 13), fill, 2.0, true)
-        "parrot":
-            draw_circle(at, 5, fill)
-            draw_colored_polygon(
-                PackedVector2Array([at + Vector2(-5, 0), at + Vector2(5, 0), at + Vector2(0, 12)]),
-                friend.color_2
-            )
-            draw_circle(at + Vector2(0, -5), 3, fill)
-        "dog":
-            draw_colored_polygon(_ellipse_points(at, Vector2(5, 8)), fill)
-            draw_circle(at + Vector2(0, -9), 4, fill)
-            draw_circle(at + Vector2(-4, -9), 2, friend.color_2)
-            draw_circle(at + Vector2(4, -9), 2, friend.color_2)
-        "goat":
-            draw_colored_polygon(_ellipse_points(at, Vector2(6, 8)), fill)
-            draw_circle(at + Vector2(0, -9), 4, fill)
-            draw_line(at + Vector2(-2, -12), at + Vector2(-5, -15), friend.color_2, 2.0)
-            draw_line(at + Vector2(2, -12), at + Vector2(5, -15), friend.color_2, 2.0)
-    draw_circle(at + Vector2(0, -7), 1.0, INK)
-
-
-func _ellipse_points(center: Vector2, radii: Vector2) -> PackedVector2Array:
-    var points := PackedVector2Array()
-    for i in range(12):
-        var angle := TAU * i / 12
-        points.append(center + Vector2(cos(angle) * radii.x, sin(angle) * radii.y))
-    return points
+    var at := Vector2(lean * 3.0, FRIEND_AT_Y)
+    var half := FRIEND_SIZE * 0.5 * (1.0 + sin(t * 3.0) * 0.02)
+    draw_set_transform_matrix(
+        Transform2D(heading, Vector2.ONE * length, 0.0, Vector2.ZERO) * Transform2D(lean * 0.15, at)
+    )
+    draw_circle(Vector2(1.5, 2.5), half * 0.85, Color(0, 0, 0, 0.25))
+    draw_texture_rect(
+        FRIEND_PICTURES[friend.pattern], Rect2(-half, -half, half * 2.0, half * 2.0), false
+    )
+    draw_set_transform(Vector2.ZERO, heading, Vector2.ONE * length)
 
 
 ## Fill a polygon, unless it is degenerate (a sail seen exactly edge-on): the

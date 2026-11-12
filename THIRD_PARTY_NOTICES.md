@@ -89,6 +89,13 @@ We distribute the model unmodified.
 * License: public domain (the works and the scans, as marked on Wikimedia Commons).
 * **Altered:** cropped, tinted to ink on paper and shrunk.
 
+### The friends on the deck
+
+* Files: `assets/images/friends/*.png` (the cat, the parrot, the dog and the goat, seen from above).
+* Made for Bird Dog with an image generator (ChatGPT), from our prompts.
+* License: part of the game, under its MIT license.
+* **Altered:** trimmed and shrunk to 256 × 256 pixels.
+
 ### Natural Earth (the chart)
 
 * File: `data/world/adriatic_map.json`, made by `dev/maps/make_adriatic_map.py` from the 1:10m land and minor islands, v5.1.2.

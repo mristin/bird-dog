@@ -2,13 +2,17 @@ class_name BoosterCard
 extends HandButton
 
 ## A booster on the merchant's stall, as a button: its picture (a decoration
-## shows on a little boat), its name, what it does, and its price. A booster
-## the crew can't buy now is greyed, with the reason: too few ducats, two
-## boosters for the leg already, or the crew has one already.
+## shows on a little boat, a friend for the deck as itself), its name, what it
+## does, and its price. A booster the crew can't buy now is greyed, with the
+## reason: too few ducats, two boosters for the leg already, or the crew has
+## one already.
 
 ## The sizes of the name and of the description.
 const NAME_SIZE := 25
 const DESCRIPTION_SIZE := 22
+
+## A friend for the deck is this large on the card, in pixels.
+const FRIEND_SIZE := 130.0
 
 var booster: Booster
 
@@ -18,9 +22,19 @@ var reason := ""
 var _boat: SeaBoat
 
 
+## A friend for the deck shows itself, seen from above as on the boat (see
+## SeaBoat.FRIEND_PICTURES), instead of a little boat; null for any other
+## booster.
+func _friend_picture() -> Texture2D:
+    var decoration := booster.decoration if booster != null else null
+    if decoration == null or decoration.slot != "friend":
+        return null
+    return SeaBoat.FRIEND_PICTURES.get(decoration.pattern)
+
+
 func _ready() -> void:
     super()
-    if booster == null or booster.decoration == null:
+    if booster == null or booster.decoration == null or _friend_picture() != null:
         return
     # NOTE (mristin):
     # A decoration shows on a little boat, sailing to the right.
@@ -49,6 +63,12 @@ func _draw() -> void:
     var faded := reason != ""
     if booster.decoration == null:
         BoosterIcons.draw(self, booster.effect, Vector2(size.x * 0.5, 80), 52)
+    var friend := _friend_picture()
+    if friend != null:
+        var half := FRIEND_SIZE * 0.5
+        draw_texture_rect(
+            friend, Rect2(Vector2(size.x * 0.5 - half, 82 - half), Vector2(half, half) * 2.0), false
+        )
     # NOTE (mristin):
     # The name may take two lines, so that a long name (in any language)
     # stays readable; the description follows below it.
