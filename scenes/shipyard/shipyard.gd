@@ -289,4 +289,4 @@ func _draw_screen() -> void:
     draw_rect(water, Paper.INK, false, 4.0)
     var name_text := str(_captain_data().get("name", ""))
     draw_string(font, Vector2(60, 280), name_text, HORIZONTAL_ALIGNMENT_CENTER, 680, 36, Paper.INK)
-    Purse.draw(self, Vector2(1640, 140), int(_session.ducats))
+    Purse.draw(self, Vector2(1560, 140), int(_session.ducats))

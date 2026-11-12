@@ -140,6 +140,22 @@ func _run() -> void:
     await _frames(2)
     _check(not scene._all_paused, "after the meeting, the boats sail on")
 
+    # NOTE (mristin):
+    # The play-tests found boats which sailed from Kotor to Herceg Novi (the bay
+    # button) and left Herceg Novi back into the bay, to Kotor.
+    var herceg_novi := World.port("herceg_novi")
+    var kotor_km := World.port_km(World.port("kotor"))
+    var herceg_novi_km := World.port_km(herceg_novi)
+    scene._entry_headings[0] = (herceg_novi_km - kotor_km).angle() + PI / 2
+    scene._launch(herceg_novi, 0)
+    var leaving: Vector2 = scene._helms[0].km
+    var ahead: Vector2 = leaving + Vector2.UP.rotated(scene._helms[0].heading) * 10.0
+    var away := ahead.distance_to(kotor_km) > leaving.distance_to(kotor_km)
+    _check(
+        leaving.y > herceg_novi_km.y and away,
+        "a boat leaves Herceg Novi to the open sea, not back to Kotor"
+    )
+
     scene._ask_to_leave()
     await _frames(1)
     _check(scene._all_paused and scene._leave_dialog != null, "Esc asks before leaving")

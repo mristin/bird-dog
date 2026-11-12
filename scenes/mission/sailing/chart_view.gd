@@ -192,6 +192,17 @@ func is_land(km: Vector2) -> bool:
     return false
 
 
+## The heading in which a boat leaves the port, given [param entry], the heading
+## it came in with (null for none); see [method departure]. Herceg Novi stands
+## at the gate of the Bay of Kotor: a boat always leaves it to the south, out
+## to the open sea, never back into the bay to Kotor (the heading into the port,
+## e.g. from Kotor with the bay button, points at the land behind the town).
+static func leaving_heading(port: Port, entry: Variant) -> Variant:
+    if port != null and port.id == "herceg_novi":
+        return PI
+    return entry
+
+
 ## Where a boat leaving the port at [param port_km] starts, and its heading:
 ## {"km": Vector2, "heading": float}. It keeps [param kept], the heading it
 ## came in with (null for none), on the far side of the port, unless the land

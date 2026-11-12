@@ -23,6 +23,7 @@ const FULL := {
     "speech_shop": Rect2(600, 150, 1200, 170),
     "text_size": 34,
     "buttons": Rect2(560, 720, 1240, 140),
+    "buttons_shop": Rect2(560, 790, 1240, 140),
     "button": Vector2(420, 130),
     "button_text": 44,
     "row": Rect2(0, 290, 1920, 520),
@@ -42,6 +43,7 @@ const HALF := {
     "speech_shop": Rect2(20, 120, 920, 190),
     "text_size": 26,
     "buttons": Rect2(60, 680, 660, 140),
+    "buttons_shop": Rect2(60, 784, 660, 140),
     "button": Vector2(236, 130),
     "button_text": 30,
     "row": Rect2(0, 230, 960, 520),
@@ -131,7 +133,9 @@ func _row(area: Rect2, separation: int) -> HBoxContainer:
 
 
 func _build_talk() -> void:
-    var area: Rect2 = _layout["buttons"]
+    # NOTE (mristin):
+    # The merchant's answers stand under the stall, not over its cards.
+    var area: Rect2 = _layout["buttons_shop" if _scene["kind"] == "shop" else "buttons"]
     var row := _row(area, 20 if compact else 40)
     var count: int = _scene["buttons"].size()
     var wanted: Vector2 = _layout["button"]

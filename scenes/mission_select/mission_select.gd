@@ -138,4 +138,4 @@ func _draw_screen() -> void:
         names.append(captain["name"])
     var crew_text := "%s  ·  %s" % [_session.voyage_name, " & ".join(PackedStringArray(names))]
     draw_string(font, Vector2(70, 80), crew_text, HORIZONTAL_ALIGNMENT_LEFT, 900, 28, Paper.INK)
-    Purse.draw(self, Vector2(1640, 150), int(_session.ducats))
+    Purse.draw(self, Vector2(1560, 150), int(_session.ducats))

@@ -316,7 +316,8 @@ func _launch(port: Port, player: int) -> void:
     for helm in _helms:
         if player >= 0 and helm.player != player:
             continue
-        var departure := _chart.departure(near, center, _entry_headings.get(helm.player))
+        var kept: Variant = ChartView.leaving_heading(port, _entry_headings.get(helm.player))
+        var departure := _chart.departure(near, center, kept)
         helm.km = departure["km"]
         helm.heading = departure["heading"]
         helm.speed = 0.0
