@@ -95,7 +95,14 @@ func blows_to() -> Vector2:
 ## The speed of a boat for its heading (radians, 0 north, clockwise), relative
 ## to the best point of sail, as in DESIGN.md, "Steering and sailing".
 func speed_factor(heading: float) -> float:
-    var off := absf(wrapf(rad_to_deg(heading) - from_degrees, -180.0, 180.0))
+    return factor(heading, from_degrees, intensity)
+
+
+## [method speed_factor] for a wind from [param wind_from] (degrees) of the
+## [param wind_intensity]; static, so that it can be used on a copy of the
+## wind in the background (see SeaHazards._plan_flight).
+static func factor(heading: float, wind_from: float, wind_intensity: int) -> float:
+    var off := absf(wrapf(rad_to_deg(heading) - wind_from, -180.0, 180.0))
     var by_point := 0.85
     if off < 35.0:
         by_point = 0.25
@@ -105,7 +112,7 @@ func speed_factor(heading: float) -> float:
         by_point = 0.8
     elif off < 150.0:
         by_point = 1.0
-    return by_point * [0.7, 1.0, 1.3][intensity]
+    return by_point * [0.7, 1.0, 1.3][wind_intensity]
 
 
 ## Whether a boat with the heading sails right into the wind (its sail flaps).

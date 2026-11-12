@@ -43,25 +43,42 @@ static var _boxes: Array[Rect2] = []
 ## [param to]; empty if there is none. [param avoid] lists the places to keep
 ## clear of: [{"km": Vector2, "radius": float, "cost": float}], where the cost
 ## is how many times more a cell within the radius costs to sail through.
+## A coarser [param cell_km], narrower [param margins] and a way which is
+## not [param exact] (its steps may clip a thin tip of the land between the
+## middles of two cells) are found much faster (e.g., for a corsair which
+## flees, see SeaHazards, and which turns along the coasts anyway), but may
+## close the narrow channels.
 static func find(
-    from: Vector2, to: Vector2, near_km: float, avoid: Array[Dictionary] = []
+    from: Vector2,
+    to: Vector2,
+    near_km: float,
+    avoid: Array[Dictionary] = [],
+    cell_km: float = CELL_KM,
+    margins: Array[float] = MARGINS_KM,
+    exact: bool = true
 ) -> PackedVector2Array:
     _load()
-    for margin in MARGINS_KM:
-        var path := _find(from, to, near_km, margin, avoid)
+    for margin in margins:
+        var path := _find(from, to, near_km, margin, avoid, cell_km, exact)
         if not path.is_empty():
             return path
     return PackedVector2Array()
 
 
 static func _find(
-    from: Vector2, to: Vector2, near_km: float, margin: float, avoid: Array[Dictionary]
+    from: Vector2,
+    to: Vector2,
+    near_km: float,
+    margin: float,
+    avoid: Array[Dictionary],
+    cell_km: float,
+    exact: bool
 ) -> PackedVector2Array:
     var box := Rect2(from, Vector2.ZERO).expand(to).grow(margin)
     var origin := box.position
-    var columns := int(ceil(box.size.x / CELL_KM))
-    var rows := int(ceil(box.size.y / CELL_KM))
-    var land := _rasterize(origin, columns, rows)
+    var columns := int(ceil(box.size.x / cell_km))
+    var rows := int(ceil(box.size.y / cell_km))
+    var land := _rasterize(origin, columns, rows, cell_km)
 
     var grid := AStarGrid2D.new()
     grid.region = Rect2i(0, 0, columns, rows)
@@ -70,7 +87,7 @@ static func _find(
     grid.update()
     grid.fill_solid_region(grid.region, false)
     _keep_off_the_coast(grid, land, columns, rows)
-    _keep_clear(grid, origin, avoid)
+    _keep_clear(grid, origin, avoid, cell_km)
     var goals: Array[Vector2i] = []
     var start := Vector2i(-1, -1)
     var start_distance := INF
@@ -79,7 +96,7 @@ static func _find(
             if land[row * columns + column] == 1:
                 grid.set_point_solid(Vector2i(column, row), true)
                 continue
-            var middle := origin + (Vector2(column, row) + Vector2(0.5, 0.5)) * CELL_KM
+            var middle := origin + (Vector2(column, row) + Vector2(0.5, 0.5)) * cell_km
             if middle.distance_to(to) < near_km:
                 goals.append(Vector2i(column, row))
             var to_boat := middle.distance_to(from)
@@ -98,18 +115,21 @@ static func _find(
     )
     var cells: Array[Vector2i] = []
     for goal in goals.slice(0, MAX_GOALS):
-        cells = _clear_path(grid, origin, start, goal)
+        if exact:
+            cells = _clear_path(grid, origin, start, goal, cell_km)
+        else:
+            cells = grid.get_id_path(start, goal)
         if not cells.is_empty():
             break
     if cells.is_empty():
         return PackedVector2Array()
     var path := PackedVector2Array([from])
     for i in range(1, cells.size()):
-        path.append(origin + (Vector2(cells[i]) + Vector2(0.5, 0.5)) * CELL_KM)
+        path.append(origin + (Vector2(cells[i]) + Vector2(0.5, 0.5)) * cell_km)
     if path.size() < 2:
         # NOTE (mristin):
         # The boat is at the port already: the way is a step to its own cell.
-        path.append(origin + (Vector2(cells[0]) + Vector2(0.5, 0.5)) * CELL_KM)
+        path.append(origin + (Vector2(cells[0]) + Vector2(0.5, 0.5)) * cell_km)
     return path
 
 
@@ -118,13 +138,13 @@ static func _find(
 ## a thin tip of the land (the grid knows only the middles of the cells), so
 ## the cell of the tip is closed and the way found again. Empty if none.
 static func _clear_path(
-    grid: AStarGrid2D, origin: Vector2, start: Vector2i, goal: Vector2i
+    grid: AStarGrid2D, origin: Vector2, start: Vector2i, goal: Vector2i, cell_km: float
 ) -> Array[Vector2i]:
     for attempt in range(MAX_FIXES):
         var cells := grid.get_id_path(start, goal)
         if cells.is_empty():
             return cells
-        var clipped := _clipped_cell(cells, origin)
+        var clipped := _clipped_cell(cells, origin, cell_km)
         if clipped == Vector2i(-1, -1):
             return cells
         if clipped == start or clipped == goal:
@@ -134,13 +154,13 @@ static func _clear_path(
 
 
 ## The first cell where a step of the way runs over the land, or (-1, -1).
-static func _clipped_cell(cells: Array[Vector2i], origin: Vector2) -> Vector2i:
+static func _clipped_cell(cells: Array[Vector2i], origin: Vector2, cell_km: float) -> Vector2i:
     for i in range(1, cells.size()):
-        var a := origin + (Vector2(cells[i - 1]) + Vector2(0.5, 0.5)) * CELL_KM
-        var b := origin + (Vector2(cells[i]) + Vector2(0.5, 0.5)) * CELL_KM
+        var a := origin + (Vector2(cells[i - 1]) + Vector2(0.5, 0.5)) * cell_km
+        var b := origin + (Vector2(cells[i]) + Vector2(0.5, 0.5)) * cell_km
         var on_land := _land_on(a, b)
         if on_land != Vector2.INF:
-            return Vector2i(((on_land - origin) / CELL_KM).floor())
+            return Vector2i(((on_land - origin) / cell_km).floor())
     return Vector2i(-1, -1)
 
 
@@ -198,10 +218,12 @@ static func _keep_off_the_coast(
 
 
 ## Make the cells within the places to avoid cost more (see [method find]).
-static func _keep_clear(grid: AStarGrid2D, origin: Vector2, avoid: Array[Dictionary]) -> void:
+static func _keep_clear(
+    grid: AStarGrid2D, origin: Vector2, avoid: Array[Dictionary], cell_km: float
+) -> void:
     for place in avoid:
-        var center: Vector2 = (place["km"] - origin) / CELL_KM
-        var radius: float = place["radius"] / CELL_KM
+        var center: Vector2 = (place["km"] - origin) / cell_km
+        var radius: float = place["radius"] / cell_km
         var area := (
             Rect2i(
                 Vector2i((center - Vector2.ONE * radius).floor()),
@@ -235,6 +257,12 @@ static func km_through(path: PackedVector2Array, avoid: Array[Dictionary]) -> fl
     return result
 
 
+## Load the land once, on the main thread, before ways are found in the
+## background (see SeaHazards._plan_flight); the land does not change then.
+static func prepare() -> void:
+    _load()
+
+
 static func _load() -> void:
     if not _polygons.is_empty():
         return
@@ -251,16 +279,16 @@ static func _load() -> void:
 
 ## Draw the land onto the grid: for every row, the crossings of the row's
 ## middle with the edges of every polygon, paired up, are stretches of land.
-static func _rasterize(origin: Vector2, columns: int, rows: int) -> PackedByteArray:
+static func _rasterize(origin: Vector2, columns: int, rows: int, cell_km: float) -> PackedByteArray:
     var land := PackedByteArray()
     land.resize(columns * rows)
-    var area := Rect2(origin, Vector2(columns, rows) * CELL_KM)
+    var area := Rect2(origin, Vector2(columns, rows) * cell_km)
     var near: Array[int] = []
     for i in range(_polygons.size()):
         if _boxes[i].intersects(area):
             near.append(i)
     for row in range(rows):
-        var y := origin.y + (row + 0.5) * CELL_KM
+        var y := origin.y + (row + 0.5) * cell_km
         for i in near:
             if y < _boxes[i].position.y or y > _boxes[i].end.y:
                 continue
@@ -274,9 +302,9 @@ static func _rasterize(origin: Vector2, columns: int, rows: int) -> PackedByteAr
                     crossings.append(a.x + (y - a.y) * (b.x - a.x) / (b.y - a.y))
             crossings.sort()
             for k in range(0, crossings.size() - 1, 2):
-                var first := maxi(0, int(ceil((crossings[k] - origin.x) / CELL_KM - 0.5)))
+                var first := maxi(0, int(ceil((crossings[k] - origin.x) / cell_km - 0.5)))
                 var last := mini(
-                    columns - 1, int(floor((crossings[k + 1] - origin.x) / CELL_KM - 0.5))
+                    columns - 1, int(floor((crossings[k + 1] - origin.x) / cell_km - 0.5))
                 )
                 for column in range(first, last + 1):
                     land[row * columns + column] = 1

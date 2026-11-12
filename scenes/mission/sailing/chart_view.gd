@@ -224,6 +224,23 @@ func is_clear_ahead(from: Vector2, heading: float, km: float) -> bool:
     return true
 
 
+## Whether the straight line from a to b (in kilometres) stays at sea; fast
+## (the land is clipped, not sampled), but it may miss a tip of the land
+## thinner than a few metres.
+func is_clear_line(a: Vector2, b: Vector2) -> bool:
+    if not _bounds_km.has_point(a) or not _bounds_km.has_point(b):
+        return false
+    var line := PackedVector2Array([a, b])
+    var area := Rect2(a, Vector2.ZERO).expand(b)
+    for i in range(_land.size()):
+        if (
+            _boxes[i].intersects(area)
+            and not Geometry2D.intersect_polyline_with_polygon(line, _land[i]).is_empty()
+        ):
+            return false
+    return true
+
+
 ## Whether a boat at the point (in kilometres) hits a reef.
 func is_reef(km: Vector2) -> bool:
     for reef in reefs:
