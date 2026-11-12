@@ -69,11 +69,19 @@ func _run() -> void:
     _check(scene._busy[0] and not scene._busy[1], "the port opens only for the player who entered")
     var buttons: Array = scene._port_scenes[0]["buttons"]
     _check(buttons.size() >= 2 and buttons[1]["action"] == "shop", "the port has a merchant")
+    # NOTE (mristin):
+    # The stall is drawn anew at every visit; with enough ducats, the crew can
+    # buy at least one of its boosters (not every one: a booster for the leg
+    # may be held already, or a ration may not fit into the barrels).
+    run.hold(0).ducats += 500
     scene._on_action("shop", 0)
     await _frames(1)
-    _check(scene._cards[0].scene()["kind"] == "shop", "the merchant shows the stall")
+    var stall: Dictionary = scene._cards[0].scene()
+    _check(stall["kind"] == "shop", "the merchant shows the stall")
+    var buyable: int = stall["reasons"].find("")
+    _check(buyable >= 0, "the crew can buy something at the stall")
     var before := run.bag.purse()
-    scene._on_action("buy:0", 0)
+    scene._on_action("buy:%d" % buyable, 0)
     await _frames(1)
     _check(run.bag.purse() < before, "buying costs ducats")
     scene._on_action("close_shop", 0)

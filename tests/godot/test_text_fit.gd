@@ -233,8 +233,12 @@ func _check_scene(scene: Dictionary, where: String) -> void:
 func _check_world() -> void:
     for port in World.ports():
         var name := tr(port.name)
-        _fits(name, 60, 420, "the plate of %s" % port.id)
-        _fits(name, 44, 430, "the plate of %s in a half" % port.id)
+        # NOTE (mristin):
+        # A name may shrink a little to fit on its plate (see StoryCard).
+        _fits(name, ceili(60 * StoryCard.MIN_TITLE_SHARE), 420, "the plate of %s" % port.id)
+        _fits(
+            name, ceili(44 * StoryCard.MIN_TITLE_SHARE), 430, "the plate of %s in a half" % port.id
+        )
         var sail := Grammar.format(tr("Sail to {port}!"), {"port": port.name})
         _fits(sail, 40, 860, "the banner of %s in a half" % port.id)
     for booster_id in ["new_sails", "fisherman", "pilot", "right_flag", "figs", "bread_water"]:

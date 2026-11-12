@@ -56,6 +56,10 @@ const HALF := {
 ## Speech shrinks to fit its box, but not below this size.
 const MIN_SPEECH_SIZE := 20
 
+## The name of the port shrinks to fit its plate, but not below this share of
+## its size.
+const MIN_TITLE_SHARE := 0.9
+
 ## Whether the card is a half of the screen.
 var compact := false
 
@@ -212,13 +216,22 @@ func _draw() -> void:
         draw_rect(title, Color(Paper.PAPER, 0.95))
         draw_rect(title, Paper.INK, false, 3.0)
         var text_left := title.size.y * 0.9
+        var title_width := title.size.x - text_left - 10
+        # NOTE (mristin):
+        # A long name (e.g., in Russian) shrinks a little to fit on the plate,
+        # but not below MIN_TITLE_SHARE of its size (see test_text_fit.gd).
+        var title_size: int = _layout["title_size"]
+        title_size = maxi(
+            ceili(title_size * MIN_TITLE_SHARE),
+            HandButton.fit_size(font, _title, title_size, title_width)
+        )
         draw_string(
             font,
             title.position + Vector2(text_left, title.size.y * 0.72),
             _title,
             HORIZONTAL_ALIGNMENT_CENTER,
-            title.size.x - text_left - 10,
-            _layout["title_size"],
+            title_width,
+            title_size,
             Paper.RED
         )
         PortIcons.draw(

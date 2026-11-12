@@ -4316,6 +4316,18 @@ msgid "a young lady of Grebaštica"
 msgstr "vajzë e re nga Grebaštica"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/assunta.tres
+#, fuzzy
+msgid "Assunta"
+msgstr "Assunta"
+
+#. what a person does, under their name
+#: data/world/people/assunta.tres
+#, fuzzy
+msgid "a fish seller of Termoli"
+msgstr "shitëse peshku nga Termoli"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/baba_stana.tres
 #, fuzzy
 msgid "Baba Stana"
@@ -4352,6 +4364,18 @@ msgid "a weaver of Durrës"
 msgstr "endëse nga Durrësi"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/biagio.tres
+#, fuzzy
+msgid "Biagio"
+msgstr "Biagio"
+
+#. what a person does, under their name
+#: data/world/people/biagio.tres
+#, fuzzy
+msgid "a guide of the pilgrims"
+msgstr "udhërrëfyes i pelegrinëve"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/bookseller.tres
 #, fuzzy
 msgid "a bookseller"
@@ -4362,6 +4386,30 @@ msgstr "librashitës"
 #, fuzzy
 msgid "a seller of books"
 msgstr "shitës librash"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/bortolo.tres
+#, fuzzy
+msgid "Bortolo"
+msgstr "Bortolo"
+
+#. what a person does, under their name
+#: data/world/people/bortolo.tres
+#, fuzzy
+msgid "a fisherman of Caorle"
+msgstr "peshkatar nga Kaorle"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/brother_romualdo.tres
+#, fuzzy
+msgid "Brother Romualdo"
+msgstr "Fra Romualdo"
+
+#. what a person does, under their name
+#: data/world/people/brother_romualdo.tres
+#, fuzzy
+msgid "a monk of San Vitale"
+msgstr "murg i San Vitales"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/clerk.tres
@@ -4452,6 +4500,30 @@ msgstr "Imzot Lorenzo"
 #, fuzzy
 msgid "the envoy of the Pope"
 msgstr "i dërguari i Papës"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ettore.tres
+#, fuzzy
+msgid "Ettore"
+msgstr "Ettore"
+
+#. what a person does, under their name
+#: data/world/people/ettore.tres
+#, fuzzy
+msgid "a blacksmith of Barletta"
+msgstr "farkëtar nga Barleta"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/fortunata.tres
+#, fuzzy
+msgid "Fortunata"
+msgstr "Fortunata"
+
+#. what a person does, under their name
+#: data/world/people/fortunata.tres
+#, fuzzy
+msgid "a baker of Fano"
+msgstr "bukëpjekëse nga Fano"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/friar.tres
@@ -4580,6 +4652,18 @@ msgid "a timber merchant of Rijeka"
 msgstr "tregtar druri nga Rijeka"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/lucieta.tres
+#, fuzzy
+msgid "Lucieta"
+msgstr "Lucieta"
+
+#. what a person does, under their name
+#: data/world/people/lucieta.tres
+#, fuzzy
+msgid "a net mender of Chioggia"
+msgstr "arnuese rrjetash nga Kioxha"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/lucija.tres
 #, fuzzy
 msgid "Lucija"
@@ -4640,6 +4724,18 @@ msgstr "Mate"
 msgid "a fisherman of Zadar"
 msgstr "peshkatar nga Zadari"
 
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/michele.tres
+#, fuzzy
+msgid "Michele"
+msgstr "Michele"
+
+#. what a person does, under their name
+#: data/world/people/michele.tres
+#, fuzzy
+msgid "a salt worker of Manfredonia"
+msgstr "punëtor kripe nga Manfredonia"
+
 #. what a person does, under their name
 #: data/world/people/mother_kotor.tres
 #, fuzzy
@@ -4669,6 +4765,18 @@ msgstr "Nicola"
 #, fuzzy
 msgid "a fisherman of Bari"
 msgstr "peshkatar nga Bari"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/notar_giacomo.tres
+#, fuzzy
+msgid "Notar Giacomo"
+msgstr "Noter Giacomo"
+
+#. what a person does, under their name
+#: data/world/people/notar_giacomo.tres
+#, fuzzy
+msgid "a harbour scribe of Trani"
+msgstr "shkrues porti nga Trani"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/notary.tres
@@ -4783,6 +4891,18 @@ msgstr "Rektori"
 #, fuzzy
 msgid "the Rector of Ragusa"
 msgstr "Rektori i Raguzës"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/rodrigo.tres
+#, fuzzy
+msgid "Rodrigo"
+msgstr "Rodrigo"
+
+#. what a person does, under their name
+#: data/world/people/rodrigo.tres
+#, fuzzy
+msgid "a soldier of the fortress of Pescara"
+msgstr "ushtar i kalasë së Peskarës"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/rosa.tres
@@ -4917,6 +5037,18 @@ msgid "a storyteller"
 msgstr "tregimtar"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/tonin.tres
+#, fuzzy
+msgid "Tonin"
+msgstr "Tonin"
+
+#. what a person does, under their name
+#: data/world/people/tonin.tres
+#, fuzzy
+msgid "an eel fisher of Comacchio"
+msgstr "peshkatar ngjalash nga Komakio"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/viceroy_man.tres
 #, fuzzy
 msgid "Don Diego"
@@ -4927,6 +5059,18 @@ msgstr "Don Diego"
 #, fuzzy
 msgid "the Viceroy's man in Bari"
 msgstr "njeriu i Mëkëmbësit në Bari"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/vito.tres
+#, fuzzy
+msgid "Vito"
+msgstr "Vito"
+
+#. what a person does, under their name
+#: data/world/people/vito.tres
+#, fuzzy
+msgid "an olive oil merchant of Monopoli"
+msgstr "tregtar vaji ulliri nga Monopoli"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/yusuf.tres
@@ -4989,6 +5133,24 @@ msgid "Bari"
 msgstr "Bari"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgid "the town of the bronze giant"
+msgstr "qyteti i gjigantit prej bronzi"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgid "the town where thirteen Italian knights beat thirteen French knights"
+msgstr "qyteti ku trembëdhjetë kalorës italianë mundën trembëdhjetë kalorës francezë"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgid "Barletta"
+msgstr "Barleta"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/brindisi.tres
 #, fuzzy
 msgid "the town at the end of the Via Appia"
@@ -5005,6 +5167,60 @@ msgstr "qyteti i kolonës romake"
 #, fuzzy
 msgid "Brindisi"
 msgstr "Brindizi"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgid "the fishing town with the round bell tower"
+msgstr "qyteza e peshkatarëve me kambanoren e rrumbullakët"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgid "the town of the little church of the Madonna on the sea wall"
+msgstr "qyteti me kishëzën e Zonjës mbi murin buzë detit"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgid "Caorle"
+msgstr "Kaorle"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgid "the little Venice of the fishermen at the end of the lagoon"
+msgstr "Venecia e vogël e peshkatarëve në fund të lagunës"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgid "the town where Venice beat the Genoese in the great war"
+msgstr "qyteti ku Venecia mundi gjenovezët në luftën e madhe"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgid "Chioggia"
+msgstr "Kioxha"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgid "the town of the eels in the lagoon"
+msgstr "qyteti i ngjalave në lagunë"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgid "the town which the Pope took from the Dukes of Ferrara"
+msgstr "qyteti që Papa ua mori dukëve të Ferrarës"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgid "Comacchio"
+msgstr "Komakio"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/corfu.tres
@@ -5071,6 +5287,24 @@ msgstr "qyteti ku nis Rruga Egnatia"
 #, fuzzy
 msgid "Durrës"
 msgstr "Durrës"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/fano.tres
+#, fuzzy
+msgid "the town of the fountain where Fortuna holds a sail"
+msgstr "qyteti me shatërvanin ku Fortuna mban një velë"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/fano.tres
+#, fuzzy
+msgid "the town named after Fortuna, the goddess of luck"
+msgstr "qyteti që mban emrin e Fortunës, perëndeshës së fatit"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/fano.tres
+#, fuzzy
+msgid "Fano"
+msgstr "Fano"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/grebastica.tres
@@ -5169,6 +5403,60 @@ msgid "Kotor"
 msgstr "Kotor"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgid "the town of the Holy House, where the pilgrims go"
+msgstr "qyteti i Shtëpisë së Shenjtë, ku shkojnë pelegrinët"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgid "the town of the great dome on the hill by the sea"
+msgstr "qyteti me kupolën e madhe mbi kodrën pranë detit"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgid "Loreto"
+msgstr "Loreto"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgid "the town which King Manfred founded"
+msgstr "qyteti që e themeloi mbreti Manfred"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgid "the harbour of the pilgrims to the cave of St. Michael"
+msgstr "porti i pelegrinëve që shkojnë te shpella e Shën Mëhillit"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgid "Manfredonia"
+msgstr "Manfredonia"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgid "the harbour full of barrels of olive oil"
+msgstr "porti plot me fuçi vaji ulliri"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgid "the town whose name means 'the only town'"
+msgstr "qyteti emri i të cilit do të thotë \"qyteti i vetëm\""
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgid "Monopoli"
+msgstr "Monopoli"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/ortona.tres
 #, fuzzy
 msgid "the town where they keep the bones of St. Thomas the Apostle"
@@ -5241,6 +5529,24 @@ msgid "Parga"
 msgstr "Pargë"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgid "the fortress at the mouth of the river Pescara"
+msgstr "kalaja në grykën e lumit Peskara"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgid "the town which the Romans called Aternum"
+msgstr "qyteti që romakët e quanin Aternum"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgid "Pescara"
+msgstr "Peskara"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/preveza.tres
 #, fuzzy
 msgid "the fortress at the narrow strait"
@@ -5281,6 +5587,24 @@ msgstr "porti në majë të Istrisë"
 #, fuzzy
 msgid "Pula"
 msgstr "Pula"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgid "the town of the golden mosaics"
+msgstr "qyteti i mozaikëve të artë"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgid "the town where the poet Dante is buried"
+msgstr "qyteti ku është varrosur poeti Dante"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgid "Ravenna"
+msgstr "Ravena"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/rijeka.tres
@@ -5413,6 +5737,42 @@ msgstr "kriporet e Raguzës"
 #, fuzzy
 msgid "the town of the oysters"
 msgstr "qyteti i stridhjeve"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgid "the town of the castle of Emperor Frederick"
+msgstr "qyteti i kështjellës së perandorit Frederik"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgid "the old town on a rock which juts into the sea"
+msgstr "qyteti i vjetër mbi një shkëmb që del në det"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgid "Termoli"
+msgstr "Termoli"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/trani.tres
+#, fuzzy
+msgid "the town of the white cathedral right by the sea"
+msgstr "qyteti i katedrales së bardhë buzë detit"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/trani.tres
+#, fuzzy
+msgid "the town of the old laws of the sea"
+msgstr "qyteti i ligjeve të vjetra të detit"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/trani.tres
+#, fuzzy
+msgid "Trani"
+msgstr "Trani"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/trieste.tres
@@ -5783,6 +6143,22 @@ msgstr "në Bari"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgctxt "to"
+msgid "Barletta"
+msgstr "në Barleta"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgctxt "in"
+msgid "Barletta"
+msgstr "në Barleta"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
 #: data/world/ports/brindisi.tres
 #, fuzzy
 msgctxt "to"
@@ -5796,6 +6172,54 @@ msgstr "në Brindizi"
 msgctxt "in"
 msgid "Brindisi"
 msgstr "në Brindizi"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgctxt "to"
+msgid "Caorle"
+msgstr "në Kaorle"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgctxt "in"
+msgid "Caorle"
+msgstr "në Kaorle"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgctxt "to"
+msgid "Chioggia"
+msgstr "në Kioxha"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgctxt "in"
+msgid "Chioggia"
+msgstr "në Kioxha"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgctxt "to"
+msgid "Comacchio"
+msgstr "në Komakio"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgctxt "in"
+msgid "Comacchio"
+msgstr "në Komakio"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -5844,6 +6268,22 @@ msgstr "në Durrës"
 msgctxt "in"
 msgid "Durrës"
 msgstr "në Durrës"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/fano.tres
+#, fuzzy
+msgctxt "to"
+msgid "Fano"
+msgstr "në Fano"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/fano.tres
+#, fuzzy
+msgctxt "in"
+msgid "Fano"
+msgstr "në Fano"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -5927,6 +6367,54 @@ msgstr "në Kotor"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgctxt "to"
+msgid "Loreto"
+msgstr "në Loreto"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgctxt "in"
+msgid "Loreto"
+msgstr "në Loreto"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgctxt "to"
+msgid "Manfredonia"
+msgstr "në Manfredonia"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgctxt "in"
+msgid "Manfredonia"
+msgstr "në Manfredonia"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgctxt "to"
+msgid "Monopoli"
+msgstr "në Monopoli"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgctxt "in"
+msgid "Monopoli"
+msgstr "në Monopoli"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
 #: data/world/ports/ortona.tres
 #, fuzzy
 msgctxt "to"
@@ -5991,6 +6479,22 @@ msgstr "në Pargë"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgctxt "to"
+msgid "Pescara"
+msgstr "në Peskara"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgctxt "in"
+msgid "Pescara"
+msgstr "në Peskara"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
 #: data/world/ports/preveza.tres
 #, fuzzy
 msgctxt "to"
@@ -6020,6 +6524,22 @@ msgstr "në Pula"
 msgctxt "in"
 msgid "Pula"
 msgstr "në Pula"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgctxt "to"
+msgid "Ravenna"
+msgstr "në Ravena"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgctxt "in"
+msgid "Ravenna"
+msgstr "në Ravena"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -6132,6 +6652,38 @@ msgstr "në Ston"
 msgctxt "in"
 msgid "Ston"
 msgstr "në Ston"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgctxt "to"
+msgid "Termoli"
+msgstr "në Termoli"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgctxt "in"
+msgid "Termoli"
+msgstr "në Termoli"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/trani.tres
+#, fuzzy
+msgctxt "to"
+msgid "Trani"
+msgstr "në Trani"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/trani.tres
+#, fuzzy
+msgctxt "in"
+msgid "Trani"
+msgstr "në Trani"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -6295,6 +6847,38 @@ msgstr "për qytetin e kështjellës shvabe"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the bronze giant"
+msgstr "drejt qytetit të gjigantit prej bronzi"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the bronze giant"
+msgstr "për qytetin e gjigantit prej bronzi"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town where thirteen Italian knights beat thirteen French knights"
+msgstr "drejt qytetit ku trembëdhjetë kalorës italianë mundën trembëdhjetë kalorës francezë"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/barletta.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town where thirteen Italian knights beat thirteen French knights"
+msgstr "për qytetin ku trembëdhjetë kalorës italianë mundën trembëdhjetë kalorës francezë"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
 #: data/world/ports/brindisi.tres
 #, fuzzy
 msgctxt "to"
@@ -6324,6 +6908,102 @@ msgstr "drejt qytetit të kolonës romake"
 msgctxt "about"
 msgid "the town of the Roman column"
 msgstr "për qytetin e kolonës romake"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgctxt "to"
+msgid "the fishing town with the round bell tower"
+msgstr "drejt qytezës së peshkatarëve me kambanoren e rrumbullakët"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgctxt "about"
+msgid "the fishing town with the round bell tower"
+msgstr "për qytezën e peshkatarëve me kambanoren e rrumbullakët"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the little church of the Madonna on the sea wall"
+msgstr "drejt qytetit me kishëzën e Zonjës mbi murin buzë detit"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/caorle.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the little church of the Madonna on the sea wall"
+msgstr "për qytetin me kishëzën e Zonjës mbi murin buzë detit"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgctxt "to"
+msgid "the little Venice of the fishermen at the end of the lagoon"
+msgstr "drejt Venecias së vogël të peshkatarëve në fund të lagunës"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgctxt "about"
+msgid "the little Venice of the fishermen at the end of the lagoon"
+msgstr "për Venecian e vogël të peshkatarëve në fund të lagunës"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town where Venice beat the Genoese in the great war"
+msgstr "drejt qytetit ku Venecia mundi gjenovezët në luftën e madhe"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/chioggia.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town where Venice beat the Genoese in the great war"
+msgstr "për qytetin ku Venecia mundi gjenovezët në luftën e madhe"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the eels in the lagoon"
+msgstr "drejt qytetit të ngjalave në lagunë"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the eels in the lagoon"
+msgstr "për qytetin e ngjalave në lagunë"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town which the Pope took from the Dukes of Ferrara"
+msgstr "drejt qytetit që Papa ua mori dukëve të Ferrarës"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/comacchio.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town which the Pope took from the Dukes of Ferrara"
+msgstr "për qytetin që Papa ua mori dukëve të Ferrarës"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
@@ -6452,6 +7132,38 @@ msgstr "drejt qytetit ku nis Rruga Egnatia"
 msgctxt "about"
 msgid "the town where the Via Egnatia begins"
 msgstr "për qytetin ku nis Rruga Egnatia"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/fano.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the fountain where Fortuna holds a sail"
+msgstr "drejt qytetit me shatërvanin ku Fortuna mban një velë"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/fano.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the fountain where Fortuna holds a sail"
+msgstr "për qytetin me shatërvanin ku Fortuna mban një velë"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/fano.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town named after Fortuna, the goddess of luck"
+msgstr "drejt qytetit që mban emrin e Fortunës, perëndeshës së fatit"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/fano.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town named after Fortuna, the goddess of luck"
+msgstr "për qytetin që mban emrin e Fortunës, perëndeshës së fatit"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
@@ -6647,6 +7359,102 @@ msgstr "për qytetin me mure që ngjiten në mal"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the Holy House, where the pilgrims go"
+msgstr "drejt qytetit të Shtëpisë së Shenjtë, ku shkojnë pelegrinët"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the Holy House, where the pilgrims go"
+msgstr "për qytetin e Shtëpisë së Shenjtë, ku shkojnë pelegrinët"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the great dome on the hill by the sea"
+msgstr "drejt qytetit me kupolën e madhe mbi kodrën pranë detit"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/loreto.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the great dome on the hill by the sea"
+msgstr "për qytetin me kupolën e madhe mbi kodrën pranë detit"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town which King Manfred founded"
+msgstr "drejt qytetit që e themeloi mbreti Manfred"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town which King Manfred founded"
+msgstr "për qytetin që e themeloi mbreti Manfred"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgctxt "to"
+msgid "the harbour of the pilgrims to the cave of St. Michael"
+msgstr "drejt portit të pelegrinëve që shkojnë te shpella e Shën Mëhillit"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/manfredonia.tres
+#, fuzzy
+msgctxt "about"
+msgid "the harbour of the pilgrims to the cave of St. Michael"
+msgstr "për portin e pelegrinëve që shkojnë te shpella e Shën Mëhillit"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgctxt "to"
+msgid "the harbour full of barrels of olive oil"
+msgstr "drejt portit plot me fuçi vaji ulliri"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgctxt "about"
+msgid "the harbour full of barrels of olive oil"
+msgstr "për portin plot me fuçi vaji ulliri"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town whose name means 'the only town'"
+msgstr "drejt qytetit emri i të cilit do të thotë \"qyteti i vetëm\""
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/monopoli.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town whose name means 'the only town'"
+msgstr "për qytetin emri i të cilit do të thotë \"qyteti i vetëm\""
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
 #: data/world/ports/ortona.tres
 #, fuzzy
 msgctxt "to"
@@ -6775,6 +7583,38 @@ msgstr "për qytetin e portokalleve dhe të limonëve"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgctxt "to"
+msgid "the fortress at the mouth of the river Pescara"
+msgstr "drejt kalasë në grykën e lumit Peskara"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgctxt "about"
+msgid "the fortress at the mouth of the river Pescara"
+msgstr "për kalanë në grykën e lumit Peskara"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town which the Romans called Aternum"
+msgstr "drejt qytetit që romakët e quanin Aternum"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/pescara.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town which the Romans called Aternum"
+msgstr "për qytetin që romakët e quanin Aternum"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
 #: data/world/ports/preveza.tres
 #, fuzzy
 msgctxt "to"
@@ -6852,6 +7692,38 @@ msgstr "drejt portit në majë të Istrisë"
 msgctxt "about"
 msgid "the harbour at the very tip of Istria"
 msgstr "për portin në majë të Istrisë"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the golden mosaics"
+msgstr "drejt qytetit të mozaikëve të artë"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the golden mosaics"
+msgstr "për qytetin e mozaikëve të artë"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town where the poet Dante is buried"
+msgstr "drejt qytetit ku është varrosur poeti Dante"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/ravenna.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town where the poet Dante is buried"
+msgstr "për qytetin ku është varrosur poeti Dante"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
@@ -7124,6 +7996,70 @@ msgstr "drejt qytetit të stridhjeve"
 msgctxt "about"
 msgid "the town of the oysters"
 msgstr "për qytetin e stridhjeve"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the castle of Emperor Frederick"
+msgstr "drejt qytetit të kështjellës së perandorit Frederik"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the castle of Emperor Frederick"
+msgstr "për qytetin e kështjellës së perandorit Frederik"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgctxt "to"
+msgid "the old town on a rock which juts into the sea"
+msgstr "drejt qytetit të vjetër mbi një shkëmb që del në det"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/termoli.tres
+#, fuzzy
+msgctxt "about"
+msgid "the old town on a rock which juts into the sea"
+msgstr "për qytetin e vjetër mbi një shkëmb që del në det"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/trani.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the white cathedral right by the sea"
+msgstr "drejt qytetit të katedrales së bardhë buzë detit"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/trani.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the white cathedral right by the sea"
+msgstr "për qytetin e katedrales së bardhë buzë detit"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/trani.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the old laws of the sea"
+msgstr "drejt qytetit të ligjeve të vjetra të detit"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/trani.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the old laws of the sea"
+msgstr "për qytetin e ligjeve të vjetra të detit"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
