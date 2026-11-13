@@ -106,6 +106,10 @@ func _check_ends() -> void:
         complete.run = MissionRun.new(mission, 1)
         complete.stars = 3
         complete.ducats = 120
+        # NOTE (mristin):
+        # The first time a mission is completed, the yataks give their gift,
+        # which takes lines of its own.
+        complete.gift = 20
         root.add_child(complete)
         await process_frame
         await process_frame

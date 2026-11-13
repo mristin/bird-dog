@@ -84,8 +84,14 @@ func _check_ports() -> void:
     _check(
         two.hold(1).cargo.has("bell") and not two.hold(0).cargo.has("bell"), "boats hand over cargo"
     )
+    two.hold(1).provisions = 0.0
     two.hold(0).give_provisions(two.hold(1))
-    _check(two.hold(1).provisions > two.hold(0).provisions, "boats hand over food and water")
+    _check(two.hold(1).provisions > 0.0, "boats hand over food and water")
+    two.hold(0).give_provisions(two.hold(1))
+    _check(
+        two.hold(1).provisions <= two.hold(1).max_provisions,
+        "a boat takes only the food and water which fit its hold"
+    )
     _check(two.hold(0).give_ducats(two.hold(1), 10) == 10, "boats hand over ducats")
     _check(two.ducats_total() == 30, "handing over keeps the ducats of the crew")
 
@@ -277,6 +283,21 @@ func _check_wrong_answers() -> void:
             var asked: Variant = step.act(hearing_run, wrong)
             _check(asked != null and asked["buttons"].size() == 3, "a wrong answer asks again")
             _check(not step.is_done(hearing_run), "a wrong answer does not end the hearing")
+            for asked_question in step.questions:
+                step.act(hearing_run, "answer:%d" % asked_question.correct)
+            # NOTE (mristin):
+            # With two crews, the other one may still answer an old question,
+            # or come in after the last one.
+            var late: Variant = step.act(hearing_run, "answer:0")
+            _check(
+                late != null and late["buttons"][0]["action"] == "done",
+                "an answer after the last question only gets the thanks"
+            )
+            var again: Variant = step.opening(hearing_run)
+            _check(
+                again != null and again["buttons"][0]["action"] == "done",
+                "after the last question, the hearing opens with the thanks"
+            )
 
 
 ## The merchant sells what the crew can pay, at most two boosters for a leg,

@@ -129,6 +129,20 @@ venv/bin/python dev/continuous_integration/precommit.py --overwrite
 
 This re-formats the code, lints it, checks the translations, runs the .NET tests and the Godot tests (`tests/godot/`), starts every test screen (`tests/BirdDog.Tests/`), builds the game, imports the project and type-checks the scripts.
 
+**The end-to-end tests** in `tests/godot/end2end/` play the whole game, from the language select through every mission of every chapter to the end of the voyage, and once more after a restart, as players do: `test_one_player.gd` with one captain, and `test_two_players.gd` with two on the split screen.
+They click the buttons with the mouse (and now and then press the keys) and sail only with the keys (`captain_bot.gd`, finding the way with `navigator.gd`): they answer the people in the ports, pick in the line-ups (now and then the wrong one), shop, run errands, hand over goods when the boats meet, and take detours (how to steer, the shipyard, the other chapters, leaving a mission and continuing it, the chart, Esc).
+The voyage starts the game again in another language every few missions, so that it goes through every language.
+At the end, every mission must be completed, the last must end the voyage, and after a restart the language and the voyage must come back from the disk; the players then start a new voyage and go back to the first.
+All the way, they check the contracts of the game (`contracts.gd`), which run only in the tests: e.g., no two buttons overlap, no text runs out of its button or off the screen, the scenes of the ports keep the rules of `story_layout.gd` (which `test_dialogue_layout.gd` checks for every scene in every language, too), the boats never sail on the land, the days never run backwards, the chart points where the mission says, and a mission is done exactly when its end shows.
+Since the voyage sees each screen in only a few languages, `tests/godot/test_menu_layout.gd` checks the same contracts on every menu screen in every language, with every choice of the captains and every tab of the shipyard.
+The random choices come from a seed, so that a failure repeats; try others with `-- --seed=<n>`, or play only the first missions with `-- --missions=<n>`.
+The game runs twelve times faster than the fixed frame rate gives, and the boats sail three more steps on every frame (`-- --time-scale=<x>`, `-- --substeps=<n>`).
+The tests keep their voyages and settings in `user://tests/`, and leave the player's alone.
+
+```
+$GODOT --headless --fixed-fps 60 --path . --script tests/godot/end2end/test_one_player.gd -- --no-camera --no-music --seed=7
+```
+
 **The soak test** (`tests/soak/`) is too long for every commit: run it now and then, e.g., before a release. Every mission sails for minutes of game time with one and with two players, with wandering steering, and the test checks that no boat gets stuck, that the hazards do not pile up and that the objects in memory do not keep growing:
 
 ```
