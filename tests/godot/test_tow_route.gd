@@ -90,6 +90,34 @@ func _run() -> void:
                     "the way from %s to Pag stays at sea: %s to %s" % [start, way[i], way[i + 1]]
                 )
 
+    # NOTE (mristin):
+    # Off Pag, a long pull (as in the end-to-end tests, which step the game
+    # by 0.2 s) takes the towed boat around a corner of the way, next to a
+    # tip of the land: it follows the way (see Tow.way), around the corner,
+    # never the straight line across the tip.
+    var off_pag := Vector2(-77.68453, -164.2041)
+    var towing := Tow.new(SeaRoute.find(off_pag, pag, 4.5), World.port("pag"), {}, root)
+    var helm := Helm.new(0, SeaBoat.new())
+    # NOTE (mristin):
+    # The boats keep their size on the screen (see SeaView.follow); zoomed in
+    # tenfold, the fishing boat sails 1.7 km ahead.
+    helm.boat.scale = Vector2.ONE * 0.1
+    var corners := 0
+    for k in range(40):
+        var before := towing.travelled
+        towing.pull(helm, 0.2, Helm.BASE_KM_PER_SECOND * 0.45)
+        var stretch := towing.way(before, towing.travelled)
+        corners += stretch.size() - 2
+        _check(stretch[-1].distance_to(helm.km) < 0.01, "the towed boat is on the way")
+        for i in range(stretch.size() - 1):
+            _check(
+                chart.is_clear_line(stretch[i], stretch[i + 1]),
+                "the pull off Pag stays at sea: %s to %s" % [stretch[i], stretch[i + 1]]
+            )
+    _check(corners > 0, "the long pulls go around the corners of the way")
+    helm.boat.free()
+    towing.finish()
+
     chart.free()
     if _failures.is_empty():
         print("RESULT: OK")

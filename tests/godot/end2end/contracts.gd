@@ -529,19 +529,25 @@ func _check_hazards(mission: Node, tag: String, where: String) -> void:
 ## waits, and never crosses the land on its way from where it was, not even a
 ## thin tip of it, nor where the land meets the edge of the chart. The way is
 ## clipped against the land (see ChartView.is_clear_line), which does not
-## depend on how the boat checks it itself (see Helm.sail).
+## depend on how the boat checks it itself (see Helm.sail). A towed boat
+## follows the way of the fishermen (see Tow), around its corners, so it is
+## checked along that way.
 func check_steps(mission: Node, tag: String) -> void:
     var chart: ChartView = mission._chart
     var last: Array = _steps.get(mission.get_instance_id(), [])
     var now: Array = []
     for helm: Helm in mission._helms:
         var port: Port = mission._in_port[helm.player]
+        var tow: Tow = mission._tows[helm.player]
         var state := {
             "km": helm.km,
             "busy": mission._busy[helm.player],
             "paused": mission._all_paused,
             "towed": helm.towed,
             "port": port.id if port != null else "",
+            "tow": tow,
+            "tow_version": tow.version if tow != null else -1,
+            "travelled": tow.travelled if tow != null else 0.0,
         }
         now.append(state)
         if helm.player >= last.size():
@@ -574,9 +580,33 @@ func check_steps(mission: Node, tag: String) -> void:
         # NOTE (mristin):
         # While the game waits, the boats may be set where they start (e.g.,
         # the second next to the first at the start of a mission).
-        if not before["paused"] and not chart.is_clear_line(before["km"], helm.km):
+        if before["paused"]:
+            continue
+        if tow != null:
+            _check_towed_way(chart, before, tow, helm, tag, who)
+        elif not chart.is_clear_line(before["km"], helm.km):
             _report("%s: a boat sails through the land" % tag, who)
     _steps[mission.get_instance_id()] = now
+
+
+## The towed boat went from where it was along the way of the tow (from its
+## start if the tow is new, or the fishermen took another way, which starts
+## where the boat was then).
+func _check_towed_way(
+    chart: ChartView, before: Dictionary, tow: Tow, helm: Helm, tag: String, who: String
+) -> void:
+    var same_way: bool = before["tow"] == tow and before["tow_version"] == tow.version
+    var way := PackedVector2Array([before["km"]])
+    way.append_array(tow.way(before["travelled"] if same_way else 0.0, tow.travelled))
+    if way[-1].distance_to(helm.km) > 0.01:
+        _report("%s: a towed boat is off the way of the tow" % tag, who)
+    for i in range(way.size() - 1):
+        if way[i].distance_to(way[i + 1]) > 0.0 and not chart.is_clear_line(way[i], way[i + 1]):
+            _report(
+                "%s: a towed boat goes through the land" % tag,
+                "%s, along %s to %s" % [who, way[i], way[i + 1]]
+            )
+            return
 
 
 static func _brief(state: Dictionary) -> String:

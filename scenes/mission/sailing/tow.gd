@@ -45,6 +45,9 @@ var boat: TowBoat
 ## How long until the fishermen look out for the storms again, in seconds.
 var lookout := 0.0
 
+## How many times the fishermen took another way (see [method reroute]).
+var version := 0
+
 ## How far along the way its points lie, in kilometres.
 var _along := PackedFloat32Array()
 
@@ -118,6 +121,8 @@ func _init(
 
 
 func _follow(the_path: PackedVector2Array) -> void:
+    if not path.is_empty():
+        version += 1
     path = the_path
     travelled = 0.0
     _along = PackedFloat32Array([0.0])
@@ -185,6 +190,20 @@ func point_at(distance: float) -> Vector2:
             var share := (at - _along[i - 1]) / part if part > 0.0 else 1.0
             return path[i - 1].lerp(path[i], share)
     return path[-1]
+
+
+## The way between the two distances along it, in kilometres: the points
+## there, with the corners of the way between them, which a boat pulled from
+## the one to the other passes.
+func way(from_distance: float, to_distance: float) -> PackedVector2Array:
+    var from := clampf(from_distance, 0.0, length())
+    var to := clampf(to_distance, 0.0, length())
+    var result := PackedVector2Array([point_at(from)])
+    for i in range(path.size()):
+        if _along[i] > from and _along[i] < to:
+            result.append(path[i])
+    result.append(point_at(to))
+    return result
 
 
 ## Where the way heads at the distance along it, as a heading (0 north,
