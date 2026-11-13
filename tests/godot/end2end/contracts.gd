@@ -18,7 +18,12 @@ extends RefCounted
 ##
 ## In a mission:
 ##
-## * the boats stay on the chart and never on the land;
+## * the boats stay on the chart, never on the land, and never cross it on
+##   any step, not even where the land meets the edge of the chart; they hold
+##   still in the ports and while the game waits, and never sail faster than
+##   they can;
+## * the ships and the loot stay on the chart and off the land;
+## * no text shows a placeholder or the forms of a word (e.g., "{port}");
 ## * the days never run backwards, the food and the water stay within the
 ##   hold, the hull's damage within [0, 100], and nobody has fewer than no
 ##   ducats;
@@ -57,6 +62,9 @@ var _checks := 0
 
 ## What the last check of each mission saw, by the id of the mission screen.
 var _last := {}
+
+## Where the boats of each mission were after the last step, by its id.
+var _steps := {}
 
 ## The scenes of the cards checked already, so that each is checked once.
 var _cards_checked := {}
@@ -140,7 +148,9 @@ func check_screen(root: Node, tag: String, bounds := SCREEN) -> void:
             )
         for problem in button_problems(button, where):
             _report("%s: %s does not fit" % [tag, describe(button)], problem)
+        _check_text(button.text + " " + button.title, tag, where)
     for label in labels:
+        _check_text(label.text, tag, where)
         var rect := label.get_global_rect()
         if not inside.encloses(rect):
             _report(
@@ -221,6 +231,11 @@ func check_card(card: StoryCard, run: MissionRun, tag: String) -> void:
     elif not scene["lines"].is_empty():
         said = "'%s'" % run.say(scene["lines"][0]).left(40)
     var where := "%s, %s (%s)" % [tag, said, _locale()]
+    for a_line in scene.get("lines", []):
+        _check_text(run.say(a_line), tag, where)
+    for control in card.controls():
+        if control is HandButton:
+            _check_text((control as HandButton).text, tag, where)
     for problem in StoryLayout.problems(card, run, where):
         # NOTE (mristin):
         # The key leaves out what is said, so that a problem is reported once
@@ -264,6 +279,8 @@ func check_mission(mission: Node, tag: String) -> void:
             )
         if hold.on_board() < 0:
             _report("%s: a boat has fewer than no ducats" % tag, "%s: %d" % [who, hold.on_board()])
+    _check_moves(mission, tag, where)
+    _check_hazards(mission, tag, where)
     if run.days < float(last.get("days", 0.0)) - 0.0001:
         _report(
             "%s: the days run backwards" % tag, "%s: %f, then %f" % [where, last["days"], run.days]
@@ -339,6 +356,11 @@ func check_mission(mission: Node, tag: String) -> void:
     if complete != null:
         if complete.stars < 1 or complete.stars > 3:
             _report("%s: the mission gives %d stars" % [tag, complete.stars], where)
+        if complete.stars != run.stars():
+            _report(
+                "%s: the end gives other stars than the days earn" % tag,
+                "%s: %d, the days earn %d" % [where, complete.stars, run.stars()]
+            )
         if complete.content_bottom > MissionComplete.BUTTON_TOP + TOLERANCE:
             _report(
                 "%s: the text of the end runs into its button" % tag,
@@ -401,6 +423,7 @@ func _check_texts(view: SeaView, tag: String, who: String) -> void:
     var font := ThemeDB.fallback_font
     for message in view.toast._messages:
         var text: String = message["text"]
+        _check_text(text, tag, who)
         var size := Toast.font_size_of(text, 1.0, view.size.x)
         var width := font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, size).x + 60
         if width > view.size.x + TOLERANCE or size < StoryLayout.READABLE:
@@ -410,6 +433,7 @@ func _check_texts(view: SeaView, tag: String, who: String) -> void:
             )
     var hint := view.hint
     if _hint_shown(hint):
+        _check_text(hint._text, tag, who)
         var height := (
             font
             . get_multiline_string_size(hint._text, HORIZONTAL_ALIGNMENT_LEFT, hint.size.x - 36, 18)
@@ -441,7 +465,132 @@ static func _ids(ports: Array) -> String:
     return ", ".join(ids)
 
 
+## A text shown to the players has every placeholder filled in and every
+## grammatical form chosen (see Grammar): no "{" or "}" and no "|" are left.
+func _check_text(text: String, tag: String, where: String) -> void:
+    if "{" in text or "}" in text or "|" in text:
+        _report(
+            "%s: a text shows a placeholder or the forms of a word" % tag,
+            "%s: '%s'" % [where, text]
+        )
+
+
+## The boats never sail faster than the fastest boat with every boost, and
+## each stays in its view (see [method check_steps] for the steps).
+func _check_moves(mission: Node, tag: String, where: String) -> void:
+    var paused: bool = mission._all_paused
+    var fastest: float = (
+        Helm.BASE_KM_PER_SECOND
+        * mission._mission.sea.speed_scale
+        * 1.3
+        * mission.TOGETHER_BOOST
+        * mission.NEW_SAILS
+        * 1.5
+    )
+    for helm: Helm in mission._helms:
+        var who := "%s, the boat %d" % [where, helm.player + 1]
+        var still: bool = paused or mission._busy[helm.player]
+        if helm.speed < 0.0 or helm.speed > fastest:
+            _report(
+                "%s: a boat sails faster than any can" % tag,
+                "%s: %.2f km/s, at most %.2f" % [who, helm.speed, fastest]
+            )
+        var view: SeaView = mission._views[helm.player]
+        if not still and view._hud.visible:
+            var on_screen: Vector2 = view.viewport.get_canvas_transform() * helm.boat.position
+            if not Rect2(Vector2.ZERO, view.size).has_point(on_screen):
+                _report(
+                    "%s: a boat is out of its view" % tag,
+                    "%s: at %s on the screen of %s" % [who, on_screen, view.size]
+                )
+
+
+## The ships, the loot and the fishing boats stay on the chart, and the ships
+## and the loot never on the land (the clouds may drift beyond the edge, where
+## the black covers them, see ChartView).
+func _check_hazards(mission: Node, tag: String, where: String) -> void:
+    var chart: ChartView = mission._chart
+    var bounds := World.bounds_km()
+    for mark: Dictionary in mission._hazards.marks():
+        var km: Vector2 = mark["km"]
+        if mark["kind"] == "cloud":
+            continue
+        if not bounds.has_point(km):
+            _report("%s: a %s leaves the chart" % [tag, mark["kind"]], "%s: at %s" % [where, km])
+        elif chart.is_land(km):
+            _report("%s: a %s stands on the land" % [tag, mark["kind"]], "%s: at %s" % [where, km])
+    for tow in mission._tows:
+        if tow != null and not bounds.has_point(tow.ahead()):
+            _report("%s: a fishing boat leaves the chart" % tag, where)
+
+
+## Check every step of the boats (call it after every frame and every more
+## step of the mission): a boat holds still while it is in a port or the game
+## waits, and never crosses the land on its way from where it was, not even a
+## thin tip of it, nor where the land meets the edge of the chart. The way is
+## clipped against the land (see ChartView.is_clear_line), which does not
+## depend on how the boat checks it itself (see Helm.sail).
+func check_steps(mission: Node, tag: String) -> void:
+    var chart: ChartView = mission._chart
+    var last: Array = _steps.get(mission.get_instance_id(), [])
+    var now: Array = []
+    for helm: Helm in mission._helms:
+        var port: Port = mission._in_port[helm.player]
+        var state := {
+            "km": helm.km,
+            "busy": mission._busy[helm.player],
+            "paused": mission._all_paused,
+            "towed": helm.towed,
+            "port": port.id if port != null else "",
+        }
+        now.append(state)
+        if helm.player >= last.size():
+            continue
+        var before: Dictionary = last[helm.player]
+        var moved: float = before["km"].distance_to(helm.km)
+        if moved <= 0.0:
+            continue
+        var who := (
+            "%s, the boat %d (%s): from %s to %s, before %s, now %s"
+            % [
+                tag,
+                helm.player + 1,
+                _locale(),
+                before["km"],
+                helm.km,
+                _brief(before),
+                _brief(state)
+            ]
+        )
+        # NOTE (mristin):
+        # A boat in a port is set out from there (see Mission._launch): it
+        # jumps, and its jump is no sailing.
+        if before["busy"] or state["busy"]:
+            if before["busy"] and state["busy"] and before["port"] == state["port"]:
+                _report("%s: a boat moves while it is in a port" % tag, who)
+            continue
+        if before["paused"] and state["paused"] and not helm.towed:
+            _report("%s: a boat moves while the game waits" % tag, who)
+        # NOTE (mristin):
+        # While the game waits, the boats may be set where they start (e.g.,
+        # the second next to the first at the start of a mission).
+        if not before["paused"] and not chart.is_clear_line(before["km"], helm.km):
+            _report("%s: a boat sails through the land" % tag, who)
+    _steps[mission.get_instance_id()] = now
+
+
+static func _brief(state: Dictionary) -> String:
+    var parts: Array[String] = []
+    for key in ["busy", "paused", "towed"]:
+        if state[key]:
+            parts.append(key)
+    if state["port"] != "":
+        parts.append("in " + state["port"])
+    return "sailing" if parts.is_empty() else ", ".join(parts)
+
+
 ## Forget the mission, e.g., when it is left.
 func forget(mission_id: int) -> void:
     _last.erase(mission_id)
+    _steps.erase(mission_id)
     _cards_checked.clear()

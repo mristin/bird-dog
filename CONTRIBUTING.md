@@ -143,6 +143,17 @@ The tests keep their voyages and settings in `user://tests/`, and leave the play
 $GODOT --headless --fixed-fps 60 --path . --script tests/godot/end2end/test_one_player.gd -- --no-camera --no-music --seed=7
 ```
 
+**The render tests** (`tests/render/`) look at the pictures the game renders, so they need a window (the pre-commit checks run them as `render-test` if there is a display, and skip them otherwise, e.g., on the continuous integration):
+
+* `test_edge_of_the_world.gd` puts a boat at the edge of the chart, all along it and in the corners, with one and with two captains, and checks that everything beyond the edge is black (the frame of `ChartView` covers the coasts cut by the edge and the clouds which drift beyond it).
+* `test_decorations_show.gd` puts every decoration (from the shipyard and from the merchants) on every ship, at sea, on the mission select and in the shipyard, and checks that the boat with it is not pixel identical to the boat without it, and that no two decorations of the same place look alike.
+
+```
+$GODOT --path . --windowed --script tests/render/test_edge_of_the_world.gd -- --no-camera --no-music --shots=/tmp/shots
+```
+
+`tests/godot/test_edge_sliding.gd` sails boats along the edge, into it and along the land where it meets the edge, and checks that no step ever crosses the land (see `ChartView.crosses_land`).
+
 **The soak test** (`tests/soak/`) is too long for every commit: run it now and then, e.g., before a release. Every mission sails for minutes of game time with one and with two players, with wandering steering, and the test checks that no boat gets stuck, that the hazards do not pile up and that the objects in memory do not keep growing:
 
 ```

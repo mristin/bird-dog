@@ -73,6 +73,23 @@ func _run() -> void:
     _check(tow.path[-1].distance_to(to) < 2.0, "the new way still leads to the port")
     tow.finish()
 
+    # NOTE (mristin):
+    # Near Pag, a thin tip of the land stands next to the way into the port:
+    # from wherever the way starts (e.g., where the fishing boat takes another
+    # way), its very first stretch must stay at sea, too.
+    var pag := World.port_km(World.port("pag"))
+    for dx in range(-12, 13):
+        for dy in [-0.4, -0.2, 0.0, 0.2]:
+            var start := Vector2(-77.31 + dx * 0.1, -164.184 + dy)
+            if chart.is_land(start):
+                continue
+            var way := SeaRoute.find(start, pag, 4.5)
+            for i in range(way.size() - 1):
+                _check(
+                    chart.is_clear_line(way[i], way[i + 1]),
+                    "the way from %s to Pag stays at sea: %s to %s" % [start, way[i], way[i + 1]]
+                )
+
     chart.free()
     if _failures.is_empty():
         print("RESULT: OK")

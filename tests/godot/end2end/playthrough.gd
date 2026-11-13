@@ -159,6 +159,18 @@ func _play_mission(mission: Node) -> void:
     var may_leave: bool = _missions_played > 0 and not _seen.has(leave_key)
     if may_leave and (_rng.randf() < LEAVE_CHANCE or _completed_count() >= 3):
         leave_at = _rng.randf_range(20.0, 120.0)
+    # NOTE (mristin):
+    # The boats are checked on every frame of the game (the clicks and the
+    # keys of the bots wait for frames of their own), and after every more
+    # step (see below).
+    var mission_id := mission.get_instance_id()
+    var on_frame := func() -> void:
+        # NOTE (mristin):
+        # The mission may be gone already; it is looked up, not kept.
+        var alive := instance_from_id(mission_id) as Node
+        if alive != null and current_scene == alive:
+            _contracts.check_steps(alive, tag)
+    process_frame.connect(on_frame)
     var instance := mission.get_instance_id()
     var started := _clock
     var frame := 0
@@ -234,6 +246,7 @@ func _play_mission(mission: Node) -> void:
                     if run.is_done() or mission._all_paused:
                         break
                     mission._process(_time_scale / 60.0)
+                    _contracts.check_steps(mission, tag)
                     _clock += _time_scale / 60.0
                     for bot in bots:
                         bot.tick(_time_scale / 60.0)
@@ -247,6 +260,7 @@ func _play_mission(mission: Node) -> void:
             _contracts.check_mission(mission, tag)
         await _frames(1)
 
+    process_frame.disconnect(on_frame)
     for bot in bots:
         bot.stop()
         for failure in bot.failures.slice(0, 5):

@@ -41,6 +41,7 @@ class Step(enum.Enum):
     CHECK_SCRIPTS = "check-scripts"
     GODOT_TEST = "godot-test"
     SMOKE_SCENES = "smoke-scenes"
+    RENDER_TEST = "render-test"
 
 
 def call_and_report(
@@ -121,7 +122,7 @@ def reformat(overwrite: bool) -> int:
         verb="re-format the GDScripts" if overwrite else "check the formatting of the GDScripts",
         cmd=[sys.executable, "-m", "gdtoolkit.formatter"]
         + ([] if overwrite else ["--check"])
-        + ["scenes", "tests/godot"],
+        + ["scenes", "tests/godot", "tests/render"],
         cwd=REPO_ROOT,
     )
     if exit_code != 0:
@@ -154,7 +155,7 @@ def check_scripts(godot: str, jobs: int) -> int:
     """Type-check every GDScript in parallel."""
     scripts = sorted(
         path
-        for directory in ("scenes", "tests/godot")
+        for directory in ("scenes", "tests/godot", "tests/render")
         for path in (REPO_ROOT / directory).rglob("*.gd")
     )
     print(f"Type-checking {len(scripts)} GDScript(s)...", flush=True)
@@ -286,6 +287,55 @@ def smoke_scenes(godot: str, jobs: int) -> int:
     return 0
 
 
+def run_render_tests(godot: str, verbose: bool) -> int:
+    """
+    Run the tests of tests/render/, which look at the rendered pictures, in a
+    window, one after the other.
+
+    They need a display; without one (e.g., on the continuous integration),
+    they are skipped.
+    """
+    if not (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")):
+        print("There is no display; the render tests are skipped.", flush=True)
+        return 0
+
+    tests = sorted((REPO_ROOT / "tests" / "render").glob("test_*.gd"))
+    print(f"Running {len(tests)} render test(s) in a window...", flush=True)
+    failed: List[pathlib.Path] = []
+    for test in tests:
+        code, output, duration = run_captured(
+            [
+                godot,
+                "--path",
+                ".",
+                "--windowed",
+                "--resolution",
+                "1920x1080",
+                "--script",
+                str(test),
+                "--",
+                "--no-camera",
+                "--no-music",
+            ],
+            timeout=900.0,
+        )
+        passed = code == 0 and "RESULT: OK" in output and not GODOT_ERROR_RE.search(output)
+        if not passed:
+            failed.append(test)
+        print(
+            f"  {'passed' if passed else 'FAILED'} {test.relative_to(REPO_ROOT)} in {duration:.1f} s",
+            flush=True,
+        )
+        if not passed or verbose:
+            print(output)
+
+    if failed:
+        print(f"Failed {len(failed)} of {len(tests)} render test(s).", file=sys.stderr)
+        return 1
+
+    return 0
+
+
 def main() -> int:
     """Execute the entry point."""
     parser = argparse.ArgumentParser(description=__doc__)
@@ -355,7 +405,13 @@ def main() -> int:
     godot: Optional[str] = None
     if any(
         step in steps
-        for step in (Step.IMPORT, Step.CHECK_SCRIPTS, Step.GODOT_TEST, Step.SMOKE_SCENES)
+        for step in (
+            Step.IMPORT,
+            Step.CHECK_SCRIPTS,
+            Step.GODOT_TEST,
+            Step.SMOKE_SCENES,
+            Step.RENDER_TEST,
+        )
     ):
         godot = find_godot(args.godot)
         if godot is None:
@@ -384,7 +440,14 @@ def main() -> int:
             print("Linting the GDScripts...")
             exit_code = call_and_report(
                 verb="lint the GDScripts",
-                cmd=[sys.executable, "-m", "gdtoolkit.linter", "scenes", "tests/godot"],
+                cmd=[
+                    sys.executable,
+                    "-m",
+                    "gdtoolkit.linter",
+                    "scenes",
+                    "tests/godot",
+                    "tests/render",
+                ],
                 cwd=REPO_ROOT,
             )
 
@@ -445,6 +508,10 @@ def main() -> int:
         elif step == Step.SMOKE_SCENES:
             assert godot is not None
             exit_code = smoke_scenes(godot, args.jobs)
+
+        elif step == Step.RENDER_TEST:
+            assert godot is not None
+            exit_code = run_render_tests(godot, args.verbose)
 
         else:
             raise AssertionError(f"Unhandled step: {step}")
