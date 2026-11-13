@@ -430,6 +430,7 @@ func _show(player: int, scene: Dictionary, port: Port) -> void:
     _cards[player].present(scene, _run, port)
     _cards[player].get_meta("cursor").visible = true
     _views[player].show_hud(false)
+    _update_targets()  # A scene may change them (e.g., the goods collected).
 
 
 func _show_opening(player: int) -> void:

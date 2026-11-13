@@ -268,6 +268,10 @@ func load_voyage(voyage_id: String) -> bool:
 ## "updated", "captains" (the names) and "stars".
 func list() -> Array[Dictionary]:
     var voyages: Array[Dictionary] = []
+    # NOTE (mristin):
+    # At the very first start, nothing is saved yet, not even the directory.
+    if not DirAccess.dir_exists_absolute(saves_dir):
+        return voyages
     for file in DirAccess.get_files_at(saves_dir):
         if not file.ends_with(".json"):
             continue

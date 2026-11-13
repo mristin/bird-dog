@@ -182,10 +182,14 @@ static func label_lines(
     for i in range(1, words.size()):
         var first := " ".join(words.slice(0, i))
         var second := " ".join(words.slice(i))
+        # NOTE (mristin):
+        # The two lines may be smaller than wanted, as long as they fit the
+        # height and stay larger than the one line.
         var both := mini(
-            fit_size(font, first, wanted, width), fit_size(font, second, wanted, width)
+            mini(fit_size(font, first, wanted, width), fit_size(font, second, wanted, width)),
+            int(height / 2.3)
         )
-        if both > best_size and both * 2.3 <= height:
+        if both > best_size:
             best_size = both
             best = [[first, both], [second, both]]
     return best

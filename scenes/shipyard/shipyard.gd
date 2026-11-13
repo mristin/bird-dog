@@ -7,7 +7,8 @@ extends MenuScreen
 ## the bought ships and decorations is free.
 ##
 ## On the left, the captain's boat turns slowly on the water; above it, the
-## captains to choose (with two players). On the right, the places of the boat
+## captains to choose (with two players). On the right, in two rows of tabs, the
+## places of the boat
 ## (the ship itself, the sail, the hull, the pennant, the figurehead, the
 ## streamers, the lanterns, a friend on board), and a card for every ship or
 ## decoration of the chosen place. Buying asks first.
@@ -67,13 +68,18 @@ func _build() -> void:
         "lanterns": tr("Lanterns"),
         "friend": tr("Friend"),
     }
-    var row := HBoxContainer.new()
-    row.add_theme_constant_override("separation", 8)
-    row.position = Vector2(790, 170)
+    # NOTE (mristin):
+    # The tabs stand in two rows of four above the cards, so that the long
+    # names of the places (e.g., "Galionsfigur") fit at a readable size.
+    var row := GridContainer.new()
+    row.columns = 4
+    row.add_theme_constant_override("h_separation", 8)
+    row.add_theme_constant_override("v_separation", 8)
+    row.position = Vector2(800, 160)
     add_child(row)
     for slot in TABS:
         var button := HandButton.new()
-        button.custom_minimum_size = Vector2(130, 90)
+        button.custom_minimum_size = Vector2(259, 56)
         button.text = slot_names[slot]
         button.text_size = 26
         button.pressed.connect(_choose_slot.bind(slot))

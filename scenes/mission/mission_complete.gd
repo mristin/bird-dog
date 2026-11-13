@@ -23,6 +23,9 @@ const _SHEET := Rect2(620, 40, 1260, 1000)
 ## The top of the button; the text on the sheet must end above it.
 const BUTTON_TOP := 910.0
 
+## The fun fact shrinks at most to this size to stay above the button.
+const MIN_FACT_SIZE := 20
+
 var mission: Mission
 var run: MissionRun
 var stars := 0
@@ -162,9 +165,17 @@ func _draw() -> void:
             34,
             Paper.RED
         )
-        content_bottom = _draw_lines(
-            font, tr(mission.fun_fact), Vector2(x, y + 44), width, 28, Paper.INK
-        )
+        # NOTE (mristin):
+        # The fun fact shrinks a little if it would run into the button (e.g.,
+        # under the gift of the yataks).
+        var fact := tr(mission.fun_fact)
+        var fact_size := 28
+        while (
+            fact_size > MIN_FACT_SIZE
+            and _lines_bottom(font, fact, y + 44, width, fact_size) > BUTTON_TOP
+        ):
+            fact_size -= 1
+        content_bottom = _draw_lines(font, fact, Vector2(x, y + 44), width, fact_size, Paper.INK)
 
 
 func _draw_background() -> void:
@@ -178,6 +189,17 @@ func _draw_background() -> void:
         var drawn := picture_size * scale
         draw_texture_rect(picture, Rect2((size - drawn) * 0.5, drawn), false)
     draw_rect(Rect2(Vector2.ZERO, size), Color(0, 0, 0, 0.2))
+
+
+## Where a text which wraps from [param top] ends, as [method _draw_lines]
+## draws it.
+static func _lines_bottom(
+    font: Font, text: String, top: float, width: float, font_size: int
+) -> float:
+    var count := ceili(
+        font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x / width
+    )
+    return top + maxi(1, count) * font_size * 1.3 + 10
 
 
 ## Draw a text which wraps; return the y below it.
@@ -194,10 +216,7 @@ func _draw_lines(
         -1,
         color
     )
-    var count := ceili(
-        font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x / width
-    )
-    return at.y + maxi(1, count) * font_size * 1.3 + 10
+    return _lines_bottom(font, text, at.y, width, font_size)
 
 
 func _draw_person(frame: Rect2) -> void:

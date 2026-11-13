@@ -23,7 +23,6 @@ extends Node
 const SOURCE_LANGUAGE := "en"
 
 const _LIST_PATH := "res://translations/languages.json"
-const _SETTINGS_PATH := "user://settings.cfg"
 const _TRANSLATIONS_DIR := "user://translations"
 
 ## The languages in the order of the list, each a dictionary with "code",
@@ -32,6 +31,10 @@ var languages: Array[Dictionary] = []
 
 ## Whether the language was chosen before (or given on the command line).
 var has_chosen := false
+
+## Where the chosen language is kept for the next start (the end-to-end tests
+## keep it in a file of their own, so that they leave the player's alone).
+var settings_path := "user://settings.cfg"
 
 ## The translations which we registered, to remove them again at the exit.
 var _registered: Array[Translation] = []
@@ -55,7 +58,7 @@ func _ready() -> void:
             _registered.append(addressed)
 
     var settings := ConfigFile.new()
-    if settings.load(_SETTINGS_PATH) == OK:
+    if settings.load(settings_path) == OK:
         var saved: String = settings.get_value("general", "language", "")
         if saved in codes():
             TranslationServer.set_locale(saved)
@@ -118,9 +121,9 @@ func choose(code: String) -> void:
     has_chosen = true
 
     var settings := ConfigFile.new()
-    settings.load(_SETTINGS_PATH)
+    settings.load(settings_path)
     settings.set_value("general", "language", code)
-    settings.save(_SETTINGS_PATH)
+    settings.save(settings_path)
 
 
 ## Load the translation of the language with the fuzzy marks removed, so that

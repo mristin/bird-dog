@@ -83,11 +83,13 @@ func repair() -> float:
     return spent_days
 
 
-## Give half of the food and the water to the other boat.
+## Give half of the food and the water to the other boat, as much as fits.
 func give_provisions(other: BoatHold) -> void:
-    var half := provisions * 0.5
-    provisions -= half
-    other.provisions += half
+    # NOTE (mristin):
+    # The other boat takes only what fits into its hold.
+    var given := clampf(minf(provisions * 0.5, other.max_provisions - other.provisions), 0.0, INF)
+    provisions -= given
+    other.provisions += given
 
 
 ## Give some ducats on board to the other boat; return how many were given.

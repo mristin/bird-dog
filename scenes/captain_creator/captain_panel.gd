@@ -53,7 +53,7 @@ func _ready() -> void:
     _layout = layout
 
     _preview = CaptainPreview.new()
-    _preview.custom_minimum_size = Vector2(620 if wide else 280, 0)
+    _preview.custom_minimum_size = Vector2(620 if wide else 220, 0)
     _preview.size_flags_vertical = Control.SIZE_EXPAND_FILL
     layout.add_child(_preview)
 
@@ -152,7 +152,7 @@ func _row(label_text: String) -> HBoxContainer:
     row.add_theme_constant_override("separation", 10)
     var label := Label.new()
     label.text = label_text
-    var width := 190.0 if wide else 130.0
+    var width := 190.0 if wide else 150.0
     label.custom_minimum_size = Vector2(width, _row_height)
     label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
     var font_size := HandButton.fit_size(ThemeDB.fallback_font, label_text, _font_size, width)
@@ -165,7 +165,7 @@ func _row(label_text: String) -> HBoxContainer:
 
 func _add_name_row() -> void:
     var row := _row(tr("Name"))
-    var name_button := _button("", Vector2(400 if wide else 290, _row_height))
+    var name_button := _button("", Vector2(400 if wide else 360, _row_height))
     name_button.text_size = int(_font_size * 1.2)
     name_button.pressed.connect(open_keyboard)
     row.add_child(name_button)
@@ -175,7 +175,7 @@ func _add_name_row() -> void:
 func _add_gender_row() -> void:
     var row := _row(tr("Captain"))
     for entry in [["hajduk", tr("Haiduk")], ["hajducica", tr("Haidukess")]]:
-        var button := _button(entry[1], Vector2(195 if wide else 142, _row_height))
+        var button := _button(entry[1], Vector2(195 if wide else 170, _row_height))
         button.pressed.connect(_set_gender.bind(entry[0]))
         row.add_child(button)
         _gender_buttons[entry[0]] = button
@@ -190,7 +190,7 @@ func _add_choice_row(key: String, label_text: String) -> void:
     previous.pressed.connect(_step.bind(key, -1))
     row.add_child(previous)
 
-    var value := _button("", Vector2(260 if wide else 170, _row_height))
+    var value := _button("", Vector2(260 if wide else 240, _row_height))
     row.add_child(value)
     _values[key] = value
 

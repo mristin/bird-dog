@@ -27,14 +27,20 @@ func _process(delta: float) -> void:
     queue_redraw()
 
 
+## The size of the text of a message: as large as the pop makes it, but
+## shrunk to fit the width of the view (e.g., a long sentence in a half).
+static func font_size_of(text: String, pop: float, width: float) -> int:
+    return HandButton.fit_size(ThemeDB.fallback_font, text, int(44 * pop), width - 80.0)
+
+
 func _draw() -> void:
     var font := ThemeDB.fallback_font
     var y := 250.0
     for message in _messages:
         var alpha := clampf((SECONDS - message["age"]) / 0.6, 0.0, 1.0)
         var pop := 1.0 + 0.3 * exp(-message["age"] * 8.0)
-        var font_size := int(44 * pop)
         var text: String = message["text"]
+        var font_size := font_size_of(text, pop, size.x)
         var width := font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + 60
         var box := Rect2(size.x * 0.5 - width * 0.5, y, width, font_size + 30)
         draw_rect(box, Color(Paper.PAPER, 0.95 * alpha))

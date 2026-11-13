@@ -46,7 +46,19 @@ func start(run: MissionRun) -> void:
 
 
 func opening(run: MissionRun) -> Variant:
+    # NOTE (mristin):
+    # With two crews, one may have answered the last question while the other
+    # comes in: the speaker then only thanks.
+    if run.plan[id]["index"] >= questions.size():
+        return _thanks()
     return _question(run)
+
+
+func _thanks() -> Dictionary:
+    var lines: Array = []
+    for text in right_lines:
+        lines.append(MissionRun.line(text))
+    return MissionStep.talk(speaker, lines, MissionRun.line("Thank you!"), "done")
 
 
 func act(run: MissionRun, action: String) -> Variant:
@@ -56,6 +68,10 @@ func act(run: MissionRun, action: String) -> Variant:
         return null
     if not action.begins_with("answer:"):
         return null
+    if state["index"] >= questions.size():
+        # NOTE (mristin):
+        # The other crew answered the last question meanwhile.
+        return _thanks()
     if int(action.get_slice(":", 1)) != questions[state["index"]].correct:
         state["wrong"] = true
         return _question(run)
@@ -63,10 +79,7 @@ func act(run: MissionRun, action: String) -> Variant:
     state["index"] += 1
     if state["index"] < questions.size():
         return _question(run)
-    var lines: Array = []
-    for text in right_lines:
-        lines.append(MissionRun.line(text))
-    return MissionStep.talk(speaker, lines, MissionRun.line("Thank you!"), "done")
+    return _thanks()
 
 
 func solution(run: MissionRun) -> String:
