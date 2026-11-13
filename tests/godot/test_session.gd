@@ -41,10 +41,33 @@ func _run() -> void:
     await process_frame
 
     var missions := MissionCatalog.all()
-    _check(missions.size() == 15, "there are fifteen missions")
+    _check(missions.size() == 35, "there are thirty-five missions")
     for i in range(missions.size()):
         _check(missions[i].number == i + 1, "the missions are in order (%d)" % (i + 1))
     _check(missions[-1].finale, "the last mission is the finale")
+
+    # NOTE (mristin):
+    # Three chapters of 15, 10 and 10 missions, each ending in its finale, in
+    # the order of the numbers.
+    var chapters := MissionCatalog.chapters()
+    _check(chapters.size() == 3, "there are three chapters")
+    var sizes := [15, 10, 10]
+    var previous := 0
+    for chapter in chapters:
+        var of_chapter := MissionCatalog.of_chapter(chapter.number)
+        _check(
+            of_chapter.size() == sizes[chapter.number - 1],
+            "chapter %d has %d missions" % [chapter.number, sizes[chapter.number - 1]]
+        )
+        _check(of_chapter[-1].finale, "chapter %d ends in its finale" % chapter.number)
+        _check(of_chapter[0].number == previous + 1, "chapter %d follows on" % chapter.number)
+        _check(
+            MissionCatalog.number_in_chapter(of_chapter[0]) == 1,
+            "chapter %d starts with its mission 1" % chapter.number
+        )
+        for mission in of_chapter.slice(0, -1):
+            _check(not mission.finale, "%s is no finale" % mission.id)
+        previous = of_chapter[-1].number
 
     crew.start(2)
     crew.captains[0]["name"] = "Ana"
@@ -64,13 +87,17 @@ func _run() -> void:
     _check(session.ducats == 70, "the crew keeps the ducats left on board after the mission")
     _check(session.is_unlocked(missions[1]), "finishing a mission unlocks the next one")
     _check(not session.is_unlocked(missions[2]), "but not the one after it")
+    _check(not session.is_unlocked(missions[15]), "chapter 2 is locked at first")
+    session.complete(missions[14].id, 1)
+    _check(session.is_unlocked(missions[15]), "the finale of chapter 1 opens chapter 2")
+    _check(not session.is_unlocked(missions[25]), "but not chapter 3")
     session.complete(missions[0].id, 1)
     _check(session.stars(missions[0].id) == 2, "the best stars are kept")
     _check(session.ducats == 70, "the stars pay nothing")
     _check(session.yatak_gift(missions[1].id) == 20, "the yataks collect 20 ducats in a mission")
     _check(session.yatak_gift(missions[1].id) == 0, "but only once per mission")
     _check(session.ducats == 90, "the yataks' ducats count for the voyage at once")
-    _check(session.list()[0]["stars"] == 2, "the list counts the stars")
+    _check(session.list()[0]["stars"] == 3, "the list counts the stars (2 + 1)")
 
     # NOTE (mristin):
     # A save of format 1 kept a chest at home; its ducats go on board of the

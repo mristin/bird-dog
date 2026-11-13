@@ -1,0 +1,184 @@
+{
+  "created": "2026-11-10T17:59:52",
+  "crew": {
+    "captains": [
+      {
+        "boat": {
+          "streamers": "streamers"
+        },
+        "cap": "none",
+        "eye_patch": "right",
+        "face": "freckles",
+        "gender": "hajduk",
+        "hair": "long",
+        "hair_color": 1.0,
+        "name": "Liso",
+        "sash": 1.0,
+        "ship": "bracera",
+        "skin": 2.0,
+        "vest": 0.0
+      }
+    ],
+    "players": 1
+  },
+  "ducats": 682,
+  "format": 2,
+  "hints_seen": [
+    "errand",
+    "reefs",
+    "damage",
+    "loot",
+    "provisions",
+    "into_wind",
+    "wind_change",
+    "cliffs",
+    "port",
+    "patrol",
+    "corsair",
+    "cloud"
+  ],
+  "id": "20261110-175952",
+  "mission_in_progress": {
+    "boats": [
+      {
+        "heading": 1.0,
+        "left": "herceg_novi",
+        "x": 211.837448120117,
+        "y": 60.8264007568359
+      }
+    ],
+    "run": {
+      "boosters": [],
+      "brought": 682,
+      "clue": {
+        "args": {
+          "count": 1
+        },
+        "text": "Pick up {count} more {count|witness|witnesses}.",
+        "then": {
+          "args": {
+            "port": "Kotor"
+          },
+          "text": "Sail to {port}!"
+        }
+      },
+      "days": 2.0,
+      "errands": [],
+      "hallmarks": [],
+      "holds": [
+        {
+          "cargo": [
+            "witness_leke",
+            "witness_mustafa"
+          ],
+          "damage": 0.0,
+          "ducats": 682,
+          "provisions": 1.6,
+          "spent": 0
+        }
+      ],
+      "mission": "the_witnesses",
+      "plan": {
+        "briefing": {
+          "done": true
+        },
+        "bring_jele": {
+          "done": false
+        },
+        "bring_leke": {
+          "done": false
+        },
+        "bring_mustafa": {
+          "done": false
+        },
+        "celebration": {
+          "done": false
+        },
+        "witnesses": {
+          "taken": [
+            0,
+            1
+          ]
+        }
+      },
+      "step": 1
+    },
+    "visited": [
+      "ulcinj",
+      "herceg_novi"
+    ]
+  },
+  "missions": {
+    "across_the_sea": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "bell_of_grebastica": {
+      "completed": true,
+      "gifted": true,
+      "stars": 2.0
+    },
+    "corsairs_of_ulcinj": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "doctor_of_ragusa": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "forged_ledger": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "oak_for_master_ivan": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "oranges_of_parga": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "pilgrims_of_st_nicholas": {
+      "completed": true,
+      "gifted": true,
+      "stars": 3.0
+    },
+    "salt_for_the_winter": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "secret_script": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "shipwright_of_korcula": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    },
+    "theatre_of_hvar": {
+      "completed": true,
+      "gifted": true,
+      "stars": 3.0
+    },
+    "uskok_and_the_doge": {
+      "completed": true,
+      "gifted": true,
+      "stars": 1.0
+    }
+  },
+  "name": "2026-11-10 17:59",
+  "owned": [
+    "bracera",
+    "streamers"
+  ],
+  "updated": "2026-11-13T10:01:48"
+}

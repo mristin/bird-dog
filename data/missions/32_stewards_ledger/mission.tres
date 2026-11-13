@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ika.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bakar.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trieste.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/koper.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/piran.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/krk.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rab.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rovinj.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_wolf_ring.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_fur_collar.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_feather_hat.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_keys.tres" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="19_ext"]
+[ext_resource type="Resource" path="res://data/world/people/wolfram.tres" id="20_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch3_timber_trader.tres" id="21_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch3_innkeeper.tres" id="22_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch3_customs_man.tres" id="23_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_payroll.tres" id="24_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="25_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="26_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_gulf_of_trieste.tres" id="27_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="28_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/rijeka.jpg" id="29_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("2_ext")
+id = "briefing"
+speaker = ExtResource("3_ext")
+lines = Array[String](["Captain, the Baron's steward was here, asking about you!", "He carries the payroll: the list of the men paid to play uskoks.", "He fled by boat. Chase him!"])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("4_ext")
+id = "trail"
+ports = Array[ExtResource("5_ext")]([ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("8_ext"), ExtResource("9_ext"), ExtResource("10_ext"), ExtResource("11_ext"), ExtResource("12_ext"), ExtResource("13_ext")])
+length = 4
+fixed_route = false
+max_route_km = 360.0
+max_difficulty = 3
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("14_ext")]([ExtResource("15_ext"), ExtResource("16_ext"), ExtResource("17_ext"), ExtResource("18_ext")])
+hallmark_template = "The steward had {hallmark}."
+question = "Have you seen the Baron's steward?"
+found_line = "He is here, hiding among the people of the harbour! But which one is he?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("19_ext")
+id = "lineup"
+target = ExtResource("20_ext")
+decoys = Array[Resource]([ExtResource("21_ext"), ExtResource("22_ext"), ExtResource("23_ext")])
+question = "Which one is the Baron's steward?"
+wrong_line = "No, that is not the steward! Remember all four things you learned."
+right_line = "\"Alright! Here is the payroll. The Baron signed every page.\""
+gives = ExtResource("24_ext")
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("25_ext")
+id = "celebration"
+speaker = ExtResource("20_ext")
+lines = Array[String](["\"The Baron never even paid me!\"", "\"I will tell the Archduke's commissioner everything.\""])
+
+[resource]
+script = ExtResource("1_ext")
+id = "stewards_ledger"
+number = 32
+chapter = 3
+title = "The Steward's Ledger"
+summary = "The Baron's steward flees with the payroll of the false uskoks. Chase him!"
+start_port = ExtResource("26_ext")
+clock_days = 9.0
+provisions_days = 10.8
+sea = ExtResource("27_ext")
+steps = Array[ExtResource("28_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("celebration")])
+fun_fact = "Around 1600, Rijeka and Trieste belonged to the Archduke of Inner Austria, a Habsburg who ruled from the town of Graz."
+victory_title = "The payroll is yours!"
+victory_lines = Array[String](["You chased the steward through Kvarner and Istria.", "His payroll shows who paid the false uskoks: Baron Isengrim."])
+victory_picture = ExtResource("29_ext")
+victory_person = ExtResource("20_ext")

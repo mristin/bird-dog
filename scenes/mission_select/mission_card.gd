@@ -5,8 +5,9 @@ extends HandButton
 ## stars (up to three), or a padlock while the mission is locked. The title
 ## wraps onto at most [constant TITLE_LINES] lines, and shrinks if it must.
 
-## The size of the card, so that fifteen of them fit the screen (5 x 3).
-const SIZE := Vector2(330, 205)
+## The size of the card, so that fifteen of them fit the screen (5 x 3) below
+## the tabs of the chapters.
+const SIZE := Vector2(330, 190)
 
 const TITLE_SIZE := 30
 const TITLE_LINES := 2

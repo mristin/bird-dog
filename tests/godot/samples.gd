@@ -68,6 +68,12 @@ static func scenes(mission: Mission) -> Array[Dictionary]:
             var targets := step.target_ports(run)
             if targets.is_empty():
                 break
+            if step is RaceStep and step.is_racing(run) and not World.ports().has(targets[0]):
+                # NOTE (mristin):
+                # A buoy of a race is rounded, never entered.
+                var buoy: Array[Vector2] = [World.port_km(targets[0])]
+                step.update(run, buoy, 0.0, 0.0)
+                continue
             var wrong := MissionStep.talk(
                 null,
                 [MissionRun.line("This is the wrong port, captain!"), run.clue],

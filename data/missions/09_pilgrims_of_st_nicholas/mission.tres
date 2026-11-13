@@ -87,6 +87,7 @@ lines = Array[String](["The pilgrims will tell everybody about the kind captain.
 script = ExtResource("1_ext")
 id = "pilgrims_of_st_nicholas"
 number = 9
+chapter = 1
 title = "The Pilgrims of St. Nicholas"
 summary = "The Aga's men took the pilgrims' money. Find little Luka and take them all home across the sea."
 start_port = ExtResource("21_ext")

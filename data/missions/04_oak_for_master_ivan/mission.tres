@@ -73,6 +73,7 @@ lines = Array[String](["The first new boat is in the water!", "And the Aga's tax
 script = ExtResource("1_ext")
 id = "oak_for_master_ivan"
 number = 4
+chapter = 1
 title = "Oak for Master Ivan"
 summary = "The Aga bought up the oak. Fetch oak and a mast for Master Ivan, so that he can build boats for the fishermen."
 start_port = ExtResource("12_ext")

@@ -119,6 +119,7 @@ var _met := true
 var _stars := 0
 
 var _chart: ChartView
+var _race: RaceCourse
 var _rope: Line2D
 var _hazards: SeaHazards
 var _wheel: WheelPanel
@@ -202,6 +203,9 @@ func _build_world() -> Node2D:
     var world := Node2D.new()
     _chart = ChartView.new()
     world.add_child(_chart)
+    _race = RaceCourse.new()
+    _race.visible = false
+    world.add_child(_race)
 
     _rope = Line2D.new()
     _rope.width = 5.0
@@ -855,6 +859,7 @@ func _process(delta: float) -> void:
         _tips.check(helm, delta, _run, _chart, _hazards, _wind)
     var marks := _hazards.marks()
     _update_rival(delta, marks)
+    _update_race(delta, sailing, marks)
     for view in _views:
         view.minimap.marks = marks
     _rope.visible = together
@@ -909,6 +914,34 @@ func _update_rival(delta: float, marks: Array[Dictionary]) -> void:
         marks.append({"km": at, "kind": "rival", "radius": 0.0})
 
 
+## The race of a RaceStep goes on: the boats round the buoys, the rival sails
+## the course, shows on the chart and the minimap, and may be back first.
+func _update_race(delta: float, sailing: Array[Helm], marks: Array[Dictionary]) -> void:
+    var race := _run.step() as RaceStep
+    if race == null or not race.is_racing(_run):
+        _race.visible = false
+        return
+    var boats: Array[Vector2] = []
+    for helm in sailing:
+        boats.append(helm.km)
+    var events := race.update(_run, boats, delta, _mission.sea.speed_scale, _wind)
+    if events["rounded"] > 0:
+        var text := tr("Buoy {number} rounded!")
+        _say(Grammar.format(text, {"number": events["rounded"]}), -1)
+        _sfx.play("coins")
+        _update_targets()
+    if events["cut"]:
+        _say(tr(race.cut_line), -1)
+    if events["lost"]:
+        _say(tr(race.lost_line), -1)
+        _update_targets()
+    _race.marker_scale = _chart.marker_scale
+    _race.show_race(race, _run)
+    var at := race.rival_at(_run)
+    if not at.is_empty():
+        marks.append({"km": at["km"], "kind": "rival", "radius": 0.0})
+
+
 ## The reefs and the cliffs damage the hull (see DESIGN.md, "Reefs and
 ## cliffs"); the rest of the coast never does.
 func _check_damage(helm: Helm, delta: float) -> void:
@@ -951,8 +984,13 @@ func _check_ports(helm: Helm) -> void:
     var left: Port = _left[helm.player]
     if left != null and helm.km.distance_to(World.port_km(left)) > LEAVE_KM:
         _left[helm.player] = null
+    # NOTE (mristin):
+    # During a race, the boats sail past the other harbours (a race port may
+    # have a neighbour close by, as Trani is to Barletta).
+    var race := _run.step() as RaceStep
+    var racing := race != null and race.is_racing(_run)
     for port in World.ports():
-        if port == _left[helm.player]:
+        if port == _left[helm.player] or (racing and port != race.port):
             continue
         if helm.km.distance_to(World.port_km(port)) < ENTER_KM:
             _arrive(helm.player, port)

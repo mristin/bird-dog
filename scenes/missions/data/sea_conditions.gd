@@ -16,6 +16,10 @@ extends Resource
 @export var corsairs := true
 @export var patrols := true
 
+## The powers whose waters the patrols keep (see Power.id): Venice, and in
+## chapter 3, with Venice threatening a blockade, the Habsburgs, too.
+@export var patrol_powers: Array[String] = ["venice"]
+
 ## How many corsairs and patrols are out at once, at most (the play-tests
 ## found 3 and 2 far too many).
 @export var corsair_count := 1

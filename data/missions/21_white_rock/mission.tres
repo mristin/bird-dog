@@ -1,0 +1,88 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/assunta.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/vieste.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/manfredonia.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="5_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_old_letters.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/people/nina.tres" id="8_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trani.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/notar_giacomo.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/termoli.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/changing.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="14_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/bari.jpg" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="20_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("16_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, an old fisherman here remembers the Count from long ago.", "He says the Count was no count at all, but a young copyist: Bepi Sgorbio!", "Bepi lived on the Gargano. Ask about him there."])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("17_ext")
+id = "trail"
+ports = Array[ExtResource("5_ext")]([ExtResource("3_ext"), ExtResource("4_ext")])
+length = 2
+fixed_route = true
+max_route_km = 0.0
+max_difficulty = 2
+clue_templates = Array[String](["Bepi had a friend in {fact}.", "Ask in {fact}. They knew Bepi there.", "Bepi copied letters for the people of {fact}."])
+reveal = Array[ExtResource("6_ext")]([])
+question = "Did you know Bepi Sgorbio, the copyist?"
+found_line = "Bepi? He hid a box of his old letters in the cave under the white rock of Vieste!"
+
+[sub_resource type="Resource" id="letters_source_1"]
+script = ExtResource("9_ext")
+item = ExtResource("7_ext")
+port = ExtResource("3_ext")
+person = ExtResource("8_ext")
+lines = Array[String](["The cave under the white rock? I know the way, even in a storm!", "Here is the box. The letters are signed: Bepi Sgorbio, copyist."])
+
+[sub_resource type="Resource" id="letters"]
+script = ExtResource("18_ext")
+id = "letters"
+sources = Array[ExtResource("9_ext")]([SubResource("letters_source_1")])
+needed = 0
+objective = "Fetch Bepi's old letters from the white rock."
+
+[sub_resource type="Resource" id="trani"]
+script = ExtResource("19_ext")
+id = "trani"
+item = ExtResource("7_ext")
+port = ExtResource("10_ext")
+recipient = ExtResource("11_ext")
+objective = "Bring Bepi's letters to {port}."
+thanks = Array[String](["Let me compare them with the Count's charter...", "The same hand wrote them both! That is our third proof!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("20_ext")
+id = "celebration"
+speaker = ExtResource("8_ext")
+lines = Array[String](["Three proofs, captain: the paper, the seal and the letters!", "The \"Count\" is nobody but Bepi Sgorbio."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "white_rock"
+number = 21
+chapter = 2
+title = "The White Rock"
+summary = "Storms around the Gargano. Under the white rock of Pizzomunno lie Bepi's old letters. Proof 3."
+start_port = ExtResource("12_ext")
+clock_days = 6.5
+provisions_days = 10.8
+sea = ExtResource("13_ext")
+steps = Array[ExtResource("14_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("letters"), SubResource("trani"), SubResource("celebration")])
+fun_fact = "The tall white rock on the beach of Vieste is called Pizzomunno. A legend says it is a young fisherman who turned to stone while he waited for his love Cristalda, whom the mermaids took away."
+victory_title = "The third proof!"
+victory_lines = Array[String](["You braved the storms of the Gargano.", "Bepi's old letters show who the Count really is."])
+victory_picture = ExtResource("15_ext")
+victory_person = ExtResource("8_ext")

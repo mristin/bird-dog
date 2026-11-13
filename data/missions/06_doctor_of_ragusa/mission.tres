@@ -95,6 +95,7 @@ lines = Array[String](["The fever is gone from the Bay of Kotor!", "The bells of
 script = ExtResource("1_ext")
 id = "doctor_of_ragusa"
 number = 6
+chapter = 1
 title = "The Doctor of Ragusa"
 summary = "A fever spreads around the Bay of Kotor. Find Doctor Marin and bring his medicine."
 start_port = ExtResource("2_ext")

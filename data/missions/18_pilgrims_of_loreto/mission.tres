@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/envoy.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pescara.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch2_pilgrims.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_passenger_pilgrims.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch2_toll_man.tres" id="6_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hearing_question.gd" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/loreto.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/people/biagio.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ancona.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/jugo_south.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="12_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/ancona.jpg" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="14_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/hearing_step.gd" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="17_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("14_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, pilgrims from Pescara want to visit the Holy House of Loreto.", "But the Count's men ask a \"pilgrim toll\" from everybody on the road.", "The Pope never allowed such a toll! Take the pilgrims to Loreto by sea."])
+
+[sub_resource type="Resource" id="pickup"]
+script = ExtResource("15_ext")
+id = "pickup"
+port = ExtResource("3_ext")
+recipient = ExtResource("4_ext")
+objective = "Pick up the pilgrims in {port}."
+thanks = Array[String](["Captain! We are ready for the voyage to Loreto.", "But look, here comes the Count's toll man..."])
+gives = ExtResource("5_ext")
+
+[sub_resource type="Resource" id="riddle_question_1"]
+script = ExtResource("7_ext")
+question = "What has a mouth but never eats, and a bed but never sleeps?"
+answers = Array[String](["A river", "A pilgrim", "A boat"])
+correct = 0
+
+[sub_resource type="Resource" id="riddle_question_2"]
+script = ExtResource("7_ext")
+question = "What fills a whole sail, but nobody can see it?"
+answers = Array[String](["A fish", "The wind", "The Count"])
+correct = 1
+
+[sub_resource type="Resource" id="riddle_question_3"]
+script = ExtResource("7_ext")
+question = "The more of them you take, the more you leave behind. What are they?"
+answers = Array[String](["Ducats", "Pilgrims", "Footsteps"])
+correct = 2
+
+[sub_resource type="Resource" id="riddle"]
+script = ExtResource("16_ext")
+id = "riddle"
+speaker = ExtResource("6_ext")
+intro = Array[String](["Halt! Every pilgrim pays the Count's toll!", "Hmm... unless you answer my riddles. The Count loves riddles."])
+questions = Array[ExtResource("7_ext")]([SubResource("riddle_question_1"), SubResource("riddle_question_2"), SubResource("riddle_question_3")])
+wrong_line = "Ha! Wrong! Think again, captain."
+right_lines = Array[String](["Grr! You know too much.", "Go then, all of you... toll-free!"])
+
+[sub_resource type="Resource" id="loreto"]
+script = ExtResource("15_ext")
+id = "loreto"
+item = ExtResource("5_ext")
+port = ExtResource("8_ext")
+recipient = ExtResource("9_ext")
+objective = "Bring the pilgrims to {port}."
+thanks = Array[String](["Welcome to Loreto, pilgrims!", "And not a single coin for the Count's toll."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("17_ext")
+id = "celebration"
+speaker = ExtResource("9_ext")
+lines = Array[String](["The pilgrims pray in the Holy House, and they sing all the way home.", "And the Count's toll man? He went home to think about riddles."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "pilgrims_of_loreto"
+number = 18
+chapter = 2
+title = "The Pilgrims of Loreto"
+summary = "Carry the pilgrims of Pescara past the Count's \"pilgrim toll\" to the Holy House of Loreto."
+start_port = ExtResource("10_ext")
+clock_days = 6.5
+provisions_days = 10.8
+sea = ExtResource("11_ext")
+steps = Array[ExtResource("12_ext")]([SubResource("briefing"), SubResource("pickup"), SubResource("riddle"), SubResource("loreto"), SubResource("celebration")])
+fun_fact = "A legend says that angels carried the Holy House of Mary from Nazareth to Loreto. Because of that flying house, the Madonna of Loreto became the patron saint of pilots in 1920."
+victory_title = "The pilgrims reached Loreto!"
+victory_lines = Array[String](["You carried the pilgrims past the Count's toll.", "Not one of them paid a coin."])
+victory_picture = ExtResource("13_ext")
+victory_person = ExtResource("9_ext")

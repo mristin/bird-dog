@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ika.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bakar.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/krk.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rab.tres" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_new_white_sail.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_pale_hull.tres" id="12_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/ch3_false_uskok_boat.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/ch3_white_trader.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/ch3_pale_fisher.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/ch3_uskok_boat.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_new_cap.tres" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="19_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="20_ext"]
+[ext_resource type="Resource" path="res://data/world/people/juraj.tres" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="22_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="23_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_bura_kvarner.tres" id="24_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="25_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/senj.jpg" id="26_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("2_ext")
+id = "briefing"
+speaker = ExtResource("3_ext")
+by_pigeon = true
+lines = Array[String](["Captain, a letter from Senj! Come quickly.", "\"Uskoks\" robbed the ships of Venice. But my brother's boats never left the harbour!", "Venice wants to close the whole coast. Follow the false uskoks!"])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("4_ext")
+id = "trail"
+ports = Array[ExtResource("5_ext")]([ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("8_ext"), ExtResource("9_ext")])
+length = 3
+fixed_route = false
+max_route_km = 300.0
+max_difficulty = 1
+clue_templates = Array[String](["They asked the way to {fact}.", "They sailed on toward {fact}.", "I heard them talk about {fact}."])
+reveal = Array[ExtResource("10_ext")]([ExtResource("11_ext"), ExtResource("12_ext")])
+hallmark_template = "Their boat had {hallmark}."
+question = "Have you seen a boat of uskoks who robbed a ship?"
+found_line = "They are here, in the harbour! But which boat is theirs?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("13_ext")
+id = "lineup"
+target = ExtResource("14_ext")
+decoys = Array[Resource]([ExtResource("15_ext"), ExtResource("16_ext"), ExtResource("17_ext")])
+question = "Which boat is the false uskoks'?"
+wrong_line = "No, not this one! Think of the sail and the hull."
+right_line = "That's the one! Its crew jumps ashore and runs. One of them drops his cap."
+gives = ExtResource("18_ext")
+
+[sub_resource type="Resource" id="deliver"]
+script = ExtResource("19_ext")
+id = "deliver"
+item = ExtResource("18_ext")
+port = ExtResource("20_ext")
+recipient = ExtResource("21_ext")
+objective = "Show the cap to Juraj in {port}."
+thanks = Array[String](["Ha! Look at this cap! Not a patch, not a hole.", "No uskok wears a cap so new. Somebody dressed up as us!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("22_ext")
+id = "celebration"
+speaker = ExtResource("3_ext")
+lines = Array[String](["The real uskoks of Senj laugh at the cap.", "But who sends the false ones? Venice must hear about it!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "caps_too_new"
+number = 26
+chapter = 3
+title = "Caps Too New"
+summary = "False uskoks rob the ships of Venice. Follow their boat, and look at their caps!"
+start_port = ExtResource("23_ext")
+clock_days = 7.0
+provisions_days = 10.8
+sea = ExtResource("24_ext")
+steps = Array[ExtResource("25_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("deliver"), SubResource("celebration")])
+fun_fact = "The uskoks sailed light boats with many oars. They slipped into shallow bays where the big galleys of Venice could not follow."
+victory_title = "False uskoks!"
+victory_lines = Array[String](["You found the false uskok boat.", "Its brand-new cap shows: these robbers are no uskoks of Senj."])
+victory_picture = ExtResource("26_ext")
+victory_person = ExtResource("21_ext")

@@ -70,6 +70,7 @@ lines = Array[String](["\"I will tell the truth before the judge, I promise.\"",
 script = ExtResource("1_ext")
 id = "forged_ledger"
 number = 12
+chapter = 1
 title = "The Forged Ledger"
 summary = "The Aga's scribe flees with the ledger of the double taxes. Chase him along the coast!"
 start_port = ExtResource("2_ext")

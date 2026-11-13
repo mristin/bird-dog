@@ -94,6 +94,7 @@ lines = Array[String](["The curtain rises!", "Fishermen and nobles sit side by s
 script = ExtResource("1_ext")
 id = "theatre_of_hvar"
 number = 7
+chapter = 1
 title = "The Theatre of Hvar"
 summary = "The Aga's men scared the actors away. Bring them to Hvar for the opening of the theatre."
 start_port = ExtResource("18_ext")

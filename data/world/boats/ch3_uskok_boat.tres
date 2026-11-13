@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Boat" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/boat.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="2_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "ch3_uskok_boat"
+name = "an uskok boat of Senj"
+sail_color = Color(0.6, 0.48, 0.34, 1)
+hull_color = Color(0.32, 0.21, 0.12, 1)
+patched = true
+hallmarks = Array[ExtResource("2_ext")]([])

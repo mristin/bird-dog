@@ -79,6 +79,7 @@ lines = Array[String](["The list is ready for the judge.", "I will never write i
 script = ExtResource("1_ext")
 id = "secret_script"
 number = 13
+chapter = 1
 title = "The Secret Script"
 summary = "The list of the villages is written in old Glagolitic letters. Find a priest who can read it."
 start_port = ExtResource("20_ext")

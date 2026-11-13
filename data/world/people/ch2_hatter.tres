@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Person" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="1_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/people/merchant.jpg" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_red_felt_hat.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/spectacles.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="5_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "ch2_hatter"
+name = "a hatter"
+role = "a maker of hats"
+gender = "m"
+portrait = ExtResource("2_ext")
+hallmarks = Array[ExtResource("5_ext")]([ExtResource("3_ext"), ExtResource("4_ext")])

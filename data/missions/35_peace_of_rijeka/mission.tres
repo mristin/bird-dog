@@ -1,0 +1,131 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hearing_question.gd" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ika.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_payroll.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ehrenfried.tres" id="8_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/hearing_step.gd" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/people/baron_isengrim.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/juraj.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/items/passenger_juraj.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/people/baba_stana.tres" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_bura_kvarner.tres" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item.gd" id="19_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/pula.jpg" id="20_ext"]
+
+[sub_resource type="Resource" id="question_1"]
+script = ExtResource("2_ext")
+question = "What gave the false uskoks away first?"
+answers = Array[String](["Their brand-new caps", "Their old boots", "Their black flag"])
+correct = 0
+
+[sub_resource type="Resource" id="question_2"]
+script = ExtResource("2_ext")
+question = "What did the salt merchant of Piran see under the costume?"
+answers = Array[String](["A wooden leg", "A fine Habsburg boot", "A golden spur"])
+correct = 1
+
+[sub_resource type="Resource" id="question_3"]
+script = ExtResource("2_ext")
+question = "What were the false boats built of?"
+answers = Array[String](["Old patched pine", "Venetian glass", "Fresh oak of the Baron's forest"])
+correct = 2
+
+[sub_resource type="Resource" id="question_4"]
+script = ExtResource("2_ext")
+question = "Whose name is on the steward's payroll?"
+answers = Array[String](["Juraj's", "Baron Isengrim's", "The Doge's"])
+correct = 1
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Captain, today the commissioner and the envoy meet.", "We have the cap, the oak, the costumes, the payroll and the witnesses.", "Show them the payroll, and answer well!"])
+
+[sub_resource type="Resource" id="proof"]
+script = ExtResource("5_ext")
+id = "proof"
+item = ExtResource("6_ext")
+port = ExtResource("7_ext")
+recipient = ExtResource("8_ext")
+objective = "Bring the payroll to the commissioner in {port}."
+thanks = Array[String](["The envoy of Venice and I have read everything.", "Now, answer our questions."])
+
+[sub_resource type="Resource" id="hearing"]
+script = ExtResource("9_ext")
+id = "hearing"
+speaker = ExtResource("8_ext")
+intro = Array[String](["Messer Marcantonio listens for Venice. I ask for the Archduke."])
+questions = Array[ExtResource("2_ext")]([SubResource("question_1"), SubResource("question_2"), SubResource("question_3"), SubResource("question_4")])
+wrong_line = "Hmm, no. Think about your voyage, captain."
+right_lines = Array[String](["The uskoks of Senj did not rob the ships. Venice calls off the blockade.", "Baron Isengrim loses his lands and pays back every cargo.", "And he will muck out the stables of the Archduke's horses in Lipica!"])
+
+[sub_resource type="Resource" id="baron"]
+script = ExtResource("5_ext")
+id = "baron"
+port = ExtResource("7_ext")
+recipient = ExtResource("10_ext")
+objective = "Tell Baron Isengrim the ruling in {port}."
+thanks = Array[String](["Stables? Me? With a shovel?", "...Fine. But I keep my wolf hat."])
+
+[sub_resource type="Resource" id="pick_up"]
+script = ExtResource("5_ext")
+id = "pick_up"
+port = ExtResource("7_ext")
+recipient = ExtResource("11_ext")
+objective = "Pick up Juraj in {port}."
+thanks = Array[String](["Peace, captain! Take me home to Senj."])
+gives = ExtResource("12_ext")
+
+[sub_resource type="Resource" id="senj"]
+script = ExtResource("5_ext")
+id = "senj"
+item = ExtResource("12_ext")
+port = ExtResource("13_ext")
+recipient = ExtResource("4_ext")
+objective = "Bring Juraj home to {port}."
+thanks = Array[String](["Brother! The whole town is on the walls of Nehaj, waving!"])
+
+[sub_resource type="Resource" id="home"]
+script = ExtResource("5_ext")
+id = "home"
+port = ExtResource("14_ext")
+recipient = ExtResource("15_ext")
+objective = "Sail home to {port}!"
+thanks = Array[String](["You are home, captain! Two empires made peace thanks to you."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("16_ext")
+id = "celebration"
+speaker = ExtResource("15_ext")
+lines = Array[String](["Everybody came to the Arena: Ika and Juraj, Master Ivan and Katarina,", "Benvenuta, Brother Ambroz, Messer Alvise, Luka from Bari, and the children of Grebaštica!", "Captain, for your courage you get the medal of the Bird Dog!"])
+sound = "bell"
+
+[resource]
+script = ExtResource("1_ext")
+id = "peace_of_rijeka"
+number = 35
+chapter = 3
+title = "The Peace of Rijeka"
+summary = "Answer the commissioner and the envoy in Rijeka, bring Juraj home, and sail home to Pula."
+start_port = ExtResource("7_ext")
+clock_days = 3.8
+provisions_days = 10.8
+sea = ExtResource("17_ext")
+steps = Array[ExtResource("18_ext")]([SubResource("briefing"), SubResource("proof"), SubResource("hearing"), SubResource("baron"), SubResource("pick_up"), SubResource("senj"), SubResource("home"), SubResource("celebration")])
+start_cargo = Array[ExtResource("19_ext")]([ExtResource("6_ext")])
+fun_fact = "The real story was less happy: Venice and the Habsburgs fought the Uskok War in 1615–1617, and then the uskoks were moved from Senj inland. The stud of Lipica, founded in 1580, still breeds the white Lipizzaner horses."
+victory_title = "Peace on the Adriatic!"
+victory_lines = Array[String](["Venice called off the blockade, and the Baron mucks out the stables of Lipica.", "Juraj's crew becomes the pilots and the rescuers of Kvarner.", "The whole Arena of Pula cheers!"])
+victory_picture = ExtResource("20_ext")
+victory_person = ExtResource("15_ext")
+finale = true

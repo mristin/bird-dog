@@ -3,7 +3,7 @@
 *Status: the design is agreed. The pose test (section 8) is being built.*
 
 **Bird Dog is a sailing and detective game for children of about ten, played by doing the "bird dog" exercise in front of a webcam.**
-You are a haiduk (Liso, unless you give yourself another name) who lives in Pula for now. Around the year 1600, you sail a small boat across the Adriatic, talk to people in the ports, follow their clues, and spoil the plans of the greedy Aga Grdan, who squeezes the peasants of the coast.
+You are a haiduk (Liso, unless you give yourself another name) who lives in Pula for now. Around the year 1600, you sail a small boat across the Adriatic, talk to people in the ports, follow their clues, and spoil the plans of three greedy men, one per chapter: Aga Grdan, who squeezes the peasants of the coast (chapter 1), the false Count Malvento, who takes tolls in the harbours of Italy (chapter 2), and Baron Isengrim, who would set Venice and the Habsburgs against each other (chapter 3).
 Nobody fights. You win by being clever, fast and kind.
 
 Each mission takes about ten minutes, and most of it is sailing. Every turn of the wheel is a bird-dog hold, so sailing means exercising.
@@ -42,6 +42,10 @@ Many powers share one small sea, which gives the clues their variety: every powe
 * Uskoks are the crew's friends and helpers. We don't show their raiding, but the Venetian patrols suspect every small fast boat of being an uskok one.
 * Gusari (corsairs) are the "danger" at sea, everywhere on it. They fly a black flag with a skull (and a badge with the skull floats over them), chase you, and if they catch you, they take 20 ducats (or all on board, if fewer; a day, if there are none) and sail off in a random direction. They fear the Venetian patrols and flee from them.
 * The Venetian patrols wear a sheriff's star (on the sail, the flag and a floating badge). They are no friends of the haiduks: if they catch you, they take 10 ducats as a bribe (or all on board, if fewer; half a day, if there are none) and sail off in a random direction. They hunt the corsairs near them, for 15 to 25 seconds.
+* The Habsburg patrols (chapter 3 only, in the waters of Trieste, Rijeka, Bakar and Senj) work like the Venetian ones, but fly the black eagle on yellow: with Venice threatening a blockade, both sides inspect every boat.
+* Count Malvento (chapter 2) is **one swindler**, not a stand-in for the Italians, the nobility or the Church. He is not even a count: he is Bepi Sgorbio ("sgorbio" is an ink blot), a copyist who failed at his trade and forged his title and his charter. The Pope's legate and the Viceroy's judges, the powers whose names he forged, are the ones who unmask him.
+* Baron Isengrim (chapter 3; the name is the wolf of the old fables, not a real family) is **one greedy lord**, not a stand-in for the Habsburgs or for anybody else. The Archduke's own commissioner rules against him.
+* The real Uskok War came anyway in 1615–1617, and the uskoks were moved inland afterwards. The game does not pretend otherwise: the last fun fact of chapter 3 tells it gently, and Juraj's crew becomes the pilots and the rescuers of Kvarner.
 
 ### Ports
 
@@ -57,6 +61,12 @@ The chart covers the Adriatic and the north of the Ionian Sea, down to Preveza.
 | Trieste | Italy | Habsburg | Salt, the Habsburg eagle |
 | Rijeka | Croatia | Habsburg | The city clock tower, paper and timber trade |
 | Senj | Croatia | Habsburg | The Nehaj fortress, the uskoks, the bura wind |
+| Koper (Capodistria) | Slovenia | Venice | The town on its island, joined to the land by a causeway; the Praetorian Palace; salt (chapter 3) |
+| Piran | Slovenia | Venice | The salt pans of Sečovlje, the bell tower like that of St. Mark (chapter 3) |
+| Bakar | Croatia | Habsburg | The castle above the deep bay, the timber of the forests behind it (chapter 3) |
+| Krk | Croatia | Venice | The Glagolitic tablet of Baška, the Franciscans on the islet of Košljun (chapter 3) |
+| Rab | Croatia | Venice | The four bell towers in a row (chapter 3) |
+| Osor | Croatia | Venice | The town on the narrow canal between Cres and Lošinj, dug in Roman times (chapter 3) |
 | Pag | Croatia | Venice | The salt pans, the lace makers (for the salt of mission 3) |
 | Zadar | Croatia | Venice | The Roman forum, St. Donatus, maraschino cherries |
 | **Grebaštica** | Croatia | Venice | A small bay of fishermen, stone walls, figs |
@@ -108,6 +118,12 @@ Kala Nera is dropped, since it lies in the Aegean and would be too far away. Pre
 * **Baba Stana**, the wise grandmother of Pula. She gives the briefings (in person in Pula, or by carrier pigeon) and the hints.
 * **Master Ivan**, the shipwright you rescue in mission 2. From then on, his shipyard in Pula decorates your boats (section 10).
 * **Uskok captain Juraj** in Senj. When asked, he scouts ahead and reveals one port.
+* **Count Malvento** ("ill wind", chapter 2): vain, perfumed, in yellow gloves and a wig too big for him. He takes tolls in the harbours of Italy with a forged "Golden Charter", and sells the sailors "wind charms". His men wear yellow sashes. In the end he turns out to be **Bepi Sgorbio**, a copyist.
+* **Luka**, the ship's boy of mission 9, now works in the harbour of Bari and calls the crew to Italy.
+* **Baron Isengrim** (chapter 3): a Habsburg lord near Rijeka with a wolf on his coat of arms, who wants the trade of Senj and the forests for himself. His men dress up as uskoks.
+* **Ika**, Juraj's sister, calls the crew to Senj in chapter 3; **Messer Alvise** of the Doge's council and **Master Ivan** come back.
+
+Where Liso is from stays open.
 
 ### The Bird Dog emblem
 
@@ -120,6 +136,24 @@ The captains sail under one flag: **the Bird Dog**. It is the crew's flag, the g
 * `icon.svg` holds the first version.
 
 ## 4. Missions
+
+### The chapters
+
+The missions come in three chapters, each with a villain of its own, a coast of its own and a judge of his own power who rules against him in the finale. A chapter opens when the finale of the one before it is won.
+
+| | Chapter 1 | Chapter 2 | Chapter 3 |
+|---|---|---|---|
+| Title | **The Aga's Ledger** | **The Count of Ill Wind** | **The Wolf of the Bura** |
+| Villain | Aga Grdan (Ottoman) | "Count" Malvento (Italian coast) | Baron Isengrim (Habsburg) |
+| His lie | Forged tax papers | A forged title and a forged charter | Fake uskoks, to start a war |
+| Stakes | The villages | The whole Italian coast | Peace between two empires |
+| Judge | The kadı of Preveza | The Royal Audience of Trani | The Archduke's commissioner, with a Venetian envoy |
+| Waters | Dalmatia to Preveza | Comacchio to Otranto | Kvarner, Istria, Trieste |
+| Missions | 1 to 15 | 16 to 25 | 26 to 35 |
+
+The stakes grow from one village to one coast to two empires. One thread runs through: a lie on paper, a lie about who somebody is, a lie about who did something, and every time the crew answers it with evidence. The villains of a chapter do not come back in the next one.
+
+The missions keep one numbering for the order in which they unlock (1 to 35); the mission select shows them by chapter, numbered within the chapter (chapter 2, mission 1 is mission 16).
 
 ### Structure of a mission (about 10 minutes)
 
@@ -146,7 +180,7 @@ Running out is gentle: "The trail went cold. Let's try again!" You restart the m
 
 To keep the replays fresh, every mission has a fixed goal and story, but the route and the clue wording are drawn from a pool. A replay goes through 4 to 6 of about 8 possible ports.
 
-### The missions (they unlock in order)
+### Chapter 1: The Aga's Ledger (the missions unlock in order)
 
 | # | Title | Starts in | Kind | Region | Summary |
 |---|---|---|---|---|---|
@@ -225,10 +259,16 @@ The destination clues are assembled from a clue template ("He asked the way to {
 | Monopoli | the harbour full of barrels of olive oil; the town whose name means 'the only town' |
 | Brindisi | the town at the end of the Via Appia; the town of the Roman column |
 | Otranto | the easternmost town of Italy; the town of the great mosaic of the tree of life |
+| Koper | the town on an island, joined to the land by a long causeway; the town of the Praetorian Palace; the town which Venice calls the head of Istria |
+| Piran | the town with a bell tower like the one of St. Mark; the town of the salt pans of Sečovlje |
+| Bakar | the castle town above the deepest bay of Kvarner; the harbour where the oak of the great forests comes down to the sea |
+| Krk | the island of the stone tablet of Baška, carved in the old letters; the island of the friars of Košljun |
+| Rab | the town of the four bell towers in a row; the island of St. Marinus, the stonemason who founded San Marino |
+| Osor | the town on the narrow channel between Cres and Lošinj; the town on the canal which the Romans dug |
 
 Pag joins the list of the ports (section 2) for the salt of mission 3.
 
-### The missions in detail
+### The missions of chapter 1 in detail
 
 Each mission lists its **building blocks** (section 14): `Briefing`, `Trail`, `Collect`, `Deliver`, `Lineup`, `Return` and `Celebration`, plus two which the later missions need: `Trade` (give an item to get another one, in a chain) and `Hearing` (a hand-written conversation in which the players answer questions from their logbook).
 
@@ -406,6 +446,52 @@ Each mission lists its **building blocks** (section 14): `Briefing`, `Trail`, `C
   7. `Celebration` in the Arena of Pula: everybody from the voyage comes (the children of Grebaštica, Ivan, Katarina, Juraj, Doctor Marin, even the corsair captain), the bell of Grebaštica rings, and the crew gets a medal of the Bird Dog.
 * **The fun fact:** in the Ottoman Empire, a kadı judged by the law, and the people could bring a complaint even against a powerful aga.
 
+### Chapter 2: The Count of Ill Wind
+
+**The hook:** Luka, the ship's boy of mission 9, sends a pigeon from Bari. A "Count" shows a Golden Charter, which he says the Pope and the King of Naples gave him: a toll in every harbour from Comacchio to Otranto. The fishermen pay to land their own catch, and the sailors pay a "wind toll" and buy his "wind charms".
+
+**The resolution:** three proofs (the watermark of the paper, the false seal and Bepi's old letters) and the witnesses go before the judges of the Royal Audience in Trani (Naples' court for the province, which sat in Trani from 1586). The "Count" turns out to be Bepi Sgorbio, pays back the tolls, and loses the title he never had.
+
+| # | Title | Starts in | Kind | Region | Summary |
+|---|---|---|---|---|---|
+| 16 | Nets of Comacchio | Pula | Trail, line-up of boats, deliver | Chioggia, Comacchio | The first crossing to Italy. The Count's men took the eel nets of Comacchio "as a toll". Follow their boat and give the nets back. |
+| 17 | The Wind Seller | Ravenna | Collect, **race** | Rimini, Fano, Ancona | Collect three wind charms, then race the Count's charm-boat in front of the fishermen of Fano: skill against charms. |
+| 18 | The Pilgrims of Loreto | Ancona | Deliver, riddle | Pescara, Loreto | Carry the pilgrims of Pescara past the Count's "pilgrim toll" to the Holy House of Loreto. |
+| 19 | The Paper with a Secret | Ancona | Trail, line-up, deliver | Rimini, Fano, Loreto, Pescara, Ravenna | Find the paper merchant who can read the charter against the light. **Proof 1:** the watermark of Fabriano. |
+| 20 | The Seal-Maker of Ortona | Pescara | Trail, line-up, deliver | Ortona, Termoli, Vieste, Manfredonia | Find the seal-maker who quit the Count and hid. **Proof 2:** the false seal. |
+| 21 | The White Rock | Termoli | Trail, collect, deliver | Manfredonia, Vieste, Trani | Storms around the Gargano. Under the white rock of Pizzomunno lie Bepi's old letters. **Proof 3.** |
+| 22 | The Challenge of Barletta | Trani | **Race** | Barletta | The Count dares the crew to a regatta of thirteen boats, as the thirteen knights of 1503. He cheats through the shallows; the crew wins fairly. |
+| 23 | Oil for Monopoli | Bari | Chain of trades, deliver | Brindisi, Monopoli, Bari | The Count hoards the olive oil. Trade salt for pressing mats, the mats for oil, and bring it to the market of Bari. |
+| 24 | The Count Flees | Trani | The chase, line-up of four | 4 of Brindisi, Otranto, Monopoli, Bari, Barletta, Manfredonia, Vieste, Termoli | The Count flees with his charter. Yellow gloves, a smell of violets, a wig too big, a ring with a false seal. |
+| 25 | The Royal Audience of Trani | Bari | Finale: collect, deliver, hearing | Manfredonia, Monopoli, Trani | Bring the witnesses to the judges in Trani, answer their questions, and the "Count" is unmasked as Bepi. |
+
+#### The race (`RaceStep`)
+
+* **The challenge:** in the port of the race, the rival (the Count in his yellow boat) dares the crew. "Race!" starts it from the harbour.
+* **The course:** three or four buoys out at sea and back to the harbour, 100 to 220 km, which is 40 to 60 seconds of sailing (the boats are fast), with legs in different directions, so that some wind always comes from ahead on one of them (a little tacking). The chart, the minimap and the arrow point to the next buoy; a boat rounds a buoy by sailing close to it (with two boats, either one counts). After the last buoy, the finish is the harbour.
+* **The rival** sails the course on his own (around the land, like the fishermen who tow), a little slower than a good crew, and shows on the chart and the minimap. He feels the wind like the crew: slower in a light wind and on the legs against it, where he tacks, too. In mission 22 he cheats: he cuts one buoy through the shallows, and is slower otherwise.
+* **Losing costs time, never the mission**, as a wrong port does: when the rival crosses the line first, he gloats ("Ha! The wind loves me!"), the fishermen ask for a rematch tomorrow, **a day passes**, and the crew sails back into the harbour for the rematch. Every rematch gives the crew a small edge (a fisherman lends a better line: the rival is a bit slower). The stars reward winning the first time, since that leaves more days; when the clock runs out, it is the usual "The trail went cold. Let's try again!"
+* **The tests** (`tests/godot/test_race.gd`) sail every race with four winds and an autopilot crew: it follows the A* way of the sea (`SeaRoute`) to the next buoy, tacks 50° off the wind when the way leads into it, and its hands are shaky (noise on the wheel, and now and then a second of not steering). Such a crew must win the first race, the rival must have sailed at least 45% of his course by then (a race, not a walk), a lost race must cost a day and make the rematch easier, and a race saved in the middle must go on where it was.
+
+### Chapter 3: The Wolf of the Bura
+
+**The hook:** Ika sends a pigeon from Senj. Venetian merchant ships have been robbed by "uskoks", but Juraj's boats never left the harbour. Venice threatens to blockade the whole Habsburg coast.
+
+**The resolution:** the proofs (the new caps, the fresh oak of the Baron's forest, the costumes of the hideout, the steward's payroll) and the witnesses go before the Archduke's commissioner and the Venetian envoy in Rijeka. The blockade is called off; Baron Isengrim loses his lands and pays the cargo back, and is sent to muck out the stables of Lipica, the Archduke's stud of the Lipizzaner horses (founded in 1580).
+
+| # | Title | Starts in | Kind | Region | Summary |
+|---|---|---|---|---|---|
+| 26 | Caps Too New | Pula (Ika's pigeon) | Trail, line-up of boats, deliver | Rijeka, Bakar, Krk, Senj | Follow the false uskok boat. The real uskoks laugh at its brand-new caps. |
+| 27 | The Doge's Ten Days | Senj | Deliver, hearing | Venice | Bring the cap to Messer Alvise. The council gives the crew ten days to bring proof. |
+| 28 | The Salt of Piran | Trieste | Trail, line-up, deliver | Koper, Piran, Rovinj, Pula | Find the salt merchant who was robbed. She saw a fine Habsburg boot under the costume. |
+| 29 | Fresh Oak | Bakar | Deliver | Pula, Bakar, Senj | Fetch Master Ivan to the captured "uskok" boat. It is built of fresh oak of the Baron's forest; real uskok boats are old and patched. |
+| 30 | The Friars of Košljun | Rijeka | Trail, riddle | Krk, Rab, Osor | The friars on their islet saw where the false boats hide. |
+| 31 | The Hidden Cove | Osor | Collect, deliver | Osor, Rab, Krk, Senj | Collect the costumes, the flags and the stolen cargo from the empty hideout. |
+| 32 | The Steward's Ledger | Senj | The chase, line-up of four | 4 of Rijeka, Bakar, Trieste, Koper, Piran, Krk, Rab, Rovinj | The Baron's steward flees with the payroll of the false uskoks. |
+| 33 | Two Flags | Rijeka | Deliver | Trieste, Venice | Get the commissioner's safe-conduct in Trieste and carry it to Venice, so that the envoy comes. Habsburg patrols join the Venetian ones. |
+| 34 | Through the Bura | Senj | Collect, deliver | Krk, Bakar, Rijeka | The hardest bura of the game. Bring Juraj, the friar and Master Ivan to the meeting in Rijeka. |
+| 35 | The Peace of Rijeka | Rijeka | Finale: hearing, deliver, return | Rijeka, Senj, Pula | Answer the commissioner and the envoy, bring Juraj home to Senj, and sail home to the Arena of Pula. |
+
 ## 5. Controls: the bird dog
 
 ### The exercise
@@ -570,6 +656,7 @@ Every player creates their captain on their own half of the screen. A preview of
 * The missions are described in `data/missions/<nn>_<id>/mission.tres` (`Mission`, see section 15); the translator tools collect all their texts.
 * Any finished mission can be replayed.
 * Finishing mission *n* unlocks *n*+1.
+* **The chapters:** the screen shows one chapter at a time, its number and title above the cards (chapter 1 in three rows of five, chapters 2 and 3 in two rows), numbered within the chapter. Tabs for the three chapters sit above the cards; a chapter whose first mission is locked shows a padlock. The screen opens on the chapter of the newest unlocked mission.
 * The crew's ducats and the shipyard in Pula (from mission 2 on) are reachable from here.
 
 ### Rendering fast
@@ -1027,7 +1114,7 @@ All the classes are GDScript `Resource`s with `class_name`, in `scenes/missions/
 | `Riddle` | `question`, `answers: Array[String]`, `correct: int`, `ducats` | Asked by a local; a wrong answer costs nothing. |
 | `Offer` | `booster` (id), `price` | What a port's merchant sells (section 10). |
 | `ClueTemplateSet` | `kind` (destination, trait, wrong port, greeting, goodbye), `templates: Array[String]` | "He asked the way to {fact}.", "She had {trait}.", "This is the wrong port, captain!" |
-| `SeaConditions` | `winds: Array[WindChance]`, `change_seconds: Vector2` (min, max), `clouds: Vector2i` (min, max), `corsairs: Array[Zone]`, `patrols: Array[Zone]`, `barrels: int`, `speed_scale: float` | Each mission picks one (or overrides it). |
+| `SeaConditions` | `winds: Array[WindChance]`, `change_seconds: Vector2` (min, max), `clouds: Vector2i` (min, max), `corsairs: Array[Zone]`, `patrols: Array[Zone]`, `patrol_powers: Array[String]` (whose waters the patrols keep: Venice, and in chapter 3 the Habsburgs, too), `barrels: int`, `speed_scale: float` | Each mission picks one (or overrides it). |
 | `WindChance` | `name` (bura, jugo, maestral, ...), `direction` (degrees), `intensities: Vector3` (the weights of light, fresh, strong), `weight` | The winds of a region and how often they blow. |
 | `Zone` | `center: Vector2` (longitude, latitude), `radius_km` | Where the corsairs or the patrols cruise. |
 
@@ -1035,7 +1122,8 @@ All the classes are GDScript `Resource`s with `class_name`, in `scenes/missions/
 
 | Class | Fields |
 |---|---|
-| `Mission` | `id`, `number`, `title`, `summary`, `start_port: Port`, `clock_days`, `sea: SeaConditions`, `steps: Array[MissionStep]`, `stars: Vector2` (the share of the clock left for three and for two stars), `fun_fact`, `music` (optional) |
+| `Chapter` | `number`, `title`, `summary` | `data/chapters/<n>_<id>.tres`; the missions name their chapter. |
+| `Mission` | `id`, `number`, `chapter`, `title`, `summary`, `start_port: Port`, `clock_days`, `sea: SeaConditions`, `steps: Array[MissionStep]`, `stars: Vector2` (the share of the clock left for three and for two stars), `fun_fact`, `music` (optional) |
 | `MissionStep` | `id` (unique within the mission), `objective` (the line in the logbook) |
 
 `MissionStep` is the base class of the steps; every step is one subclass, with exactly the fields its story needs:
@@ -1051,6 +1139,7 @@ All the classes are GDScript `Resource`s with `class_name`, in `scenes/missions/
 | `ReturnStep` | `port: Port` | Sail back, e.g., home to Pula. |
 | `HearingStep` | `judge: Person`, `questions: Array[HearingQuestion]` | The judge asks; each `HearingQuestion` has the `question` and its `answer`, which refers to something of the voyage (a mission's item, port or person), and `decoys` for the wrong answers. |
 | `CelebrationStep` | `lines: Array[String]`, `people: Array[Person]`, `picture` | The happy end; may unlock something (`unlocks`, e.g., "shipyard"). |
+| `RaceStep` | `port: Port`, `rival: Person`, `buoys: Array[Vector2]` (longitude, latitude), `rival_share`, `edge`, `cuts: Array[int]`, the lines of the challenge, the win, the loss and the rematch | A race around the buoys against a rival (section 4, "The race"). |
 
 Two small helpers carry the specifications: `ClueSpec` (`kind`, `target port` or "the first port of the next trail") and `RivalSpec` (`speed`, `head_start_days`, `penalty_days`).
 
@@ -1141,9 +1230,9 @@ data/missions/01_bell_of_grebastica/mission.tres  (Mission)
 
 ### Where we are
 
-All fifteen missions play end to end, as data in `data/missions/<nn>_<id>/mission.tres`, with the world in `data/world/` (the chart, the powers, the ports with their views, the people with their portraits, the boats, the hallmarks, the items and the seas of the regions).
+All thirty-five missions of the three chapters (`data/chapters/`, `Chapter`; `Mission.chapter`) play end to end, as data in `data/missions/<nn>_<id>/mission.tres`, with the world in `data/world/` (the chart, the powers, the ports with their views, the people with their portraits, the boats, the hallmarks, the items and the seas of the regions).
 
-* **The steps** (`scenes/missions/steps/`): `BriefingStep` (in person, or `by_pigeon`), `TrailStep` (with `starts_at` for a fixed first port of a random route), `LineupStep` (of boats or of people, by their hallmarks; three or four candidates), `CollectStep` (any `needed` of several `ItemSource`s), `DeliverStep` (an item, or nobody; it is also the `Return` home, and may give something back), `TradeStep` (a chain of `TradeLink`s, learned link by link and traded back), `HearingStep` (a judge's questions, or a riddle; a wrong answer only asks again) and `CelebrationStep`.
+* **The steps** (`scenes/missions/steps/`): `BriefingStep` (in person, or `by_pigeon`), `TrailStep` (with `starts_at` for a fixed first port of a random route), `LineupStep` (of boats or of people, by their hallmarks; three or four candidates), `CollectStep` (any `needed` of several `ItemSource`s), `DeliverStep` (an item, or nobody; it is also the `Return` home, and may give something back), `TradeStep` (a chain of `TradeLink`s, learned link by link and traded back), `HearingStep` (a judge's questions, or a riddle; a wrong answer only asks again), `RaceStep` (a race around the buoys against a rival, see section 4, "The race"; the buoys are drawn by `RaceCourse`, with the rival's boat) and `CelebrationStep`.
 * **Every step names its target ports** (`target_ports`), which the chart, the minimap, the arrow and the banner point to, and its `solution`, with which the tests play.
 * **A step may continue where the crew is**: when a step starts and the crew is already in its port (e.g., the doctor is found in Dubrovnik, where the medicine is), the scene opens at once.
 * **The mission clock** counts 100 km a day and 0.2 days per port. `tests/godot/test_missions.gd` plays every mission with 40 seeds as a good crew would (straight to the nearest target, 30% longer than the straight line, every answer right) and checks that such a crew can earn three stars; it also checks that the line-ups single out exactly one candidate, that every fact is unique, and that the wrong answers only cost time.
@@ -1165,7 +1254,7 @@ All fifteen missions play end to end, as data in `data/missions/<nn>_<id>/missio
 
 **Leaving a mission** asks first ("Leave the mission? It is saved, and you can continue later."), and the game waits meanwhile, so that Esc never ends a mission by accident. On the menus and in the instruction, Esc asks "Do you really want to quit the game?" before it quits (Enter answers yes, Esc no).
 
-**The waters of the hazards:** the corsairs sail only in their waters (within 170 km of Ulcinj and 90 km of Vlorë), the Venetian patrols only in the waters of Venice (within 70 km of a Venetian port). On the open sea (`SeaConditions.storms`, missions 8, 9 and 12), half the clouds are storms: half again as big, darker, with more rain and lightning; a boat inside sails at a third of its speed, and the gusts push it twice as hard.
+**The waters of the hazards:** the corsairs sail only in their waters (within 170 km of Ulcinj and 90 km of Vlorë), the patrols only in the waters of the powers of `SeaConditions.patrol_powers` (within 70 km of their ports): the Venetian ones with the star everywhere, and in chapter 3 the Habsburg ones with the black eagle on yellow, too (`tests/godot/test_patrols.gd`). On the open sea (`SeaConditions.storms`, missions 8, 9 and 12), half the clouds are storms: half again as big, darker, with more rain and lightning; a boat inside sails at a third of its speed, and the gusts push it twice as hard.
 
 **Tacking:** the wind rose marks the directions into the wind, where no boat sails (35° on either side), as a red wedge, and the player's boat as a marker on its rim, red while it heads into the wind; the tip explains the zigzag. In mission 8, the maestral mostly blows against the crew on the way from Dubrovnik to Ancona.
 
@@ -1173,7 +1262,7 @@ All fifteen missions play end to end, as data in `data/missions/<nn>_<id>/missio
 
 **Saves never mix one and two players:** a mission in progress of two boats does not continue with one player, and vice versa; the mission starts anew.
 
-**The tests** (`tests/godot/`, on every commit): the world and the missions (`test_missions.gd`), every port reachable from the open sea (`test_reachability.gd`, a 1 km grid of the chart flooded from the middle of the Adriatic), every mission played through the real screen with one and two players (`test_all_missions_screen.gd`), the texts fitting their places in every language (`test_text_fit.gd`), the grammar (`test_grammar.gd`), the screen with the merchant, the errands, the towing, the meeting and the saves (`test_mission_screen.gd`), the voyages (`test_session.gd`) and the menus. The soak tests (`tests/soak/`: every mission sailed for minutes, and many random towings) run now and then.
+**The tests** (`tests/godot/`, on every commit): the world and the missions (`test_missions.gd`), every port reachable from the open sea (`test_reachability.gd`, a 1 km grid of the chart flooded from the middle of the Adriatic), every mission played through the real screen with one and two players (`test_all_missions_screen.gd`), the texts fitting their places in every language (`test_text_fit.gd`), the grammar (`test_grammar.gd`), the screen with the merchant, the errands, the towing, the meeting and the saves (`test_mission_screen.gd`), the voyages (`test_session.gd`), the voyages saved by older versions of the game (`test_old_voyages.gd`: a copy of the voyage played last, and the same voyage saved by the old game in the middle of a mission, in `tests/godot/voyages/`; they load as they were and play on through all three chapters), the races (`test_race.gd`), the patrols (`test_patrols.gd`) and the menus. The soak tests (`tests/soak/`: every mission sailed for minutes, and many random towings) run now and then.
 
 **Not built yet** (the missions play without them): the logbook and the pigeon's hint (the chart already points to the target, so they matter less now).
 

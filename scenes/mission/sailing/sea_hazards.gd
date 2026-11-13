@@ -316,15 +316,22 @@ func _sea_point(center: Vector2, distance: Vector2) -> Variant:
 
 
 ## Whether a ship of the kind may sail at the point: the corsairs everywhere,
-## the patrols in the waters of Venice.
+## the patrols in the waters of their powers (see SeaConditions.patrol_powers).
 func _in_waters(kind: String, point: Vector2) -> bool:
-    if kind == "corsair":
-        return true
+    return kind == "corsair" or _patrol_power(point) != ""
+
+
+## The power whose patrols keep the waters at the point (the one of the
+## nearest port of a patrolling power within the waters), or "".
+func _patrol_power(point: Vector2) -> String:
+    var best := PATROL_WATERS_KM
+    var power := ""
     for port in World.ports():
         var distance := World.port_km(port).distance_to(point)
-        if distance < PATROL_WATERS_KM and port.power != null and port.power.id == "venice":
-            return true
-    return false
+        if distance < best and port.power != null and _sea.patrol_powers.has(port.power.id):
+            best = distance
+            power = port.power.id
+    return power
 
 
 func _spawn_ship(kind: String, center: Vector2) -> void:
@@ -335,22 +342,32 @@ func _spawn_ship(kind: String, center: Vector2) -> void:
 
 
 ## Put a ship of the kind ("corsair", "patrol") on the sea at the point, in
-## kilometres, and return it (the tests place the ships with it, too).
+## kilometres, and return it (the tests place the ships with it, too). A
+## patrol flies the flag of the power whose waters it keeps: the star of
+## Venice, or the eagle of the Habsburgs.
 func _add_ship(kind: String, point: Vector2) -> Dictionary:
     var boat := SeaBoat.new()
     boat.z_index = 5
     boat.scale = Vector2.ONE * SHIP_SCALE * _chart.marker_scale
+    var power := ""
     if kind == "corsair":
         boat.sail_color = Color(0.2, 0.18, 0.17)
         boat.color = Color(0.1, 0.08, 0.06)
         boat.emblem = "pirate"
+    elif _patrol_power(point) == "habsburgs":
+        power = "habsburgs"
+        boat.sail_color = Color(0.93, 0.78, 0.2)
+        boat.color = Color(0.15, 0.13, 0.12)
+        boat.emblem = "eagle"
     else:
+        power = "venice"
         boat.sail_color = Color(0.72, 0.2, 0.14)
         boat.color = Paper.GOLD
         boat.emblem = "patrol"
     add_child(boat)
     var ship := {
         "kind": kind,
+        "power": power,
         "km": point,
         "heading": _rng.randf() * TAU,
         "boat": boat,
@@ -557,7 +574,7 @@ func _steer_ship(ship: Dictionary, delta: float, helms: Array[Helm], together: b
         # NOTE (mristin):
         # Having taken their toll, they sail off somewhere, anywhere.
         _roam_away(ship, Vector2.RIGHT.rotated(_rng.randf() * TAU), 25.0)
-        _caught(ship["kind"], nearest)
+        _caught(ship["kind"], nearest, ship.get("power", ""))
 
 
 ## The heading closest to [param heading] in which a ship at [param km] does
@@ -772,7 +789,7 @@ func _nearest_of(ship: Dictionary, kind: String, within_km: float) -> Variant:
 ## A ship of the kind caught the boat of the helm: the corsairs take
 ## [constant CORSAIR_LOOT] ducats, the patrol [constant BRIBE] as a bribe (or
 ## what there is on board).
-func _caught(kind: String, helm: Helm) -> void:
+func _caught(kind: String, helm: Helm, power := "") -> void:
     var hold := _run.hold(helm.player)
     if kind == "corsair":
         if _run.bag.use_effect("figs"):
@@ -788,6 +805,8 @@ func _caught(kind: String, helm: Helm) -> void:
         else:
             _run.pass_days(1.0)
             said.emit(tr("The corsairs caught you! Their toll costs a day."), helm.player)
+    elif power == "habsburgs":
+        _caught_by_habsburgs(helm)
     elif _run.bag.has_effect("flag"):
         said.emit(tr("The Venetian patrol salutes your flag and lets you pass."), helm.player)
     elif hold.on_board() >= MIN_LOOT:
@@ -854,5 +873,20 @@ func _update_loot(delta: float, helms: Array[Helm], center: Vector2, targets: Ar
     loot.scale = Vector2.ONE * _chart.marker_scale
     add_child(loot)
     _loot.append(loot)
+
+
+## A Habsburg patrol caught the boat: the same as a Venetian one, with the
+## eagle instead of the star.
+func _caught_by_habsburgs(helm: Helm) -> void:
+    var hold := _run.hold(helm.player)
+    if _run.bag.has_effect("flag"):
+        said.emit(tr("The Habsburg patrol salutes your flag and lets you pass."), helm.player)
+    elif hold.on_board() >= MIN_LOOT:
+        var bribe := hold.steal(BRIBE)
+        var text := tr("A Habsburg patrol! They take a bribe of {ducats} {ducats|ducat|ducats}.")
+        said.emit(Grammar.format(text, {"ducats": bribe}), helm.player)
+    else:
+        _run.pass_days(0.5)
+        said.emit(tr("A Habsburg patrol! The inspection costs half a day."), helm.player)
 
 # endregion

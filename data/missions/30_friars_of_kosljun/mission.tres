@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hearing_question.gd" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/leopold.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/krk.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/people/fra_ambroz.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="8_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rab.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/osor.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/hearing_step.gd" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/frane.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_bura_kvarner.tres" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="17_ext"]
+
+[sub_resource type="Resource" id="question_1"]
+script = ExtResource("2_ext")
+question = "In which old letters did the priests of Krk write?"
+answers = Array[String](["In Glagolitic", "In Arabic", "In Greek"])
+correct = 0
+
+[sub_resource type="Resource" id="question_2"]
+script = ExtResource("2_ext")
+question = "Which town has four bell towers in a row?"
+answers = Array[String](["Senj", "Rab", "Pula"])
+correct = 1
+
+[sub_resource type="Resource" id="question_3"]
+script = ExtResource("2_ext")
+question = "\"I lie where Cres and Lošinj almost touch.\" Where is the hideout?"
+answers = Array[String](["Under the Arena", "In the Arsenal", "Behind Osor"])
+correct = 2
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Captain, the friars on the islet of Košljun see every boat in their bay.", "They sent word: they saw the false boats! Ask Brother Ambroz on Krk."])
+
+[sub_resource type="Resource" id="friar"]
+script = ExtResource("5_ext")
+id = "friar"
+port = ExtResource("6_ext")
+recipient = ExtResource("7_ext")
+objective = "Talk to Brother Ambroz on {port}."
+thanks = Array[String](["Peace be with you, captain. Yes, we saw boats with new white sails.", "They sailed south between the islands. Ask in the towns!"])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("8_ext")
+id = "trail"
+ports = Array[ExtResource("9_ext")]([ExtResource("10_ext"), ExtResource("11_ext")])
+length = 2
+fixed_route = true
+max_difficulty = 2
+clue_templates = Array[String](["They sailed on toward {fact}.", "They asked the way to {fact}."])
+question = "Have you seen boats with brand-new white sails?"
+found_line = "They hide close by. Brother Ambroz left you a letter about it."
+
+[sub_resource type="Resource" id="riddle"]
+script = ExtResource("12_ext")
+id = "riddle"
+speaker = ExtResource("13_ext")
+intro = Array[String](["Brother Ambroz wrote you a riddle, captain.", "\"Answer me, and you will know where the false boats hide.\""])
+questions = Array[ExtResource("2_ext")]([SubResource("question_1"), SubResource("question_2"), SubResource("question_3")])
+wrong_line = "Hmm, no. Read the riddle again, captain."
+right_lines = Array[String](["The cove behind Osor! But the false boats have left it.", "Their things are still there, I bet."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("14_ext")
+id = "celebration"
+speaker = ExtResource("7_ext")
+lines = Array[String](["The friars of Košljun watch the sea day and night.", "Go with God, captain, and look in that cove!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "friars_of_kosljun"
+number = 30
+chapter = 3
+title = "The Friars of Košljun"
+summary = "The friars on their islet saw where the false boats hide. Follow their word through the islands."
+start_port = ExtResource("15_ext")
+clock_days = 3.2
+provisions_days = 10.8
+sea = ExtResource("16_ext")
+steps = Array[ExtResource("17_ext")]([SubResource("briefing"), SubResource("friar"), SubResource("trail"), SubResource("riddle"), SubResource("celebration")])
+fun_fact = "Franciscan friars have lived on the islet of Košljun near Krk since 1447. They still keep old books and maps there."
+victory_title = "The hideout is found!"
+victory_lines = Array[String](["The riddle of Brother Ambroz led you to the cove behind Osor.", "The false uskoks are gone, but their hideout is not."])
+victory_person = ExtResource("7_ext")

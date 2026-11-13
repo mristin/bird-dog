@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/brother_romualdo.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_charm_rimini.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rimini.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/people/gaspare.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_charm_fano.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/fano.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/people/fortunata.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_charm_ancona.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ancona.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/marco.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/count_malvento.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ravenna.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/maestral_jugo.tres" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="16_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/ancona.jpg" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/race_step.gd" id="20_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="21_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("18_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, the Count sells \"wind charms\" to the fishermen of this coast.", "He says that without his charm, no boat gets a good wind!", "Bring me three charms, from Rimini, Fano and Ancona. Let us see what is inside."])
+
+[sub_resource type="Resource" id="charms_source_1"]
+script = ExtResource("12_ext")
+item = ExtResource("3_ext")
+port = ExtResource("4_ext")
+person = ExtResource("5_ext")
+lines = Array[String](["Here, take my charm. Three ducats, and still no wind!", "It is only a little bottle with a cork."])
+
+[sub_resource type="Resource" id="charms_source_2"]
+script = ExtResource("12_ext")
+item = ExtResource("6_ext")
+port = ExtResource("7_ext")
+person = ExtResource("8_ext")
+lines = Array[String](["My husband paid two ducats for this charm.", "Shake it: nothing inside! Take it."])
+
+[sub_resource type="Resource" id="charms_source_3"]
+script = ExtResource("12_ext")
+item = ExtResource("9_ext")
+port = ExtResource("10_ext")
+person = ExtResource("11_ext")
+lines = Array[String](["The Count's men sold it to me on the pier.", "Take it, captain. It never helped me."])
+
+[sub_resource type="Resource" id="charms"]
+script = ExtResource("19_ext")
+id = "charms"
+sources = Array[ExtResource("12_ext")]([SubResource("charms_source_1"), SubResource("charms_source_2"), SubResource("charms_source_3")])
+needed = 0
+objective = "Collect {count} more wind {count|charm|charms}."
+
+[sub_resource type="Resource" id="race"]
+script = ExtResource("20_ext")
+id = "race"
+port = ExtResource("7_ext")
+rival = ExtResource("13_ext")
+buoys = Array[Vector2]([Vector2(13.3, 44.25), Vector2(13.9, 44.0), Vector2(13.5, 43.75)])
+rival_share = 0.55
+edge = 0.08
+objective = "Sail to {port} for the race!"
+challenge = Array[String](["Ha! So you collected my wind charms?", "My yellow boat has the best charm of all. Nobody beats it!", "Race me around the three buoys, in front of the fishermen of Fano!"])
+rematch = Array[String](["Back for more? The wind still loves me!", "Again, around the three buoys!"])
+race_label = "Race!"
+won_lines = Array[String](["What? You beat my charm boat?", "Bah! The wind was... wrong today.", "The fishermen of Fano cheer: skill wins, not charms!"])
+lost_line = "Ha! The wind loves me! The fishermen ask for a rematch tomorrow."
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("21_ext")
+id = "celebration"
+speaker = ExtResource("8_ext")
+lines = Array[String](["Skill wins, not charms! Nobody in Fano buys a wind charm any more.", "We opened them all: empty bottles, every one!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "wind_seller"
+number = 17
+chapter = 2
+title = "The Wind Seller"
+summary = "Collect three wind charms, then race the Count's charm-boat in front of the fishermen of Fano: skill against charms."
+start_port = ExtResource("14_ext")
+clock_days = 9.5
+provisions_days = 10.8
+sea = ExtResource("15_ext")
+steps = Array[ExtResource("16_ext")]([SubResource("briefing"), SubResource("charms"), SubResource("race"), SubResource("celebration")])
+fun_fact = "On the old sea charts of the Mediterranean, the compass rose names eight winds: Tramontana, Greco, Levante, Scirocco, Ostro, Libeccio, Ponente and Maestro. That is how the sailors told the directions."
+victory_title = "Skill beats charms!"
+victory_lines = Array[String](["You won the race without a single charm.", "The fishermen of Fano keep their ducats now."])
+victory_picture = ExtResource("17_ext")
+victory_person = ExtResource("8_ext")

@@ -376,6 +376,8 @@ func _draw_flag(mast: Vector2, t: float, back: Vector2, side: Vector2, flag: Dec
     var ground := Color(0.08, 0.07, 0.07)
     if emblem == "patrol":
         ground = Color(0.12, 0.2, 0.5)
+    elif emblem == "eagle":
+        ground = Color(0.98, 0.8, 0.2)
     elif flag != null:
         ground = flag.color
     _fill(cloth, ground)
@@ -461,6 +463,8 @@ func _draw_sign(center: Vector2, radius: float, kind: String) -> void:
         draw_rect(Rect2(center + Vector2(-3, 2.5) * r, Vector2(6, 3.5) * r), bone)
         draw_circle(center + Vector2(-2.2, -2) * r, 1.6 * r, Color(0.08, 0.07, 0.07))
         draw_circle(center + Vector2(2.2, -2) * r, 1.6 * r, Color(0.08, 0.07, 0.07))
+    elif kind == "eagle":
+        _draw_eagle(center, r)
     else:
         var gold := Color(0.98, 0.78, 0.22)
         var star := PackedVector2Array()
@@ -476,6 +480,45 @@ func _draw_sign(center: Vector2, radius: float, kind: String) -> void:
         draw_circle(center, 2.6 * r, Color(0.12, 0.2, 0.5))
 
 
+## The black double-headed eagle of the Habsburgs (on yellow), in a circle of
+## radius 10 * [param r].
+func _draw_eagle(center: Vector2, r: float) -> void:
+    var black := Color(0.08, 0.07, 0.07)
+    for side: float in [-1.0, 1.0]:
+        var wing := PackedVector2Array(
+            [
+                center + Vector2(side * 2, -2) * r,
+                center + Vector2(side * 10, -6) * r,
+                center + Vector2(side * 9, -1) * r,
+                center + Vector2(side * 10, 2) * r,
+                center + Vector2(side * 7, 3) * r,
+                center + Vector2(side * 8, 6) * r,
+                center + Vector2(side * 2, 4) * r,
+            ]
+        )
+        draw_colored_polygon(wing, black)
+        draw_line(
+            center + Vector2(0, -3) * r,
+            center + Vector2(side * 3.5, -7.5) * r,
+            black,
+            2.2 * r,
+            true
+        )
+        draw_circle(center + Vector2(side * 3.8, -7.8) * r, 1.8 * r, black)
+    draw_colored_polygon(
+        PackedVector2Array(
+            [
+                center + Vector2(-2.5, -3) * r,
+                center + Vector2(2.5, -3) * r,
+                center + Vector2(3, 6) * r,
+                center + Vector2(0, 9) * r,
+                center + Vector2(-3, 6) * r,
+            ]
+        ),
+        black
+    )
+
+
 ## The badge which floats over a marked ship, upright whatever the heading: a
 ## black disc with the skull for the pirates, a blue one with the golden star
 ## for the patrol. It bobs a little, so that it catches the eye.
@@ -483,6 +526,9 @@ func _draw_badge(t: float) -> void:
     var at := Vector2(0, -118 - sin(t * 3.0) * 4.0)
     var ground := Color(0.08, 0.07, 0.07) if emblem == "pirate" else Color(0.12, 0.2, 0.5)
     var rim := Color(0.96, 0.94, 0.88) if emblem == "pirate" else Color(0.98, 0.78, 0.22)
+    if emblem == "eagle":
+        ground = Color(0.98, 0.8, 0.2)
+        rim = Color(0.08, 0.07, 0.07)
     draw_line(at + Vector2(0, 30), Vector2(0, -60), Color(INK, 0.5), 2.0, true)
     draw_circle(at + Vector2(3, 4), 30, Color(0, 0, 0, 0.3))
     draw_circle(at, 30, ground)

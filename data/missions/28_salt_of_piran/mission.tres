@@ -1,0 +1,90 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/people/salter_trieste.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/koper.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/piran.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rovinj.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/blue_scarf.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_salt_bag.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_coral_beads.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/people/benvenuta.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch3_fishwife.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch3_salt_worker.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_salt_statement.tres" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="19_ext"]
+[ext_resource type="Resource" path="res://data/world/people/baba_stana.tres" id="20_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="21_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trieste.tres" id="22_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_bura_kvarner.tres" id="23_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="24_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/rovinj.jpg" id="25_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("2_ext")
+id = "briefing"
+speaker = ExtResource("3_ext")
+lines = Array[String](["Captain, the false uskoks robbed a salt boat of Piran!", "Its owner saw them up close. But she was afraid, and went into hiding.", "Find her somewhere on the coast of Istria!"])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("4_ext")
+id = "trail"
+ports = Array[ExtResource("5_ext")]([ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("8_ext"), ExtResource("9_ext")])
+length = 3
+fixed_route = false
+max_route_km = 260.0
+max_difficulty = 2
+clue_templates = Array[String](["She asked the way to {fact}.", "She sailed on toward {fact}.", "I heard her talk about {fact}."])
+reveal = Array[ExtResource("10_ext")]([ExtResource("11_ext"), ExtResource("12_ext"), ExtResource("13_ext")])
+hallmark_template = "The salt merchant had {hallmark}."
+question = "Have you seen the salt merchant of Piran?"
+found_line = "She is here, among the women of the market! But which one is she?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("14_ext")
+id = "lineup"
+target = ExtResource("15_ext")
+decoys = Array[Resource]([ExtResource("16_ext"), ExtResource("17_ext")])
+question = "Which one is the salt merchant of Piran?"
+wrong_line = "No, that is not her! Remember all three things."
+right_line = "\"Yes, it's me. I saw a fine Habsburg boot under an uskok coat!\""
+gives = ExtResource("18_ext")
+
+[sub_resource type="Resource" id="deliver"]
+script = ExtResource("19_ext")
+id = "deliver"
+item = ExtResource("18_ext")
+port = ExtResource("9_ext")
+recipient = ExtResource("20_ext")
+objective = "Bring Benvenuta's statement to {port}."
+thanks = Array[String](["A fine boot of a lord, under an uskok coat?", "I'll keep it safe, captain. It is our first proof."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("21_ext")
+id = "celebration"
+speaker = ExtResource("15_ext")
+lines = Array[String](["Real uskoks wear sandals of leather straps.", "That boot belonged to a rich man from the Habsburg side!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "salt_of_piran"
+number = 28
+chapter = 3
+title = "The Salt of Piran"
+summary = "Find the salt merchant of Piran, who saw the false uskoks up close."
+start_port = ExtResource("22_ext")
+clock_days = 7.0
+provisions_days = 10.8
+sea = ExtResource("23_ext")
+steps = Array[ExtResource("24_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("deliver"), SubResource("celebration")])
+fun_fact = "The salt pans of Sečovlje near Piran have been worked for about 700 years. Salt is still made there by hand, the old way."
+victory_title = "A witness!"
+victory_lines = Array[String](["You found Benvenuta, the salt merchant of Piran.", "She saw a fine Habsburg boot under the costume."])
+victory_picture = ExtResource("25_ext")
+victory_person = ExtResource("15_ext")

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Person" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="1_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/people/old_woman.jpg" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/blue_scarf.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_coral_beads.tres" id="5_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "ch3_fishwife"
+name = "a fishwife"
+role = "a fish seller of Koper"
+gender = "f"
+portrait = ExtResource("2_ext")
+hallmarks = Array[ExtResource("3_ext")]([ExtResource("4_ext"), ExtResource("5_ext")])

@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/notar_giacomo.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/brindisi.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/otranto.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/monopoli.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bari.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/barletta.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/manfredonia.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/vieste.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/termoli.tres" id="10_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_yellow_gloves.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_violets.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_big_wig.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_seal_ring.tres" id="15_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/people/count_malvento.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch2_perfumer.tres" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch2_actor.tres" id="19_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch2_banker.tres" id="20_ext"]
+[ext_resource type="Resource" path="res://data/world/items/golden_charter.tres" id="21_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trani.tres" id="22_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/changing.tres" id="23_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="24_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/brindisi.jpg" id="25_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="26_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="27_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="28_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="29_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("26_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, the Count has fled with his Golden Charter!", "Without the charter, the judges can not see his forgery.", "Chase him! A man so fine can not hide for long."])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("27_ext")
+id = "trail"
+ports = Array[ExtResource("11_ext")]([ExtResource("3_ext"), ExtResource("4_ext"), ExtResource("5_ext"), ExtResource("6_ext"), ExtResource("7_ext"), ExtResource("8_ext"), ExtResource("9_ext"), ExtResource("10_ext")])
+length = 4
+fixed_route = false
+max_route_km = 600.0
+max_difficulty = 3
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("16_ext")]([ExtResource("12_ext"), ExtResource("13_ext"), ExtResource("14_ext"), ExtResource("15_ext")])
+hallmark_template = "The Count had {hallmark}."
+question = "Have you seen Count Malvento?"
+found_line = "He is here, hiding among the people of the harbour! But which one is he?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("28_ext")
+id = "lineup"
+target = ExtResource("17_ext")
+decoys = Array[Resource]([ExtResource("18_ext"), ExtResource("19_ext"), ExtResource("20_ext")])
+question = "Which one is the Count?"
+wrong_line = "No, that is not the Count! Remember all four things you learned."
+right_line = "\"Alright, alright! Here is the charter. It was such a beautiful charter...\""
+gives = ExtResource("21_ext")
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("29_ext")
+id = "celebration"
+speaker = ExtResource("17_ext")
+lines = Array[String](["\"Fine, I will come before the judges in Trani.\"", "With the Golden Charter, the crew holds everything the judges need."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "count_flees"
+number = 24
+chapter = 2
+title = "The Count Flees"
+summary = "The Count flees with his charter. Yellow gloves, a smell of violets, a wig too big, a ring with a false seal."
+start_port = ExtResource("22_ext")
+clock_days = 14.0
+provisions_days = 10.8
+sea = ExtResource("23_ext")
+steps = Array[ExtResource("24_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("celebration")])
+fun_fact = "Around 1600, perfumed gloves were the height of fashion. Gloves were scented with violets, roses or amber, also to hide the smell of the leather."
+victory_title = "The charter is yours!"
+victory_lines = Array[String](["You chased the Count along the whole coast and found him.", "Now the crew holds the Golden Charter."])
+victory_picture = ExtResource("25_ext")
+victory_person = ExtResource("2_ext")

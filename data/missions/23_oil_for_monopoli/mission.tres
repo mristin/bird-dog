@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/luka.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/monopoli.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/vito.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_pressing_mats.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_oil_monopoli.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/brindisi.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/people/donata.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/items/salt.tres" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/trade_link.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bari.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/people/market_woman.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/jugo_south.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="14_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item.gd" id="15_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/bari.jpg" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trade_step.gd" id="18_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="20_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("17_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain! It's me, Luka, the ship's boy. Remember?", "The Count bought up all the olive oil, and he sells it at three times the price.", "But Vito of Monopoli hid some olives. Help him press them!", "Take this salt along: on this coast, salt buys almost anything."])
+
+[sub_resource type="Resource" id="link_1"]
+script = ExtResource("10_ext")
+port = ExtResource("3_ext")
+person = ExtResource("4_ext")
+wants = ExtResource("5_ext")
+gives = ExtResource("6_ext")
+ask_lines = Array[String](["My olives are picked, but the Count's men took my pressing mats.", "Without mats, the press gives no oil. Donata of Brindisi weaves them!"])
+thanks_lines = Array[String](["Fine mats! The press is turning...", "Here is the oil, captain. Take it to the market of Bari."])
+
+[sub_resource type="Resource" id="link_2"]
+script = ExtResource("10_ext")
+port = ExtResource("7_ext")
+person = ExtResource("8_ext")
+wants = ExtResource("9_ext")
+gives = ExtResource("5_ext")
+ask_lines = Array[String](["I weave pressing mats from rushes.", "But I need salt for my fish. Do you have salt?"])
+thanks_lines = Array[String](["Salt! Now my fish keeps all winter.", "Here are my best pressing mats."])
+
+[sub_resource type="Resource" id="trade"]
+script = ExtResource("18_ext")
+id = "trade"
+links = Array[ExtResource("10_ext")]([SubResource("link_1"), SubResource("link_2")])
+
+[sub_resource type="Resource" id="market"]
+script = ExtResource("19_ext")
+id = "market"
+item = ExtResource("6_ext")
+port = ExtResource("11_ext")
+recipient = ExtResource("12_ext")
+objective = "Bring the oil to the market of {port}."
+thanks = Array[String](["Oil from Monopoli, at a fair price!", "Now everybody in Bari can cook again."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("20_ext")
+id = "celebration"
+speaker = ExtResource("2_ext")
+lines = Array[String](["The Count's oil sits in his cellar, and nobody buys it!", "Captain, I will keep my eyes open for him."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "oil_for_monopoli"
+number = 23
+chapter = 2
+title = "Oil for Monopoli"
+summary = "The Count hoards the olive oil. Trade salt for pressing mats, the mats for oil, and bring it to the market of Bari."
+start_port = ExtResource("11_ext")
+clock_days = 6.0
+provisions_days = 10.8
+sea = ExtResource("13_ext")
+steps = Array[ExtResource("14_ext")]([SubResource("briefing"), SubResource("trade"), SubResource("market"), SubResource("celebration")])
+start_cargo = Array[ExtResource("15_ext")]([ExtResource("9_ext")])
+fun_fact = "In Apulia, many olive mills were dug into the rock under the ground. It was warm down there in winter, so the oil flowed better."
+victory_title = "Fair oil for Bari!"
+victory_lines = Array[String](["Salt, mats and a lot of sailing beat the Count's prices.", "The kitchens of Bari smell of fresh oil."])
+victory_picture = ExtResource("16_ext")
+victory_person = ExtResource("4_ext")

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="SeaConditions" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/sea_conditions.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/wind_chance.gd" id="2_ext"]
+
+[sub_resource type="Resource" id="wind_1"]
+script = ExtResource("2_ext")
+name = "bura"
+from_degrees = 45.0
+intensities = Vector3(0, 1, 4)
+weight = 6.0
+
+[sub_resource type="Resource" id="wind_2"]
+script = ExtResource("2_ext")
+name = "tramontana"
+from_degrees = 0.0
+intensities = Vector3(0, 1, 1)
+weight = 1.0
+
+[resource]
+script = ExtResource("1_ext")
+winds = Array[ExtResource("2_ext")]([SubResource("wind_1"), SubResource("wind_2")])
+change_seconds = Vector2(30, 50)
+clouds = Vector2i(1, 2)
+corsairs = true
+patrols = true
+patrol_powers = Array[String](["venice", "habsburgs"])
+barrels = 6
+speed_scale = 0.6

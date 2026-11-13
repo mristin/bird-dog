@@ -46,7 +46,10 @@ var _time := 0.0
 func _ready() -> void:
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     var button := HandButton.new()
-    button.text = tr("Back to the missions") if not mission.finale else tr("The end of the voyage")
+    button.text = tr("Back to the missions")
+    if mission.finale:
+        var last := mission.chapter >= MissionCatalog.chapters().size()
+        button.text = tr("The end of the voyage") if last else tr("On to the next chapter!")
     button.text_size = 40
     # NOTE (mristin):
     # The button stands centred on the sheet (see _SHEET), inside its frame.

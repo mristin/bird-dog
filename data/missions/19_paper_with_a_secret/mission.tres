@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/envoy.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rimini.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/fano.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/loreto.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pescara.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ravenna.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_paper_roll.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_red_felt_hat.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/spectacles.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/anselmo.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch2_bookbinder.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch2_hatter.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/items/passenger_anselmo.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ancona.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_toll_paper.tres" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/maestral_jugo.tres" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="20_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/ancona.jpg" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="22_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="23_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="24_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="25_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="26_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("22_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, the Count's toll man left behind a page of the Count's charter.", "The Count says it is twenty years old. A paper merchant could tell!", "Ser Anselmo of Fabriano sails along the coast. Find him!"])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("23_ext")
+id = "trail"
+ports = Array[ExtResource("8_ext")]([ExtResource("3_ext"), ExtResource("4_ext"), ExtResource("5_ext"), ExtResource("6_ext"), ExtResource("7_ext")])
+length = 3
+fixed_route = false
+max_route_km = 400.0
+max_difficulty = 2
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("12_ext")]([ExtResource("9_ext"), ExtResource("10_ext"), ExtResource("11_ext")])
+hallmark_template = "The paper merchant has {hallmark}."
+question = "Have you seen Ser Anselmo, the paper merchant?"
+found_line = "He is here, at the market! But which one is he?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("24_ext")
+id = "lineup"
+target = ExtResource("13_ext")
+decoys = Array[Resource]([ExtResource("14_ext"), ExtResource("15_ext")])
+question = "Which one is Ser Anselmo? Remember what the people told you!"
+wrong_line = "No, that is not Ser Anselmo! Think of everything you heard."
+right_line = "\"A paper with a secret? Take me to it, captain!\""
+gives = ExtResource("16_ext")
+
+[sub_resource type="Resource" id="ancona"]
+script = ExtResource("25_ext")
+id = "ancona"
+item = ExtResource("16_ext")
+port = ExtResource("17_ext")
+recipient = ExtResource("2_ext")
+objective = "Bring Ser Anselmo to {port}."
+thanks = Array[String](["Ser Anselmo holds the page against the light.", "\"See the watermark? This paper was made in Fabriano only this year!\"", "So it can not be twenty years old. That is our first proof!"])
+gives = ExtResource("18_ext")
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("26_ext")
+id = "celebration"
+speaker = ExtResource("13_ext")
+lines = Array[String](["A watermark never lies, captain.", "The Count can forge words, but not the paper of Fabriano!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "paper_with_a_secret"
+number = 19
+chapter = 2
+title = "The Paper with a Secret"
+summary = "Find the paper merchant who can read the charter against the light. Proof 1: the watermark of Fabriano."
+start_port = ExtResource("17_ext")
+clock_days = 12.0
+provisions_days = 10.8
+sea = ExtResource("19_ext")
+steps = Array[ExtResource("20_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("ancona"), SubResource("celebration")])
+fun_fact = "The paper mills of Fabriano were among the first in Europe. Their papermakers invented the watermark: a picture inside the paper, which shows only against the light."
+victory_title = "The first proof!"
+victory_lines = Array[String](["You found Ser Anselmo, and the watermark speaks.", "The Count's paper is new, not twenty years old."])
+victory_picture = ExtResource("21_ext")
+victory_person = ExtResource("13_ext")

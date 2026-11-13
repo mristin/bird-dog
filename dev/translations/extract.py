@@ -89,6 +89,12 @@ DATA_FIELDS = {
     "description": "what a booster or a ship does, on its card, one short sentence",
     "rival_line": "what the crew hears when a rival was first in a port; {port} is a port",
     "fled_line": "what the crew hears when the target slipped away after a wrong pick",
+    "challenge": "what a rival says when he dares the crew to a race, at most two short sentences",
+    "rematch": "what a rival says before a rematch of a race, at most two short sentences",
+    "race_label": "the label of the button which starts a race, a word or two",
+    "won_lines": "what the crew hears after winning a race, at most two short sentences",
+    "lost_line": "what the crew hears when a rival won the race, one short sentence",
+    "cut_line": "what the crew hears when a rival cheats in a race, one short sentence",
 }
 
 #: A text field of a resource: a single string, or an array of strings.

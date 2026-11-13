@@ -1,0 +1,61 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/notar_giacomo.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/barletta.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/count_malvento.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ettore.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trani.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/maestral_jugo.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="8_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/bari.jpg" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="10_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/race_step.gd" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="12_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("10_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, the Count is furious about the three proofs.", "He dares you to a regatta at Barletta: thirteen boats, like the thirteen knights of 1503!", "If you win, the whole coast will see that his charms are nothing."])
+
+[sub_resource type="Resource" id="race"]
+script = ExtResource("11_ext")
+id = "race"
+port = ExtResource("3_ext")
+rival = ExtResource("4_ext")
+buoys = Array[Vector2]([Vector2(16.35, 41.62), Vector2(16.9, 41.75), Vector2(16.75, 41.4)])
+rival_share = 0.46
+edge = 0.08
+cuts = Array[int]([0])
+objective = "Sail to {port} for the race!"
+challenge = Array[String](["Welcome to the Challenge of Barletta, captain!", "Thirteen boats, three buoys, and glory for the winner!", "My yellow boat will leave you all behind!"])
+rematch = Array[String](["Ha! Back for another lesson?", "Again: thirteen boats, three buoys!"])
+race_label = "Race!"
+won_lines = Array[String](["Impossible! I took the short way, and you still won?", "The crowd of Barletta cheers for the fair captain!"])
+lost_line = "The Count was back first, but he cheated! The fishermen ask for a rematch tomorrow."
+cut_line = "The Count cuts through the shallows and skips a buoy! That's cheating!"
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("12_ext")
+id = "celebration"
+speaker = ExtResource("5_ext")
+lines = Array[String](["The whole town saw it: the Count cheated, and you won fairly!", "I hammered you a horseshoe, for luck."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "challenge_of_barletta"
+number = 22
+chapter = 2
+title = "The Challenge of Barletta"
+summary = "The Count dares the crew to a regatta of thirteen boats, as the thirteen knights of 1503. He cheats through the shallows; the crew wins fairly."
+start_port = ExtResource("6_ext")
+clock_days = 4.5
+provisions_days = 10.8
+sea = ExtResource("7_ext")
+steps = Array[ExtResource("8_ext")]([SubResource("briefing"), SubResource("race"), SubResource("celebration")])
+fun_fact = "The Challenge of Barletta in 1503 began with an insult at a dinner: a French knight said that the Italians were poor knights. Thirteen knights of each side met in a tournament, and the Italians won."
+victory_title = "A fair win!"
+victory_lines = Array[String](["The Count cut through the shallows, and still you won.", "All of Barletta saw who sails fairly."])
+victory_picture = ExtResource("9_ext")
+victory_person = ExtResource("5_ext")

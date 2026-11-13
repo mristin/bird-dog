@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/venice.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/people/frane.tres" id="5_ext"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("2_ext")
+kind = "nature"
+phrase = "the town on the narrow channel between Cres and Lošinj"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("2_ext")
+kind = "landmark"
+phrase = "the town on the canal which the Romans dug"
+difficulty = 2
+
+[resource]
+script = ExtResource("1_ext")
+id = "osor"
+name = "Osor"
+latitude = 44.694
+icon = "swing_bridge"
+longitude = 14.392
+power = ExtResource("3_ext")
+facts = Array[ExtResource("2_ext")]([SubResource("fact_1"), SubResource("fact_2")])
+locals = Array[ExtResource("4_ext")]([ExtResource("5_ext")])

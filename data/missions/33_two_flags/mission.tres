@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/people/leopold.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trieste.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ehrenfried.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_safe_conduct.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/venice.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/people/marcantonio.tres" id="9_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/alvise.tres" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_gulf_of_trieste.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="14_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/venice.jpg" id="15_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("2_ext")
+id = "briefing"
+speaker = ExtResource("3_ext")
+lines = Array[String](["Captain, the Archduke sent a commissioner to Trieste.", "He will judge the Baron, but Venice must send an envoy, too.", "Get his safe-conduct for the envoy, and carry it to Venice!"])
+
+[sub_resource type="Resource" id="conduct"]
+script = ExtResource("4_ext")
+id = "conduct"
+port = ExtResource("5_ext")
+recipient = ExtResource("6_ext")
+objective = "Get the safe-conduct of the commissioner in {port}."
+thanks = Array[String](["The Baron has shamed the Archduke's name.", "With this letter, the envoy of Venice may come safely to Rijeka."])
+gives = ExtResource("7_ext")
+
+[sub_resource type="Resource" id="envoy"]
+script = ExtResource("4_ext")
+id = "envoy"
+item = ExtResource("7_ext")
+port = ExtResource("8_ext")
+recipient = ExtResource("9_ext")
+objective = "Bring the safe-conduct to the envoy in {port}."
+thanks = Array[String](["A safe-conduct of the Archduke, for a Venetian? Times change!", "I will sail to Rijeka at once."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("10_ext")
+id = "celebration"
+speaker = ExtResource("11_ext")
+lines = Array[String](["The lion of St. Mark and the eagle of the Habsburgs at one table.", "Peace is worth a voyage, captain!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "two_flags"
+number = 33
+chapter = 3
+title = "Two Flags"
+summary = "Carry the commissioner's safe-conduct from Trieste to the envoy in Venice. Mind both patrols!"
+start_port = ExtResource("12_ext")
+clock_days = 4.8
+provisions_days = 10.8
+sea = ExtResource("13_ext")
+steps = Array[ExtResource("14_ext")]([SubResource("briefing"), SubResource("conduct"), SubResource("envoy"), SubResource("celebration")])
+fun_fact = "A safe-conduct was a letter which promised a traveller that nobody would stop or harm him, even in the land of another ruler."
+victory_title = "The envoy is coming!"
+victory_lines = Array[String](["You carried the safe-conduct past the patrols of two powers.", "The envoy of Venice sails to Rijeka."])
+victory_picture = ExtResource("15_ext")
+victory_person = ExtResource("9_ext")

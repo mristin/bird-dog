@@ -94,6 +94,7 @@ lines = Array[String](["The witnesses are ready, and so is the ledger.", "Soon, 
 script = ExtResource("1_ext")
 id = "the_witnesses"
 number = 14
+chapter = 1
 title = "The Witnesses"
 summary = "The judge wants to hear witnesses. Bring them from Ulcinj, Castelnuovo and Kotor to Corfu."
 start_port = ExtResource("19_ext")

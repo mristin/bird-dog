@@ -85,6 +85,7 @@ lines = Array[String](["The bura blows, and the salt is safe in the villages!", 
 script = ExtResource("1_ext")
 id = "salt_for_the_winter"
 number = 3
+chapter = 1
 title = "Salt for the Winter"
 summary = "The Aga hoards the salt. Fetch salt and bring it to the villages before winter."
 start_port = ExtResource("2_ext")

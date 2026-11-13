@@ -107,6 +107,7 @@ sound = "bell"
 script = ExtResource("1_ext")
 id = "kadi_of_preveza"
 number = 15
+chapter = 1
 title = "The Kadı of Preveza"
 summary = "Bring the ledger and the witnesses to the judge in Preveza, then sail home to Pula."
 start_port = ExtResource("2_ext")

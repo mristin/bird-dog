@@ -80,6 +80,7 @@ lines = Array[String](["Crooked Mast sent a message, too:", "\"The Aga's scribe 
 script = ExtResource("1_ext")
 id = "corsairs_of_ulcinj"
 number = 10
+chapter = 1
 title = "The Corsairs of Ulcinj"
 summary = "The corsairs took the villages' olive oil. Find out what they want, and trade it back."
 start_port = ExtResource("2_ext")

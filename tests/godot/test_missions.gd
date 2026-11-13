@@ -176,6 +176,16 @@ func _play(mission: Mission, seed_value: int) -> float:
             _check(next != null, "%s: step %s points somewhere" % [label, step.id])
             if next == null:
                 return INF
+            if step is RaceStep and step.is_racing(run) and not World.ports().has(next):
+                # NOTE (mristin):
+                # A buoy of a race is rounded, never entered (see
+                # test_race.gd for the race against the rival itself).
+                run.pass_days(_km(port, next) * DETOUR / _km_per_day)
+                var at: Array[Vector2] = [World.port_km(next)]
+                var rounded: Dictionary = step.update(run, at, 0.0, 0.0)
+                _check(rounded["rounded"] > 0, "%s: the buoy is rounded" % label)
+                port = next
+                continue
             run.pass_days(_km(port, next) * DETOUR / _km_per_day + MissionRun.PORT_DAYS)
             port = next
             scene = step.arrive(run, port)

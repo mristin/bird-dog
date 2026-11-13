@@ -76,6 +76,7 @@ lines = Array[String](["Every orange was sold, and Parga keeps its money.", "The
 script = ExtResource("1_ext")
 id = "oranges_of_parga"
 number = 11
+chapter = 1
 title = "The Oranges of Parga"
 summary = "The Aga wants the oranges of Parga as a tax. Trade your way to baskets and bring the oranges to the market of Corfu."
 start_port = ExtResource("12_ext")

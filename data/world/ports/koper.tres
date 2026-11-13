@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/venice.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/people/nazario.tres" id="5_ext"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("2_ext")
+kind = "landmark"
+phrase = "the town on an island, joined to the land by a long causeway"
+difficulty = 1
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("2_ext")
+kind = "landmark"
+phrase = "the town of the Praetorian Palace"
+difficulty = 2
+
+[sub_resource type="Resource" id="fact_3"]
+script = ExtResource("2_ext")
+kind = "power"
+phrase = "the town which Venice calls the head of Istria"
+difficulty = 3
+
+[resource]
+script = ExtResource("1_ext")
+id = "koper"
+name = "Koper"
+latitude = 45.548
+icon = "causeway"
+longitude = 13.727
+power = ExtResource("3_ext")
+facts = Array[ExtResource("2_ext")]([SubResource("fact_1"), SubResource("fact_2"), SubResource("fact_3")])
+locals = Array[ExtResource("4_ext")]([ExtResource("5_ext")])

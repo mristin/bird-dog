@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Boat" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/boat.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch3_new_white_sail.tres" id="3_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "ch3_white_trader"
+name = "a trading boat"
+sail_color = Color(0.97, 0.95, 0.88, 1)
+hull_color = Color(0.3, 0.19, 0.11, 1)
+patched = false
+hallmarks = Array[ExtResource("2_ext")]([ExtResource("3_ext")])

@@ -1,0 +1,92 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/rodrigo.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ortona.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/termoli.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/vieste.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/manfredonia.tres" id="6_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/leather_apron.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_wax_fingers.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_tiny_chisel.tres" id="10_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/people/nunzio.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/cooper.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ch2_candlemaker.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_seal_mould.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/trani.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/people/notar_giacomo.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pescara.tres" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/jugo_south.tres" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="20_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/bari.jpg" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="22_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="23_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="24_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="25_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="26_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("22_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, the Count's seal looks like the seal of the Viceroy.", "A seal-maker of Ortona carved seals for him, then quit and hid.", "Find him! He can tell the judges the truth."])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("23_ext")
+id = "trail"
+ports = Array[ExtResource("7_ext")]([ExtResource("3_ext"), ExtResource("4_ext"), ExtResource("5_ext"), ExtResource("6_ext")])
+length = 3
+fixed_route = false
+max_route_km = 360.0
+starts_at = ExtResource("3_ext")
+max_difficulty = 2
+clue_templates = Array[String](["He asked the way to {fact}.", "He sailed on toward {fact}.", "I heard him talk about {fact}."])
+reveal = Array[ExtResource("11_ext")]([ExtResource("8_ext"), ExtResource("9_ext"), ExtResource("10_ext")])
+hallmark_template = "The seal-maker has {hallmark}."
+question = "Have you seen the seal-maker who hides from the Count?"
+found_line = "He is hiding here, among the craftsmen! But which one is he?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("24_ext")
+id = "lineup"
+target = ExtResource("12_ext")
+decoys = Array[Resource]([ExtResource("13_ext"), ExtResource("14_ext")])
+question = "Which one is the seal-maker? Remember what the people told you!"
+wrong_line = "No, that is not the seal-maker! Think of everything you heard."
+right_line = "\"Yes, I carved the Count's seal. He said it was for a play!\" Mastro Nunzio gives you the mould."
+gives = ExtResource("15_ext")
+
+[sub_resource type="Resource" id="trani"]
+script = ExtResource("25_ext")
+id = "trani"
+item = ExtResource("15_ext")
+port = ExtResource("16_ext")
+recipient = ExtResource("17_ext")
+objective = "Bring the mould of the seal to {port}."
+thanks = Array[String](["Look: the name of the King is spelt wrong on it!", "No seal of the Viceroy has such a mistake. That is our second proof!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("26_ext")
+id = "celebration"
+speaker = ExtResource("12_ext")
+lines = Array[String](["I will tell the judges everything, captain.", "From now on, I carve only honest seals!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "seal_maker_of_ortona"
+number = 20
+chapter = 2
+title = "The Seal-Maker of Ortona"
+summary = "Find the seal-maker who quit the Count and hid. Proof 2: the false seal."
+start_port = ExtResource("18_ext")
+clock_days = 10.0
+provisions_days = 10.8
+sea = ExtResource("19_ext")
+steps = Array[ExtResource("20_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("trani"), SubResource("celebration")])
+fun_fact = "Ortona keeps the bones of St. Thomas the Apostle. Sailors of Ortona brought them from the Greek island of Chios in 1258."
+victory_title = "The second proof!"
+victory_lines = Array[String](["You found Mastro Nunzio, and the false seal is in Trani.", "The Count spelt the name of the King wrong!"])
+victory_picture = ExtResource("21_ext")
+victory_person = ExtResource("12_ext")

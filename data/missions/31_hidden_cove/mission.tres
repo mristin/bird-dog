@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_costumes.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/osor.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/people/frane.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_flags.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rab.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/people/kuzma.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_cargo.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/krk.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/dobrila.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="12_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/people/juraj.tres" id="16_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ika.tres" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_bura_kvarner.tres" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="20_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/senj.jpg" id="21_ext"]
+
+[sub_resource type="Resource" id="source_1"]
+script = ExtResource("2_ext")
+item = ExtResource("3_ext")
+port = ExtResource("4_ext")
+person = ExtResource("5_ext")
+lines = Array[String](["Uskok coats from the cove, all brand-new!", "Take them, captain."])
+
+[sub_resource type="Resource" id="source_2"]
+script = ExtResource("2_ext")
+item = ExtResource("6_ext")
+port = ExtResource("7_ext")
+person = ExtResource("8_ext")
+lines = Array[String](["Flags with the uskok sign, never touched by the wind.", "They washed up below my quarry."])
+
+[sub_resource type="Resource" id="source_3"]
+script = ExtResource("2_ext")
+item = ExtResource("9_ext")
+port = ExtResource("10_ext")
+person = ExtResource("11_ext")
+lines = Array[String](["Bales of Venetian cloth, hidden in the cave of my sheep!", "This is the stolen cargo."])
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("12_ext")
+id = "briefing"
+speaker = ExtResource("5_ext")
+lines = Array[String](["Captain, the cove is empty, but the false uskoks left in a hurry.", "The people of the islands found their things. Collect them all!"])
+
+[sub_resource type="Resource" id="collect"]
+script = ExtResource("13_ext")
+id = "collect"
+sources = Array[ExtResource("2_ext")]([SubResource("source_1"), SubResource("source_2"), SubResource("source_3")])
+needed = 0
+objective = "Collect {count} more {count|thing|things} from the hideout."
+
+[sub_resource type="Resource" id="costumes"]
+script = ExtResource("14_ext")
+id = "costumes"
+item = ExtResource("3_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring everything to Juraj in {port}."
+thanks = Array[String](["Look at these coats! Not one of us ever wore them."])
+
+[sub_resource type="Resource" id="flags"]
+script = ExtResource("14_ext")
+id = "flags"
+item = ExtResource("6_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring everything to Juraj in {port}."
+thanks = Array[String](["And false flags! They were sewn last month."])
+
+[sub_resource type="Resource" id="cargo"]
+script = ExtResource("14_ext")
+id = "cargo"
+item = ExtResource("9_ext")
+port = ExtResource("15_ext")
+recipient = ExtResource("16_ext")
+objective = "Bring everything to Juraj in {port}."
+thanks = Array[String](["The cloth of the Venetian ships! We will give it back."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("17_ext")
+id = "celebration"
+speaker = ExtResource("18_ext")
+lines = Array[String](["Costumes, flags and the stolen cloth: a whole chest of proof!", "Now we only need to know who paid for it all."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "hidden_cove"
+number = 31
+chapter = 3
+title = "The Hidden Cove"
+summary = "The hideout of the false uskoks is empty. Collect what they left behind on the islands."
+start_port = ExtResource("4_ext")
+clock_days = 3.0
+provisions_days = 10.8
+sea = ExtResource("19_ext")
+steps = Array[ExtResource("20_ext")]([SubResource("briefing"), SubResource("collect"), SubResource("costumes"), SubResource("flags"), SubResource("cargo"), SubResource("celebration")])
+fun_fact = "The canal of Osor was dug already in Roman times. Boats still sail through it between Cres and Lošinj, under a bridge which swings aside."
+victory_title = "The proofs are in Senj!"
+victory_lines = Array[String](["You collected the costumes, the flags and the stolen cloth.", "Juraj keeps them safe in the Nehaj fortress."])
+victory_picture = ExtResource("21_ext")
+victory_person = ExtResource("16_ext")

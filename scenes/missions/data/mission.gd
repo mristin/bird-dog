@@ -8,8 +8,12 @@ extends Resource
 ## The id, used in the save files; never change it.
 @export var id := ""
 
-## The order: 1 is the first; finishing mission n unlocks n + 1.
+## The order: 1 is the first; finishing mission n unlocks n + 1, also across
+## the chapters.
 @export var number := 1
+
+## The number of the chapter (see Chapter).
+@export var chapter := 1
 
 ## The title and the summary, in English (translated by the .po files).
 @export var title := ""
@@ -60,7 +64,7 @@ extends Resource
 ## Who smiles on the screen (the happy person of the story).
 @export var victory_person: Person
 
-## Whether this mission ends the voyage (the medal of the Bird Dog).
+## Whether this mission ends a chapter (the medal of the Bird Dog).
 @export var finale := false
 
 

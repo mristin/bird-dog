@@ -143,6 +143,7 @@ lines = Array[String](["Home in Senj, and free!", "My scouts and I owe you, capt
 script = ExtResource("1_ext")
 id = "uskok_and_the_doge"
 number = 5
+chapter = 1
 title = "The Uskok and the Doge"
 summary = "A Venetian patrol caught Juraj. Collect the letters of his friends and speak for him in Venice."
 start_port = ExtResource("22_ext")

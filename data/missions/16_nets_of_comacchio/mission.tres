@@ -1,0 +1,91 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/people/baba_stana.tres" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/chioggia.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/caorle.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/ravenna.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rimini.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/venice.tres" id="7_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_yellow_sail.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_golden_hull.tres" id="10_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="11_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/malvento_boat.tres" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/ch2_yellow_fisher.tres" id="13_ext"]
+[ext_resource type="Resource" path="res://data/world/boats/ch2_golden_barge.tres" id="14_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch2_eel_nets.tres" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/comacchio.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/people/tonin.tres" id="17_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/maestral_jugo.tres" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="20_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/venice.jpg" id="21_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="22_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/trail_step.gd" id="23_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/lineup_step.gd" id="24_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="25_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="26_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("22_ext")
+id = "briefing"
+speaker = ExtResource("2_ext")
+lines = Array[String](["Captain, a pigeon came from Bari, with a letter from Luka, the ship's boy!", "He writes: \"A Count has come to Italy, Count Malvento. He shows a Golden Charter.\"", "\"He takes a toll in every harbour, from Comacchio to Otranto!\"", "\"His men even took the eel nets of Comacchio as a toll. Please help!\""])
+
+[sub_resource type="Resource" id="trail"]
+script = ExtResource("23_ext")
+id = "trail"
+ports = Array[ExtResource("8_ext")]([ExtResource("3_ext"), ExtResource("4_ext"), ExtResource("5_ext"), ExtResource("6_ext"), ExtResource("7_ext")])
+length = 2
+fixed_route = false
+max_route_km = 330.0
+max_difficulty = 1
+clue_templates = Array[String](["They asked the way to {fact}.", "They sailed on toward {fact}.", "I heard them talk about {fact}."])
+reveal = Array[ExtResource("11_ext")]([ExtResource("9_ext"), ExtResource("10_ext")])
+hallmark_template = "Their boat had {hallmark}."
+question = "Have you seen the Count's men with the eel nets?"
+found_line = "They are here, in the harbour! But which boat is theirs?"
+
+[sub_resource type="Resource" id="lineup"]
+script = ExtResource("24_ext")
+id = "lineup"
+target = ExtResource("12_ext")
+decoys = Array[Resource]([ExtResource("13_ext"), ExtResource("14_ext")])
+question = "Which boat is the Count's? Remember its sail and its hull!"
+wrong_line = "No, not this one! Think of the sail and the hull."
+right_line = "That's the one! The Count's men shrug: \"The Count says nets are a toll.\" But they give them back."
+gives = ExtResource("15_ext")
+
+[sub_resource type="Resource" id="deliver"]
+script = ExtResource("25_ext")
+id = "deliver"
+item = ExtResource("15_ext")
+port = ExtResource("16_ext")
+recipient = ExtResource("17_ext")
+objective = "Bring the eel nets home to {port}."
+thanks = Array[String](["Our nets! Now we can catch the eels again.", "Thank you, captain!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("26_ext")
+id = "celebration"
+speaker = ExtResource("17_ext")
+lines = Array[String](["Tonight, the whole lagoon eats eels!", "But this Count... Nobody here ever heard of him before.", "Who is he really, captain?"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "nets_of_comacchio"
+number = 16
+chapter = 2
+title = "Nets of Comacchio"
+summary = "The first crossing to Italy. The Count's men took the eel nets of Comacchio \"as a toll\". Follow their boat and give the nets back."
+start_port = ExtResource("18_ext")
+clock_days = 10.5
+provisions_days = 10.8
+sea = ExtResource("19_ext")
+steps = Array[ExtResource("20_ext")]([SubResource("briefing"), SubResource("trail"), SubResource("lineup"), SubResource("deliver"), SubResource("celebration")])
+fun_fact = "The eels of Comacchio are born far away, in the Sargasso Sea across the ocean, and swim all the way to the lagoon. Nobody knew it in 1600: it was found out only around 1920."
+victory_title = "The nets are home!"
+victory_lines = Array[String](["You crossed the sea and found the Count's boat.", "The eel fishers of Comacchio can fish again."])
+victory_picture = ExtResource("21_ext")
+victory_person = ExtResource("17_ext")

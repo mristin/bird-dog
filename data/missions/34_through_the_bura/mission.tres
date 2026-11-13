@@ -1,0 +1,108 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item_source.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/items/passenger_juraj.tres" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/people/juraj.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/items/witness_ambroz.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/krk.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/people/fra_ambroz.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/items/passenger_ivan.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bakar.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/master_ivan.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ika.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/collect_step.gd" id="14_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="15_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/rijeka.tres" id="16_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ehrenfried.tres" id="17_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="18_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_hard_bura.tres" id="19_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="20_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/rijeka.jpg" id="21_ext"]
+
+[sub_resource type="Resource" id="source_1"]
+script = ExtResource("2_ext")
+item = ExtResource("3_ext")
+port = ExtResource("4_ext")
+person = ExtResource("5_ext")
+lines = Array[String](["I'll come, bura or no bura!"])
+
+[sub_resource type="Resource" id="source_2"]
+script = ExtResource("2_ext")
+item = ExtResource("6_ext")
+port = ExtResource("7_ext")
+person = ExtResource("8_ext")
+lines = Array[String](["The Lord gave us the bura, and the captain to sail in it.", "Let's go!"])
+
+[sub_resource type="Resource" id="source_3"]
+script = ExtResource("2_ext")
+item = ExtResource("9_ext")
+port = ExtResource("10_ext")
+person = ExtResource("11_ext")
+lines = Array[String](["I have counted the Baron's planks. Every one is fresh oak!"])
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("12_ext")
+id = "briefing"
+speaker = ExtResource("13_ext")
+lines = Array[String](["Captain, the meeting in Rijeka is soon!", "Bring the witnesses: Juraj, Brother Ambroz on Krk and Master Ivan in Bakar.", "But hold on tight: the bura is blowing hard today."])
+
+[sub_resource type="Resource" id="collect"]
+script = ExtResource("14_ext")
+id = "collect"
+sources = Array[ExtResource("2_ext")]([SubResource("source_1"), SubResource("source_2"), SubResource("source_3")])
+needed = 0
+objective = "Pick up {count} more {count|witness|witnesses}."
+
+[sub_resource type="Resource" id="juraj"]
+script = ExtResource("15_ext")
+id = "juraj"
+item = ExtResource("3_ext")
+port = ExtResource("16_ext")
+recipient = ExtResource("17_ext")
+objective = "Bring the witnesses to the commissioner in {port}."
+thanks = Array[String](["An uskok captain, here of his own free will. Welcome."])
+
+[sub_resource type="Resource" id="friar"]
+script = ExtResource("15_ext")
+id = "friar"
+item = ExtResource("6_ext")
+port = ExtResource("16_ext")
+recipient = ExtResource("17_ext")
+objective = "Bring the witnesses to the commissioner in {port}."
+thanks = Array[String](["A friar of Košljun. Your word weighs much, brother."])
+
+[sub_resource type="Resource" id="ivan"]
+script = ExtResource("15_ext")
+id = "ivan"
+item = ExtResource("9_ext")
+port = ExtResource("16_ext")
+recipient = ExtResource("17_ext")
+objective = "Bring the witnesses to the commissioner in {port}."
+thanks = Array[String](["And the shipwright who reads wood. Tomorrow, we meet."])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("18_ext")
+id = "celebration"
+speaker = ExtResource("5_ext")
+lines = Array[String](["We sailed through the hardest bura of the year!", "Tomorrow, the truth comes out."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "through_the_bura"
+number = 34
+chapter = 3
+title = "Through the Bura"
+summary = "The hardest bura of all. Bring Juraj, the friar and Master Ivan to the meeting in Rijeka."
+start_port = ExtResource("4_ext")
+clock_days = 3.0
+provisions_days = 10.8
+sea = ExtResource("19_ext")
+steps = Array[ExtResource("20_ext")]([SubResource("briefing"), SubResource("collect"), SubResource("juraj"), SubResource("friar"), SubResource("ivan"), SubResource("celebration")])
+fun_fact = "The bura falls cold from the Velebit mountains onto the sea. Near Senj, its gusts can blow faster than 200 kilometres an hour."
+victory_title = "Through the bura!"
+victory_lines = Array[String](["You brought every witness to Rijeka, through the hardest bura.", "The commissioner and the envoy are ready."])
+victory_picture = ExtResource("21_ext")
+victory_person = ExtResource("5_ext")

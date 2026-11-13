@@ -77,6 +77,7 @@ lines = Array[String](["\"The Aga shall be heard before a judge.\"", "Captain, t
 script = ExtResource("1_ext")
 id = "across_the_sea"
 number = 8
+chapter = 1
 title = "Across the Sea"
 summary = "Bring the villages' complaint across the sea to Ancona and Bari."
 start_port = ExtResource("2_ext")

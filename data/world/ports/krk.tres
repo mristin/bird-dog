@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Port" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/port.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/port_fact.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/powers/venice.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/person.gd" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/people/dobrila.tres" id="5_ext"]
+
+[sub_resource type="Resource" id="fact_1"]
+script = ExtResource("2_ext")
+kind = "landmark"
+phrase = "the island of the stone tablet of Baška, carved in the old letters"
+difficulty = 2
+
+[sub_resource type="Resource" id="fact_2"]
+script = ExtResource("2_ext")
+kind = "person"
+phrase = "the island of the friars of Košljun"
+difficulty = 1
+
+[resource]
+script = ExtResource("1_ext")
+id = "krk"
+name = "Krk"
+latitude = 45.025
+icon = "friary_islet"
+longitude = 14.574
+power = ExtResource("3_ext")
+facts = Array[ExtResource("2_ext")]([SubResource("fact_1"), SubResource("fact_2")])
+locals = Array[ExtResource("4_ext")]([ExtResource("5_ext")])

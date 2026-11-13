@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Chapter" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/chapter.gd" id="1_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+number = 1
+title = "The Aga's Ledger"
+summary = "The greedy Aga Grdan collects double taxes with forged papers. Gather the proof and bring him before the judge."

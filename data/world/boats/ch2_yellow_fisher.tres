@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Boat" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/boat.gd" id="1_ext"]
+[ext_resource type="Resource" path="res://data/world/hallmarks/ch2_yellow_sail.tres" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hallmark.gd" id="3_ext"]
+
+[resource]
+script = ExtResource("1_ext")
+id = "ch2_yellow_fisher"
+name = "a fishing boat"
+sail_color = Color(0.96, 0.84, 0.32, 1)
+hull_color = Color(0.42, 0.26, 0.13, 1)
+patched = true
+hallmarks = Array[ExtResource("3_ext")]([ExtResource("2_ext")])

@@ -10,7 +10,7 @@ extends Control
 ## How far a name moves down (or up) from its dot, in its font size, where the
 ## names crowd; the first free place wins.
 const LABEL_SHIFTS: Array[float] = [
-    0.0, 0.6, -0.6, 1.2, -1.2, 1.8, -1.8, 2.4, -2.4, 3.0, -3.0, 3.6, -3.6
+    0.0, 0.6, -0.6, 1.2, -1.2, 1.8, -1.8, 2.4, -2.4, 3.0, -3.0, 3.6, -3.6, 4.2, -4.2, 4.8, -4.8
 ]
 
 ## The boats: [{"km": Vector2, "heading": float, "color": Color}, ...].

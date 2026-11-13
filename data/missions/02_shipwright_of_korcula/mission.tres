@@ -82,6 +82,7 @@ lines = Array[String](["Here in Pula, I will open my new shipyard.", "And your b
 script = ExtResource("1_ext")
 id = "shipwright_of_korcula"
 number = 2
+chapter = 1
 title = "The Shipwright of Korčula"
 summary = "Master Ivan hides from the Aga's recruiter. Find him first and bring him safely to Pula."
 start_port = ExtResource("2_ext")

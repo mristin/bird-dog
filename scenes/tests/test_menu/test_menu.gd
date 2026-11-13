@@ -42,13 +42,33 @@ const TESTS := [
     ["Mission 13", "The Secret Script", "mission_test/mission_13_test.tscn"],
     ["Mission 14", "The Witnesses", "mission_test/mission_14_test.tscn"],
     ["Mission 15", "The Kadı of Preveza", "mission_test/mission_15_test.tscn"],
+    ["Mission 16", "Nets of Comacchio", "mission_test/mission_16_test.tscn"],
+    ["Mission 17", "The Wind Seller", "mission_test/mission_17_test.tscn"],
+    ["Mission 18", "The Pilgrims of Loreto", "mission_test/mission_18_test.tscn"],
+    ["Mission 19", "The Paper with a Secret", "mission_test/mission_19_test.tscn"],
+    ["Mission 20", "The Seal-Maker of Ortona", "mission_test/mission_20_test.tscn"],
+    ["Mission 21", "The White Rock", "mission_test/mission_21_test.tscn"],
+    ["Mission 22", "The Challenge of Barletta", "mission_test/mission_22_test.tscn"],
+    ["Mission 23", "Oil for Monopoli", "mission_test/mission_23_test.tscn"],
+    ["Mission 24", "The Count Flees", "mission_test/mission_24_test.tscn"],
+    ["Mission 25", "The Royal Audience of Trani", "mission_test/mission_25_test.tscn"],
+    ["Mission 26", "Caps Too New", "mission_test/mission_26_test.tscn"],
+    ["Mission 27", "The Doge's Ten Days", "mission_test/mission_27_test.tscn"],
+    ["Mission 28", "The Salt of Piran", "mission_test/mission_28_test.tscn"],
+    ["Mission 29", "Fresh Oak", "mission_test/mission_29_test.tscn"],
+    ["Mission 30", "The Friars of Košljun", "mission_test/mission_30_test.tscn"],
+    ["Mission 31", "The Hidden Cove", "mission_test/mission_31_test.tscn"],
+    ["Mission 32", "The Steward's Ledger", "mission_test/mission_32_test.tscn"],
+    ["Mission 33", "Two Flags", "mission_test/mission_33_test.tscn"],
+    ["Mission 34", "Through the Bura", "mission_test/mission_34_test.tscn"],
+    ["Mission 35", "The Peace of Rijeka", "mission_test/mission_35_test.tscn"],
     ["The end", "Every mission complete", "mission_complete_test/mission_complete_test.tscn"],
     ["Shipyard", "Decorate the boats", "shipyard_test/shipyard_test.tscn"],
     ["Mission", "The placeholder", "mission_test/mission_placeholder_test.tscn"],
 ]
 
-const _COLUMNS := 6
-const _BUTTON := Vector2(292, 104)
+const _COLUMNS := 8
+const _BUTTON := Vector2(222, 100)
 const _GAP := Vector2(14, 14)
 
 
@@ -65,9 +85,9 @@ func _build() -> void:
         var button := HandButton.new()
         button.custom_minimum_size = _BUTTON
         button.title = test[0]
-        button.title_size = 44
+        button.title_size = 36
         button.text = test[1]
-        button.text_size = 26
+        button.text_size = 20
         button.pressed.connect(_start.bind("res://scenes/tests/" + test[2]))
         grid.add_child(button)
 

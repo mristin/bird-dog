@@ -76,6 +76,7 @@ sound = "bell"
 script = ExtResource("1_ext")
 id = "bell_of_grebastica"
 number = 1
+chapter = 1
 title = "The Bell of Grebaštica"
 summary = "The Aga's men took the bell of Grebaštica as a \"tax\". Follow its trail along the coast and bring it home."
 start_port = ExtResource("2_ext")

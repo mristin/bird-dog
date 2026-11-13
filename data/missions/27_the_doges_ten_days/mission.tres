@@ -1,0 +1,93 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/hearing_question.gd" id="2_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="3_ext"]
+[ext_resource type="Resource" path="res://data/world/people/juraj.tres" id="4_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_new_cap.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/venice.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/people/alvise.tres" id="8_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/hearing_step.gd" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ika.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_gulf_of_trieste.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="14_ext"]
+[ext_resource type="Script" path="res://scenes/missions/data/item.gd" id="15_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/venice.jpg" id="16_ext"]
+
+[sub_resource type="Resource" id="question_1"]
+script = ExtResource("2_ext")
+question = "Where do the uskoks live?"
+answers = Array[String](["In Corfu", "In Senj", "In Venice"])
+correct = 1
+
+[sub_resource type="Resource" id="question_2"]
+script = ExtResource("2_ext")
+question = "What gave the false uskoks away?"
+answers = Array[String](["Their old patched sails", "Their golden flags", "Their brand-new caps"])
+correct = 2
+
+[sub_resource type="Resource" id="question_3"]
+script = ExtResource("2_ext")
+question = "Who sent you a pigeon from Senj?"
+answers = Array[String](["Ika", "Messer Alvise", "The Doge"])
+correct = 0
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("3_ext")
+id = "briefing"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Captain, Venice will not believe an uskok.", "But it may believe you. Bring the cap to Messer Alvise in Venice!"])
+
+[sub_resource type="Resource" id="deliver"]
+script = ExtResource("5_ext")
+id = "deliver"
+item = ExtResource("6_ext")
+port = ExtResource("7_ext")
+recipient = ExtResource("8_ext")
+objective = "Bring the cap to the Doge's council in {port}."
+thanks = Array[String](["A cap of an uskok? It looks as if nobody ever wore it.", "Tell the council what you saw, captain."])
+
+[sub_resource type="Resource" id="hearing"]
+script = ExtResource("9_ext")
+id = "hearing"
+speaker = ExtResource("8_ext")
+intro = Array[String](["The council listens. Answer our questions, captain."])
+questions = Array[ExtResource("2_ext")]([SubResource("question_1"), SubResource("question_2"), SubResource("question_3")])
+wrong_line = "Hmm, no. Think of your voyage, captain."
+right_lines = Array[String](["Then somebody wants a war between Venice and the Habsburgs.", "The council gives you ten days. Bring us proof, captain!"])
+
+[sub_resource type="Resource" id="home"]
+script = ExtResource("5_ext")
+id = "home"
+port = ExtResource("10_ext")
+recipient = ExtResource("11_ext")
+objective = "Bring the news to Ika in {port}."
+thanks = Array[String](["Ten days? Then we have no time to lose!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("12_ext")
+id = "celebration"
+speaker = ExtResource("4_ext")
+lines = Array[String](["Venice waits, for now.", "Let's find out who pays the false uskoks!"])
+
+[resource]
+script = ExtResource("1_ext")
+id = "doges_ten_days"
+number = 27
+chapter = 3
+title = "The Doge's Ten Days"
+summary = "Bring the cap to the Doge's council in Venice, and win ten days to find the proof."
+start_port = ExtResource("10_ext")
+clock_days = 10.0
+provisions_days = 10.8
+sea = ExtResource("13_ext")
+steps = Array[ExtResource("14_ext")]([SubResource("briefing"), SubResource("deliver"), SubResource("hearing"), SubResource("home"), SubResource("celebration")])
+start_cargo = Array[ExtResource("15_ext")]([ExtResource("6_ext")])
+fun_fact = "Anybody in Venice could drop a secret letter to the councils into a stone lion's mouth in the walls of the Doge's Palace."
+victory_title = "Ten days!"
+victory_lines = Array[String](["The Doge's council listened to you.", "Venice waits ten days before it closes the coast."])
+victory_picture = ExtResource("16_ext")
+victory_person = ExtResource("8_ext")

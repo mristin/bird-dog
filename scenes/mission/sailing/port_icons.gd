@@ -70,6 +70,12 @@ const NAMES: Array[String] = [
     "bronze_giant",
     "sea_cathedral",
     "harbour_castle",
+    "causeway",
+    "salt_campanile",
+    "deep_bay_castle",
+    "friary_islet",
+    "four_towers",
+    "swing_bridge",
     "town",
 ]
 
@@ -97,7 +103,7 @@ static func _island_campanile(c: CanvasItem) -> void:
     _roof(c, -10, -46, 26, 10)
     _box(c, 18, -86, 12, 58, STONE)
     _windows(c, 18, -80, 12, 1, 8)
-    _shape(c, PackedVector2Array([Vector2(18, -86), Vector2(30, -86), Vector2(24, -104)]), COPPER)
+    _shape(c, _pts([18, -86, 30, -86, 24, -104]), COPPER)
     c.draw_line(Vector2(24, -104), Vector2(24, -112), INK, 1.5)
     c.draw_circle(Vector2(24, -114), 2.5, GOLD)
 
@@ -117,10 +123,16 @@ static func _shape(c: CanvasItem, points: PackedVector2Array, fill: Color, width
     c.draw_polyline(outline, INK, width, true)
 
 
+## The points of a polygon from their coordinates: [x0, y0, x1, y1, ...].
+static func _pts(flat: Array) -> PackedVector2Array:
+    var points := PackedVector2Array()
+    for i in range(0, flat.size(), 2):
+        points.append(Vector2(flat[i], flat[i + 1]))
+    return points
+
+
 static func _quad(x: float, y: float, w: float, h: float) -> PackedVector2Array:
-    return PackedVector2Array(
-        [Vector2(x, y), Vector2(x + w, y), Vector2(x + w, y + h), Vector2(x, y + h)]
-    )
+    return _pts([x, y, x + w, y, x + w, y + h, x, y + h])
 
 
 ## A box from its top left corner.
@@ -145,11 +157,7 @@ static func _merlons(c: CanvasItem, x: float, w: float, y: float, fill: Color) -
 
 
 static func _roof(c: CanvasItem, x: float, y: float, w: float, h: float, fill := ROOF) -> void:
-    _shape(
-        c,
-        PackedVector2Array([Vector2(x - 2, y), Vector2(x + w + 2, y), Vector2(x + w * 0.5, y - h)]),
-        fill
-    )
+    _shape(c, _pts([x - 2, y, x + w + 2, y, x + w * 0.5, y - h]), fill)
 
 
 ## A row of dark windows or arches.
@@ -286,23 +294,9 @@ static func _campanile(c: CanvasItem) -> void:
     _box(c, 12, -76, 16, 76, Color(0.78, 0.45, 0.34))
     _box(c, 10, -86, 20, 10, STONE)
     _windows(c, 10, -84, 20, 2, 6)
-    _shape(c, PackedVector2Array([Vector2(10, -86), Vector2(30, -86), Vector2(20, -104)]), COPPER)
+    _shape(c, _pts([10, -86, 30, -86, 20, -104]), COPPER)
     c.draw_circle(Vector2(20, -107), 3.0, GOLD)
-    _shape(
-        c,
-        PackedVector2Array(
-            [
-                Vector2(28, -6),
-                Vector2(36, 0),
-                Vector2(50, 0),
-                Vector2(56, -8),
-                Vector2(50, -3),
-                Vector2(36, -3)
-            ]
-        ),
-        DARK,
-        1.2
-    )
+    _shape(c, _pts([28, -6, 36, 0, 50, 0, 56, -8, 50, -3, 36, -3]), DARK, 1.2)
     c.draw_line(Vector2(52, -3), Vector2(55, -16), INK, 1.5)
 
 
@@ -324,19 +318,7 @@ static func _clock_tower(c: CanvasItem) -> void:
     c.draw_arc(Vector2(0, -48), 7, 0, TAU, 16, INK, 1.5, true)
     c.draw_line(Vector2(0, -48), Vector2(0, -53), INK, 1.5)
     c.draw_line(Vector2(0, -48), Vector2(4, -48), INK, 1.5)
-    _shape(
-        c,
-        PackedVector2Array(
-            [
-                Vector2(-11, -62),
-                Vector2(11, -62),
-                Vector2(8, -70),
-                Vector2(0, -84),
-                Vector2(-8, -70)
-            ]
-        ),
-        COPPER
-    )
+    _shape(c, _pts([-11, -62, 11, -62, 8, -70, 0, -84, -8, -70]), COPPER)
 
 
 ## Senj: the square fortress of Nehaj on its hill.
@@ -376,20 +358,9 @@ static func _rotunda(c: CanvasItem) -> void:
 static func _bell_figs(c: CanvasItem) -> void:
     _box(c, -30, -30, 32, 30, STONE)
     _roof(c, -30, -30, 32, 14)
-    _shape(
-        c,
-        PackedVector2Array(
-            [Vector2(-8, -34), Vector2(8, -34), Vector2(8, -50), Vector2(0, -56), Vector2(-8, -50)]
-        ),
-        STONE
-    )
+    _shape(c, _pts([-8, -34, 8, -34, 8, -50, 0, -56, -8, -50]), STONE)
     c.draw_rect(Rect2(-4, -49, 8, 11), DARK)
-    _shape(
-        c,
-        PackedVector2Array([Vector2(-3, -40), Vector2(3, -40), Vector2(2, -47), Vector2(-2, -47)]),
-        GOLD,
-        1.0
-    )
+    _shape(c, _pts([-3, -40, 3, -40, 2, -47, -2, -47]), GOLD, 1.0)
     _tree(c, Vector2(30, 0), 13, GREEN_DARK)
     for i in range(4):
         c.draw_circle(Vector2(24 + i * 4, -22 + (i % 2) * 5), 2.2, PURPLE)
@@ -400,8 +371,8 @@ static func _bell_figs(c: CanvasItem) -> void:
 ## Šibenik: the cathedral of St. James with its stone dome.
 static func _cathedral(c: CanvasItem) -> void:
     _box(c, -40, -40, 80, 40, STONE)
-    _shape(c, PackedVector2Array([Vector2(-40, -40), Vector2(-28, -54), Vector2(-16, -40)]), STONE)
-    _shape(c, PackedVector2Array([Vector2(16, -40), Vector2(28, -54), Vector2(40, -40)]), STONE)
+    _shape(c, _pts([-40, -40, -28, -54, -16, -40]), STONE)
+    _shape(c, _pts([16, -40, 28, -54, 40, -40]), STONE)
     _box(c, -12, -56, 24, 16, STONE)
     _dome(c, Vector2(0, -56), 14)
     c.draw_circle(Vector2(-28, -26), 5, DARK)
@@ -443,12 +414,7 @@ static func _walled_island(c: CanvasItem) -> void:
     _tower(c, -18, 14, 66)
     _house(c, -38, 16, 30)
     _house(c, 0, 16, 34)
-    _shape(
-        c,
-        PackedVector2Array([Vector2(36, -12), Vector2(58, -12), Vector2(54, -4), Vector2(40, -4)]),
-        DARK,
-        1.5
-    )
+    _shape(c, _pts([36, -12, 58, -12, 54, -4, 40, -4]), DARK, 1.5)
     for x in [40.0, 47.0, 54.0]:
         c.draw_line(Vector2(x, -12), Vector2(x - 2, -22), DARK, 1.5)
 
@@ -456,16 +422,7 @@ static func _walled_island(c: CanvasItem) -> void:
 ## Ston: the longest walls of Ragusa, climbing the hill, and the salt pans.
 static func _long_walls(c: CanvasItem) -> void:
     _hill(c, -40, 56, Vector2(20, -70))
-    var walls := PackedVector2Array(
-        [
-            Vector2(-30, -6),
-            Vector2(-6, -30),
-            Vector2(6, -44),
-            Vector2(20, -70),
-            Vector2(34, -48),
-            Vector2(48, -10)
-        ]
-    )
+    var walls := _pts([-30, -6, -6, -30, 6, -44, 20, -70, 34, -48, 48, -10])
     c.draw_polyline(walls, STONE_DARK, 7.0, true)
     c.draw_polyline(walls, INK, 1.5, true)
     for point in walls:
@@ -503,42 +460,12 @@ static func _mimosa_fort(c: CanvasItem) -> void:
 
 ## Kotor: the walls which climb the mountain, and St. Tryphon below.
 static func _mountain_walls(c: CanvasItem) -> void:
-    _shape(
-        c,
-        PackedVector2Array([Vector2(-58, 0), Vector2(0, -96), Vector2(58, 0)]),
-        Color(0.7, 0.66, 0.56)
+    _shape(c, _pts([-58, 0, 0, -96, 58, 0]), Color(0.7, 0.66, 0.56))
+    c.draw_polyline(
+        _pts([-34, -10, -14, -46, -6, -70, 0, -92, 10, -64, 22, -40, 36, -10]), STONE, 5.0, true
     )
     c.draw_polyline(
-        PackedVector2Array(
-            [
-                Vector2(-34, -10),
-                Vector2(-14, -46),
-                Vector2(-6, -70),
-                Vector2(0, -92),
-                Vector2(10, -64),
-                Vector2(22, -40),
-                Vector2(36, -10)
-            ]
-        ),
-        STONE,
-        5.0,
-        true
-    )
-    c.draw_polyline(
-        PackedVector2Array(
-            [
-                Vector2(-34, -10),
-                Vector2(-14, -46),
-                Vector2(-6, -70),
-                Vector2(0, -92),
-                Vector2(10, -64),
-                Vector2(22, -40),
-                Vector2(36, -10)
-            ]
-        ),
-        INK,
-        1.5,
-        true
+        _pts([-34, -10, -14, -46, -6, -70, 0, -92, 10, -64, 22, -40, 36, -10]), INK, 1.5, true
     )
     _box(c, -26, -30, 48, 30, STONE)
     _tower(c, -20, 10, 46)
@@ -548,11 +475,7 @@ static func _mountain_walls(c: CanvasItem) -> void:
 
 ## Ulcinj: the fortress on its rock, an olive tree, and a corsair ship.
 static func _corsairs(c: CanvasItem) -> void:
-    _shape(
-        c,
-        PackedVector2Array([Vector2(-50, 0), Vector2(-44, -28), Vector2(-10, -34), Vector2(4, 0)]),
-        STONE_DARK
-    )
+    _shape(c, _pts([-50, 0, -44, -28, -10, -34, 4, 0]), STONE_DARK)
     _box(c, -42, -60, 34, 28, STONE)
     _merlons(c, -42, 34, -60, STONE)
     _tower(c, -30, 10, 36, Color(0, 0, 0, 0), -32)
@@ -586,23 +509,12 @@ static func _bay_castle(c: CanvasItem) -> void:
 
 ## Corfu: the old fortress on its two peaks.
 static func _two_peaks(c: CanvasItem) -> void:
-    _shape(
-        c,
-        PackedVector2Array(
-            [Vector2(-56, 0), Vector2(-34, -62), Vector2(-14, -38), Vector2(6, -70), Vector2(36, 0)]
-        ),
-        Color(0.7, 0.66, 0.56)
-    )
+    _shape(c, _pts([-56, 0, -34, -62, -14, -38, 6, -70, 36, 0]), Color(0.7, 0.66, 0.56))
     _box(c, -42, -76, 16, 16, STONE)
     _merlons(c, -42, 16, -76, STONE)
     _box(c, -2, -84, 16, 16, STONE)
     _merlons(c, -2, 16, -84, STONE)
-    c.draw_polyline(
-        PackedVector2Array([Vector2(-48, -20), Vector2(-14, -36), Vector2(26, -20)]),
-        STONE,
-        4.0,
-        true
-    )
+    c.draw_polyline(_pts([-48, -20, -14, -36, 26, -20]), STONE, 4.0, true)
     _tower(c, 38, 12, 52)
     _dome(c, Vector2(44, -64), 7, ROOF)
 
@@ -628,9 +540,7 @@ static func _strait_fort(c: CanvasItem) -> void:
     _merlons(c, 12, 40, -32, STONE)
     _box(c, 26, -82, 8, 50, WHITE)
     _box(c, 23, -70, 14, 4, WHITE)
-    _shape(
-        c, PackedVector2Array([Vector2(26, -82), Vector2(34, -82), Vector2(30, -96)]), COPPER, 1.5
-    )
+    _shape(c, _pts([26, -82, 34, -82, 30, -96]), COPPER, 1.5)
     _dome(c, Vector2(-30, -32), 12)
 
 
@@ -712,11 +622,7 @@ static func _roman_bridge(c: CanvasItem) -> void:
 ## Ortona: the castle of the Aragonese high on its cliff over the sea, and the
 ## dome of the church of St. Thomas.
 static func _cliff_castle(c: CanvasItem) -> void:
-    _shape(
-        c,
-        PackedVector2Array([Vector2(-58, 0), Vector2(-54, -40), Vector2(-8, -46), Vector2(-4, 0)]),
-        Color(0.7, 0.66, 0.56)
-    )
+    _shape(c, _pts([-58, 0, -54, -40, -8, -46, -4, 0]), Color(0.7, 0.66, 0.56))
     for y in [-34.0, -24.0, -14.0]:
         c.draw_line(Vector2(-54, y), Vector2(-8, y + 2), Color(INK, 0.5), 1.5)
     _box(c, -50, -74, 38, 28, STONE)
@@ -735,13 +641,7 @@ static func _white_rock(c: CanvasItem) -> void:
     _house(c, -48, 18, 20)
     _house(c, -26, 18, 30)
     _tower(c, -6, 10, 50, STONE_DARK)
-    _shape(
-        c,
-        PackedVector2Array(
-            [Vector2(22, 0), Vector2(26, -60), Vector2(34, -84), Vector2(42, -62), Vector2(46, 0)]
-        ),
-        WHITE
-    )
+    _shape(c, _pts([22, 0, 26, -60, 34, -84, 42, -62, 46, 0]), WHITE)
     for y in [-60.0, -40.0, -20.0]:
         c.draw_line(Vector2(28, y), Vector2(42, y + 4), Color(INK, 0.35), 1.5)
 
@@ -756,7 +656,7 @@ static func _round_campanile(c: CanvasItem) -> void:
     for y in [-70.0, -50.0, -30.0]:
         c.draw_line(Vector2(10, y), Vector2(26, y), STONE_DARK, 1.5)
     _windows(c, 10, -78, 16, 1, 8)
-    _shape(c, PackedVector2Array([Vector2(8, -84), Vector2(28, -84), Vector2(18, -104)]), ROOF)
+    _shape(c, _pts([8, -84, 28, -84, 18, -104]), ROOF)
     _box(c, 34, -22, 20, 22, WHITE)
     _roof(c, 34, -22, 20, 10)
 
@@ -778,7 +678,7 @@ static func _lagoon_canal(c: CanvasItem) -> void:
 static func _eel_lagoon(c: CanvasItem) -> void:
     _shape(c, _ellipse(Vector2(0, -6), Vector2(56, 14)), Color(WATER, 0.9), 1.5)
     _box(c, -44, -34, 30, 22, GROUND)
-    _shape(c, PackedVector2Array([Vector2(-48, -34), Vector2(-10, -34), Vector2(-29, -58)]), YELLOW)
+    _shape(c, _pts([-48, -34, -10, -34, -29, -58]), YELLOW)
     c.draw_rect(Rect2(-33, -26, 8, 14), DARK)
     var eel := PackedVector2Array()
     for i in range(14):
@@ -795,7 +695,7 @@ static func _eel_lagoon(c: CanvasItem) -> void:
 static func _mosaic_church(c: CanvasItem) -> void:
     _box(c, -42, -40, 64, 40, STONE)
     _box(c, -30, -62, 40, 22, STONE)
-    _shape(c, PackedVector2Array([Vector2(-34, -62), Vector2(14, -62), Vector2(-10, -78)]), ROOF)
+    _shape(c, _pts([-34, -62, 14, -62, -10, -78]), ROOF)
     for i in range(4):
         c.draw_rect(Rect2(-36 + i * 15, -30, 8, 18), GOLD)
         c.draw_rect(Rect2(-36 + i * 15, -30, 8, 18), INK, false, 1.2)
@@ -816,14 +716,7 @@ static func _fortuna(c: CanvasItem) -> void:
     c.draw_line(Vector2(4, -38), Vector2(4, -62), GOLD, 4.0, true)
     c.draw_circle(Vector2(4, -66), 4, GOLD)
     c.draw_line(Vector2(-8, -74), Vector2(16, -54), INK, 1.5)
-    _shape(
-        c,
-        PackedVector2Array(
-            [Vector2(-8, -74), Vector2(-24, -66), Vector2(-20, -54), Vector2(16, -54)]
-        ),
-        WHITE,
-        1.5
-    )
+    _shape(c, _pts([-8, -74, -24, -66, -20, -54, 16, -54]), WHITE, 1.5)
 
 
 ## Loreto: the great dome of the Holy House on its hill, and the pilgrims
@@ -841,25 +734,8 @@ static func _holy_house(c: CanvasItem) -> void:
 
 ## Pescara: the fortress of the Spaniards at the mouth of the river.
 static func _river_fortress(c: CanvasItem) -> void:
-    _shape(
-        c,
-        PackedVector2Array([Vector2(-6, 0), Vector2(6, 0), Vector2(14, -40), Vector2(8, -40)]),
-        WATER,
-        1.2
-    )
-    _shape(
-        c,
-        PackedVector2Array(
-            [
-                Vector2(-56, 0),
-                Vector2(-52, -30),
-                Vector2(-40, -38),
-                Vector2(-14, -38),
-                Vector2(-10, 0)
-            ]
-        ),
-        STONE
-    )
+    _shape(c, _pts([-6, 0, 6, 0, 14, -40, 8, -40]), WATER, 1.2)
+    _shape(c, _pts([-56, 0, -52, -30, -40, -38, -14, -38, -10, 0]), STONE)
     _merlons(c, -40, 26, -38, STONE)
     _tower(c, -36, 14, 58, Color(0, 0, 0, 0))
     _box(c, 20, -30, 36, 30, STONE)
@@ -870,11 +746,7 @@ static func _river_fortress(c: CanvasItem) -> void:
 ## Termoli: the old town on its rock out in the sea, with the castle of Emperor
 ## Frederick.
 static func _rock_town(c: CanvasItem) -> void:
-    _shape(
-        c,
-        PackedVector2Array([Vector2(-56, 0), Vector2(-50, -24), Vector2(46, -26), Vector2(56, 0)]),
-        Color(0.7, 0.66, 0.56)
-    )
+    _shape(c, _pts([-56, 0, -50, -24, 46, -26, 56, 0]), Color(0.7, 0.66, 0.56))
     _house(
         c,
         -46,
@@ -896,9 +768,7 @@ static func _angel_castle(c: CanvasItem) -> void:
     c.draw_line(Vector2(30, -54), Vector2(30, -70), WHITE, 6.0, true)
     c.draw_circle(Vector2(30, -74), 4, WHITE)
     c.draw_line(Vector2(36, -62), Vector2(44, -84), GOLD, 2.5, true)
-    _shape(
-        c, PackedVector2Array([Vector2(26, -66), Vector2(14, -60), Vector2(26, -58)]), WHITE, 1.2
-    )
+    _shape(c, _pts([26, -66, 14, -60, 26, -58]), WHITE, 1.2)
     _box(c, -50, -36, 40, 36, STONE)
     _merlons(c, -50, 40, -36, STONE)
     _tower(c, -58, 14, 50, Color(0, 0, 0, 0))
@@ -912,11 +782,7 @@ static func _bronze_giant(c: CanvasItem) -> void:
     _house(c, 32, 20, 24)
     var bronze := Color(0.55, 0.42, 0.24)
     _box(c, -6, -10, 24, 10, STONE_DARK)
-    _shape(
-        c,
-        PackedVector2Array([Vector2(-2, -10), Vector2(14, -10), Vector2(12, -62), Vector2(0, -62)]),
-        bronze
-    )
+    _shape(c, _pts([-2, -10, 14, -10, 12, -62, 0, -62]), bronze)
     c.draw_circle(Vector2(6, -70), 7, bronze)
     c.draw_arc(Vector2(6, -70), 7, 0, TAU, 14, INK, 1.5, true)
     c.draw_line(Vector2(12, -52), Vector2(24, -78), bronze, 4.0, true)
@@ -936,9 +802,7 @@ static func _sea_cathedral(c: CanvasItem) -> void:
     c.draw_circle(Vector2(23, -26), 6, WATER)
     _windows(c, 14, -80, 18, 1, 8)
     _windows(c, 14, -58, 18, 2, 8)
-    _shape(
-        c, PackedVector2Array([Vector2(12, -96), Vector2(34, -96), Vector2(23, -108)]), STONE_DARK
-    )
+    _shape(c, _pts([12, -96, 34, -96, 23, -108]), STONE_DARK)
 
 
 ## Monopoli: the castle of Emperor Charles V by the harbour, and an olive tree.
@@ -950,5 +814,107 @@ static func _harbour_castle(c: CanvasItem) -> void:
     _merlons(c, -16, 20, -46, STONE)
     _house(c, 10, 18, 26)
     _tree(c, Vector2(42, 0), 12, Color(0.55, 0.6, 0.4))
+
+
+## Koper: the town on its island, joined to the land by a long causeway, with
+## the swallow-tailed battlements of the Praetorian Palace.
+static func _causeway(c: CanvasItem) -> void:
+    _shape(c, _ellipse(Vector2(10, -2), Vector2(48, 9)), Color(WATER, 0.9), 1.2)
+    _box(c, -58, -10, 34, 6, STONE_DARK)
+    for x in [-54.0, -44.0, -34.0]:
+        c.draw_circle(Vector2(x + 3, -4), 3, WATER)
+    _box(c, -24, -40, 64, 34, STONE)
+    _windows(c, -24, -22, 64, 6, 10)
+    _windows(c, -24, -34, 64, 6, 5)
+    for i in range(8):
+        var x := -24.0 + i * 8.0
+        _shape(c, _pts([x + 1, -40, x + 7, -40, x + 7, -46, x + 4, -43, x + 1, -46]), STONE, 1.2)
+    _tower(c, 2, 12, 64, ROOF, -6)
+    _flag(c, Vector2(44, -6), ROOF, 30)
+
+
+## Piran: the bell tower like the one of St. Mark in Venice, on the hill above
+## the town, and the salt pans of Sečovlje.
+static func _salt_campanile(c: CanvasItem) -> void:
+    _pans(c, -56, -18, 3, 2)
+    _hill(c, -6, 56, Vector2(24, -22))
+    _house(c, -4, 16, 20)
+    _box(c, 18, -88, 14, 70, Color(0.78, 0.45, 0.34))
+    _box(c, 16, -98, 18, 10, STONE)
+    _windows(c, 16, -96, 18, 2, 6)
+    _shape(c, _pts([16, -98, 34, -98, 25, -114]), COPPER)
+    c.draw_circle(Vector2(25, -117), 2.5, GOLD)
+    _box(c, 36, -38, 18, 20, STONE)
+    _roof(c, 36, -38, 18, 9)
+
+
+## Bakar: the castle on the hill above the deep and narrow bay, and the oak
+## logs from the forests behind it.
+static func _deep_bay_castle(c: CanvasItem) -> void:
+    _hill(c, -58, 8, Vector2(-30, -44), GREEN)
+    _hill(c, -4, 58, Vector2(28, -50))
+    _shape(c, _pts([-12, 0, 12, 0, 2, -26]), WATER, 1.2)
+    _tree(c, Vector2(-44, -22), 8, GREEN_DARK)
+    _tree(c, Vector2(-28, -32), 9, GREEN_DARK)
+    _box(c, 12, -76, 32, 28, STONE)
+    _merlons(c, 12, 32, -76, STONE)
+    _tower(c, 24, 10, 42, ROOF, -48)
+    var oak := Color(0.55, 0.38, 0.2)
+    for end in [Vector2(-48, -5), Vector2(-39, -5), Vector2(-30, -5), Vector2(-43.5, -13)]:
+        c.draw_circle(end, 4.5, oak)
+        c.draw_arc(end, 4.5, 0, TAU, 12, INK, 1.2, true)
+
+
+## Krk: the friary on the little green islet of Košljun, with its cypresses,
+## and the stone tablet of Baška, carved in the old Glagolitic letters.
+static func _friary_islet(c: CanvasItem) -> void:
+    _shape(c, _ellipse(Vector2(10, -2), Vector2(48, 10)), Color(WATER, 0.9), 1.2)
+    _shape(c, _ellipse(Vector2(12, -8), Vector2(36, 10)), GREEN, 1.5)
+    _box(c, -6, -40, 30, 28, STONE)
+    _roof(c, -6, -40, 30, 12)
+    _box(c, 24, -56, 10, 44, STONE)
+    _windows(c, 24, -52, 10, 1, 7)
+    _roof(c, 24, -56, 10, 10)
+    for x in [-14.0, 40.0]:
+        _shape(c, _pts([x - 4, -12, x + 4, -12, x, -44]), GREEN_DARK, 1.5)
+    _box(c, -58, -46, 30, 40, STONE_DARK)
+    for row in range(4):
+        for i in range(3):
+            var at := Vector2(-53 + i * 9, -40 + row * 9)
+            c.draw_line(at, at + Vector2(4, 0), INK, 1.5)
+            c.draw_line(at + Vector2(2, 0), at + Vector2(2, 4), INK, 1.5)
+            c.draw_circle(at + Vector2(2, 5.5), 1.5, INK)
+
+
+## Rab: the four bell towers of the town in a row along its ridge.
+static func _four_towers(c: CanvasItem) -> void:
+    _hill(c, -58, 58, Vector2(10, -20))
+    for tower in [Vector2(-48, 50), Vector2(-22, 64), Vector2(6, 78), Vector2(34, 60)]:
+        _box(c, tower.x, -tower.y, 14, tower.y, STONE)
+        _windows(c, tower.x, -tower.y + 8, 14, 1, 8)
+        _windows(c, tower.x, -tower.y + 26, 14, 2, 6)
+        _shape(
+            c,
+            _pts([tower.x - 1, -tower.y, tower.x + 15, -tower.y, tower.x + 7, -tower.y - 18]),
+            ROOF
+        )
+    _house(c, -34, 12, 16)
+    _house(c, 20, 14, 18)
+
+
+## Osor: the little town on the narrow channel between Cres and Lošinj, and
+## the bridge which swings aside to let the ships through.
+static func _swing_bridge(c: CanvasItem) -> void:
+    _shape(c, _quad(-8, -14, 22, 16), WATER, 1.2)
+    _shape(c, _quad(-58, -14, 50, 14), GROUND, 1.5)
+    _shape(c, _quad(14, -14, 44, 14), GROUND, 1.5)
+    _box(c, -52, -50, 30, 36, STONE)
+    _roof(c, -52, -50, 30, 14)
+    _tower(c, -20, 10, 62, ROOF, -14)
+    _house(c, 30, 18, 34)
+    c.draw_line(Vector2(-8, -16), Vector2(8, -36), STONE_DARK, 6.0, true)
+    c.draw_line(Vector2(-8, -16), Vector2(8, -36), INK, 1.5, true)
+    c.draw_circle(Vector2(-8, -16), 3, DARK)
+    _boat(c, Vector2(3, -2), WHITE)
 
 # endregion

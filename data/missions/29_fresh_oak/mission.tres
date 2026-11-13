@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="Mission" format=3]
+
+[ext_resource type="Script" path="res://scenes/missions/data/mission.gd" id="1_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/briefing_step.gd" id="2_ext"]
+[ext_resource type="Resource" path="res://data/world/people/juraj.tres" id="3_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/deliver_step.gd" id="4_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/pula.tres" id="5_ext"]
+[ext_resource type="Resource" path="res://data/world/people/master_ivan.tres" id="6_ext"]
+[ext_resource type="Resource" path="res://data/world/items/passenger_ivan.tres" id="7_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/bakar.tres" id="8_ext"]
+[ext_resource type="Resource" path="res://data/world/items/ch3_oak_plank.tres" id="9_ext"]
+[ext_resource type="Resource" path="res://data/world/ports/senj.tres" id="10_ext"]
+[ext_resource type="Resource" path="res://data/world/people/ika.tres" id="11_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/celebration_step.gd" id="12_ext"]
+[ext_resource type="Resource" path="res://data/world/seas/ch3_bura_kvarner.tres" id="13_ext"]
+[ext_resource type="Script" path="res://scenes/missions/steps/mission_step.gd" id="14_ext"]
+[ext_resource type="Texture2D" path="res://assets/period/ports/rijeka.jpg" id="15_ext"]
+
+[sub_resource type="Resource" id="briefing"]
+script = ExtResource("2_ext")
+id = "briefing"
+speaker = ExtResource("3_ext")
+lines = Array[String](["Captain! We found a false uskok boat, left on the rocks near Bakar.", "Only a shipwright can tell where its wood comes from.", "Fetch Master Ivan from Pula!"])
+
+[sub_resource type="Resource" id="fetch"]
+script = ExtResource("4_ext")
+id = "fetch"
+port = ExtResource("5_ext")
+recipient = ExtResource("6_ext")
+objective = "Fetch Master Ivan in {port}."
+thanks = Array[String](["A boat to look at? I'm coming, captain!"])
+gives = ExtResource("7_ext")
+
+[sub_resource type="Resource" id="look"]
+script = ExtResource("4_ext")
+id = "look"
+item = ExtResource("7_ext")
+port = ExtResource("8_ext")
+recipient = ExtResource("3_ext")
+objective = "Bring Master Ivan to the boat in {port}."
+thanks = Array[String](["Hmm. Fresh oak, cut this spring! Real uskok boats are old and patched.", "This oak grew in the Baron's forest behind Bakar. Take a plank!"])
+gives = ExtResource("9_ext")
+
+[sub_resource type="Resource" id="plank"]
+script = ExtResource("4_ext")
+id = "plank"
+item = ExtResource("9_ext")
+port = ExtResource("10_ext")
+recipient = ExtResource("11_ext")
+objective = "Bring the plank to Ika in {port}."
+thanks = Array[String](["Fresh oak from Baron Isengrim's forest?", "So the wolf is behind it!"])
+
+[sub_resource type="Resource" id="celebration"]
+script = ExtResource("12_ext")
+id = "celebration"
+speaker = ExtResource("6_ext")
+lines = Array[String](["A shipwright can read wood like a book.", "I'll stay in Bakar and look at the Baron's boats a little more."])
+
+[resource]
+script = ExtResource("1_ext")
+id = "fresh_oak"
+number = 29
+chapter = 3
+title = "Fresh Oak"
+summary = "A false uskok boat was found near Bakar. Fetch Master Ivan to read its wood."
+start_port = ExtResource("8_ext")
+clock_days = 5.5
+provisions_days = 10.8
+sea = ExtResource("13_ext")
+steps = Array[ExtResource("14_ext")]([SubResource("briefing"), SubResource("fetch"), SubResource("look"), SubResource("plank"), SubResource("celebration")])
+fun_fact = "Venice kept its own oak forests for the ships of its Arsenal. Nobody could cut a tree there without permission."
+victory_title = "The wood tells the truth!"
+victory_lines = Array[String](["Master Ivan read the wood of the false boat.", "It is fresh oak from the forest of Baron Isengrim."])
+victory_picture = ExtResource("15_ext")
+victory_person = ExtResource("6_ext")
