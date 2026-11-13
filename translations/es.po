@@ -717,6 +717,11 @@ msgstr "¡Quedan pocas provisiones! ¡Parad en un puerto!"
 
 #: scenes/mission/mission.gd
 #, fuzzy
+msgid "Buoy {number} rounded!"
+msgstr "¡Boya {number} rodeada!"
+
+#: scenes/mission/mission.gd
+#, fuzzy
 msgid "Crash! A reef! The hull is damaged."
 msgstr "¡Crac! ¡Un arrecife! El casco está dañado."
 
@@ -734,6 +739,11 @@ msgstr "Volver a las misiones"
 #, fuzzy
 msgid "The end of the voyage"
 msgstr "El final del viaje"
+
+#: scenes/mission/mission_complete.gd
+#, fuzzy
+msgid "On to the next chapter!"
+msgstr "¡Al siguiente capítulo!"
 
 #: scenes/mission/mission_complete.gd
 #, fuzzy
@@ -865,6 +875,26 @@ msgstr "¡Una patrulla veneciana! La inspección cuesta medio día."
 msgid "+{ducats} {ducats|ducat|ducats}!"
 msgstr "¡+{ducats} {ducats|ducado|ducados}!"
 
+#: scenes/mission/sailing/sea_hazards.gd
+#, fuzzy
+msgid "The Habsburg patrol salutes your flag and lets you pass."
+msgstr "La patrulla de los Habsburgo saluda a vuestra bandera y os deja pasar."
+
+#: scenes/mission/sailing/sea_hazards.gd
+#, fuzzy
+msgid "A Habsburg patrol! They take a bribe of {ducats} {ducats|ducat|ducats}."
+msgstr "¡Una patrulla de los Habsburgo! Os cobran un soborno de {ducats} {ducats|ducado|ducados}."
+
+#: scenes/mission/sailing/sea_hazards.gd
+#, fuzzy
+msgid "A Habsburg patrol! The inspection costs half a day."
+msgstr "¡Una patrulla de los Habsburgo! La inspección os cuesta medio día."
+
+#: scenes/mission_select/mission_select.gd
+#, fuzzy
+msgid "Chapter {number}"
+msgstr "Capítulo {number}"
+
 #: scenes/mission_select/mission_select.gd
 #, fuzzy
 msgid "How to steer"
@@ -900,6 +930,11 @@ msgstr "No, empezar de nuevo"
 msgid "Choose a mission"
 msgstr "Elegid una misión"
 
+#: scenes/mission_select/mission_select.gd
+#, fuzzy
+msgid "Chapter {number}: {title}"
+msgstr "Capítulo {number}: {title}"
+
 #. the headline of the screen at the end of a mission, a few words
 #: scenes/missions/data/mission.gd
 #, fuzzy
@@ -908,7 +943,8 @@ msgstr "¡Misión cumplida!"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: scenes/missions/data/wind_chance.gd data/world/seas/bura_kvarner.tres
-#: data/world/seas/calm_maestral.tres data/world/seas/changing.tres
+#: data/world/seas/calm_maestral.tres data/world/seas/ch3_bura_kvarner.tres
+#: data/world/seas/ch3_gulf_of_trieste.tres data/world/seas/changing.tres
 #: data/world/seas/maestral_jugo.tres data/world/seas/open_sea.tres
 #, fuzzy
 msgid "maestral"
@@ -920,6 +956,7 @@ msgid "A carrier pigeon lands on the boat with a letter:"
 msgstr "Una paloma mensajera se posa en el barco con una carta:"
 
 #: scenes/missions/steps/celebration_step.gd scenes/missions/steps/lineup_step.gd
+#: scenes/missions/steps/race_step.gd
 #, fuzzy
 msgid "Hooray!"
 msgstr "¡Hurra!"
@@ -982,6 +1019,62 @@ msgstr "¡Oh, no! Mientras mirabais al equivocado, ¡se han escapado!"
 msgid "After them!"
 msgstr "¡A por ellos!"
 
+#: scenes/missions/steps/race_step.gd
+#, fuzzy
+msgid "Buoy 1"
+msgstr "Boya 1"
+
+#: scenes/missions/steps/race_step.gd
+#, fuzzy
+msgid "Buoy 2"
+msgstr "Boya 2"
+
+#: scenes/missions/steps/race_step.gd
+#, fuzzy
+msgid "Buoy 3"
+msgstr "Boya 3"
+
+#: scenes/missions/steps/race_step.gd
+#, fuzzy
+msgid "Buoy 4"
+msgstr "Boya 4"
+
+#. the objective while sailing, on the banner
+#: scenes/missions/steps/race_step.gd data/missions/17_wind_seller/mission.tres
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "Sail to {port} for the race!"
+msgstr "¡Navegad {port@to} para la regata!"
+
+#. the label of the button which starts a race, a word or two
+#: scenes/missions/steps/race_step.gd data/missions/17_wind_seller/mission.tres
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "Race!"
+msgstr "¡A la regata!"
+
+#. what the crew hears when a rival won the race, one short sentence
+#: scenes/missions/steps/race_step.gd
+#, fuzzy
+msgid "The rival was back first! A rematch tomorrow."
+msgstr "¡El rival llegó primero! Revancha mañana."
+
+#. what the crew hears when a rival cheats in a race, one short sentence
+#: scenes/missions/steps/race_step.gd
+#, fuzzy
+msgid "The rival cut through the shallows!"
+msgstr "¡El rival atajó por los bajíos!"
+
+#: scenes/missions/steps/race_step.gd
+#, fuzzy
+msgid "Round buoy {number} of {count}!"
+msgstr "¡Rodead la boya {number} de {count}!"
+
+#: scenes/missions/steps/race_step.gd
+#, fuzzy
+msgid "Back to {port}, to the finish!"
+msgstr "¡De vuelta {port@to}, a la meta!"
+
 #. the objective while sailing, on the banner; {person} and {port} are names
 #: scenes/missions/steps/trade_step.gd
 #, fuzzy
@@ -1001,6 +1094,7 @@ msgstr "¡Lo haremos!"
 
 #. a clue; {hallmark} is a noun phrase like 'a patched red sail'
 #: scenes/missions/steps/trail_step.gd data/missions/01_bell_of_grebastica/mission.tres
+#: data/missions/16_nets_of_comacchio/mission.tres data/missions/26_caps_too_new/mission.tres
 #, fuzzy
 msgid "Their boat had {hallmark}."
 msgstr "Su barco tenía {hallmark@acc}."
@@ -1177,6 +1271,50 @@ msgstr "No, gracias"
 msgid "Master Ivan's shipyard"
 msgstr "Astillero del maestro Ivan"
 
+#. the title of a mission, on its card
+#: data/chapters/1_the_agas_ledger.tres
+#, fuzzy
+msgid "The Aga's Ledger"
+msgstr "El libro de cuentas del Aga"
+
+#. the summary of a mission, one or two short sentences
+#: data/chapters/1_the_agas_ledger.tres
+#, fuzzy
+msgid ""
+"The greedy Aga Grdan collects double taxes with forged papers. Gather the proof and bring him "
+"before the judge."
+msgstr ""
+"El codicioso Aga Grdan cobra impuestos dobles con papeles falsos. Reunid las pruebas y llevadlo "
+"ante el juez."
+
+#. the title of a mission, on its card
+#: data/chapters/2_the_count_of_ill_wind.tres
+#, fuzzy
+msgid "The Count of Ill Wind"
+msgstr "El conde del Mal Viento"
+
+#. the summary of a mission, one or two short sentences
+#: data/chapters/2_the_count_of_ill_wind.tres
+#, fuzzy
+msgid "A false Count takes tolls in every harbour of Italy with a forged charter. Unmask him!"
+msgstr ""
+"Un falso conde cobra peajes en todos los puertos de Italia con una carta falsa. ¡Desenmascaradlo!"
+
+#. the title of a mission, on its card
+#: data/chapters/3_the_wolf_of_the_bura.tres
+#, fuzzy
+msgid "The Wolf of the Bura"
+msgstr "El lobo de la bora"
+
+#. the summary of a mission, one or two short sentences
+#: data/chapters/3_the_wolf_of_the_bura.tres
+#, fuzzy
+msgid ""
+"Fake uskoks rob the ships of Venice, and two empires are about to quarrel. Find who is behind it."
+msgstr ""
+"Falsos uscocos roban los barcos de Venecia, y dos imperios están a punto de pelearse. Descubrid "
+"quién está detrás."
+
 #. a line which a person says, at most two short sentences
 #: data/missions/01_bell_of_grebastica/mission.tres
 #, fuzzy
@@ -1196,19 +1334,22 @@ msgid "A fisherman saw them leave. Follow them!"
 msgstr "Un pescador los vio salir. ¡Seguidlos!"
 
 #. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
-#: data/missions/01_bell_of_grebastica/mission.tres
+#: data/missions/01_bell_of_grebastica/mission.tres data/missions/16_nets_of_comacchio/mission.tres
+#: data/missions/26_caps_too_new/mission.tres data/missions/30_friars_of_kosljun/mission.tres
 #, fuzzy
 msgid "They asked the way to {fact}."
 msgstr "Preguntaron cómo ir {fact@to}."
 
 #. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
-#: data/missions/01_bell_of_grebastica/mission.tres
+#: data/missions/01_bell_of_grebastica/mission.tres data/missions/16_nets_of_comacchio/mission.tres
+#: data/missions/26_caps_too_new/mission.tres data/missions/30_friars_of_kosljun/mission.tres
 #, fuzzy
 msgid "They sailed on toward {fact}."
 msgstr "Siguieron rumbo {fact@to}."
 
 #. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
-#: data/missions/01_bell_of_grebastica/mission.tres
+#: data/missions/01_bell_of_grebastica/mission.tres data/missions/16_nets_of_comacchio/mission.tres
+#: data/missions/26_caps_too_new/mission.tres
 #, fuzzy
 msgid "I heard them talk about {fact}."
 msgstr "Les oí hablar {fact@about}."
@@ -1220,7 +1361,8 @@ msgid "Have you seen the Aga's men with the bell?"
 msgstr "¿Habéis visto a los hombres del Aga con la campana?"
 
 #. a line in the last port of a trail
-#: data/missions/01_bell_of_grebastica/mission.tres
+#: data/missions/01_bell_of_grebastica/mission.tres data/missions/16_nets_of_comacchio/mission.tres
+#: data/missions/26_caps_too_new/mission.tres
 #, fuzzy
 msgid "They are here, in the harbour! But which boat is theirs?"
 msgstr "¡Están aquí, en el puerto! Pero ¿cuál es su barco?"
@@ -1345,7 +1487,9 @@ msgstr "Dejó pistas que solo entienden los amigos. ¡Empezad donde bailan la mo
 #: data/missions/02_shipwright_of_korcula/mission.tres
 #: data/missions/06_doctor_of_ragusa/mission.tres
 #: data/missions/09_pilgrims_of_st_nicholas/mission.tres data/missions/12_forged_ledger/mission.tres
-#: data/missions/13_secret_script/mission.tres
+#: data/missions/13_secret_script/mission.tres data/missions/19_paper_with_a_secret/mission.tres
+#: data/missions/20_seal_maker_of_ortona/mission.tres data/missions/24_count_flees/mission.tres
+#: data/missions/32_stewards_ledger/mission.tres
 #, fuzzy
 msgid "He asked the way to {fact}."
 msgstr "Preguntó cómo ir {fact@to}."
@@ -1354,7 +1498,9 @@ msgstr "Preguntó cómo ir {fact@to}."
 #: data/missions/02_shipwright_of_korcula/mission.tres
 #: data/missions/06_doctor_of_ragusa/mission.tres
 #: data/missions/09_pilgrims_of_st_nicholas/mission.tres data/missions/12_forged_ledger/mission.tres
-#: data/missions/13_secret_script/mission.tres
+#: data/missions/13_secret_script/mission.tres data/missions/19_paper_with_a_secret/mission.tres
+#: data/missions/20_seal_maker_of_ortona/mission.tres data/missions/24_count_flees/mission.tres
+#: data/missions/32_stewards_ledger/mission.tres
 #, fuzzy
 msgid "He sailed on toward {fact}."
 msgstr "Siguió rumbo {fact@to}."
@@ -1363,7 +1509,9 @@ msgstr "Siguió rumbo {fact@to}."
 #: data/missions/02_shipwright_of_korcula/mission.tres
 #: data/missions/06_doctor_of_ragusa/mission.tres
 #: data/missions/09_pilgrims_of_st_nicholas/mission.tres data/missions/12_forged_ledger/mission.tres
-#: data/missions/13_secret_script/mission.tres
+#: data/missions/13_secret_script/mission.tres data/missions/19_paper_with_a_secret/mission.tres
+#: data/missions/20_seal_maker_of_ortona/mission.tres data/missions/24_count_flees/mission.tres
+#: data/missions/32_stewards_ledger/mission.tres
 #, fuzzy
 msgid "I heard him talk about {fact}."
 msgstr "Le oí hablar {fact@about}."
@@ -1565,7 +1713,7 @@ msgstr "¡Sal! Ahora podremos conservar el pescado para el invierno."
 
 #. a line of thanks, at most two short sentences
 #: data/missions/03_salt_for_the_winter/mission.tres
-#: data/missions/10_corsairs_of_ulcinj/mission.tres
+#: data/missions/10_corsairs_of_ulcinj/mission.tres data/missions/16_nets_of_comacchio/mission.tres
 #, fuzzy
 msgid "Thank you, captain!"
 msgstr "¡Gracias, {crew|capitán|capitana|capitanes|capitanas}!"
@@ -1942,7 +2090,7 @@ msgid "Leopold of Rijeka"
 msgstr "Leopold de Rijeka"
 
 #. an answer on a button, a few words
-#: data/missions/05_uskok_and_the_doge/mission.tres
+#: data/missions/05_uskok_and_the_doge/mission.tres data/missions/27_the_doges_ten_days/mission.tres
 #, fuzzy
 msgid "The Doge"
 msgstr "El dux"
@@ -1974,7 +2122,7 @@ msgid "The council sets him free!"
 msgstr "¡El consejo lo deja libre!"
 
 #. the objective while sailing, on the banner
-#: data/missions/05_uskok_and_the_doge/mission.tres
+#: data/missions/05_uskok_and_the_doge/mission.tres data/missions/35_peace_of_rijeka/mission.tres
 #, fuzzy
 msgid "Pick up Juraj in {port}."
 msgstr "Recoged a Juraj {port@in}."
@@ -1992,7 +2140,7 @@ msgid "Take me home to Senj, to my sister."
 msgstr "Llevadme a casa, a Senj, con mi hermana."
 
 #. the objective while sailing, on the banner
-#: data/missions/05_uskok_and_the_doge/mission.tres
+#: data/missions/05_uskok_and_the_doge/mission.tres data/missions/35_peace_of_rijeka/mission.tres
 #, fuzzy
 msgid "Bring Juraj home to {port}."
 msgstr "Llevad a Juraj a casa, {port@to}."
@@ -3013,7 +3161,8 @@ msgid "Have you seen the Aga's scribe with a heavy book?"
 msgstr "¿Habéis visto al escriba del Aga con un libro pesado?"
 
 #. a line in the last port of a trail
-#: data/missions/12_forged_ledger/mission.tres
+#: data/missions/12_forged_ledger/mission.tres data/missions/24_count_flees/mission.tres
+#: data/missions/32_stewards_ledger/mission.tres
 #, fuzzy
 msgid "He is here, hiding among the people of the harbour! But which one is he?"
 msgstr "¡Está aquí, escondido entre la gente del puerto! Pero ¿cuál es?"
@@ -3281,6 +3430,8 @@ msgstr "Se lo contaré todo al juez."
 
 #. the objective while sailing, on the banner
 #: data/missions/14_the_witnesses/mission.tres data/missions/15_kadi_of_preveza/mission.tres
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#: data/missions/34_through_the_bura/mission.tres
 #, fuzzy
 msgid "Pick up {count} more {count|witness|witnesses}."
 msgstr "Recoged {count} testigos más."
@@ -3424,7 +3575,8 @@ msgstr "Grebaštica"
 
 #. an answer on a button, a few words
 #. a name (of a port, a person, a power, a boat or a thing)
-#: data/missions/15_kadi_of_preveza/mission.tres data/world/ports/senj.tres
+#: data/missions/15_kadi_of_preveza/mission.tres data/missions/30_friars_of_kosljun/mission.tres
+#: data/world/ports/senj.tres
 #, fuzzy
 msgid "Senj"
 msgstr "Senj"
@@ -3495,6 +3647,8 @@ msgstr "He leído el libro de cuentas. Ahora, responded a mis preguntas."
 
 #. a line after a wrong pick
 #: data/missions/15_kadi_of_preveza/mission.tres
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#: data/missions/35_peace_of_rijeka/mission.tres
 #, fuzzy
 msgid "Hmm, no. Think about your voyage, captain."
 msgstr "Mmm, no. Pensad en vuestro viaje, {crew|capitán|capitana|capitanes|capitanas}."
@@ -3512,7 +3666,7 @@ msgid "He may go home and look after his goats."
 msgstr "Puede irse a casa a cuidar de sus cabras."
 
 #. the objective while sailing, on the banner
-#: data/missions/15_kadi_of_preveza/mission.tres
+#: data/missions/15_kadi_of_preveza/mission.tres data/missions/35_peace_of_rijeka/mission.tres
 #, fuzzy
 msgid "Sail home to {port}!"
 msgstr "¡Navegad a casa, {port@to}!"
@@ -3537,7 +3691,7 @@ msgid "Juraj, Doctor Marin, and even Crooked Mast!"
 msgstr "Juraj, el doctor Marin, ¡y hasta Mástil Torcido!"
 
 #. a line which a person says, at most two short sentences
-#: data/missions/15_kadi_of_preveza/mission.tres
+#: data/missions/15_kadi_of_preveza/mission.tres data/missions/35_peace_of_rijeka/mission.tres
 #, fuzzy
 msgid "Captain, for your courage you get the medal of the Bird Dog!"
 msgstr ""
@@ -3585,6 +3739,3050 @@ msgstr "El Aga devolvió los impuestos dobles, y los pueblos son libres."
 msgid "The bell of Grebaštica rings, and the whole Arena of Pula cheers!"
 msgstr "¡La campana de Grebaštica suena y toda la Arena de Pula aplaude!"
 
+#. a line which a person says, at most two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "Captain, a pigeon came from Bari, with a letter from Luka, the ship's boy!"
+msgstr ""
+"¡{crew|Capitán|Capitana|Capitanes|Capitanas}, ha llegado una paloma de Bari con una carta de Luka,"
+" el grumete!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "He writes: \"A Count has come to Italy, Count Malvento. He shows a Golden Charter.\""
+msgstr "Escribe: «Ha llegado a Italia un conde, el conde Malvento. Enseña una Carta de Oro.»"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "\"He takes a toll in every harbour, from Comacchio to Otranto!\""
+msgstr "«¡Cobra un peaje en cada puerto, de Comacchio a Otranto!»"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "\"His men even took the eel nets of Comacchio as a toll. Please help!\""
+msgstr ""
+"«Sus hombres hasta se llevaron las redes de anguilas de Comacchio como peaje. ¡Ayudad, por favor!»"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "Have you seen the Count's men with the eel nets?"
+msgstr "¿Habéis visto a los hombres del conde con las redes de anguilas?"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "Which boat is the Count's? Remember its sail and its hull!"
+msgstr "¿Cuál es el barco del conde? ¡Recordad su vela y su casco!"
+
+#. a line after a wrong pick
+#: data/missions/16_nets_of_comacchio/mission.tres data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "No, not this one! Think of the sail and the hull."
+msgstr "¡No, ese no! Pensad en la vela y en el casco."
+
+#. a line after the right pick
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid ""
+"That's the one! The Count's men shrug: \"The Count says nets are a toll.\" But they give them "
+"back."
+msgstr ""
+"¡Ese es! Los hombres del conde se encogen de hombros: «El conde dice que las redes son un peaje.» "
+"Pero las devuelven."
+
+#. the objective while sailing, on the banner
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "Bring the eel nets home to {port}."
+msgstr "Llevad las redes de anguilas a casa, {port@to}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "Our nets! Now we can catch the eels again."
+msgstr "¡Nuestras redes! Ya podemos volver a pescar anguilas."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "Tonight, the whole lagoon eats eels!"
+msgstr "¡Esta noche toda la laguna come anguilas!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "But this Count... Nobody here ever heard of him before."
+msgstr "Pero ese conde... Aquí nadie había oído hablar de él."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "Who is he really, captain?"
+msgstr "¿Quién es en realidad, {crew|capitán|capitana|capitanes|capitanas}?"
+
+#. the title of a mission, on its card
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "Nets of Comacchio"
+msgstr "Las redes de Comacchio"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid ""
+"The first crossing to Italy. The Count's men took the eel nets of Comacchio \"as a toll\". Follow "
+"their boat and give the nets back."
+msgstr ""
+"La primera travesía a Italia. Los hombres del conde se llevaron las redes de anguilas de Comacchio"
+" «como peaje». Seguid su barco y devolved las redes."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid ""
+"The eels of Comacchio are born far away, in the Sargasso Sea across the ocean, and swim all the "
+"way to the lagoon. Nobody knew it in 1600: it was found out only around 1920."
+msgstr ""
+"Las anguilas de Comacchio nacen muy lejos, en el mar de los Sargazos, al otro lado del océano, y "
+"nadan hasta la laguna. En 1600 nadie lo sabía: se descubrió hacia 1920."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "The nets are home!"
+msgstr "¡Las redes están en casa!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "You crossed the sea and found the Count's boat."
+msgstr "Cruzasteis el mar y encontrasteis el barco del conde."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/16_nets_of_comacchio/mission.tres
+#, fuzzy
+msgid "The eel fishers of Comacchio can fish again."
+msgstr "Los pescadores de anguilas de Comacchio pueden volver a pescar."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Captain, the Count sells \"wind charms\" to the fishermen of this coast."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, el conde vende «amuletos del viento» a los pescadores"
+" de esta costa."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "He says that without his charm, no boat gets a good wind!"
+msgstr "¡Dice que sin su amuleto ningún barco tiene buen viento!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Bring me three charms, from Rimini, Fano and Ancona. Let us see what is inside."
+msgstr "Traedme tres amuletos, de Rímini, Fano y Ancona. Veamos qué hay dentro."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Here, take my charm. Three ducats, and still no wind!"
+msgstr "Tomad mi amuleto. ¡Tres ducados, y ni un soplo de viento!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "It is only a little bottle with a cork."
+msgstr "Solo es una botellita con un corcho."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "My husband paid two ducats for this charm."
+msgstr "Mi marido pagó dos ducados por este amuleto."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Shake it: nothing inside! Take it."
+msgstr "Agitadlo: ¡no hay nada dentro! Lleváoslo."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "The Count's men sold it to me on the pier."
+msgstr "Los hombres del conde me lo vendieron en el muelle."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Take it, captain. It never helped me."
+msgstr "Lleváoslo, {crew|capitán|capitana|capitanes|capitanas}. Nunca me sirvió de nada."
+
+#. the objective while sailing, on the banner
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Collect {count} more wind {count|charm|charms}."
+msgstr "Reunid {count} {count|amuleto|amuletos} del viento más."
+
+#. what a rival says when he dares the crew to a race, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Ha! So you collected my wind charms?"
+msgstr "¡Ja! ¿Así que habéis reunido mis amuletos del viento?"
+
+#. what a rival says when he dares the crew to a race, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "My yellow boat has the best charm of all. Nobody beats it!"
+msgstr "Mi barco amarillo tiene el mejor amuleto de todos. ¡Nadie lo vence!"
+
+#. what a rival says when he dares the crew to a race, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Race me around the three buoys, in front of the fishermen of Fano!"
+msgstr "¡Corred contra mí alrededor de las tres boyas, ante los pescadores de Fano!"
+
+#. what a rival says before a rematch of a race, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Back for more? The wind still loves me!"
+msgstr "¿Volvéis a por más? ¡El viento todavía me quiere!"
+
+#. what a rival says before a rematch of a race, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Again, around the three buoys!"
+msgstr "¡Otra vez, alrededor de las tres boyas!"
+
+#. what the crew hears after winning a race, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "What? You beat my charm boat?"
+msgstr "¿Qué? ¿Habéis vencido a mi barco del amuleto?"
+
+#. what the crew hears after winning a race, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Bah! The wind was... wrong today."
+msgstr "¡Bah! Hoy el viento estaba... raro."
+
+#. what the crew hears after winning a race, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "The fishermen of Fano cheer: skill wins, not charms!"
+msgstr "Los pescadores de Fano aplauden: ¡gana la destreza, no los amuletos!"
+
+#. what the crew hears when a rival won the race, one short sentence
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Ha! The wind loves me! The fishermen ask for a rematch tomorrow."
+msgstr "¡Ja! ¡El viento me quiere! Los pescadores piden la revancha mañana."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Skill wins, not charms! Nobody in Fano buys a wind charm any more."
+msgstr "¡Gana la destreza, no los amuletos! En Fano ya nadie compra amuletos del viento."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "We opened them all: empty bottles, every one!"
+msgstr "Los abrimos todos: ¡todos eran botellas vacías!"
+
+#. the title of a mission, on its card
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "The Wind Seller"
+msgstr "El vendedor de viento"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid ""
+"Collect three wind charms, then race the Count's charm-boat in front of the fishermen of Fano: "
+"skill against charms."
+msgstr ""
+"Reunid tres amuletos del viento y luego competid en una regata contra el barco del conde ante los "
+"pescadores de Fano: destreza contra amuletos."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid ""
+"On the old sea charts of the Mediterranean, the compass rose names eight winds: Tramontana, Greco,"
+" Levante, Scirocco, Ostro, Libeccio, Ponente and Maestro. That is how the sailors told the "
+"directions."
+msgstr ""
+"En las viejas cartas náuticas del Mediterráneo, la rosa de los vientos nombra ocho vientos: "
+"Tramontana, Gregal, Levante, Siroco, Ostro, Lebeche, Poniente y Maestral. Así indicaban los "
+"marineros las direcciones."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "Skill beats charms!"
+msgstr "¡La destreza vence a los amuletos!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "You won the race without a single charm."
+msgstr "Ganasteis la regata sin un solo amuleto."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/17_wind_seller/mission.tres
+#, fuzzy
+msgid "The fishermen of Fano keep their ducats now."
+msgstr "Los pescadores de Fano ahora guardan sus ducados."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Captain, pilgrims from Pescara want to visit the Holy House of Loreto."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, unos peregrinos de Pescara quieren visitar la Santa "
+"Casa de Loreto."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "But the Count's men ask a \"pilgrim toll\" from everybody on the road."
+msgstr "Pero los hombres del conde piden un «peaje de peregrinos» a todo el que va por el camino."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "The Pope never allowed such a toll! Take the pilgrims to Loreto by sea."
+msgstr "¡El Papa nunca permitió ese peaje! Llevad a los peregrinos a Loreto por mar."
+
+#. the objective while sailing, on the banner
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Pick up the pilgrims in {port}."
+msgstr "Recoged a los peregrinos {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Captain! We are ready for the voyage to Loreto."
+msgstr "¡{crew|Capitán|Capitana|Capitanes|Capitanas}! Estamos listos para el viaje a Loreto."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "But look, here comes the Count's toll man..."
+msgstr "Pero mirad, ahí viene el cobrador del conde..."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "What has a mouth but never eats, and a bed but never sleeps?"
+msgstr "¿Qué tiene boca pero nunca come, y lecho pero nunca duerme?"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "A river"
+msgstr "Un río"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "A pilgrim"
+msgstr "Un peregrino"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "A boat"
+msgstr "Un barco"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "What fills a whole sail, but nobody can see it?"
+msgstr "¿Qué llena toda una vela, pero nadie lo puede ver?"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "A fish"
+msgstr "Un pez"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "The wind"
+msgstr "El viento"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "The Count"
+msgstr "El conde"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "The more of them you take, the more you leave behind. What are they?"
+msgstr "Cuantos más das, más dejas atrás. ¿Qué son?"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Ducats"
+msgstr "Ducados"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Pilgrims"
+msgstr "Peregrinos"
+
+#. an answer on a button, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Footsteps"
+msgstr "Pasos"
+
+#. what a judge says before the questions, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Halt! Every pilgrim pays the Count's toll!"
+msgstr "¡Alto! ¡Todo peregrino paga el peaje del conde!"
+
+#. what a judge says before the questions, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Hmm... unless you answer my riddles. The Count loves riddles."
+msgstr "Mmm... a no ser que respondáis a mis adivinanzas. Al conde le encantan."
+
+#. a line after a wrong pick
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Ha! Wrong! Think again, captain."
+msgstr "¡Ja! ¡Mal! Pensadlo otra vez, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Grr! You know too much."
+msgstr "¡Grrr! Sabéis demasiado."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Go then, all of you... toll-free!"
+msgstr "Id, pues, todos... ¡sin pagar peaje!"
+
+#. the objective while sailing, on the banner
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Bring the pilgrims to {port}."
+msgstr "Llevad a los peregrinos {port@to}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Welcome to Loreto, pilgrims!"
+msgstr "¡Bienvenidos a Loreto, peregrinos!"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "And not a single coin for the Count's toll."
+msgstr "Y ni una moneda para el peaje del conde."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "The pilgrims pray in the Holy House, and they sing all the way home."
+msgstr "Los peregrinos rezan en la Santa Casa y cantan durante todo el camino de vuelta."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "And the Count's toll man? He went home to think about riddles."
+msgstr "¿Y el cobrador del conde? Se fue a casa a pensar en adivinanzas."
+
+#. the title of a mission, on its card
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "The Pilgrims of Loreto"
+msgstr "Los peregrinos de Loreto"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Carry the pilgrims of Pescara past the Count's \"pilgrim toll\" to the Holy House of Loreto."
+msgstr ""
+"Llevad a los peregrinos de Pescara a la Santa Casa de Loreto sin pagar el «peaje de peregrinos» "
+"del conde."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid ""
+"A legend says that angels carried the Holy House of Mary from Nazareth to Loreto. Because of that "
+"flying house, the Madonna of Loreto became the patron saint of pilots in 1920."
+msgstr ""
+"Una leyenda cuenta que los ángeles llevaron la Santa Casa de María de Nazaret a Loreto. Por esa "
+"casa voladora, la Virgen de Loreto es desde 1920 la patrona de los aviadores."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "The pilgrims reached Loreto!"
+msgstr "¡Los peregrinos llegaron a Loreto!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "You carried the pilgrims past the Count's toll."
+msgstr "Llevasteis a los peregrinos sin pagar el peaje del conde."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/18_pilgrims_of_loreto/mission.tres
+#, fuzzy
+msgid "Not one of them paid a coin."
+msgstr "Ninguno pagó ni una moneda."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "Captain, the Count's toll man left behind a page of the Count's charter."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, el cobrador del conde se dejó una página de la carta "
+"del conde."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "The Count says it is twenty years old. A paper merchant could tell!"
+msgstr "El conde dice que tiene veinte años. ¡Un mercader de papel lo sabría!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "Ser Anselmo of Fabriano sails along the coast. Find him!"
+msgstr "Ser Anselmo de Fabriano navega a lo largo de la costa. ¡Encontradlo!"
+
+#. a clue; {hallmark} is a noun phrase like 'a patched red sail'
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "The paper merchant has {hallmark}."
+msgstr "El mercader de papel tiene {hallmark@acc}."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "Have you seen Ser Anselmo, the paper merchant?"
+msgstr "¿Habéis visto a ser Anselmo, el mercader de papel?"
+
+#. a line in the last port of a trail
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "He is here, at the market! But which one is he?"
+msgstr "¡Está aquí, en el mercado! Pero ¿cuál es?"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "Which one is Ser Anselmo? Remember what the people told you!"
+msgstr "¿Cuál es ser Anselmo? ¡Recordad lo que os dijo la gente!"
+
+#. a line after a wrong pick
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "No, that is not Ser Anselmo! Think of everything you heard."
+msgstr "¡No, ese no es ser Anselmo! Pensad en todo lo que habéis oído."
+
+#. a line after the right pick
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "\"A paper with a secret? Take me to it, captain!\""
+msgstr ""
+"«¿Un papel con un secreto? ¡Llevadme hasta él, {crew|capitán|capitana|capitanes|capitanas}!»"
+
+#. the objective while sailing, on the banner
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "Bring Ser Anselmo to {port}."
+msgstr "Llevad a ser Anselmo {port@to}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "Ser Anselmo holds the page against the light."
+msgstr "Ser Anselmo pone la página a contraluz."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "\"See the watermark? This paper was made in Fabriano only this year!\""
+msgstr "«¿Veis la filigrana? ¡Este papel se hizo en Fabriano este mismo año!»"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "So it can not be twenty years old. That is our first proof!"
+msgstr "Así que no puede tener veinte años. ¡Es nuestra primera prueba!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "A watermark never lies, captain."
+msgstr "Una filigrana nunca miente, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "The Count can forge words, but not the paper of Fabriano!"
+msgstr "¡El conde puede falsificar palabras, pero no el papel de Fabriano!"
+
+#. the title of a mission, on its card
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "The Paper with a Secret"
+msgstr "El papel con un secreto"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid ""
+"Find the paper merchant who can read the charter against the light. Proof 1: the watermark of "
+"Fabriano."
+msgstr ""
+"Encontrad al mercader de papel que sabe leer la carta a contraluz. Prueba 1: la filigrana de "
+"Fabriano."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid ""
+"The paper mills of Fabriano were among the first in Europe. Their papermakers invented the "
+"watermark: a picture inside the paper, which shows only against the light."
+msgstr ""
+"Los molinos de papel de Fabriano estuvieron entre los primeros de Europa. Sus papeleros inventaron"
+" la filigrana: un dibujo dentro del papel que solo se ve a contraluz."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "The first proof!"
+msgstr "¡La primera prueba!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "You found Ser Anselmo, and the watermark speaks."
+msgstr "Encontrasteis a ser Anselmo, y la filigrana habla."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/19_paper_with_a_secret/mission.tres
+#, fuzzy
+msgid "The Count's paper is new, not twenty years old."
+msgstr "El papel del conde es nuevo, no tiene veinte años."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "Captain, the Count's seal looks like the seal of the Viceroy."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, el sello del conde se parece al sello del virrey."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "A seal-maker of Ortona carved seals for him, then quit and hid."
+msgstr "Un grabador de sellos de Ortona le talló sellos, luego lo dejó y se escondió."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "Find him! He can tell the judges the truth."
+msgstr "¡Encontradlo! Él puede contar la verdad a los jueces."
+
+#. a clue; {hallmark} is a noun phrase like 'a patched red sail'
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "The seal-maker has {hallmark}."
+msgstr "El grabador de sellos tiene {hallmark@acc}."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "Have you seen the seal-maker who hides from the Count?"
+msgstr "¿Habéis visto al grabador de sellos que se esconde del conde?"
+
+#. a line in the last port of a trail
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "He is hiding here, among the craftsmen! But which one is he?"
+msgstr "¡Está escondido aquí, entre los artesanos! Pero ¿cuál es?"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "Which one is the seal-maker? Remember what the people told you!"
+msgstr "¿Cuál es el grabador de sellos? ¡Recordad lo que os dijo la gente!"
+
+#. a line after a wrong pick
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "No, that is not the seal-maker! Think of everything you heard."
+msgstr "¡No, ese no es el grabador! Pensad en todo lo que habéis oído."
+
+#. a line after the right pick
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid ""
+"\"Yes, I carved the Count's seal. He said it was for a play!\" Mastro Nunzio gives you the mould."
+msgstr ""
+"«Sí, yo tallé el sello del conde. ¡Dijo que era para una obra de teatro!» Mastro Nunzio os da el "
+"molde."
+
+#. the objective while sailing, on the banner
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "Bring the mould of the seal to {port}."
+msgstr "Llevad el molde del sello {port@to}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "Look: the name of the King is spelt wrong on it!"
+msgstr "Mirad: ¡el nombre del rey está mal escrito!"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "No seal of the Viceroy has such a mistake. That is our second proof!"
+msgstr "Ningún sello del virrey tiene ese error. ¡Es nuestra segunda prueba!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "I will tell the judges everything, captain."
+msgstr "Se lo contaré todo a los jueces, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "From now on, I carve only honest seals!"
+msgstr "¡A partir de ahora solo tallo sellos honrados!"
+
+#. the title of a mission, on its card
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "The Seal-Maker of Ortona"
+msgstr "El grabador de sellos de Ortona"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "Find the seal-maker who quit the Count and hid. Proof 2: the false seal."
+msgstr "Encontrad al grabador que dejó al conde y se escondió. Prueba 2: el sello falso."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid ""
+"Ortona keeps the bones of St. Thomas the Apostle. Sailors of Ortona brought them from the Greek "
+"island of Chios in 1258."
+msgstr ""
+"Ortona guarda los huesos del apóstol santo Tomás. Unos marineros de Ortona los trajeron de la isla"
+" griega de Quíos en 1258."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "The second proof!"
+msgstr "¡La segunda prueba!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "You found Mastro Nunzio, and the false seal is in Trani."
+msgstr "Encontrasteis a Mastro Nunzio, y el sello falso está en Trani."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/20_seal_maker_of_ortona/mission.tres
+#, fuzzy
+msgid "The Count spelt the name of the King wrong!"
+msgstr "¡El conde escribió mal el nombre del rey!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Captain, an old fisherman here remembers the Count from long ago."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, un viejo pescador de aquí se acuerda del conde de "
+"hace mucho tiempo."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "He says the Count was no count at all, but a young copyist: Bepi Sgorbio!"
+msgstr "Dice que el conde no era ningún conde, sino un joven copista: ¡Bepi Sgorbio!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Bepi lived on the Gargano. Ask about him there."
+msgstr "Bepi vivía en el Gargano. Preguntad por él allí."
+
+#. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Bepi had a friend in {fact}."
+msgstr "Bepi tenía un amigo en {fact}."
+
+#. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Ask in {fact}. They knew Bepi there."
+msgstr "Preguntad en {fact}. Allí conocían a Bepi."
+
+#. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Bepi copied letters for the people of {fact}."
+msgstr "Bepi copiaba cartas para la gente {fact@about}."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Did you know Bepi Sgorbio, the copyist?"
+msgstr "¿Conocíais a Bepi Sgorbio, el copista?"
+
+#. a line in the last port of a trail
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Bepi? He hid a box of his old letters in the cave under the white rock of Vieste!"
+msgstr "¿Bepi? ¡Escondió una caja con sus viejas cartas en la cueva bajo la roca blanca de Vieste!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "The cave under the white rock? I know the way, even in a storm!"
+msgstr "¿La cueva bajo la roca blanca? ¡Me sé el camino, incluso con tormenta!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Here is the box. The letters are signed: Bepi Sgorbio, copyist."
+msgstr "Aquí está la caja. Las cartas están firmadas: Bepi Sgorbio, copista."
+
+#. the objective while sailing, on the banner
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Fetch Bepi's old letters from the white rock."
+msgstr "Recoged las viejas cartas de Bepi en la roca blanca."
+
+#. the objective while sailing, on the banner
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Bring Bepi's letters to {port}."
+msgstr "Llevad las cartas de Bepi {port@to}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Let me compare them with the Count's charter..."
+msgstr "Dejadme compararlas con la carta del conde..."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "The same hand wrote them both! That is our third proof!"
+msgstr "¡La misma mano escribió las dos! ¡Es nuestra tercera prueba!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Three proofs, captain: the paper, the seal and the letters!"
+msgstr ""
+"Tres pruebas, {crew|capitán|capitana|capitanes|capitanas}: ¡el papel, el sello y las cartas!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "The \"Count\" is nobody but Bepi Sgorbio."
+msgstr "El «conde» no es otro que Bepi Sgorbio."
+
+#. the title of a mission, on its card
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "The White Rock"
+msgstr "La roca blanca"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid ""
+"Storms around the Gargano. Under the white rock of Pizzomunno lie Bepi's old letters. Proof 3."
+msgstr ""
+"Tormentas alrededor del Gargano. Bajo la roca blanca de Pizzomunno están las viejas cartas de "
+"Bepi. Prueba 3."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid ""
+"The tall white rock on the beach of Vieste is called Pizzomunno. A legend says it is a young "
+"fisherman who turned to stone while he waited for his love Cristalda, whom the mermaids took away."
+msgstr ""
+"La alta roca blanca de la playa de Vieste se llama Pizzomunno. Una leyenda dice que es un joven "
+"pescador que se convirtió en piedra esperando a su amada Cristalda, a la que se llevaron las "
+"sirenas."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "The third proof!"
+msgstr "¡La tercera prueba!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "You braved the storms of the Gargano."
+msgstr "Desafiasteis las tormentas del Gargano."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/21_white_rock/mission.tres
+#, fuzzy
+msgid "Bepi's old letters show who the Count really is."
+msgstr "Las viejas cartas de Bepi muestran quién es de verdad el conde."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "Captain, the Count is furious about the three proofs."
+msgstr "{crew|Capitán|Capitana|Capitanes|Capitanas}, el conde está furioso por las tres pruebas."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "He dares you to a regatta at Barletta: thirteen boats, like the thirteen knights of 1503!"
+msgstr "Os reta a una regata en Barletta: ¡trece barcos, como los trece caballeros de 1503!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "If you win, the whole coast will see that his charms are nothing."
+msgstr "Si ganáis, toda la costa verá que sus amuletos no valen nada."
+
+#. what a rival says when he dares the crew to a race, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "Welcome to the Challenge of Barletta, captain!"
+msgstr ""
+"¡{crew|Bienvenidos|Bienvenidas|Bienvenidos|Bienvenidas} al Desafío de Barletta, "
+"{crew|capitán|capitana|capitanes|capitanas}!"
+
+#. what a rival says when he dares the crew to a race, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "Thirteen boats, three buoys, and glory for the winner!"
+msgstr "¡Trece barcos, tres boyas y gloria para el ganador!"
+
+#. what a rival says when he dares the crew to a race, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "My yellow boat will leave you all behind!"
+msgstr "¡Mi barco amarillo os dejará a todos atrás!"
+
+#. what a rival says before a rematch of a race, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "Ha! Back for another lesson?"
+msgstr "¡Ja! ¿Volvéis a por otra lección?"
+
+#. what a rival says before a rematch of a race, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "Again: thirteen boats, three buoys!"
+msgstr "Otra vez: ¡trece barcos, tres boyas!"
+
+#. what the crew hears after winning a race, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "Impossible! I took the short way, and you still won?"
+msgstr "¡Imposible! Tomé el atajo, ¿y aun así ganasteis?"
+
+#. what the crew hears after winning a race, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "The crowd of Barletta cheers for the fair captain!"
+msgstr "¡El público de Barletta aplaude a quien juega limpio!"
+
+#. what the crew hears when a rival won the race, one short sentence
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "The Count was back first, but he cheated! The fishermen ask for a rematch tomorrow."
+msgstr "¡El conde llegó primero, pero hizo trampa! Los pescadores piden la revancha mañana."
+
+#. what the crew hears when a rival cheats in a race, one short sentence
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "The Count cuts through the shallows and skips a buoy! That's cheating!"
+msgstr "¡El conde ataja por los bajíos y se salta una boya! ¡Eso es trampa!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "The whole town saw it: the Count cheated, and you won fairly!"
+msgstr "Todo el pueblo lo vio: ¡el conde hizo trampa y vosotros ganasteis limpiamente!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "I hammered you a horseshoe, for luck."
+msgstr "Os he forjado una herradura, para que os dé suerte."
+
+#. the title of a mission, on its card
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "The Challenge of Barletta"
+msgstr "El Desafío de Barletta"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid ""
+"The Count dares the crew to a regatta of thirteen boats, as the thirteen knights of 1503. He "
+"cheats through the shallows; the crew wins fairly."
+msgstr ""
+"El conde reta a la tripulación a una regata de trece barcos, como los trece caballeros de 1503. Él"
+" hace trampa por los bajíos; la tripulación gana limpiamente."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid ""
+"The Challenge of Barletta in 1503 began with an insult at a dinner: a French knight said that the "
+"Italians were poor knights. Thirteen knights of each side met in a tournament, and the Italians "
+"won."
+msgstr ""
+"El Desafío de Barletta de 1503 empezó con un insulto en una cena: un caballero francés dijo que "
+"los italianos eran malos caballeros. Trece caballeros de cada bando se enfrentaron en un torneo, y"
+" ganaron los italianos."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "A fair win!"
+msgstr "¡Una victoria limpia!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "The Count cut through the shallows, and still you won."
+msgstr "El conde atajó por los bajíos, y aun así ganasteis."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/22_challenge_of_barletta/mission.tres
+#, fuzzy
+msgid "All of Barletta saw who sails fairly."
+msgstr "Toda Barletta vio quién navega limpio."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Captain! It's me, Luka, the ship's boy. Remember?"
+msgstr "¡{crew|Capitán|Capitana|Capitanes|Capitanas}! Soy yo, Luka, el grumete. ¿Os acordáis?"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "The Count bought up all the olive oil, and he sells it at three times the price."
+msgstr "El conde compró todo el aceite de oliva y lo vende tres veces más caro."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "But Vito of Monopoli hid some olives. Help him press them!"
+msgstr "Pero Vito de Monopoli escondió unas aceitunas. ¡Ayudadle a prensarlas!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Take this salt along: on this coast, salt buys almost anything."
+msgstr "Llevaos esta sal: en esta costa, con sal se compra casi de todo."
+
+#. what a person in a chain of trades wants, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "My olives are picked, but the Count's men took my pressing mats."
+msgstr ""
+"Mis aceitunas están recogidas, pero los hombres del conde se llevaron mis capachos de prensar."
+
+#. what a person in a chain of trades wants, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Without mats, the press gives no oil. Donata of Brindisi weaves them!"
+msgstr "Sin capachos, la prensa no da aceite. ¡Donata de Brindisi los teje!"
+
+#. what a person says after a trade, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Fine mats! The press is turning..."
+msgstr "¡Buenos capachos! La prensa ya gira..."
+
+#. what a person says after a trade, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Here is the oil, captain. Take it to the market of Bari."
+msgstr ""
+"Aquí está el aceite, {crew|capitán|capitana|capitanes|capitanas}. Llevadlo al mercado de Bari."
+
+#. what a person in a chain of trades wants, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "I weave pressing mats from rushes."
+msgstr "Tejo capachos de prensar con juncos."
+
+#. what a person in a chain of trades wants, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "But I need salt for my fish. Do you have salt?"
+msgstr "Pero necesito sal para mi pescado. ¿Tenéis sal?"
+
+#. what a person says after a trade, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Salt! Now my fish keeps all winter."
+msgstr "¡Sal! Ahora mi pescado aguanta todo el invierno."
+
+#. what a person says after a trade, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Here are my best pressing mats."
+msgstr "Aquí tenéis mis mejores capachos de prensar."
+
+#. the objective while sailing, on the banner
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Bring the oil to the market of {port}."
+msgstr "Llevad el aceite al mercado de {port}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Oil from Monopoli, at a fair price!"
+msgstr "¡Aceite de Monopoli, a un precio justo!"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Now everybody in Bari can cook again."
+msgstr "Ahora todo el mundo en Bari puede volver a cocinar."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "The Count's oil sits in his cellar, and nobody buys it!"
+msgstr "El aceite del conde se queda en su bodega, ¡y nadie lo compra!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Captain, I will keep my eyes open for him."
+msgstr "{crew|Capitán|Capitana|Capitanes|Capitanas}, estaré atento por si lo veo."
+
+#. the title of a mission, on its card
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Oil for Monopoli"
+msgstr "Aceite para Monopoli"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid ""
+"The Count hoards the olive oil. Trade salt for pressing mats, the mats for oil, and bring it to "
+"the market of Bari."
+msgstr ""
+"El conde acapara el aceite de oliva. Cambiad sal por capachos, los capachos por aceite, y llevadlo"
+" al mercado de Bari."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid ""
+"In Apulia, many olive mills were dug into the rock under the ground. It was warm down there in "
+"winter, so the oil flowed better."
+msgstr ""
+"En Apulia, muchas almazaras se excavaban en la roca, bajo tierra. Allí abajo hacía calor en "
+"invierno, y así el aceite corría mejor."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Fair oil for Bari!"
+msgstr "¡Aceite justo para Bari!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "Salt, mats and a lot of sailing beat the Count's prices."
+msgstr "La sal, los capachos y mucho navegar vencieron los precios del conde."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/23_oil_for_monopoli/mission.tres
+#, fuzzy
+msgid "The kitchens of Bari smell of fresh oil."
+msgstr "Las cocinas de Bari huelen a aceite nuevo."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "Captain, the Count has fled with his Golden Charter!"
+msgstr "¡{crew|Capitán|Capitana|Capitanes|Capitanas}, el conde ha huido con su Carta de Oro!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "Without the charter, the judges can not see his forgery."
+msgstr "Sin la carta, los jueces no pueden ver su falsificación."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "Chase him! A man so fine can not hide for long."
+msgstr "¡Perseguidlo! Un hombre tan elegante no puede esconderse mucho tiempo."
+
+#. a clue; {hallmark} is a noun phrase like 'a patched red sail'
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "The Count had {hallmark}."
+msgstr "El conde tenía {hallmark@acc}."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "Have you seen Count Malvento?"
+msgstr "¿Habéis visto al conde Malvento?"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "Which one is the Count?"
+msgstr "¿Cuál es el conde?"
+
+#. a line after a wrong pick
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "No, that is not the Count! Remember all four things you learned."
+msgstr "¡No, ese no es el conde! Recordad las cuatro cosas que averiguasteis."
+
+#. a line after the right pick
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "\"Alright, alright! Here is the charter. It was such a beautiful charter...\""
+msgstr "«¡Vale, vale! Aquí está la carta. Era una carta tan bonita...»"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "\"Fine, I will come before the judges in Trani.\""
+msgstr "«Está bien, me presentaré ante los jueces de Trani.»"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "With the Golden Charter, the crew holds everything the judges need."
+msgstr "Con la Carta de Oro, la tripulación tiene todo lo que necesitan los jueces."
+
+#. the title of a mission, on its card
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "The Count Flees"
+msgstr "El conde huye"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid ""
+"The Count flees with his charter. Yellow gloves, a smell of violets, a wig too big, a ring with a "
+"false seal."
+msgstr ""
+"El conde huye con su carta. Guantes amarillos, olor a violetas, una peluca demasiado grande, un "
+"anillo con un sello falso."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid ""
+"Around 1600, perfumed gloves were the height of fashion. Gloves were scented with violets, roses "
+"or amber, also to hide the smell of the leather."
+msgstr ""
+"Hacia 1600, los guantes perfumados eran lo último en moda. Se perfumaban con violetas, rosas o "
+"ámbar, también para tapar el olor del cuero."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "The charter is yours!"
+msgstr "¡La carta es vuestra!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "You chased the Count along the whole coast and found him."
+msgstr "Perseguisteis al conde por toda la costa y lo encontrasteis."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/24_count_flees/mission.tres
+#, fuzzy
+msgid "Now the crew holds the Golden Charter."
+msgstr "Ahora la tripulación tiene la Carta de Oro."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Captain, the judges of the Royal Audience in Trani are ready."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, los jueces de la Real Audiencia de Trani están "
+"listos."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Bring them the proofs and the witnesses:"
+msgstr "Llevadles las pruebas y a los testigos:"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Luka here in Bari, Michele in Manfredonia and Vito in Monopoli."
+msgstr "Luka, aquí en Bari, Michele en Manfredonia y Vito en Monopoli."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "I am ready, captain! I saw the Count take the tolls in Bari."
+msgstr ""
+"¡Estoy listo, {crew|capitán|capitana|capitanes|capitanas}! Vi al conde cobrar los peajes en Bari."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "I knew Bepi when he was a young copyist."
+msgstr "Conocí a Bepi cuando era un joven copista."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "I will tell the judges, captain."
+msgstr "Se lo contaré a los jueces, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "I will tell the judges how the Count hoarded the oil."
+msgstr "Contaré a los jueces cómo el conde acaparó el aceite."
+
+#. the objective while sailing, on the banner
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Bring the proofs and the witnesses to {port}."
+msgstr "Llevad las pruebas y a los testigos {port@to}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "So this is the Golden Charter. Show me your proofs, captain."
+msgstr ""
+"Así que esta es la Carta de Oro. Enseñadme vuestras pruebas, "
+"{crew|capitán|capitana|capitanes|capitanas}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The watermark of Fabriano: this paper is new, not twenty years old."
+msgstr "La filigrana de Fabriano: este papel es nuevo, no tiene veinte años."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "A seal with the name of the King spelt wrong!"
+msgstr "¡Un sello con el nombre del rey mal escrito!"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "And the same hand wrote these letters and the charter."
+msgstr "Y la misma mano escribió estas cartas y la carta del conde."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "What did the paper show against the light?"
+msgstr "¿Qué mostraba el papel a contraluz?"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The watermark of Fabriano"
+msgstr "La filigrana de Fabriano"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "A map of the coast"
+msgstr "Un mapa de la costa"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "A picture of the Count"
+msgstr "Un retrato del conde"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Who carved the Count's false seal?"
+msgstr "¿Quién talló el sello falso del conde?"
+
+#. an answer on a button, a few words
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/missions/25_royal_audience_of_trani/mission.tres data/world/people/brother_romualdo.tres
+#, fuzzy
+msgid "Brother Romualdo"
+msgstr "Fray Romualdo"
+
+#. an answer on a button, a few words
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/missions/25_royal_audience_of_trani/mission.tres data/world/people/nunzio.tres
+#, fuzzy
+msgid "Mastro Nunzio"
+msgstr "Mastro Nunzio"
+
+#. an answer on a button, a few words
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/missions/25_royal_audience_of_trani/mission.tres data/world/items/passenger_luka.tres
+#: data/world/people/luka.tres
+#, fuzzy
+msgid "Luka"
+msgstr "Luka"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Where were Bepi's old letters hidden?"
+msgstr "¿Dónde estaban escondidas las viejas cartas de Bepi?"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "In the Arena of Pula"
+msgstr "En la Arena de Pula"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "In the palace of the Doge"
+msgstr "En el palacio del dux"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Under the white rock of Vieste"
+msgstr "Bajo la roca blanca de Vieste"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "So who is \"Count Malvento\" really?"
+msgstr "Entonces, ¿quién es en realidad el «conde Malvento»?"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "A real count"
+msgstr "Un conde de verdad"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Bepi Sgorbio, a copyist"
+msgstr "Bepi Sgorbio, un copista"
+
+#. an answer on a button, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The King of Naples"
+msgstr "El rey de Nápoles"
+
+#. what a judge says before the questions, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The Royal Audience has seen the proofs. Now, answer my questions."
+msgstr "La Real Audiencia ha visto las pruebas. Ahora, responded a mis preguntas."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The court has heard enough. \"Count Malvento\" is Bepi Sgorbio, a copyist."
+msgstr "El tribunal ya ha oído bastante. El «conde Malvento» es Bepi Sgorbio, un copista."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "He forged his title and his charter. He pays back every toll, and he is a count no more."
+msgstr "Falsificó su título y su carta. Devolverá cada peaje, y ya no es conde."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "And for one year, he will copy the papers of this court. Honestly!"
+msgstr "Y durante un año copiará los papeles de este tribunal. ¡Honradamente!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The fishermen land their catch for free again, from Comacchio to Otranto!"
+msgstr "¡Los pescadores vuelven a descargar su pesca gratis, de Comacchio a Otranto!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "Baba Stana sent a pigeon: \"Well done, captain!\""
+msgstr "Baba Stana mandó una paloma: «¡Bien hecho, {crew|capitán|capitana|capitanes|capitanas}!»"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "For your courage, you get the medal of the Bird Dog!"
+msgstr "¡Por vuestro valor, recibís la medalla del Bird Dog!"
+
+#. the title of a mission, on its card
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The Royal Audience of Trani"
+msgstr "La Real Audiencia de Trani"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid ""
+"Bring the witnesses to the judges in Trani, answer their questions, and the \"Count\" is unmasked "
+"as Bepi."
+msgstr ""
+"Llevad a los testigos ante los jueces de Trani, responded a sus preguntas, y el «conde» quedará "
+"desenmascarado: es Bepi."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid ""
+"From 1586 on, the Royal Audience, a high court of the Kingdom of Naples, sat in Trani. Its judges "
+"heard the cases of the whole land of Bari."
+msgstr ""
+"Desde 1586, la Real Audiencia, un alto tribunal del Reino de Nápoles, tenía su sede en Trani. Sus "
+"jueces veían los casos de toda la tierra de Bari."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The Count is unmasked!"
+msgstr "¡El conde, desenmascarado!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "\"Count Malvento\" was only Bepi Sgorbio, and he pays back every toll."
+msgstr "El «conde Malvento» solo era Bepi Sgorbio, y devuelve cada peaje."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/25_royal_audience_of_trani/mission.tres
+#, fuzzy
+msgid "The whole coast of Italy cheers for the crew!"
+msgstr "¡Toda la costa de Italia aplaude a la tripulación!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "Captain, a letter from Senj! Come quickly."
+msgstr "¡{crew|Capitán|Capitana|Capitanes|Capitanas}, una carta de Senj! Venid deprisa."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "\"Uskoks\" robbed the ships of Venice. But my brother's boats never left the harbour!"
+msgstr ""
+"Unos «uscocos» robaron los barcos de Venecia. ¡Pero los barcos de mi hermano no salieron del "
+"puerto!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "Venice wants to close the whole coast. Follow the false uskoks!"
+msgstr "Venecia quiere cerrar toda la costa. ¡Seguid a los falsos uscocos!"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "Have you seen a boat of uskoks who robbed a ship?"
+msgstr "¿Habéis visto un barco de uscocos que asaltó una nave?"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "Which boat is the false uskoks'?"
+msgstr "¿Cuál es el barco de los falsos uscocos?"
+
+#. a line after the right pick
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "That's the one! Its crew jumps ashore and runs. One of them drops his cap."
+msgstr "¡Ese es! Su tripulación salta a tierra y huye. Uno de ellos pierde su gorro."
+
+#. the objective while sailing, on the banner
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "Show the cap to Juraj in {port}."
+msgstr "Enseñad el gorro a Juraj {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "Ha! Look at this cap! Not a patch, not a hole."
+msgstr "¡Ja! ¡Mirad este gorro! Ni un remiendo, ni un agujero."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "No uskok wears a cap so new. Somebody dressed up as us!"
+msgstr "Ningún uscoco lleva un gorro tan nuevo. ¡Alguien se disfrazó de nosotros!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "The real uskoks of Senj laugh at the cap."
+msgstr "Los uscocos de verdad de Senj se ríen del gorro."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "But who sends the false ones? Venice must hear about it!"
+msgstr "Pero ¿quién envía a los falsos? ¡Venecia tiene que saberlo!"
+
+#. the title of a mission, on its card
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "Caps Too New"
+msgstr "Gorros demasiado nuevos"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "False uskoks rob the ships of Venice. Follow their boat, and look at their caps!"
+msgstr "Falsos uscocos roban los barcos de Venecia. ¡Seguid su barco y fijaos en sus gorros!"
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid ""
+"The uskoks sailed light boats with many oars. They slipped into shallow bays where the big galleys"
+" of Venice could not follow."
+msgstr ""
+"Los uscocos navegaban en barcas ligeras con muchos remos. Se metían en bahías poco profundas donde"
+" las grandes galeras de Venecia no podían seguirlos."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "False uskoks!"
+msgstr "¡Falsos uscocos!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "You found the false uskok boat."
+msgstr "Encontrasteis el barco de los falsos uscocos."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/26_caps_too_new/mission.tres
+#, fuzzy
+msgid "Its brand-new cap shows: these robbers are no uskoks of Senj."
+msgstr "Su gorro nuevecito lo demuestra: esos ladrones no son uscocos de Senj."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Where do the uskoks live?"
+msgstr "¿Dónde viven los uscocos?"
+
+#. an answer on a button, a few words
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "In Corfu"
+msgstr "En Corfú"
+
+#. an answer on a button, a few words
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "In Senj"
+msgstr "En Senj"
+
+#. an answer on a button, a few words
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "In Venice"
+msgstr "En Venecia"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "What gave the false uskoks away?"
+msgstr "¿Qué delató a los falsos uscocos?"
+
+#. an answer on a button, a few words
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Their old patched sails"
+msgstr "Sus viejas velas remendadas"
+
+#. an answer on a button, a few words
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Their golden flags"
+msgstr "Sus banderas doradas"
+
+#. an answer on a button, a few words
+#: data/missions/27_the_doges_ten_days/mission.tres data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Their brand-new caps"
+msgstr "Sus gorros nuevecitos"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Who sent you a pigeon from Senj?"
+msgstr "¿Quién os mandó una paloma desde Senj?"
+
+#. an answer on a button, a few words
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/missions/27_the_doges_ten_days/mission.tres data/world/people/ika.tres
+#, fuzzy
+msgid "Ika"
+msgstr "Ika"
+
+#. an answer on a button, a few words
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/missions/27_the_doges_ten_days/mission.tres data/world/people/alvise.tres
+#, fuzzy
+msgid "Messer Alvise"
+msgstr "Messer Alvise"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Captain, Venice will not believe an uskok."
+msgstr "{crew|Capitán|Capitana|Capitanes|Capitanas}, Venecia no creerá a un uscoco."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "But it may believe you. Bring the cap to Messer Alvise in Venice!"
+msgstr "Pero quizá os crea a vosotros. ¡Llevad el gorro a Messer Alvise, en Venecia!"
+
+#. the objective while sailing, on the banner
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Bring the cap to the Doge's council in {port}."
+msgstr "Llevad el gorro al consejo del dux {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "A cap of an uskok? It looks as if nobody ever wore it."
+msgstr "¿Un gorro de uscoco? Parece que nadie se lo ha puesto nunca."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Tell the council what you saw, captain."
+msgstr "Contad al consejo lo que visteis, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. what a judge says before the questions, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "The council listens. Answer our questions, captain."
+msgstr ""
+"El consejo escucha. Responded a nuestras preguntas, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. a line after a wrong pick
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Hmm, no. Think of your voyage, captain."
+msgstr "Mmm, no. Pensad en vuestro viaje, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Then somebody wants a war between Venice and the Habsburgs."
+msgstr "Entonces alguien quiere una guerra entre Venecia y los Habsburgo."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "The council gives you ten days. Bring us proof, captain!"
+msgstr "El consejo os da diez días. ¡Traednos pruebas, {crew|capitán|capitana|capitanes|capitanas}!"
+
+#. the objective while sailing, on the banner
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Bring the news to Ika in {port}."
+msgstr "Llevad la noticia a Ika {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Ten days? Then we have no time to lose!"
+msgstr "¿Diez días? ¡Entonces no hay tiempo que perder!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Venice waits, for now."
+msgstr "Venecia espera, por ahora."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Let's find out who pays the false uskoks!"
+msgstr "¡Averigüemos quién paga a los falsos uscocos!"
+
+#. the title of a mission, on its card
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "The Doge's Ten Days"
+msgstr "Los diez días del dux"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Bring the cap to the Doge's council in Venice, and win ten days to find the proof."
+msgstr "Llevad el gorro al consejo del dux en Venecia y ganad diez días para encontrar la prueba."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid ""
+"Anybody in Venice could drop a secret letter to the councils into a stone lion's mouth in the "
+"walls of the Doge's Palace."
+msgstr ""
+"En Venecia, cualquiera podía echar una carta secreta para los consejos en la boca de un león de "
+"piedra, en los muros del Palacio Ducal."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Ten days!"
+msgstr "¡Diez días!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "The Doge's council listened to you."
+msgstr "El consejo del dux os escuchó."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/27_the_doges_ten_days/mission.tres
+#, fuzzy
+msgid "Venice waits ten days before it closes the coast."
+msgstr "Venecia espera diez días antes de cerrar la costa."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "Captain, the false uskoks robbed a salt boat of Piran!"
+msgstr ""
+"¡{crew|Capitán|Capitana|Capitanes|Capitanas}, los falsos uscocos robaron un barco de sal de Piran!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "Its owner saw them up close. But she was afraid, and went into hiding."
+msgstr "Su dueña los vio de cerca. Pero tuvo miedo y se escondió."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "Find her somewhere on the coast of Istria!"
+msgstr "¡Buscadla por la costa de Istria!"
+
+#. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "She asked the way to {fact}."
+msgstr "Preguntó cómo ir {fact@to}."
+
+#. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "She sailed on toward {fact}."
+msgstr "Siguió rumbo {fact@to}."
+
+#. a clue; {fact} is a noun phrase like 'the town with the great Roman arena'
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "I heard her talk about {fact}."
+msgstr "La oí hablar {fact@about}."
+
+#. a clue; {hallmark} is a noun phrase like 'a patched red sail'
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "The salt merchant had {hallmark}."
+msgstr "La comerciante de sal tenía {hallmark@acc}."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "Have you seen the salt merchant of Piran?"
+msgstr "¿Habéis visto a la comerciante de sal de Piran?"
+
+#. a line in the last port of a trail
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "She is here, among the women of the market! But which one is she?"
+msgstr "¡Está aquí, entre las mujeres del mercado! Pero ¿cuál es?"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "Which one is the salt merchant of Piran?"
+msgstr "¿Cuál es la comerciante de sal de Piran?"
+
+#. a line after a wrong pick
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "No, that is not her! Remember all three things."
+msgstr "¡No, esa no es! Recordad las tres cosas."
+
+#. a line after the right pick
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "\"Yes, it's me. I saw a fine Habsburg boot under an uskok coat!\""
+msgstr "«Sí, soy yo. ¡Vi una bota fina de los Habsburgo bajo un abrigo de uscoco!»"
+
+#. the objective while sailing, on the banner
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "Bring Benvenuta's statement to {port}."
+msgstr "Llevad la declaración de Benvenuta {port@to}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "A fine boot of a lord, under an uskok coat?"
+msgstr "¿Una bota fina de señor bajo un abrigo de uscoco?"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "I'll keep it safe, captain. It is our first proof."
+msgstr "La guardaré bien, {crew|capitán|capitana|capitanes|capitanas}. Es nuestra primera prueba."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "Real uskoks wear sandals of leather straps."
+msgstr "Los uscocos de verdad llevan sandalias de tiras de cuero."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "That boot belonged to a rich man from the Habsburg side!"
+msgstr "¡Esa bota era de un hombre rico del lado de los Habsburgo!"
+
+#. the title of a mission, on its card
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "The Salt of Piran"
+msgstr "La sal de Piran"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "Find the salt merchant of Piran, who saw the false uskoks up close."
+msgstr "Encontrad a la comerciante de sal de Piran, que vio de cerca a los falsos uscocos."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid ""
+"The salt pans of Sečovlje near Piran have been worked for about 700 years. Salt is still made "
+"there by hand, the old way."
+msgstr ""
+"En las salinas de Sečovlje, cerca de Piran, se trabaja desde hace unos 700 años. Allí aún se hace "
+"la sal a mano, a la antigua."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "A witness!"
+msgstr "¡Una testigo!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "You found Benvenuta, the salt merchant of Piran."
+msgstr "Encontrasteis a Benvenuta, la comerciante de sal de Piran."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/28_salt_of_piran/mission.tres
+#, fuzzy
+msgid "She saw a fine Habsburg boot under the costume."
+msgstr "Vio una bota fina de los Habsburgo bajo el disfraz."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Captain! We found a false uskok boat, left on the rocks near Bakar."
+msgstr ""
+"¡{crew|Capitán|Capitana|Capitanes|Capitanas}! Encontramos un barco de falsos uscocos abandonado en"
+" las rocas cerca de Bakar."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Only a shipwright can tell where its wood comes from."
+msgstr "Solo un constructor de barcos sabe decir de dónde viene su madera."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Fetch Master Ivan from Pula!"
+msgstr "¡Traed al maestro Ivan desde Pula!"
+
+#. the objective while sailing, on the banner
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Fetch Master Ivan in {port}."
+msgstr "Recoged al maestro Ivan {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "A boat to look at? I'm coming, captain!"
+msgstr "¿Un barco que mirar? ¡Voy, {crew|capitán|capitana|capitanes|capitanas}!"
+
+#. the objective while sailing, on the banner
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Bring Master Ivan to the boat in {port}."
+msgstr "Llevad al maestro Ivan al barco {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Hmm. Fresh oak, cut this spring! Real uskok boats are old and patched."
+msgstr ""
+"Mmm. ¡Roble fresco, cortado esta primavera! Los barcos uscocos de verdad son viejos y remendados."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "This oak grew in the Baron's forest behind Bakar. Take a plank!"
+msgstr "Este roble creció en el bosque del barón, detrás de Bakar. ¡Llevaos una tabla!"
+
+#. the objective while sailing, on the banner
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Bring the plank to Ika in {port}."
+msgstr "Llevad la tabla a Ika {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Fresh oak from Baron Isengrim's forest?"
+msgstr "¿Roble fresco del bosque del barón Isengrín?"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "So the wolf is behind it!"
+msgstr "¡Así que el lobo está detrás de todo!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "A shipwright can read wood like a book."
+msgstr "Un constructor de barcos lee la madera como un libro."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "I'll stay in Bakar and look at the Baron's boats a little more."
+msgstr "Me quedaré en Bakar a mirar un poco más los barcos del barón."
+
+#. the title of a mission, on its card
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Fresh Oak"
+msgstr "Roble fresco"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "A false uskok boat was found near Bakar. Fetch Master Ivan to read its wood."
+msgstr ""
+"Han encontrado un barco de falsos uscocos cerca de Bakar. Traed al maestro Ivan para que lea su "
+"madera."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid ""
+"Venice kept its own oak forests for the ships of its Arsenal. Nobody could cut a tree there "
+"without permission."
+msgstr ""
+"Venecia tenía sus propios bosques de robles para los barcos de su Arsenal. Nadie podía cortar allí"
+" un árbol sin permiso."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "The wood tells the truth!"
+msgstr "¡La madera dice la verdad!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "Master Ivan read the wood of the false boat."
+msgstr "El maestro Ivan leyó la madera del barco falso."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/29_fresh_oak/mission.tres
+#, fuzzy
+msgid "It is fresh oak from the forest of Baron Isengrim."
+msgstr "Es roble fresco del bosque del barón Isengrín."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "In which old letters did the priests of Krk write?"
+msgstr "¿En qué alfabeto antiguo escribían los curas de Krk?"
+
+#. an answer on a button, a few words
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "In Glagolitic"
+msgstr "En glagolítico"
+
+#. an answer on a button, a few words
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "In Arabic"
+msgstr "En árabe"
+
+#. an answer on a button, a few words
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "In Greek"
+msgstr "En griego"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Which town has four bell towers in a row?"
+msgstr "¿Qué ciudad tiene cuatro campanarios en fila?"
+
+#. an answer on a button, a few words
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/missions/30_friars_of_kosljun/mission.tres data/world/ports/rab.tres
+#, fuzzy
+msgid "Rab"
+msgstr "Rab"
+
+#. an answer on a button, a few words
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/missions/30_friars_of_kosljun/mission.tres data/world/ports/pula.tres
+#, fuzzy
+msgid "Pula"
+msgstr "Pula"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "\"I lie where Cres and Lošinj almost touch.\" Where is the hideout?"
+msgstr "«Estoy donde Cres y Lošinj casi se tocan.» ¿Dónde está el escondite?"
+
+#. an answer on a button, a few words
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Under the Arena"
+msgstr "Bajo la Arena"
+
+#. an answer on a button, a few words
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "In the Arsenal"
+msgstr "En el Arsenal"
+
+#. an answer on a button, a few words
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Behind Osor"
+msgstr "Detrás de Osor"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Captain, the friars on the islet of Košljun see every boat in their bay."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, los frailes del islote de Košljun ven todos los "
+"barcos de su bahía."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "They sent word: they saw the false boats! Ask Brother Ambroz on Krk."
+msgstr "Han mandado aviso: ¡vieron los barcos falsos! Preguntad a fray Ambroz, en Krk."
+
+#. the objective while sailing, on the banner
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Talk to Brother Ambroz on {port}."
+msgstr "Hablad con fray Ambroz {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Peace be with you, captain. Yes, we saw boats with new white sails."
+msgstr ""
+"La paz sea con vosotros, {crew|capitán|capitana|capitanes|capitanas}. Sí, vimos barcos con velas "
+"blancas nuevas."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "They sailed south between the islands. Ask in the towns!"
+msgstr "Navegaron hacia el sur entre las islas. ¡Preguntad en los pueblos!"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Have you seen boats with brand-new white sails?"
+msgstr "¿Habéis visto barcos con velas blancas nuevecitas?"
+
+#. a line in the last port of a trail
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "They hide close by. Brother Ambroz left you a letter about it."
+msgstr "Se esconden cerca. Fray Ambroz os dejó una carta sobre ello."
+
+#. what a judge says before the questions, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Brother Ambroz wrote you a riddle, captain."
+msgstr "Fray Ambroz os ha escrito una adivinanza, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. what a judge says before the questions, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "\"Answer me, and you will know where the false boats hide.\""
+msgstr "«Respondedme y sabréis dónde se esconden los barcos falsos.»"
+
+#. a line after a wrong pick
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Hmm, no. Read the riddle again, captain."
+msgstr "Mmm, no. Leed otra vez la adivinanza, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "The cove behind Osor! But the false boats have left it."
+msgstr "¡La cala detrás de Osor! Pero los barcos falsos ya se han ido."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Their things are still there, I bet."
+msgstr "Seguro que sus cosas siguen allí."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "The friars of Košljun watch the sea day and night."
+msgstr "Los frailes de Košljun vigilan el mar día y noche."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "Go with God, captain, and look in that cove!"
+msgstr "¡Id con Dios, {crew|capitán|capitana|capitanes|capitanas}, y mirad en esa cala!"
+
+#. the title of a mission, on its card
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "The Friars of Košljun"
+msgstr "Los frailes de Košljun"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid ""
+"The friars on their islet saw where the false boats hide. Follow their word through the islands."
+msgstr ""
+"Desde su islote, los frailes vieron dónde se esconden los barcos falsos. Seguid sus pistas entre "
+"las islas."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid ""
+"Franciscan friars have lived on the islet of Košljun near Krk since 1447. They still keep old "
+"books and maps there."
+msgstr ""
+"Desde 1447 viven frailes franciscanos en el islote de Košljun, cerca de Krk. Aún guardan allí "
+"libros y mapas antiguos."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "The hideout is found!"
+msgstr "¡Escondite encontrado!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "The riddle of Brother Ambroz led you to the cove behind Osor."
+msgstr "La adivinanza de fray Ambroz os llevó a la cala detrás de Osor."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/30_friars_of_kosljun/mission.tres
+#, fuzzy
+msgid "The false uskoks are gone, but their hideout is not."
+msgstr "Los falsos uscocos se han ido, pero su escondite sigue ahí."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Uskok coats from the cove, all brand-new!"
+msgstr "Abrigos de uscoco de la cala, ¡todos nuevecitos!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Take them, captain."
+msgstr "Lleváoslos, {crew|capitán|capitana|capitanes|capitanas}."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Flags with the uskok sign, never touched by the wind."
+msgstr "Banderas con el emblema de los uscocos, que el viento nunca ha tocado."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "They washed up below my quarry."
+msgstr "El mar las trajo al pie de mi cantera."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Bales of Venetian cloth, hidden in the cave of my sheep!"
+msgstr "¡Fardos de tela veneciana, escondidos en la cueva de mis ovejas!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "This is the stolen cargo."
+msgstr "Esta es la carga robada."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Captain, the cove is empty, but the false uskoks left in a hurry."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, la cala está vacía, pero los falsos uscocos se fueron"
+" con prisa."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "The people of the islands found their things. Collect them all!"
+msgstr "La gente de las islas encontró sus cosas. ¡Reunidlas todas!"
+
+#. the objective while sailing, on the banner
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Collect {count} more {count|thing|things} from the hideout."
+msgstr "Reunid {count} {count|cosa|cosas} más del escondite."
+
+#. the objective while sailing, on the banner
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Bring everything to Juraj in {port}."
+msgstr "Llevadlo todo a Juraj {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Look at these coats! Not one of us ever wore them."
+msgstr "¡Mirad estos abrigos! Ninguno de nosotros se los ha puesto nunca."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "And false flags! They were sewn last month."
+msgstr "¡Y banderas falsas! Las cosieron el mes pasado."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "The cloth of the Venetian ships! We will give it back."
+msgstr "¡La tela de los barcos venecianos! La devolveremos."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Costumes, flags and the stolen cloth: a whole chest of proof!"
+msgstr "Disfraces, banderas y la tela robada: ¡un cofre entero de pruebas!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Now we only need to know who paid for it all."
+msgstr "Ahora solo falta saber quién lo pagó todo."
+
+#. the title of a mission, on its card
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "The Hidden Cove"
+msgstr "La cala escondida"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "The hideout of the false uskoks is empty. Collect what they left behind on the islands."
+msgstr "El escondite de los falsos uscocos está vacío. Reunid lo que dejaron en las islas."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid ""
+"The canal of Osor was dug already in Roman times. Boats still sail through it between Cres and "
+"Lošinj, under a bridge which swings aside."
+msgstr ""
+"El canal de Osor ya se excavó en tiempos de los romanos. Los barcos aún pasan por él entre Cres y "
+"Lošinj, bajo un puente que gira a un lado."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "The proofs are in Senj!"
+msgstr "¡Las pruebas están en Senj!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "You collected the costumes, the flags and the stolen cloth."
+msgstr "Reunisteis los disfraces, las banderas y la tela robada."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/31_hidden_cove/mission.tres
+#, fuzzy
+msgid "Juraj keeps them safe in the Nehaj fortress."
+msgstr "Juraj los guarda a salvo en la fortaleza de Nehaj."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "Captain, the Baron's steward was here, asking about you!"
+msgstr ""
+"¡{crew|Capitán|Capitana|Capitanes|Capitanas}, el mayordomo del barón estuvo aquí preguntando por "
+"vosotros!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "He carries the payroll: the list of the men paid to play uskoks."
+msgstr "Lleva la nómina: la lista de los hombres pagados para hacerse pasar por uscocos."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "He fled by boat. Chase him!"
+msgstr "Huyó en barco. ¡Perseguidlo!"
+
+#. a clue; {hallmark} is a noun phrase like 'a patched red sail'
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "The steward had {hallmark}."
+msgstr "El mayordomo tenía {hallmark@acc}."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "Have you seen the Baron's steward?"
+msgstr "¿Habéis visto al mayordomo del barón?"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "Which one is the Baron's steward?"
+msgstr "¿Cuál es el mayordomo del barón?"
+
+#. a line after a wrong pick
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "No, that is not the steward! Remember all four things you learned."
+msgstr "¡No, ese no es el mayordomo! Recordad las cuatro cosas que averiguasteis."
+
+#. a line after the right pick
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "\"Alright! Here is the payroll. The Baron signed every page.\""
+msgstr "«¡Vale! Aquí está la nómina. El barón firmó cada página.»"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "\"The Baron never even paid me!\""
+msgstr "«¡El barón ni siquiera me pagó!»"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "\"I will tell the Archduke's commissioner everything.\""
+msgstr "«Se lo contaré todo al comisario del archiduque.»"
+
+#. the title of a mission, on its card
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "The Steward's Ledger"
+msgstr "El libro de cuentas del mayordomo"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "The Baron's steward flees with the payroll of the false uskoks. Chase him!"
+msgstr "El mayordomo del barón huye con la nómina de los falsos uscocos. ¡Perseguidlo!"
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid ""
+"Around 1600, Rijeka and Trieste belonged to the Archduke of Inner Austria, a Habsburg who ruled "
+"from the town of Graz."
+msgstr ""
+"Hacia 1600, Rijeka y Trieste pertenecían al archiduque de Austria Interior, un Habsburgo que "
+"gobernaba desde la ciudad de Graz."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "The payroll is yours!"
+msgstr "¡La nómina es vuestra!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "You chased the steward through Kvarner and Istria."
+msgstr "Perseguisteis al mayordomo por el Kvarner e Istria."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/32_stewards_ledger/mission.tres
+#, fuzzy
+msgid "His payroll shows who paid the false uskoks: Baron Isengrim."
+msgstr "Su nómina muestra quién pagaba a los falsos uscocos: el barón Isengrín."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "Captain, the Archduke sent a commissioner to Trieste."
+msgstr ""
+"{crew|Capitán|Capitana|Capitanes|Capitanas}, el archiduque ha enviado un comisario a Trieste."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "He will judge the Baron, but Venice must send an envoy, too."
+msgstr "Él juzgará al barón, pero Venecia también tiene que mandar un enviado."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "Get his safe-conduct for the envoy, and carry it to Venice!"
+msgstr "¡Conseguid su salvoconducto para el enviado y llevadlo a Venecia!"
+
+#. the objective while sailing, on the banner
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "Get the safe-conduct of the commissioner in {port}."
+msgstr "Conseguid el salvoconducto del comisario {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "The Baron has shamed the Archduke's name."
+msgstr "El barón ha deshonrado el nombre del archiduque."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "With this letter, the envoy of Venice may come safely to Rijeka."
+msgstr "Con esta carta, el enviado de Venecia puede venir a Rijeka sin peligro."
+
+#. the objective while sailing, on the banner
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "Bring the safe-conduct to the envoy in {port}."
+msgstr "Llevad el salvoconducto al enviado {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "A safe-conduct of the Archduke, for a Venetian? Times change!"
+msgstr "¿Un salvoconducto del archiduque para un veneciano? ¡Cómo cambian los tiempos!"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "I will sail to Rijeka at once."
+msgstr "Zarparé hacia Rijeka ahora mismo."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "The lion of St. Mark and the eagle of the Habsburgs at one table."
+msgstr "El león de San Marcos y el águila de los Habsburgo en la misma mesa."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "Peace is worth a voyage, captain!"
+msgstr "¡La paz bien vale un viaje, {crew|capitán|capitana|capitanes|capitanas}!"
+
+#. the title of a mission, on its card
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "Two Flags"
+msgstr "Dos banderas"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid ""
+"Carry the commissioner's safe-conduct from Trieste to the envoy in Venice. Mind both patrols!"
+msgstr ""
+"Llevad el salvoconducto del comisario de Trieste al enviado de Venecia. ¡Cuidado con las dos "
+"patrullas!"
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid ""
+"A safe-conduct was a letter which promised a traveller that nobody would stop or harm him, even in"
+" the land of another ruler."
+msgstr ""
+"Un salvoconducto era una carta que prometía a un viajero que nadie lo detendría ni le haría daño, "
+"ni siquiera en las tierras de otro señor."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "The envoy is coming!"
+msgstr "¡El enviado ya viene!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "You carried the safe-conduct past the patrols of two powers."
+msgstr "Llevasteis el salvoconducto sorteando las patrullas de dos potencias."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/33_two_flags/mission.tres
+#, fuzzy
+msgid "The envoy of Venice sails to Rijeka."
+msgstr "El enviado de Venecia navega hacia Rijeka."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "I'll come, bura or no bura!"
+msgstr "¡Iré, con bora o sin bora!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "The Lord gave us the bura, and the captain to sail in it."
+msgstr ""
+"El Señor nos dio la bora, y {crew|un capitán|una capitana|unos capitanes|unas capitanas} para "
+"navegar en ella."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "Let's go!"
+msgstr "¡Vamos!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "I have counted the Baron's planks. Every one is fresh oak!"
+msgstr "He contado las tablas del barón. ¡Todas son de roble fresco!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "Captain, the meeting in Rijeka is soon!"
+msgstr "¡{crew|Capitán|Capitana|Capitanes|Capitanas}, pronto será la reunión de Rijeka!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "Bring the witnesses: Juraj, Brother Ambroz on Krk and Master Ivan in Bakar."
+msgstr "Llevad a los testigos: Juraj, fray Ambroz en Krk y el maestro Ivan en Bakar."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "But hold on tight: the bura is blowing hard today."
+msgstr "Pero agarraos bien: hoy la bora sopla fuerte."
+
+#. the objective while sailing, on the banner
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "Bring the witnesses to the commissioner in {port}."
+msgstr "Llevad a los testigos ante el comisario {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "An uskok captain, here of his own free will. Welcome."
+msgstr "Un capitán uscoco, aquí por su propia voluntad. Bienvenido."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "A friar of Košljun. Your word weighs much, brother."
+msgstr "Un fraile de Košljun. Vuestra palabra pesa mucho, hermano."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "And the shipwright who reads wood. Tomorrow, we meet."
+msgstr "Y el constructor que lee la madera. Mañana nos reunimos."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "We sailed through the hardest bura of the year!"
+msgstr "¡Navegamos con la bora más fuerte del año!"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "Tomorrow, the truth comes out."
+msgstr "Mañana saldrá la verdad a la luz."
+
+#. the title of a mission, on its card
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "Through the Bura"
+msgstr "A través de la bora"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "The hardest bura of all. Bring Juraj, the friar and Master Ivan to the meeting in Rijeka."
+msgstr ""
+"La bora más fuerte de todas. Llevad a Juraj, al fraile y al maestro Ivan a la reunión de Rijeka."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid ""
+"The bura falls cold from the Velebit mountains onto the sea. Near Senj, its gusts can blow faster "
+"than 200 kilometres an hour."
+msgstr ""
+"La bora baja fría de los montes Velebit hasta el mar. Cerca de Senj, sus rachas pueden superar los"
+" 200 kilómetros por hora."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "Through the bura!"
+msgstr "¡A través de la bora!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "You brought every witness to Rijeka, through the hardest bura."
+msgstr "Llevasteis a todos los testigos a Rijeka, con la bora más fuerte."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/34_through_the_bura/mission.tres
+#, fuzzy
+msgid "The commissioner and the envoy are ready."
+msgstr "El comisario y el enviado están listos."
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "What gave the false uskoks away first?"
+msgstr "¿Qué delató primero a los falsos uscocos?"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Their old boots"
+msgstr "Sus botas viejas"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Their black flag"
+msgstr "Su bandera negra"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "What did the salt merchant of Piran see under the costume?"
+msgstr "¿Qué vio la comerciante de sal de Piran bajo el disfraz?"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "A wooden leg"
+msgstr "Una pata de palo"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "A fine Habsburg boot"
+msgstr "Una bota fina de los Habsburgo"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "A golden spur"
+msgstr "Una espuela de oro"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "What were the false boats built of?"
+msgstr "¿De qué estaban hechos los barcos falsos?"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Old patched pine"
+msgstr "Pino viejo remendado"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Venetian glass"
+msgstr "Cristal veneciano"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Fresh oak of the Baron's forest"
+msgstr "Roble fresco del bosque del barón"
+
+#. what the crew asks, or what the crew is asked
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Whose name is on the steward's payroll?"
+msgstr "¿Qué nombre aparece en la nómina del mayordomo?"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Juraj's"
+msgstr "El de Juraj"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Baron Isengrim's"
+msgstr "El del barón Isengrín"
+
+#. an answer on a button, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "The Doge's"
+msgstr "El del dux"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Captain, today the commissioner and the envoy meet."
+msgstr "{crew|Capitán|Capitana|Capitanes|Capitanas}, hoy se reúnen el comisario y el enviado."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "We have the cap, the oak, the costumes, the payroll and the witnesses."
+msgstr "Tenemos el gorro, el roble, los disfraces, la nómina y los testigos."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Show them the payroll, and answer well!"
+msgstr "¡Enseñadles la nómina y responded bien!"
+
+#. the objective while sailing, on the banner
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Bring the payroll to the commissioner in {port}."
+msgstr "Llevad la nómina al comisario {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "The envoy of Venice and I have read everything."
+msgstr "El enviado de Venecia y yo lo hemos leído todo."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Now, answer our questions."
+msgstr "Ahora, responded a nuestras preguntas."
+
+#. what a judge says before the questions, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Messer Marcantonio listens for Venice. I ask for the Archduke."
+msgstr "Messer Marcantonio escucha por Venecia. Yo pregunto en nombre del archiduque."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "The uskoks of Senj did not rob the ships. Venice calls off the blockade."
+msgstr "Los uscocos de Senj no robaron los barcos. Venecia levanta el bloqueo."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Baron Isengrim loses his lands and pays back every cargo."
+msgstr "El barón Isengrín pierde sus tierras y devuelve cada carga."
+
+#. what a judge says after the right answers, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "And he will muck out the stables of the Archduke's horses in Lipica!"
+msgstr "¡Y limpiará las cuadras de los caballos del archiduque en Lipica!"
+
+#. the objective while sailing, on the banner
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Tell Baron Isengrim the ruling in {port}."
+msgstr "Comunicad la sentencia al barón Isengrín {port@in}."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Stables? Me? With a shovel?"
+msgstr "¿Cuadras? ¿Yo? ¿Con una pala?"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "...Fine. But I keep my wolf hat."
+msgstr "...Está bien. Pero me quedo mi gorro de lobo."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Peace, captain! Take me home to Senj."
+msgstr "¡Paz, {crew|capitán|capitana|capitanes|capitanas}! Llevadme a casa, a Senj."
+
+#. a line of thanks, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Brother! The whole town is on the walls of Nehaj, waving!"
+msgstr "¡Hermano! ¡Todo el pueblo está en las murallas de Nehaj, saludando!"
+
+#. a line of thanks, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "You are home, captain! Two empires made peace thanks to you."
+msgstr ""
+"¡Estáis en casa, {crew|capitán|capitana|capitanes|capitanas}! Dos imperios hicieron las paces "
+"gracias a vosotros."
+
+#. a line which a person says, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Everybody came to the Arena: Ika and Juraj, Master Ivan and Katarina,"
+msgstr "Todos vinieron a la Arena: Ika y Juraj, el maestro Ivan y Katarina,"
+
+#. a line which a person says, at most two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Benvenuta, Brother Ambroz, Messer Alvise, Luka from Bari, and the children of Grebaštica!"
+msgstr "¡Benvenuta, fray Ambroz, Messer Alvise, Luka de Bari y los niños de Grebaštica!"
+
+#. the title of a mission, on its card
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "The Peace of Rijeka"
+msgstr "La paz de Rijeka"
+
+#. the summary of a mission, one or two short sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Answer the commissioner and the envoy in Rijeka, bring Juraj home, and sail home to Pula."
+msgstr ""
+"Responded al comisario y al enviado en Rijeka, llevad a Juraj a casa y volved a casa, a Pula."
+
+#. a fun fact at the end of a mission, at most three sentences
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid ""
+"The real story was less happy: Venice and the Habsburgs fought the Uskok War in 1615–1617, and "
+"then the uskoks were moved from Senj inland. The stud of Lipica, founded in 1580, still breeds the"
+" white Lipizzaner horses."
+msgstr ""
+"La historia real fue menos feliz: Venecia y los Habsburgo libraron la guerra de los uscocos en "
+"1615–1617, y luego los uscocos fueron llevados de Senj tierra adentro. La yeguada de Lipica, "
+"fundada en 1580, aún cría los caballos blancos lipizanos."
+
+#. the headline of the screen at the end of a mission, a few words
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Peace on the Adriatic!"
+msgstr "¡Paz en el Adriático!"
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Venice called off the blockade, and the Baron mucks out the stables of Lipica."
+msgstr "Venecia levantó el bloqueo, y el barón limpia las cuadras de Lipica."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "Juraj's crew becomes the pilots and the rescuers of Kvarner."
+msgstr "Los hombres de Juraj son ahora los prácticos y los socorristas del Kvarner."
+
+#. what the crew achieved, on the screen at the end of a mission, one sentence
+#: data/missions/35_peace_of_rijeka/mission.tres
+#, fuzzy
+msgid "The whole Arena of Pula cheers!"
+msgstr "¡Toda la Arena de Pula aplaude!"
+
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/boats/aga_boat.tres
 #, fuzzy
@@ -3592,16 +6790,41 @@ msgid "the Aga's boat"
 msgstr "el barco del Aga"
 
 #. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/boats/red_trader.tres
+#: data/world/boats/ch2_golden_barge.tres
+#, fuzzy
+msgid "a barge of the lagoon"
+msgstr "una barcaza de la laguna"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/boats/ch2_yellow_fisher.tres data/world/boats/ch3_pale_fisher.tres
+#: data/world/boats/white_fisher.tres
+#, fuzzy
+msgid "a fishing boat"
+msgstr "un barco de pesca"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/boats/ch3_false_uskok_boat.tres
+#, fuzzy
+msgid "the false uskok boat"
+msgstr "el barco de los falsos uscocos"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/boats/ch3_uskok_boat.tres
+#, fuzzy
+msgid "an uskok boat of Senj"
+msgstr "un barco uscoco de Senj"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/boats/ch3_white_trader.tres data/world/boats/red_trader.tres
 #, fuzzy
 msgid "a trading boat"
 msgstr "un barco mercante"
 
 #. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/boats/white_fisher.tres
+#: data/world/boats/malvento_boat.tres
 #, fuzzy
-msgid "a fishing boat"
-msgstr "un barco de pesca"
+msgid "the Count's boat"
+msgstr "el barco del conde"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/boosters/bread_water.tres
@@ -4036,6 +7259,114 @@ msgid "a carpenter's pencil behind the ear"
 msgstr "un lápiz de carpintero detrás de la oreja"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_big_wig.tres
+#, fuzzy
+msgid "a wig too big for the head"
+msgstr "una peluca demasiado grande"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_golden_hull.tres
+#, fuzzy
+msgid "a golden hull"
+msgstr "un casco dorado"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_paper_roll.tres
+#, fuzzy
+msgid "a roll of paper under the arm"
+msgstr "un rollo de papel bajo el brazo"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_red_felt_hat.tres
+#, fuzzy
+msgid "a red felt hat"
+msgstr "un sombrero rojo de fieltro"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_seal_ring.tres
+#, fuzzy
+msgid "a ring with a false seal"
+msgstr "un anillo con un sello falso"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_tiny_chisel.tres
+#, fuzzy
+msgid "a tiny chisel behind the ear"
+msgstr "un cincel diminuto detrás de la oreja"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_violets.tres
+#, fuzzy
+msgid "a smell of violets"
+msgstr "un olor a violetas"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_wax_fingers.tres
+#, fuzzy
+msgid "fingers red from sealing wax"
+msgstr "los dedos rojos de lacre"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_yellow_gloves.tres
+#, fuzzy
+msgid "yellow gloves"
+msgstr "unos guantes amarillos"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch2_yellow_sail.tres
+#, fuzzy
+msgid "a yellow sail"
+msgstr "una vela amarilla"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch3_coral_beads.tres
+#, fuzzy
+msgid "a string of red coral beads"
+msgstr "un collar de cuentas de coral rojo"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch3_feather_hat.tres
+#, fuzzy
+msgid "a hat with a pheasant feather"
+msgstr "un sombrero con una pluma de faisán"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch3_fur_collar.tres
+#, fuzzy
+msgid "a coat with a fur collar"
+msgstr "un abrigo con cuello de piel"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch3_keys.tres
+#, fuzzy
+msgid "a big bunch of keys on his belt"
+msgstr "un gran manojo de llaves en el cinturón"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch3_new_white_sail.tres
+#, fuzzy
+msgid "a brand-new white sail"
+msgstr "una vela blanca nuevecita"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch3_pale_hull.tres
+#, fuzzy
+msgid "a hull of pale new wood"
+msgstr "un casco de madera nueva y clara"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch3_salt_bag.tres
+#, fuzzy
+msgid "a little bag of salt on her belt"
+msgstr "una bolsita de sal en el cinturón"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/hallmarks/ch3_wolf_ring.tres
+#, fuzzy
+msgid "a silver ring with a wolf on it"
+msgstr "un anillo de plata con un lobo"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/hallmarks/goose_quill.tres
 #, fuzzy
 msgid "a goose quill behind the ear"
@@ -4144,6 +7475,114 @@ msgid "the bell of Grebaštica"
 msgstr "la campana de Grebaštica"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_charm_ancona.tres
+#, fuzzy
+msgid "a wind charm from Ancona"
+msgstr "un amuleto del viento de Ancona"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_charm_fano.tres
+#, fuzzy
+msgid "a wind charm from Fano"
+msgstr "un amuleto del viento de Fano"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_charm_rimini.tres
+#, fuzzy
+msgid "a wind charm from Rimini"
+msgstr "un amuleto del viento de Rímini"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_eel_nets.tres
+#, fuzzy
+msgid "the eel nets of Comacchio"
+msgstr "las redes de anguilas de Comacchio"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_oil_monopoli.tres
+#, fuzzy
+msgid "the olive oil of Monopoli"
+msgstr "el aceite de oliva de Monopoli"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_old_letters.tres
+#, fuzzy
+msgid "Bepi's old letters"
+msgstr "las viejas cartas de Bepi"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_passenger_pilgrims.tres data/world/people/ch2_pilgrims.tres
+#, fuzzy
+msgid "the pilgrims of Pescara"
+msgstr "los peregrinos de Pescara"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_pressing_mats.tres
+#, fuzzy
+msgid "the pressing mats"
+msgstr "los capachos de prensar"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_seal_mould.tres
+#, fuzzy
+msgid "the mould of the false seal"
+msgstr "el molde del sello falso"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch2_toll_paper.tres
+#, fuzzy
+msgid "the page with the watermark"
+msgstr "la página con la filigrana"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch3_cargo.tres
+#, fuzzy
+msgid "the stolen cloth"
+msgstr "la tela robada"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch3_costumes.tres
+#, fuzzy
+msgid "the uskok costumes"
+msgstr "los disfraces de uscoco"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch3_flags.tres
+#, fuzzy
+msgid "the false flags"
+msgstr "las banderas falsas"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch3_new_cap.tres
+#, fuzzy
+msgid "the brand-new cap"
+msgstr "el gorro nuevecito"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch3_oak_plank.tres
+#, fuzzy
+msgid "the plank of fresh oak"
+msgstr "la tabla de roble fresco"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch3_payroll.tres
+#, fuzzy
+msgid "the steward's payroll"
+msgstr "la nómina del mayordomo"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch3_safe_conduct.tres
+#, fuzzy
+msgid "the safe-conduct"
+msgstr "el salvoconducto"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/ch3_salt_statement.tres
+#, fuzzy
+msgid "Benvenuta's statement"
+msgstr "la declaración de Benvenuta"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/items/complaint.tres
 #, fuzzy
 msgid "the complaint of the villages"
@@ -4154,6 +7593,12 @@ msgstr "la queja de los pueblos"
 #, fuzzy
 msgid "the fir mast"
 msgstr "el mástil de abeto"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/golden_charter.tres
+#, fuzzy
+msgid "the Golden Charter"
+msgstr "la Carta de Oro"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/items/goods_cloth.tres
@@ -4240,16 +7685,16 @@ msgid "the oranges"
 msgstr "las naranjas"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/passenger_anselmo.tres data/world/people/anselmo.tres
+#, fuzzy
+msgid "Ser Anselmo"
+msgstr "Ser Anselmo"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/items/passenger_juraj.tres data/world/people/juraj.tres
 #, fuzzy
 msgid "Juraj"
 msgstr "Juraj"
-
-#. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/items/passenger_luka.tres data/world/people/luka.tres
-#, fuzzy
-msgid "Luka"
-msgstr "Luka"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/items/pilgrims.tres data/world/people/pilgrims.tres
@@ -4288,6 +7733,12 @@ msgid "the list of the villages"
 msgstr "la lista de los pueblos"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/witness_ambroz.tres data/world/people/fra_ambroz.tres
+#, fuzzy
+msgid "Brother Ambroz"
+msgstr "Fray Ambroz"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/items/witness_ivan.tres
 #, fuzzy
 msgid "Master Ivan, the witness"
@@ -4306,16 +7757,34 @@ msgid "Crooked Mast, the witness"
 msgstr "Mástil Torcido, testigo"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/witness_luka.tres
+#, fuzzy
+msgid "Luka, the witness"
+msgstr "Luka, testigo"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/items/witness_marin.tres
 #, fuzzy
 msgid "Doctor Marin, the witness"
 msgstr "Doctor Marin, testigo"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/witness_michele.tres
+#, fuzzy
+msgid "Michele, the witness"
+msgstr "Michele, testigo"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/items/witness_mustafa.tres
 #, fuzzy
 msgid "Mustafa, the witness"
 msgstr "Mustafa, testigo"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/items/witness_vito.tres
+#, fuzzy
+msgid "Vito, the witness"
+msgstr "Vito, testigo"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/agim.tres
@@ -4328,12 +7797,6 @@ msgstr "Agim"
 #, fuzzy
 msgid "a fisherman of Ulcinj"
 msgstr "un pescador de Ulcinj"
-
-#. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/people/alvise.tres
-#, fuzzy
-msgid "Messer Alvise"
-msgstr "Messer Alvise"
 
 #. what a person does, under their name
 #: data/world/people/alvise.tres
@@ -4352,6 +7815,12 @@ msgstr "Anica"
 #, fuzzy
 msgid "a young lady of Grebaštica"
 msgstr "una joven de Grebaštica"
+
+#. what a person does, under their name
+#: data/world/people/anselmo.tres
+#, fuzzy
+msgid "a paper merchant of Fabriano"
+msgstr "un mercader de papel de Fabriano"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/assunta.tres
@@ -4378,6 +7847,18 @@ msgid "the wise grandmother of Pula"
 msgstr "la sabia abuela de Pula"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/baron_isengrim.tres
+#, fuzzy
+msgid "Baron Isengrim"
+msgstr "Barón Isengrín"
+
+#. what a person does, under their name
+#: data/world/people/baron_isengrim.tres
+#, fuzzy
+msgid "a lord near Rijeka"
+msgstr "un señor cerca de Rijeka"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/beekeeper.tres
 #, fuzzy
 msgid "Drita"
@@ -4388,6 +7869,18 @@ msgstr "Drita"
 #, fuzzy
 msgid "a beekeeper of Vlorë"
 msgstr "una apicultora de Vlorë"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/benvenuta.tres
+#, fuzzy
+msgid "Benvenuta"
+msgstr "Benvenuta"
+
+#. what a person does, under their name
+#: data/world/people/benvenuta.tres
+#, fuzzy
+msgid "a salt merchant of Piran"
+msgstr "una comerciante de sal de Piran"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/besa.tres
@@ -4437,17 +7930,161 @@ msgstr "Bortolo"
 msgid "a fisherman of Caorle"
 msgstr "un pescador de Caorle"
 
-#. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/people/brother_romualdo.tres
-#, fuzzy
-msgid "Brother Romualdo"
-msgstr "Fray Romualdo"
-
 #. what a person does, under their name
 #: data/world/people/brother_romualdo.tres
 #, fuzzy
 msgid "a monk of San Vitale"
 msgstr "un monje de San Vital"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch2_actor.tres
+#, fuzzy
+msgid "an actor"
+msgstr "un actor"
+
+#. what a person does, under their name
+#: data/world/people/ch2_actor.tres
+#, fuzzy
+msgid "an actor of the comedy"
+msgstr "un actor de la comedia"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch2_banker.tres
+#, fuzzy
+msgid "a banker"
+msgstr "un banquero"
+
+#. what a person does, under their name
+#: data/world/people/ch2_banker.tres
+#, fuzzy
+msgid "a lender of money"
+msgstr "un prestamista"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch2_bookbinder.tres
+#, fuzzy
+msgid "a bookbinder"
+msgstr "un encuadernador"
+
+#. what a person does, under their name
+#: data/world/people/ch2_bookbinder.tres
+#, fuzzy
+msgid "a binder of books"
+msgstr "un encuadernador de libros"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch2_candlemaker.tres
+#, fuzzy
+msgid "a candlemaker"
+msgstr "un cerero"
+
+#. what a person does, under their name
+#: data/world/people/ch2_candlemaker.tres
+#, fuzzy
+msgid "a maker of candles"
+msgstr "un fabricante de velas de cera"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch2_hatter.tres
+#, fuzzy
+msgid "a hatter"
+msgstr "un sombrerero"
+
+#. what a person does, under their name
+#: data/world/people/ch2_hatter.tres
+#, fuzzy
+msgid "a maker of hats"
+msgstr "un fabricante de sombreros"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch2_perfumer.tres
+#, fuzzy
+msgid "a perfumer"
+msgstr "un perfumista"
+
+#. what a person does, under their name
+#: data/world/people/ch2_perfumer.tres
+#, fuzzy
+msgid "a seller of scents"
+msgstr "un vendedor de perfumes"
+
+#. what a person does, under their name
+#: data/world/people/ch2_pilgrims.tres
+#, fuzzy
+msgid "pilgrims on the way to Loreto"
+msgstr "peregrinos camino de Loreto"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch2_toll_man.tres
+#, fuzzy
+msgid "the toll man"
+msgstr "el cobrador"
+
+#. what a person does, under their name
+#: data/world/people/ch2_toll_man.tres
+#, fuzzy
+msgid "a toll collector of the Count"
+msgstr "un cobrador de peajes del conde"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch3_customs_man.tres
+#, fuzzy
+msgid "a customs man"
+msgstr "un aduanero"
+
+#. what a person does, under their name
+#: data/world/people/ch3_customs_man.tres
+#, fuzzy
+msgid "a customs man of Trieste"
+msgstr "un aduanero de Trieste"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch3_fishwife.tres
+#, fuzzy
+msgid "a fishwife"
+msgstr "una pescadera"
+
+#. what a person does, under their name
+#: data/world/people/ch3_fishwife.tres
+#, fuzzy
+msgid "a fish seller of Koper"
+msgstr "una pescadera de Koper"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch3_innkeeper.tres
+#, fuzzy
+msgid "an innkeeper"
+msgstr "un posadero"
+
+#. what a person does, under their name
+#: data/world/people/ch3_innkeeper.tres
+#, fuzzy
+msgid "an innkeeper of Rijeka"
+msgstr "un posadero de Rijeka"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch3_salt_worker.tres
+#, fuzzy
+msgid "a salt worker"
+msgstr "una salinera"
+
+#. what a person does, under their name
+#: data/world/people/ch3_salt_worker.tres
+#, fuzzy
+msgid "a salt worker of Piran"
+msgstr "una salinera de Piran"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ch3_timber_trader.tres
+#, fuzzy
+msgid "a timber trader"
+msgstr "un maderero"
+
+#. what a person does, under their name
+#: data/world/people/ch3_timber_trader.tres
+#, fuzzy
+msgid "a timber trader of Bakar"
+msgstr "un comerciante de madera de Bakar"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/clerk.tres
@@ -4485,6 +8122,30 @@ msgstr "Lekë el Mástil Torcido"
 msgid "a corsair captain of Ulcinj"
 msgstr "un capitán corsario de Ulcinj"
 
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/count_malvento.tres
+#, fuzzy
+msgid "Count Malvento"
+msgstr "Conde Malvento"
+
+#. what a person does, under their name
+#: data/world/people/count_malvento.tres
+#, fuzzy
+msgid "a count, as he says"
+msgstr "un conde, según él"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/dobrila.tres
+#, fuzzy
+msgid "Dobrila"
+msgstr "Dobrila"
+
+#. what a person does, under their name
+#: data/world/people/dobrila.tres
+#, fuzzy
+msgid "a shepherdess of Krk"
+msgstr "una pastora de Krk"
+
 #. what a person does, under their name
 #: data/world/people/doctor_marin.tres
 #, fuzzy
@@ -4504,6 +8165,18 @@ msgid "a priest of the old letters"
 msgstr "un sacerdote de las letras antiguas"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/donata.tres
+#, fuzzy
+msgid "Donata"
+msgstr "Donata"
+
+#. what a person does, under their name
+#: data/world/people/donata.tres
+#, fuzzy
+msgid "a mat weaver of Brindisi"
+msgstr "una tejedora de capachos de Brindisi"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/dora.tres
 #, fuzzy
 msgid "Dora"
@@ -4514,6 +8187,18 @@ msgstr "Dora"
 #, fuzzy
 msgid "a singer"
 msgstr "una cantante"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/ehrenfried.tres
+#, fuzzy
+msgid "Commissioner Ehrenfried"
+msgstr "Comisario Ehrenfried"
+
+#. what a person does, under their name
+#: data/world/people/ehrenfried.tres
+#, fuzzy
+msgid "the Archduke's commissioner"
+msgstr "el comisario del archiduque"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/eleni.tres
@@ -4563,6 +8248,24 @@ msgstr "Fortunata"
 msgid "a baker of Fano"
 msgstr "una panadera de Fano"
 
+#. what a person does, under their name
+#: data/world/people/fra_ambroz.tres
+#, fuzzy
+msgid "a friar of Košljun"
+msgstr "un fraile de Košljun"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/frane.tres data/world/people/porter.tres
+#, fuzzy
+msgid "Frane"
+msgstr "Frane"
+
+#. what a person does, under their name
+#: data/world/people/frane.tres
+#, fuzzy
+msgid "the bridge keeper of Osor"
+msgstr "el guardián del puente de Osor"
+
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/friar.tres
 #, fuzzy
@@ -4574,6 +8277,18 @@ msgstr "Fray Frane"
 #, fuzzy
 msgid "the apothecary of the Franciscans"
 msgstr "el boticario de los franciscanos"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/gaspare.tres
+#, fuzzy
+msgid "Gaspare"
+msgstr "Gaspare"
+
+#. what a person does, under their name
+#: data/world/people/gaspare.tres
+#, fuzzy
+msgid "a fisherman of Rimini"
+msgstr "un pescador de Rímini"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/gertraud.tres
@@ -4598,12 +8313,6 @@ msgstr "Spiros"
 #, fuzzy
 msgid "the harbour master of Corfu"
 msgstr "el capitán del puerto de Corfú"
-
-#. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/people/ika.tres
-#, fuzzy
-msgid "Ika"
-msgstr "Ika"
 
 #. what a person does, under their name
 #: data/world/people/ika.tres
@@ -4634,6 +8343,18 @@ msgstr "un ebanista"
 #, fuzzy
 msgid "a carpenter of the harbour"
 msgstr "un carpintero del puerto"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/judge_trani.tres
+#, fuzzy
+msgid "Don Ferrante"
+msgstr "Don Ferrante"
+
+#. what a person does, under their name
+#: data/world/people/judge_trani.tres
+#, fuzzy
+msgid "a judge of the Royal Audience"
+msgstr "un juez de la Real Audiencia"
 
 #. what a person does, under their name
 #: data/world/people/juraj.tres
@@ -4678,6 +8399,18 @@ msgid "a fish seller of Šibenik"
 msgstr "una pescadera de Šibenik"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/kuzma.tres
+#, fuzzy
+msgid "Kuzma"
+msgstr "Kuzma"
+
+#. what a person does, under their name
+#: data/world/people/kuzma.tres
+#, fuzzy
+msgid "a stonemason of Rab"
+msgstr "un cantero de Rab"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/leopold.tres
 #, fuzzy
 msgid "Leopold"
@@ -4719,6 +8452,18 @@ msgstr "la directora de los actores de Hvar"
 #, fuzzy
 msgid "a ship's boy"
 msgstr "un grumete"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/marcantonio.tres
+#, fuzzy
+msgid "Messer Marcantonio"
+msgstr "Messer Marcantonio"
+
+#. what a person does, under their name
+#: data/world/people/marcantonio.tres
+#, fuzzy
+msgid "the envoy of Venice"
+msgstr "el enviado de Venecia"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/marco.tres
@@ -4793,6 +8538,18 @@ msgid "the gatekeeper of Castelnuovo"
 msgstr "el guardián de la puerta de Castelnuovo"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/nazario.tres
+#, fuzzy
+msgid "Nazario"
+msgstr "Nazario"
+
+#. what a person does, under their name
+#: data/world/people/nazario.tres
+#, fuzzy
+msgid "a boatman of Koper"
+msgstr "un barquero de Koper"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/nicola.tres
 #, fuzzy
 msgid "Nicola"
@@ -4803,6 +8560,18 @@ msgstr "Nicola"
 #, fuzzy
 msgid "a fisherman of Bari"
 msgstr "un pescador de Bari"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/nina.tres
+#, fuzzy
+msgid "Nina"
+msgstr "Nina"
+
+#. what a person does, under their name
+#: data/world/people/nina.tres
+#, fuzzy
+msgid "a fisher girl of Vieste"
+msgstr "una joven pescadora de Vieste"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/notar_giacomo.tres
@@ -4827,6 +8596,12 @@ msgstr "un notario"
 #, fuzzy
 msgid "a writer of contracts"
 msgstr "un redactor de contratos"
+
+#. what a person does, under their name
+#: data/world/people/nunzio.tres
+#, fuzzy
+msgid "a seal-maker of Ortona"
+msgstr "un grabador de sellos de Ortona"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/old_fisher.tres
@@ -4905,12 +8680,6 @@ msgstr "un poeta"
 #, fuzzy
 msgid "a travelling poet"
 msgstr "un poeta viajero"
-
-#. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/people/porter.tres
-#, fuzzy
-msgid "Frane"
-msgstr "Frane"
 
 #. what a person does, under their name
 #: data/world/people/porter.tres
@@ -5075,6 +8844,18 @@ msgid "a storyteller"
 msgstr "un cuentacuentos"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/tomo.tres
+#, fuzzy
+msgid "Tomo"
+msgstr "Tomo"
+
+#. what a person does, under their name
+#: data/world/people/tomo.tres
+#, fuzzy
+msgid "a woodcutter of Bakar"
+msgstr "un leñador de Bakar"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/tonin.tres
 #, fuzzy
 msgid "Tonin"
@@ -5111,6 +8892,18 @@ msgid "an olive oil merchant of Monopoli"
 msgstr "un comerciante de aceite de oliva de Monopoli"
 
 #. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/wolfram.tres
+#, fuzzy
+msgid "Wolfram"
+msgstr "Wolfram"
+
+#. what a person does, under their name
+#: data/world/people/wolfram.tres
+#, fuzzy
+msgid "the Baron's steward"
+msgstr "el mayordomo del barón"
+
+#. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/yusuf.tres
 #, fuzzy
 msgid "Yusuf"
@@ -5121,6 +8914,18 @@ msgstr "Yusuf"
 #, fuzzy
 msgid "a coffee seller of Preveza"
 msgstr "un vendedor de café de Preveza"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/people/zorzi.tres
+#, fuzzy
+msgid "Zorzi"
+msgstr "Zorzi"
+
+#. what a person does, under their name
+#: data/world/people/zorzi.tres
+#, fuzzy
+msgid "a fisherman of Piran"
+msgstr "un pescador de Piran"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/people/zuane.tres
@@ -5151,6 +8956,24 @@ msgstr "el puerto del Papa"
 #, fuzzy
 msgid "Ancona"
 msgstr "Ancona"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgid "the castle town above the deepest bay of Kvarner"
+msgstr "la ciudad del castillo sobre la bahía más honda del Kvarner"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgid "the harbour where the oak of the great forests comes down to the sea"
+msgstr "el puerto donde el roble de los grandes bosques baja al mar"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgid "Bakar"
+msgstr "Bakar"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/bari.tres
@@ -5393,6 +9216,30 @@ msgid "Hvar"
 msgstr "Hvar"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/koper.tres
+#, fuzzy
+msgid "the town on an island, joined to the land by a long causeway"
+msgstr "la ciudad en una isla, unida a tierra por un largo terraplén"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/koper.tres
+#, fuzzy
+msgid "the town of the Praetorian Palace"
+msgstr "la ciudad del Palacio Pretorio"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/koper.tres
+#, fuzzy
+msgid "the town which Venice calls the head of Istria"
+msgstr "la ciudad que Venecia llama la cabeza de Istria"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/koper.tres
+#, fuzzy
+msgid "Koper"
+msgstr "Koper"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/korcula.tres
 #, fuzzy
 msgid "the island town where they dance the Moreška"
@@ -5439,6 +9286,24 @@ msgstr "la ciudad cuyas murallas suben por la montaña"
 #, fuzzy
 msgid "Kotor"
 msgstr "Kotor"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/krk.tres
+#, fuzzy
+msgid "the island of the stone tablet of Baška, carved in the old letters"
+msgstr "la isla de la lápida de Baška, grabada con letras antiguas"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/krk.tres
+#, fuzzy
+msgid "the island of the friars of Košljun"
+msgstr "la isla de los frailes de Košljun"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/krk.tres
+#, fuzzy
+msgid "Krk"
+msgstr "Krk"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/loreto.tres
@@ -5513,6 +9378,24 @@ msgid "Ortona"
 msgstr "Ortona"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/osor.tres
+#, fuzzy
+msgid "the town on the narrow channel between Cres and Lošinj"
+msgstr "la ciudad del estrecho canal entre Cres y Lošinj"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/osor.tres
+#, fuzzy
+msgid "the town on the canal which the Romans dug"
+msgstr "la ciudad del canal que excavaron los romanos"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/osor.tres
+#, fuzzy
+msgid "Osor"
+msgstr "Osor"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/otranto.tres
 #, fuzzy
 msgid "the easternmost town of Italy"
@@ -5585,6 +9468,24 @@ msgid "Pescara"
 msgstr "Pescara"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/piran.tres
+#, fuzzy
+msgid "the town with a bell tower like the one of St. Mark"
+msgstr "la ciudad con un campanario como el de San Marcos"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/piran.tres
+#, fuzzy
+msgid "the town of the salt pans of Sečovlje"
+msgstr "la ciudad de las salinas de Sečovlje"
+
+#. a name (of a port, a person, a power, a boat or a thing)
+#: data/world/ports/piran.tres
+#, fuzzy
+msgid "Piran"
+msgstr "Piran"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/preveza.tres
 #, fuzzy
 msgid "the fortress at the narrow strait"
@@ -5620,11 +9521,17 @@ msgstr "la ciudad del arco de los Sergios"
 msgid "the harbour at the very tip of Istria"
 msgstr "el puerto en la misma punta de Istria"
 
-#. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/ports/pula.tres
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/rab.tres
 #, fuzzy
-msgid "Pula"
-msgstr "Pula"
+msgid "the town of the four bell towers in a row"
+msgstr "la ciudad de los cuatro campanarios en fila"
+
+#. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
+#: data/world/ports/rab.tres
+#, fuzzy
+msgid "the island of St. Marinus, the stonemason who founded San Marino"
+msgstr "la isla de san Marino, el cantero que fundó San Marino"
 
 #. a noun phrase in a clue, e.g., 'the town with the great Roman arena'
 #: data/world/ports/ravenna.tres
@@ -6029,13 +9936,16 @@ msgid "the rocks of the Tremiti"
 msgstr "las rocas de las Tremiti"
 
 #. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/seas/bura_kvarner.tres data/world/seas/changing.tres
+#: data/world/seas/bura_kvarner.tres data/world/seas/ch3_bura_kvarner.tres
+#: data/world/seas/ch3_gulf_of_trieste.tres data/world/seas/ch3_hard_bura.tres
+#: data/world/seas/changing.tres
 #, fuzzy
 msgid "bura"
 msgstr "bora"
 
 #. a name (of a port, a person, a power, a boat or a thing)
 #: data/world/seas/bura_kvarner.tres data/world/seas/calm_maestral.tres
+#: data/world/seas/ch3_bura_kvarner.tres data/world/seas/ch3_hard_bura.tres
 #: data/world/seas/changing.tres data/world/seas/open_sea.tres
 #, fuzzy
 msgid "tramontana"
@@ -6049,8 +9959,9 @@ msgid "pulenat"
 msgstr "pulenat"
 
 #. a name (of a port, a person, a power, a boat or a thing)
-#: data/world/seas/changing.tres data/world/seas/corsair_coast.tres data/world/seas/fair_home.tres
-#: data/world/seas/jugo_south.tres data/world/seas/maestral_jugo.tres
+#: data/world/seas/ch3_gulf_of_trieste.tres data/world/seas/changing.tres
+#: data/world/seas/corsair_coast.tres data/world/seas/fair_home.tres data/world/seas/jugo_south.tres
+#: data/world/seas/maestral_jugo.tres
 #, fuzzy
 msgid "jugo"
 msgstr "jugo"
@@ -6162,6 +10073,22 @@ msgstr "a Ancona"
 msgctxt "in"
 msgid "Ancona"
 msgstr "en Ancona"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgctxt "to"
+msgid "Bakar"
+msgstr "a Bakar"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgctxt "in"
+msgid "Bakar"
+msgstr "en Bakar"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -6373,6 +10300,22 @@ msgstr "en Hvar"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/koper.tres
+#, fuzzy
+msgctxt "to"
+msgid "Koper"
+msgstr "a Koper"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/koper.tres
+#, fuzzy
+msgctxt "in"
+msgid "Koper"
+msgstr "en Koper"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
 #: data/world/ports/korcula.tres
 #, fuzzy
 msgctxt "to"
@@ -6402,6 +10345,22 @@ msgstr "a Kotor"
 msgctxt "in"
 msgid "Kotor"
 msgstr "en Kotor"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/krk.tres
+#, fuzzy
+msgctxt "to"
+msgid "Krk"
+msgstr "a Krk"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/krk.tres
+#, fuzzy
+msgctxt "in"
+msgid "Krk"
+msgstr "en Krk"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -6469,6 +10428,22 @@ msgstr "en Ortona"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/osor.tres
+#, fuzzy
+msgctxt "to"
+msgid "Osor"
+msgstr "a Osor"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/osor.tres
+#, fuzzy
+msgctxt "in"
+msgid "Osor"
+msgstr "en Osor"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
 #: data/world/ports/otranto.tres
 #, fuzzy
 msgctxt "to"
@@ -6533,6 +10508,22 @@ msgstr "en Pescara"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/piran.tres
+#, fuzzy
+msgctxt "to"
+msgid "Piran"
+msgstr "a Piran"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/piran.tres
+#, fuzzy
+msgctxt "in"
+msgid "Piran"
+msgstr "en Piran"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
 #: data/world/ports/preveza.tres
 #, fuzzy
 msgctxt "to"
@@ -6562,6 +10553,22 @@ msgstr "a Pula"
 msgctxt "in"
 msgid "Pula"
 msgstr "en Pula"
+
+#. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
+#: data/world/ports/rab.tres
+#, fuzzy
+msgctxt "to"
+msgid "Rab"
+msgstr "a Rab"
+
+#. the form of the port for {port@in} in the translations: where, with the preposition, e.g. 'в
+#. Пуле', 'на Хваре', 'u Puli', 'na Hvaru'; empty keeps the plain port
+#: data/world/ports/rab.tres
+#, fuzzy
+msgctxt "in"
+msgid "Rab"
+msgstr "en Rab"
 
 #. the form of the port for {port@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain port
@@ -6850,6 +10857,38 @@ msgstr "al puerto del Papa"
 msgctxt "about"
 msgid "the harbour of the Pope"
 msgstr "del puerto del Papa"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgctxt "to"
+msgid "the castle town above the deepest bay of Kvarner"
+msgstr "a la ciudad del castillo sobre la bahía más honda del Kvarner"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgctxt "about"
+msgid "the castle town above the deepest bay of Kvarner"
+msgstr "de la ciudad del castillo sobre la bahía más honda del Kvarner"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgctxt "to"
+msgid "the harbour where the oak of the great forests comes down to the sea"
+msgstr "al puerto donde el roble de los grandes bosques baja al mar"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/bakar.tres
+#, fuzzy
+msgctxt "about"
+msgid "the harbour where the oak of the great forests comes down to the sea"
+msgstr "del puerto donde el roble de los grandes bosques baja al mar"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
@@ -7301,6 +11340,54 @@ msgstr "de la ciudad con un teatro para todos"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/koper.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town on an island, joined to the land by a long causeway"
+msgstr "a la ciudad en una isla, unida a tierra por un largo terraplén"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/koper.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town on an island, joined to the land by a long causeway"
+msgstr "de la ciudad en una isla, unida a tierra por un largo terraplén"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/koper.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the Praetorian Palace"
+msgstr "a la ciudad del Palacio Pretorio"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/koper.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the Praetorian Palace"
+msgstr "de la ciudad del Palacio Pretorio"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/koper.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town which Venice calls the head of Istria"
+msgstr "a la ciudad que Venecia llama la cabeza de Istria"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/koper.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town which Venice calls the head of Istria"
+msgstr "de la ciudad que Venecia llama la cabeza de Istria"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
 #: data/world/ports/korcula.tres
 #, fuzzy
 msgctxt "to"
@@ -7394,6 +11481,38 @@ msgstr "a la ciudad cuyas murallas suben por la montaña"
 msgctxt "about"
 msgid "the town whose walls climb the mountain"
 msgstr "de la ciudad cuyas murallas suben por la montaña"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/krk.tres
+#, fuzzy
+msgctxt "to"
+msgid "the island of the stone tablet of Baška, carved in the old letters"
+msgstr "a la isla de la lápida de Baška, grabada con letras antiguas"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/krk.tres
+#, fuzzy
+msgctxt "about"
+msgid "the island of the stone tablet of Baška, carved in the old letters"
+msgstr "de la isla de la lápida de Baška, grabada con letras antiguas"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/krk.tres
+#, fuzzy
+msgctxt "to"
+msgid "the island of the friars of Košljun"
+msgstr "a la isla de los frailes de Košljun"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/krk.tres
+#, fuzzy
+msgctxt "about"
+msgid "the island of the friars of Košljun"
+msgstr "de la isla de los frailes de Košljun"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
@@ -7525,6 +11644,38 @@ msgstr "de la ciudad del castillo sobre el acantilado"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/osor.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town on the narrow channel between Cres and Lošinj"
+msgstr "a la ciudad del estrecho canal entre Cres y Lošinj"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/osor.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town on the narrow channel between Cres and Lošinj"
+msgstr "de la ciudad del estrecho canal entre Cres y Lošinj"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/osor.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town on the canal which the Romans dug"
+msgstr "a la ciudad del canal que excavaron los romanos"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/osor.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town on the canal which the Romans dug"
+msgstr "de la ciudad del canal que excavaron los romanos"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
 #: data/world/ports/otranto.tres
 #, fuzzy
 msgctxt "to"
@@ -7653,6 +11804,38 @@ msgstr "de la ciudad que los romanos llamaban Aternum"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/piran.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town with a bell tower like the one of St. Mark"
+msgstr "a la ciudad con un campanario como el de San Marcos"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/piran.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town with a bell tower like the one of St. Mark"
+msgstr "de la ciudad con un campanario como el de San Marcos"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/piran.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the salt pans of Sečovlje"
+msgstr "a la ciudad de las salinas de Sečovlje"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/piran.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the salt pans of Sečovlje"
+msgstr "de la ciudad de las salinas de Sečovlje"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
 #: data/world/ports/preveza.tres
 #, fuzzy
 msgctxt "to"
@@ -7730,6 +11913,38 @@ msgstr "al puerto en la misma punta de Istria"
 msgctxt "about"
 msgid "the harbour at the very tip of Istria"
 msgstr "del puerto en la misma punta de Istria"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/rab.tres
+#, fuzzy
+msgctxt "to"
+msgid "the town of the four bell towers in a row"
+msgstr "a la ciudad de los cuatro campanarios en fila"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/rab.tres
+#, fuzzy
+msgctxt "about"
+msgid "the town of the four bell towers in a row"
+msgstr "de la ciudad de los cuatro campanarios en fila"
+
+#. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
+#. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
+#: data/world/ports/rab.tres
+#, fuzzy
+msgctxt "to"
+msgid "the island of St. Marinus, the stonemason who founded San Marino"
+msgstr "a la isla de san Marino, el cantero que fundó San Marino"
+
+#. the form of the fact for {fact@about} in the translations: about what, with the preposition, e.g.
+#. 'про город ...', 'o gradu ...'; empty keeps the plain fact
+#: data/world/ports/rab.tres
+#, fuzzy
+msgctxt "about"
+msgid "the island of St. Marinus, the stonemason who founded San Marino"
+msgstr "de la isla de san Marino, el cantero que fundó San Marino"
 
 #. the form of the fact for {fact@to} in the translations: where to, with the preposition, e.g. 'в
 #. Пулу', 'на Хвар', 'u Pulu', 'na Hvar'; empty keeps the plain fact
@@ -8381,6 +12596,150 @@ msgstr "la campana de Grebaštica"
 
 #. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
 #. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_charm_ancona.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a wind charm from Ancona"
+msgstr "un amuleto del viento de Ancona"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_charm_fano.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a wind charm from Fano"
+msgstr "un amuleto del viento de Fano"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_charm_rimini.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a wind charm from Rimini"
+msgstr "un amuleto del viento de Rímini"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_eel_nets.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the eel nets of Comacchio"
+msgstr "las redes de anguilas de Comacchio"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_oil_monopoli.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the olive oil of Monopoli"
+msgstr "el aceite de oliva de Monopoli"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_old_letters.tres
+#, fuzzy
+msgctxt "acc"
+msgid "Bepi's old letters"
+msgstr "las viejas cartas de Bepi"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_passenger_pilgrims.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the pilgrims of Pescara"
+msgstr "a los peregrinos de Pescara"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_pressing_mats.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the pressing mats"
+msgstr "los capachos de prensar"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_seal_mould.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the mould of the false seal"
+msgstr "el molde del sello falso"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch2_toll_paper.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the page with the watermark"
+msgstr "la página con la filigrana"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch3_cargo.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the stolen cloth"
+msgstr "la tela robada"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch3_costumes.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the uskok costumes"
+msgstr "los disfraces de uscoco"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch3_flags.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the false flags"
+msgstr "las banderas falsas"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch3_new_cap.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the brand-new cap"
+msgstr "el gorro nuevecito"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch3_oak_plank.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the plank of fresh oak"
+msgstr "la tabla de roble fresco"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch3_payroll.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the steward's payroll"
+msgstr "la nómina del mayordomo"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch3_safe_conduct.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the safe-conduct"
+msgstr "el salvoconducto"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/ch3_salt_statement.tres
+#, fuzzy
+msgctxt "acc"
+msgid "Benvenuta's statement"
+msgstr "la declaración de Benvenuta"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
 #: data/world/items/complaint.tres
 #, fuzzy
 msgctxt "acc"
@@ -8394,6 +12753,14 @@ msgstr "la queja de los pueblos"
 msgctxt "acc"
 msgid "the fir mast"
 msgstr "el mástil de abeto"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/golden_charter.tres
+#, fuzzy
+msgctxt "acc"
+msgid "the Golden Charter"
+msgstr "la Carta de Oro"
 
 #. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
 #. 'bačvu vina'; empty keeps the plain item
@@ -8509,6 +12876,14 @@ msgstr "las naranjas"
 
 #. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
 #. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/passenger_anselmo.tres
+#, fuzzy
+msgctxt "acc"
+msgid "Ser Anselmo"
+msgstr "a ser Anselmo"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
 #: data/world/items/passenger_ivan.tres
 #, fuzzy
 msgctxt "acc"
@@ -8581,6 +12956,14 @@ msgstr "la lista de los pueblos"
 
 #. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
 #. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/witness_ambroz.tres
+#, fuzzy
+msgctxt "acc"
+msgid "Brother Ambroz"
+msgstr "a fray Ambroz"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
 #: data/world/items/witness_ivan.tres
 #, fuzzy
 msgctxt "acc"
@@ -8605,6 +12988,14 @@ msgstr "a Mástil Torcido, testigo"
 
 #. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
 #. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/witness_luka.tres
+#, fuzzy
+msgctxt "acc"
+msgid "Luka, the witness"
+msgstr "a Luka, testigo"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
 #: data/world/items/witness_marin.tres
 #, fuzzy
 msgctxt "acc"
@@ -8613,11 +13004,27 @@ msgstr "al doctor Marin, testigo"
 
 #. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
 #. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/witness_michele.tres
+#, fuzzy
+msgctxt "acc"
+msgid "Michele, the witness"
+msgstr "a Michele, testigo"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
 #: data/world/items/witness_mustafa.tres
 #, fuzzy
 msgctxt "acc"
 msgid "Mustafa, the witness"
 msgstr "a Mustafa, testigo"
+
+#. the form of the item for {item@acc} in the translations: the accusative, e.g. 'бочку вина',
+#. 'bačvu vina'; empty keeps the plain item
+#: data/world/items/witness_vito.tres
+#, fuzzy
+msgctxt "acc"
+msgid "Vito, the witness"
+msgstr "a Vito, testigo"
 
 #. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
 #. вина', 'bačvu vina'; empty keeps the plain hallmark
@@ -8658,6 +13065,150 @@ msgstr "un libro con un cierre de latón"
 msgctxt "acc"
 msgid "a carpenter's pencil behind the ear"
 msgstr "un lápiz de carpintero detrás de la oreja"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_big_wig.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a wig too big for the head"
+msgstr "una peluca demasiado grande"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_golden_hull.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a golden hull"
+msgstr "un casco dorado"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_paper_roll.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a roll of paper under the arm"
+msgstr "un rollo de papel bajo el brazo"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_red_felt_hat.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a red felt hat"
+msgstr "un sombrero rojo de fieltro"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_seal_ring.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a ring with a false seal"
+msgstr "un anillo con un sello falso"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_tiny_chisel.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a tiny chisel behind the ear"
+msgstr "un cincel diminuto detrás de la oreja"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_violets.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a smell of violets"
+msgstr "un olor a violetas"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_wax_fingers.tres
+#, fuzzy
+msgctxt "acc"
+msgid "fingers red from sealing wax"
+msgstr "los dedos rojos de lacre"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_yellow_gloves.tres
+#, fuzzy
+msgctxt "acc"
+msgid "yellow gloves"
+msgstr "unos guantes amarillos"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch2_yellow_sail.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a yellow sail"
+msgstr "una vela amarilla"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch3_coral_beads.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a string of red coral beads"
+msgstr "un collar de cuentas de coral rojo"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch3_feather_hat.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a hat with a pheasant feather"
+msgstr "un sombrero con una pluma de faisán"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch3_fur_collar.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a coat with a fur collar"
+msgstr "un abrigo con cuello de piel"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch3_keys.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a big bunch of keys on his belt"
+msgstr "un gran manojo de llaves en el cinturón"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch3_new_white_sail.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a brand-new white sail"
+msgstr "una vela blanca nuevecita"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch3_pale_hull.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a hull of pale new wood"
+msgstr "un casco de madera nueva y clara"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch3_salt_bag.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a little bag of salt on her belt"
+msgstr "una bolsita de sal en el cinturón"
+
+#. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
+#. вина', 'bačvu vina'; empty keeps the plain hallmark
+#: data/world/hallmarks/ch3_wolf_ring.tres
+#, fuzzy
+msgctxt "acc"
+msgid "a silver ring with a wolf on it"
+msgstr "un anillo de plata con un lobo"
 
 #. the form of the hallmark for {hallmark@acc} in the translations: the accusative, e.g. 'бочку
 #. вина', 'bačvu vina'; empty keeps the plain hallmark
