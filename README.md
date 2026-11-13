@@ -14,6 +14,23 @@ See [DESIGN.md](DESIGN.md) for the design, and [CONTRIBUTING.md](CONTRIBUTING.md
 The game runs entirely on your computer and works offline.
 The webcam images are processed locally, in memory, and are never sent anywhere.
 
+## Supported systems
+
+You need a webcam which supports 640x480.
+
+| System | The webcam | Without the webcam |
+|---|---|---|
+| **Linux** (x86_64) | ✅ | ✅ |
+| **macOS 11 or later** (Apple Silicon and Intel) | ✅ (macOS asks for the permission on the first start) | ✅ |
+| **macOS 10.15** | ❌ (the hand tracking needs macOS 11) | ✅ |
+| **Windows** (x86_64) | ❌ (Godot 4.6 does not support cameras on Windows yet) | ✅ |
+
+Without the webcam, the players steer with A/D or the arrow keys.
+
+The macOS app is not notarized: open it the first time with a right click and Open.
+
+The packages for Windows and macOS are built, but not yet tested on those systems; please report any problems.
+
 ## License
 
 Bird Dog is licensed under the [MIT License](LICENSE).

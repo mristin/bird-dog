@@ -33,7 +33,7 @@ The .NET build of Godot bundles the .NET runtime with the exported game.
 
 ### ONNX Runtime
 
-* Package: `Microsoft.ML.OnnxRuntime` 1.24.4
+* Package: `Microsoft.ML.OnnxRuntime` 1.19.2
 * License: MIT
 * Copyright (c) Microsoft Corporation
 * Source: https://github.com/microsoft/onnxruntime
