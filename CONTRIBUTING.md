@@ -121,6 +121,24 @@ venv/bin/python dev/assets/fetch_music.py
 
 Start the game with `-- --no-music` to switch the music off; M mutes it while playing.
 
+## Packaging
+
+The export presets (`export_presets.cfg`) package the game for Linux, Windows and macOS into `build/`. You need the export templates of Godot 4.6.2 (.NET) (in the editor: Editor, Manage Export Templates), then:
+
+```
+dotnet build BirdDog.sln -c Release
+$GODOT --headless --path . --export-release "Linux" build/linux/bird-dog.x86_64
+$GODOT --headless --path . --export-release "Windows" build/windows/bird-dog.exe
+$GODOT --headless --path . --export-release "macOS" build/macos/bird-dog.zip
+```
+
+Ship the whole folder (the executable, the `.pck` and the `data_BirdDog_*` folder with the .NET runtime and ONNX Runtime), together with `LICENSE`, `THIRD_PARTY_NOTICES.md` and `licenses/`.
+
+Mind the limits of the platforms:
+
+* **Windows:** Godot 4.6 implements no camera on Windows; the camera server never reports a feed. The game starts and tells so, and the players steer with A/D or the arrow keys.
+* **macOS:** The app is universal, but ONNX Runtime 1.24 ships no library for the Intel Macs, so the hand tracking runs only on the Apple Silicon Macs (on the Intel Macs, the game reports that the hand tracking failed, and the keys still steer). The app is signed ad hoc and not notarized, so the players open it the first time with a right click and Open. The camera on macOS lists no formats and delivers its frames as two planes (Y and CbCr), which `HandVisionService` converts to RGB itself (`YcbcrConverter`). On the first start, macOS asks for the permission to use the camera; the vision tries again every few seconds to start the camera until the players allow it.
+
 ## Checks before a pull request
 
 ```
