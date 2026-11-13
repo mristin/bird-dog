@@ -124,7 +124,7 @@ func sail(
             # leash, not away from it.
             next = from + (next - from).normalized() * maxf(leash, km.distance_to(from))
     hit_land = Vector2.INF
-    if chart.is_land(next):
+    if chart.is_land(next) or chart.crosses_land(km, next):
         next = _slide(next, chart, delta, target)
         if next == km:
             return 0.0
@@ -152,7 +152,7 @@ func _slide(blocked: Vector2, chart: ChartView, delta: float, target: float) -> 
             var along := Vector2.UP.rotated(heading + angle)
             var keep := cos(angle)
             var candidate := km + along * step * keep
-            if chart.is_land(candidate):
+            if chart.is_land(candidate) or chart.crosses_land(km, candidate):
                 continue
             _slide_side = side
             speed *= lerpf(1.0, keep, minf(1.0, delta * 4.0))

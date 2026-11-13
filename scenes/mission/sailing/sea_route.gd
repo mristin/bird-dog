@@ -23,9 +23,6 @@ const MARGINS_KM: Array[float] = [50.0, 140.0]
 ## next to the land by the first factor, and so on.
 const COAST_COSTS: Array[float] = [6.0, 3.0, 1.6]
 
-## The steps of a way are checked against the land this finely, in kilometres.
-const SAMPLE_KM := 0.05
-
 ## At most this many times a way is found again around a corner of the land
 ## which a step of it clipped.
 const MAX_FIXES := 40
@@ -105,6 +102,12 @@ static func _find(
                 start = Vector2i(column, row)
     if start.x < 0:
         return PackedVector2Array()
+    # NOTE (mristin):
+    # The way starts in the middle of the closest cell which the boat reaches
+    # in a straight line at sea, so that the first stretch never crosses a
+    # thin tip of the land either.
+    if _land_on(from, origin + (Vector2(start) + Vector2(0.5, 0.5)) * cell_km) != Vector2.INF:
+        start = _reachable_start(grid, origin, from, start, cell_km)
 
     # NOTE (mristin):
     # The closest cell to the port may lie in a channel which the grid closes
@@ -124,13 +127,30 @@ static func _find(
     if cells.is_empty():
         return PackedVector2Array()
     var path := PackedVector2Array([from])
-    for i in range(1, cells.size()):
+    for i in range(cells.size()):
         path.append(origin + (Vector2(cells[i]) + Vector2(0.5, 0.5)) * cell_km)
-    if path.size() < 2:
-        # NOTE (mristin):
-        # The boat is at the port already: the way is a step to its own cell.
-        path.append(origin + (Vector2(cells[0]) + Vector2(0.5, 0.5)) * cell_km)
     return path
+
+
+## The closest cell at sea to [param from] whose middle the boat reaches in a
+## straight line at sea, a few cells around [param start] at most; [param
+## start] if there is none.
+static func _reachable_start(
+    grid: AStarGrid2D, origin: Vector2, from: Vector2, start: Vector2i, cell_km: float
+) -> Vector2i:
+    var best := start
+    var best_distance := INF
+    for dy in range(-3, 4):
+        for dx in range(-3, 4):
+            var cell := start + Vector2i(dx, dy)
+            if not grid.is_in_boundsv(cell) or grid.is_point_solid(cell):
+                continue
+            var middle := origin + (Vector2(cell) + Vector2(0.5, 0.5)) * cell_km
+            var distance := middle.distance_to(from)
+            if distance < best_distance and _land_on(from, middle) == Vector2.INF:
+                best = cell
+                best_distance = distance
+    return best
 
 
 ## The way through the grid from the start to the goal, whose every step
@@ -165,22 +185,18 @@ static func _clipped_cell(cells: Array[Vector2i], origin: Vector2, cell_km: floa
 
 
 ## A point of the land which the step from a to b crosses (even a thin tip
-## of an island; sampled every [constant SAMPLE_KM], with the same test as
-## ChartView.is_land), or INF if it stays at sea.
+## of an island: the step is clipped against the land, not sampled), or INF
+## if it stays at sea.
 static func _land_on(a: Vector2, b: Vector2) -> Vector2:
     var step := Rect2(a, Vector2.ZERO).expand(b).grow(0.01)
-    var near: Array[int] = []
+    var line := PackedVector2Array([a, b])
     for i in range(_polygons.size()):
-        if _boxes[i].intersects(step):
-            near.append(i)
-    if near.is_empty():
-        return Vector2.INF
-    var count := maxi(2, ceili(a.distance_to(b) / SAMPLE_KM))
-    for k in range(count + 1):
-        var point := a.lerp(b, float(k) / count)
-        for i in near:
-            if Geometry2D.is_point_in_polygon(point, _polygons[i]):
-                return point
+        if not _boxes[i].intersects(step):
+            continue
+        var clipped := Geometry2D.intersect_polyline_with_polygon(line, _polygons[i])
+        if not clipped.is_empty():
+            var inside: PackedVector2Array = clipped[0]
+            return (inside[0] + inside[-1]) * 0.5
     return Vector2.INF
 
 

@@ -29,6 +29,14 @@ const REEF_SEED := 1600
 const TARGET_COLOR := Color(0.82, 0.13, 0.11)
 const ERRAND_COLOR := Color(0.2, 0.45, 0.88)
 
+## The black frame around the chart stands above everything on it (the
+## clouds stand at 8, see SeaHazards).
+const EDGE_Z := 20
+
+## The size of the cells of the edges of the coasts (see [method
+## crosses_land]), in kilometres.
+const EDGE_CELL_KM := 4.0
+
 ## The ports where the crew can go now: they get a big red ring and a flag.
 var targets: Array[Port] = []:
     set(value):
@@ -71,6 +79,11 @@ var _boxes: Array[Rect2] = []
 var _ports: Array[Port] = []
 var _reef_names: Array = []
 
+## The edges of the coasts, in kilometres, by the cell of [constant
+## EDGE_CELL_KM] which they touch (see [method crosses_land]): each a
+## PackedVector2Array of its two ends.
+var _coast_cells := {}
+
 ## The bounds of the chart, in kilometres (see World.bounds_km).
 var _bounds_km := Rect2(-1e9, -1e9, 2e9, 2e9)
 
@@ -99,6 +112,17 @@ func _ready() -> void:
     beyond.color = Color.BLACK
     beyond.z_index = -3
     add_child(beyond)
+    # NOTE (mristin):
+    # The land which the bounds cut has its coast (the shallows and the line)
+    # drawn along the cut, too, partly beyond the bounds, and the clouds drift
+    # beyond them: a black frame covers all of it, above everything on the
+    # chart (a boat at the very edge is cut by it, too).
+    for strip in _frame(rect, 8000.0):
+        var black := Polygon2D.new()
+        black.polygon = _corners(strip)
+        black.color = Color.BLACK
+        black.z_index = EDGE_Z
+        add_child(black)
     var sea := Polygon2D.new()
     sea.polygon = _corners(rect)
     sea.color = SEA
@@ -116,6 +140,7 @@ func _ready() -> void:
             km.append(Vector2(point[0], point[1]))
             px.append(Vector2(point[0], point[1]) * PX_PER_KM)
         _land.append(km)
+        _add_coast(km)
         var box := Rect2(km[0], Vector2.ZERO)
         for point in km:
             box = box.expand(point)
@@ -168,6 +193,18 @@ func _ready() -> void:
     _target_layer.z_index = 2
     _target_layer.draw.connect(_draw_targets.bind(_target_layer))
     add_child(_target_layer)
+
+
+## The four strips around the rectangle, [param width] wide, which together
+## frame it.
+static func _frame(rect: Rect2, width: float) -> Array[Rect2]:
+    var outer := rect.grow(width)
+    return [
+        Rect2(outer.position, Vector2(outer.size.x, width)),
+        Rect2(Vector2(outer.position.x, rect.end.y), Vector2(outer.size.x, width)),
+        Rect2(Vector2(outer.position.x, rect.position.y), Vector2(width, rect.size.y)),
+        Rect2(Vector2(rect.end.x, rect.position.y), Vector2(width, rect.size.y)),
+    ]
 
 
 static func _corners(rect: Rect2) -> PackedVector2Array:
@@ -232,6 +269,40 @@ func is_clear_ahead(from: Vector2, heading: float, km: float) -> bool:
         if is_land(from + step * i) or is_reef(from + step * i):
             return false
     return true
+
+
+## File the edges of the coast of the polygon under the cells they touch.
+func _add_coast(polygon: PackedVector2Array) -> void:
+    for i in range(polygon.size()):
+        var a := polygon[i]
+        var b := polygon[(i + 1) % polygon.size()]
+        var box := Rect2(a, Vector2.ZERO).expand(b)
+        var first := Vector2i((box.position / EDGE_CELL_KM).floor())
+        var last := Vector2i((box.end / EDGE_CELL_KM).floor())
+        for y in range(first.y, last.y + 1):
+            for x in range(first.x, last.x + 1):
+                var cell := Vector2i(x, y)
+                if not _coast_cells.has(cell):
+                    _coast_cells[cell] = []
+                _coast_cells[cell].append(PackedVector2Array([a, b]))
+
+
+## Whether the way from [param a] to [param b] (in kilometres) crosses a
+## coast or the edge of the chart: exactly, so that a boat never steps over a
+## thin tip of the land, nor squeezes past the land where it meets the edge
+## of the chart (see Helm.sail).
+func crosses_land(a: Vector2, b: Vector2) -> bool:
+    if not _bounds_km.has_point(a) or not _bounds_km.has_point(b):
+        return true
+    var box := Rect2(a, Vector2.ZERO).expand(b)
+    var first := Vector2i((box.position / EDGE_CELL_KM).floor())
+    var last := Vector2i((box.end / EDGE_CELL_KM).floor())
+    for y in range(first.y, last.y + 1):
+        for x in range(first.x, last.x + 1):
+            for edge: PackedVector2Array in _coast_cells.get(Vector2i(x, y), []):
+                if Geometry2D.segment_intersects_segment(a, b, edge[0], edge[1]) != null:
+                    return true
+    return false
 
 
 ## Whether the straight line from a to b (in kilometres) stays at sea; fast
