@@ -161,6 +161,15 @@ public partial class HandVisionService : Node
 
     private CameraFeed? _feed;
 
+    /// <summary>The camera extension on Windows (see <see cref="StartCameraExtension"/>), or null.</summary>
+    private GodotObject? _cameraExtension;
+
+    /// <summary>
+    /// Why there may be no camera: "unsupported" (on Windows without the camera
+    /// extension), "denied" (Windows does not allow the camera), or "" otherwise.
+    /// </summary>
+    private string _noCameraReason = "";
+
     /// <summary>
     /// The chroma plane of a feed which delivers its frames as two planes (Y and
     /// CbCr, e.g., on macOS); <see cref="CameraTexture"/> then holds the Y plane.
@@ -224,7 +233,82 @@ public partial class HandVisionService : Node
 
         SetStatus(ServiceStatus.SearchingCamera, "Looking for a camera...");
         CameraServer.MonitoringFeeds = true;
+        if (OS.GetName() == "Windows")
+        {
+            StartCameraExtension();
+        }
+
         _searchStarted = Now;
+    }
+
+    /// <summary>
+    /// Load CameraServerExtension, which provides the camera feeds on Windows,
+    /// where Godot 4.6 implements no camera (see
+    /// addons/CameraServerExtension/CameraServerExtension.gdextension).
+    /// </summary>
+    /// <remarks>
+    /// The extension must be created after <see cref="CameraServer.MonitoringFeeds"/>
+    /// is set, and must live as long as its feeds are in use.
+    /// </remarks>
+    private void StartCameraExtension()
+    {
+        // NOTE (mristin):
+        // The packaging puts the extension next to the executable; in the
+        // editor, it stays in the project.
+        string directory = OS.HasFeature("editor")
+            ? ProjectSettings.GlobalizePath("res://addons/CameraServerExtension")
+            : OS.GetExecutablePath().GetBaseDir();
+        string path = directory.PathJoin("CameraServerExtension.gdextension");
+        if (!System.IO.File.Exists(path))
+        {
+            GD.PushWarning($"The camera extension {path} is missing; there is no camera on Windows without it.");
+            _noCameraReason = "unsupported";
+            return;
+        }
+
+        var status = GDExtensionManager.LoadExtension(path);
+        if (status != GDExtensionManager.LoadStatus.Ok && status != GDExtensionManager.LoadStatus.AlreadyLoaded)
+        {
+            GD.PushWarning($"The camera extension {path} did not load: {status}.");
+            _noCameraReason = "unsupported";
+            return;
+        }
+
+        if (!ClassDB.ClassExists("CameraServerExtension"))
+        {
+            GD.PushWarning($"The camera extension {path} loaded, but provides no CameraServerExtension.");
+            _noCameraReason = "unsupported";
+            return;
+        }
+
+        _cameraExtension = ClassDB.Instantiate("CameraServerExtension").AsGodotObject();
+        GD.Print($"Loaded the camera extension {path}.");
+        if (_cameraExtension != null && !_cameraExtension.Call("permission_granted").AsBool())
+        {
+            _noCameraReason = "denied";
+        }
+    }
+
+    /// <summary>
+    /// Whether a feed comes from CameraServerExtension, whose formats must be
+    /// called by name: the methods of <see cref="CameraFeed"/> do not reach them.
+    /// </summary>
+    private static bool IsExtensionFeed(CameraFeed feed) => feed.GetClass() == "CameraFeedExtension";
+
+    private static Godot.Collections.Array GetFormats(CameraFeed feed) =>
+        IsExtensionFeed(feed) ? feed.Call("get_formats").AsGodotArray() : feed.GetFormats();
+
+    private static void SetFormat(CameraFeed feed, int index)
+    {
+        var parameters = new Godot.Collections.Dictionary();
+        if (IsExtensionFeed(feed))
+        {
+            feed.Call("set_format", index, parameters);
+        }
+        else
+        {
+            feed.SetFormat(index, parameters);
+        }
     }
 
 
@@ -446,6 +530,9 @@ public partial class HandVisionService : Node
     /// <summary>Whether the camera, the models and the pipeline work.</summary>
     public bool IsRunning() => Status == ServiceStatus.Running;
 
+    /// <summary>Why there may be no camera, see <see cref="_noCameraReason"/>.</summary>
+    public string GetNoCameraReason() => _noCameraReason;
+
     /// <summary>Whether the game can not be played (no camera, no models, a failure).</summary>
     public bool IsUnusable() => Status is ServiceStatus.NoCamera or ServiceStatus.ModelsMissing
         or ServiceStatus.Failed;
@@ -517,17 +604,22 @@ public partial class HandVisionService : Node
         if (candidates.Count == 0)
         {
             // NOTE (mristin):
-            // Godot 4.6 implements no camera on Windows: the camera server there
-            // never reports a feed, whatever is plugged in.
+            // Godot 4.6 implements no camera on Windows: without the camera
+            // extension, the camera server there never reports a feed, whatever
+            // is plugged in.
             SetStatus(
                 ServiceStatus.NoCamera,
-                count == 0
-                    ? OS.GetName() == "Windows"
-                        ? "The camera does not work on Windows yet (Godot 4.6 does not support it). " +
-                            "Steer with A/D or the arrow keys."
-                        : "No camera found. This game is played with your hands in front of a webcam; " +
+                _noCameraReason switch
+                {
+                    "unsupported" => "The camera does not work on Windows without the camera extension. " +
+                        "Steer with A/D or the arrow keys.",
+                    "denied" => "Windows does not allow the camera (Settings, Privacy, Camera). " +
+                        "Steer with A/D or the arrow keys.",
+                    _ => count == 0
+                        ? "No camera found. This game is played with your hands in front of a webcam; " +
                             "please connect one and start the game again."
-                    : "No camera supports 640x480, which the hand tracking needs."
+                        : "No camera supports 640x480, which the hand tracking needs.",
+                }
             );
             return;
         }
@@ -546,7 +638,7 @@ public partial class HandVisionService : Node
     /// </remarks>
     private static int FindFormat(CameraFeed feed)
     {
-        var formats = feed.GetFormats();
+        var formats = GetFormats(feed);
         if (formats.Count == 0)
         {
             return _anyFormat;
@@ -564,7 +656,9 @@ public partial class HandVisionService : Node
                 continue;
             }
 
-            if (pixelFormat.StartsWith("YUYV"))
+            // NOTE (mristin):
+            // V4L2 on Linux calls the format YUYV, Media Foundation on Windows YUY2.
+            if (pixelFormat.StartsWith("YUYV") || pixelFormat.StartsWith("YUY2"))
             {
                 return i;
             }
@@ -582,12 +676,12 @@ public partial class HandVisionService : Node
     {
         CameraDescription = formatIndex == _anyFormat
             ? $"{feed.GetName()}, the default format"
-            : $"{feed.GetName()}, format #{formatIndex}: {feed.GetFormats()[formatIndex]}";
-        GD.Print($"Starting the camera {CameraDescription}; all formats: {feed.GetFormats()}");
+            : $"{feed.GetName()}, format #{formatIndex}: {GetFormats(feed)[formatIndex]}";
+        GD.Print($"Starting the camera {CameraDescription}; all formats: {GetFormats(feed)}");
         _feed = feed;
         if (formatIndex != _anyFormat)
         {
-            _feed.SetFormat(formatIndex, new Godot.Collections.Dictionary());
+            SetFormat(_feed, formatIndex);
         }
 
         _feed.FeedIsActive = true;
@@ -930,5 +1024,9 @@ public partial class HandVisionService : Node
         {
             _cbcrTexture.CameraIsActive = false;
         }
+
+        // NOTE (mristin):
+        // The extension removes its feeds when it is freed, so it goes last.
+        _cameraExtension = null;
     }
 }

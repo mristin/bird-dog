@@ -126,18 +126,36 @@ Start the game with `-- --no-music` to switch the music off; M mutes it while pl
 The export presets (`export_presets.cfg`) package the game for Linux, Windows and macOS into `build/`. You need the export templates of Godot 4.6.2 (.NET) (in the editor: Editor, Manage Export Templates), then:
 
 ```
+mkdir -p build/linux build/windows build/macos
+touch build/.gdignore
 dotnet build BirdDog.sln -c Release
 $GODOT --headless --path . --export-release "Linux" build/linux/bird-dog.x86_64
 $GODOT --headless --path . --export-release "Windows" build/windows/bird-dog.exe
 $GODOT --headless --path . --export-release "macOS" build/macos/bird-dog.zip
+
+cp addons/CameraServerExtension/CameraServerExtension.gdextension \
+  addons/CameraServerExtension/libcameraserver-extension.windows.dll \
+  build/windows/
+mkdir -p build/windows/licenses/camera-server-extension
+cp addons/CameraServerExtension/LICENSE build/windows/licenses/camera-server-extension/
 ```
 
 Ship the whole folder (the executable, the `.pck` and the `data_BirdDog_*` folder with the .NET runtime and ONNX Runtime), together with `LICENSE`, `THIRD_PARTY_NOTICES.md` and `licenses/`.
+The `.gdignore` in `build/` hides the packages from Godot, which would otherwise try to load the camera extension of the Windows package (see below), and fail, on the other platforms.
 
 Mind the limits of the platforms:
 
-* **Windows:** Godot 4.6 implements no camera on Windows; the camera server never reports a feed. The game starts and tells so, and the players steer with A/D or the arrow keys.
+* **Windows:** Godot 4.6 implements no camera on Windows, so we use [CameraServerExtension] there, and only there, from `addons/CameraServerExtension/` (the prebuilt Windows x86_64 library of its release 2026.03.27, as in [Steppe Rescue]).
+  Godot reports an error on every platform which an extension lists no library for, so the directory is hidden from Godot (`.gdignore`); `HandVisionService` loads the extension itself on Windows (`StartCameraExtension`), from the directory of the executable, or from the project in the editor.
+  Hence the packaging copies `CameraServerExtension.gdextension` and `libcameraserver-extension.windows.dll` next to the executable (see above).
+  The formats of the extension's feeds are reached by name (the methods of `CameraFeed` do not reach them), and Windows calls YUYV "YUY2".
+  Without the extension, or if Windows denies the camera, the game tells so, and the players steer with A/D or the arrow keys.
+  Drop the extension once Godot supports the camera on Windows itself ([godotengine/godot#108538]).
 * **macOS:** The app is universal and runs on the Intel and the Apple Silicon Macs. We stay with ONNX Runtime 1.19, the last version whose libraries for macOS run on macOS 11 (from 1.20 on, they need macOS 13.3, and from 1.24 on, there is none for the Intel Macs). On a macOS older than 11, the game reports that the hand tracking failed, and the keys still steer. The app is signed ad hoc and not notarized, so the players open it the first time with a right click and Open. The camera on macOS lists no formats and delivers its frames as two planes (Y and CbCr), which `HandVisionService` converts to RGB itself (`YcbcrConverter`). On the first start, macOS asks for the permission to use the camera; the vision tries again every few seconds to start the camera until the players allow it.
+
+[CameraServerExtension]: https://github.com/j20001970/godot-cameraserver-extension
+[Steppe Rescue]: https://github.com/mristin/steppe-rescue
+[godotengine/godot#108538]: https://github.com/godotengine/godot/pull/108538
 
 ## Checks before a pull request
 

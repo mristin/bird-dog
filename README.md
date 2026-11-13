@@ -23,9 +23,15 @@ You need a webcam which supports 640x480.
 | **Linux** (x86_64) | ✅ | ✅ |
 | **macOS 11 or later** (Apple Silicon and Intel) | ✅ (macOS asks for the permission on the first start) | ✅ |
 | **macOS 10.15** | ❌ (the hand tracking needs macOS 11) | ✅ |
-| **Windows** (x86_64) | ❌ (Godot 4.6 does not support cameras on Windows yet) | ✅ |
+| **Windows** (x86_64) | 🧪 experimental, see below | ✅ |
 
 Without the webcam, the players steer with A/D or the arrow keys.
+
+Godot 4.6 has no camera on Windows, so the Windows package brings [CameraServerExtension] along.
+Virtual cameras (e.g., the one of OBS Studio) do not work there.
+If the camera does not work, steer with the keys.
+
+[CameraServerExtension]: https://github.com/j20001970/godot-cameraserver-extension
 
 The macOS app is not notarized: open it the first time with a right click and Open.
 
